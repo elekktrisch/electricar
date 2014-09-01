@@ -1,3 +1,20 @@
 <div ng-controller="MainCtrl" class="jumbotron">
-<h1>hello {{test}}</h1>
+    <h1>E-Cars</h1>
+
+    <div style="float: right;width: 80%">
+        <div class="car-details" ng-show="selectedCar !== undefined">
+            <h2>{{selectedCar.name}}</h2>
+            <img src="images/{{selectedCar.image}}" width="350" class="pull-right"/>
+
+            <p>Range: {{selectedCar.range}} km</p>
+        </div>
+        <map zoom="6" style="display:block;height:300px;width: 400px;border:2px solid #d5d4d1"/>
+    </div>
+    <div>
+        <ul>
+            <li class="cars-list" ng-repeat="car in cars">
+                <img src="images/{{car.image}}" width="100" ng-mouseover="select(car)"/>
+            </li>
+        </ul>
+    </div>
 </div>

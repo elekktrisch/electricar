@@ -2,6 +2,7 @@
 
 angular.module('app', [
     'ngRoute',
+    'ngMap',
 
     'main'
 ]);
