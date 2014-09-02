@@ -6,9 +6,31 @@
             <h2>{{selectedCar.name}}</h2>
             <img src="images/{{selectedCar.image}}" width="350" class="pull-right"/>
 
-            <p>Range: {{selectedCar.range}} km</p>
+            <p>Range: <input type="text" ng-model="selectedCar.range" ng-change="select(selectedCar)"/></p>
+            <p>Charge power [kW]: <input type="text" ng-model="selectedCar.chargePower" ng-change="select(selectedCar)"/></p>
+
+            <p>Max Hours per day: <input type="text" ng-model="maxHoursPerDay" ng-change="select(selectedCar)"/></p>
+
+            <p>Speed kmh: <input type="text" ng-model="speedKmh" ng-change="select(selectedCar)"/></p>
+
+            <p>Realitätsfaktor: <input type="text" ng-model="realityFactor" ng-change="select(selectedCar)"/></p>
         </div>
         <map zoom="6" style="display:block;height:300px;width: 400px;border:2px solid #d5d4d1"/>
+        <p>Reality Range: <span ng-bind="calculatedRange | number:0"></span> km</p>
+
+        <p>Return Range: <span ng-bind="calculatedReturnRange | number:0"></span> km</p>
+
+        <p>Day Range: <span ng-bind="calculatedDayRange | number:0"></span> km</p>
+
+        <p>Charges:
+            <span ng-show="numStops > 1">
+                <span ng-bind="numStops - 1"></span> Stop(s) of <span ng-bind="stopDuration | number:1"></span> h <span ng-show="lastStopDuration > 0.1">plus</span>
+            </span>
+            <span ng-show="lastStopDuration > 0.1">one for <span ng-bind="lastStopDuration | number:1"></span> h </span>
+            <span ng-show="numStops < 1">
+                none
+            </span>
+        </p>
     </div>
     <div>
         <ul>
