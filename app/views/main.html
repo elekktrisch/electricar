@@ -1,42 +1,140 @@
-<div ng-controller="MainCtrl" class="jumbotron">
-    <h1>E-Cars</h1>
+<div ng-controller="MainCtrl">
 
-    <div style="float: right;width: 80%">
-        <div class="car-details" ng-show="selectedCar !== undefined">
-            <h2>{{selectedCar.name}}</h2>
-            <img src="images/{{selectedCar.image}}" width="350" class="pull-right"/>
+    <div class="row quartett-board" id="quartett-board">
+        <div ng-repeat="car in cars" ng-click="select(car, true)" class="col-md-1 quartett-card">
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="car-choice-info" ng-bind="car.name"></p>
+                </div>
+            </div>
 
-            <p>Range: <input type="text" ng-model="selectedCar.range" ng-change="select(selectedCar)"/></p>
-            <p>Charge power [kW]: <input type="text" ng-model="selectedCar.chargePower" ng-change="select(selectedCar)"/></p>
-
-            <p>Max Hours per day: <input type="text" ng-model="maxHoursPerDay" ng-change="select(selectedCar)"/></p>
-
-            <p>Speed kmh: <input type="text" ng-model="speedKmh" ng-change="select(selectedCar)"/></p>
-
-            <p>Realitätsfaktor: <input type="text" ng-model="realityFactor" ng-change="select(selectedCar)"/></p>
+            <div class="row img-div" style="height: 190px;background-color: white">
+                <img src="images/{{car.image}}"/>
+            </div>
+            <div class="row">
+                <table class="col-md-12 quartett-card-techpoints">
+                    <tr>
+                        <td>Range</td>
+                        <td style="min-width: 100px;">{{car.range}} km</td>
+                    </tr>
+                    <tr>
+                        <td>Battery</td>
+                        <td>{{car.battery}} kW</td>
+                    </tr>
+                    <tr>
+                        <td>0-100 km/h</td>
+                        <td>{{car.acceleration}} s</td>
+                    </tr>
+                    <tr>
+                        <td>Max Speed</td>
+                        <td>{{car.maxSpeed}} km/h</td>
+                    </tr>
+                </table>
+            </div>
         </div>
-        <map zoom="6" style="display:block;height:300px;width: 400px;border:2px solid #d5d4d1"/>
-        <p>Reality Range: <span ng-bind="calculatedRange | number:0"></span> km</p>
-
-        <p>Return Range: <span ng-bind="calculatedReturnRange | number:0"></span> km</p>
-
-        <p>Day Range: <span ng-bind="calculatedDayRange | number:0"></span> km</p>
-
-        <p>Charges:
-            <span ng-show="numStops > 1">
-                <span ng-bind="numStops - 1"></span> Stop(s) of <span ng-bind="stopDuration | number:1"></span> h <span ng-show="lastStopDuration > 0.1">plus</span>
-            </span>
-            <span ng-show="lastStopDuration > 0.1">one for <span ng-bind="lastStopDuration | number:1"></span> h </span>
-            <span ng-show="numStops < 1">
-                none
-            </span>
-        </p>
     </div>
-    <div>
+    <div id="cars-list" class="row cars-list" ng-class="{'fixed-top':boolChangeClass}">
         <ul>
-            <li class="cars-list" ng-repeat="car in cars">
-                <img src="images/{{car.image}}" width="100" ng-mouseover="select(car)"/>
+            <li ng-repeat="car in cars" ng-click="select(car)">
+                <div class="car-choice col-md-1" ng-class="{':active':selectedCar === car}">
+                    <p class="car-choice-info" ng-bind="car.name"></p>
+                    <img src="images/{{car.image}}"/>
+                </div>
             </li>
         </ul>
+        <div class="btn btn-primary pull-right" style="margin-right: 20px;" ng-click="scrollTo('page-top')">Back to
+            Overview
+        </div>
+    </div>
+
+    <div class="view-container row main" ng-class="{'fixed-menu':boolChangeClass}">
+        <div class="car-details" ng-show="selectedCar !== undefined">
+
+            <div class="col-md-3 ">
+                <div class="info-overview">
+                    <img class="car-img" src="images/{{selectedCar.image}}" style="background-color: white;">
+
+                    <h2 class="car-title">{{selectedCar.name}}</h2>
+
+                    <p>
+                        <strong>{{selectedCar.range}} km</strong>
+                        Range with a single Charge
+                    </p>
+
+                    <p ng-show="selectedPlug">
+                        <span ng-repeat="stop in stopsImages"><img src="images/charge-stop.png" width="50"></span>
+
+                    <p class="charges-result">
+            <span ng-show="selectedPlug && numStops > 1">
+                <span ng-bind="numStops - 1"></span> Stop(s) of <span ng-bind="stopDuration | number:1"></span> h <span
+                    ng-show="lastStopDuration > 0.1">plus</span>
+            </span>
+                <span ng-show="selectedPlug && lastStopDuration > 0.1">1 stop of <span
+                        ng-bind="lastStopDuration | number:1"></span> h </span>
+            <span ng-show="selectedPlug && numStops < 1">
+                none
+            </span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-5">
+                <div class="info-main">
+
+                    <map zoom="5" style="display:block;height:400px;width: 100%;padding-bottom: 20px;"/>
+                    <div class="plug-choice-bar col-md-12">
+                        <div ng-show="supportsPlug(plug, selectedCar)" ng-repeat="plug in plugs"
+                             style="text-align: center;" ng-click="setPower(plug, selectedCar)" class="plug-choice"
+                             ng-class="{'plug-selected':selectedPlug === plug}">
+                            <img class="plug-img" src="images/{{plug.image}}">
+
+                            <p class="plug-choice-info" ng-bind="plug.name"></p>
+
+                            <p class="plug-choice-info" ng-bind="plug.chargingPower"></p>
+                        </div>
+                        <span ng-show="selectedPlug" class="charge-power"><span
+                                ng-bind="selectedCar.chargePower"></span> kW</span>
+                    </div>
+
+                    <div class="row">
+                        <div ng-show="selectedPlug" class="col-md-12 result-panel">
+
+                            <p>Distance covered after <span ng-bind="maxHoursPerDay"></span> hours:
+
+                            <p>
+                            <span class="superhero-font"><span
+                                    ng-bind="calculatedDayRange | number:0"></span> km</span></p>
+                            </p>
+
+                            <span class="small-link"><a ng-click="toggleDetails()">Calculation Details</a></span>
+
+                            <div ng-show="showDetails" class="details-box">
+                                <p>Range: <input type="text" ng-model="selectedCar.range"
+                                                 ng-change="recalcRange()"/>
+                                </p>
+
+                                <p>Charge power [kW]: <input type="text" ng-model="selectedCar.chargePower"
+                                                             ng-change="recalcRange()"/></p>
+
+                                <p>Max Hours per day: <input type="text" ng-model="maxHoursPerDay"
+                                                             ng-change="recalcRange()"/>
+                                </p>
+
+                                <p>Speed kmh: <input type="text" ng-model="speedKmh" ng-change="recalcRange()"/>
+                                </p>
+
+                                <p>Realitätsfaktor: <input type="text" ng-model="realityFactor"
+                                                           ng-change="recalcRange()"/>
+                                </p>
+
+                                <p>Reality Range: <span ng-bind="calculatedRange | number:0"></span> km</p>
+
+                                <p>Return Range: <span ng-bind="calculatedReturnRange | number:0"></span> km</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
