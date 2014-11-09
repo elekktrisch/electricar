@@ -245,8 +245,8 @@
             },
             {
                 "name": "DC",
-                "voltage": 400,
-                "ampere": 330
+                "voltage": 380,
+                "ampere": 310
             }
         ],
         "continuous": true
