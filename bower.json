@@ -5,7 +5,9 @@
     "angular-bootstrap": "~0.11.0",
     "angular-route": "~1.2.23",
     "angular-resource": "~1.2.23",
-    "ngmap": "~0.15.4"
+    "ngmap": "~0.15.4",
+    "highcharts": "~4.0.4",
+    "highcharts-ng": "~0.0.7"
   },
   "devDependencies": {}
 }

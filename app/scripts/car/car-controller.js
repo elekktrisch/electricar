@@ -127,4 +127,43 @@ angular.module('car')
                 console.log('failed to query data: ' + JSON.stringify(reason));
             });
 
+
+
+
+
+        $scope.chartConfig = {
+            //This is not a highcharts object. It just looks a little like one!
+            options: {
+                //This is the Main Highcharts chart config. Any Highchart options are valid here.
+                //will be ovverriden by values specified below.
+                chart: {
+                    type: 'line'
+                },
+                tooltip: {
+                    style: {
+                        padding: 10,
+                        fontWeight: 'bold'
+                    }
+                }
+            },
+
+            //The below properties are watched separately for changes.
+
+            //Series object (optional) - a list of series using normal highcharts series options.
+            series: [{
+                data: [10, 15, 12, 8, 7]
+            }],
+            //Title configuration (optional)
+            title: {
+                text: ''
+            },
+            //Whether to use HighStocks instead of HighCharts (optional). Defaults to false.
+            useHighStocks: false,
+
+            //function (optional)
+            func: function (chart) {
+                //setup some logic for the chart
+            }
+
+        };
     });

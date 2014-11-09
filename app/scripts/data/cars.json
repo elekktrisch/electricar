@@ -78,10 +78,10 @@
     {
         "id": 7,
         "name": "Tesla Model S",
-        "range": 502,
+        "range": 440,
         "battery": 85,
-        "acceleration": 4.2,
-        "maxSpeed": 210,
+        "acceleration": 3.2,
+        "maxSpeed": 250,
         "plugs": ["t15", "schuko", "type2", "supercharger"],
         "image": "tesla_model_s.png",
         "logo": "tesla.png"
@@ -107,5 +107,17 @@
         "plugs": ["t15", "schuko", "type2", "ccs"],
         "image": "vw_eup.png",
         "logo": "vw.png"
+    },
+    {
+        "id": 10,
+        "name": "Kia Soul EV",
+        "year": 2015,
+        "range": 210,
+        "battery": 27,
+        "acceleration": 8.5,
+        "maxSpeed": 145,
+        "plugs": ["t15", "schuko", "type1", "chademo"],
+        "image": "kia_soul_ev.png",
+        "logo": "kia.png"
     }
 ]

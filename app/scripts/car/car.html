@@ -1,12 +1,13 @@
 <div ng-controller="CarCtrl">
 
     <div id="cars-list" class="row cars-list" ng-class="{'fixed-top':boolChangeClass}">
-        <div class="row btn btn-primary" style="margin-left: 20px; margin-bottom: 20px;" ng-click="overview()">&larr; Back to
+        <div class="row btn btn-primary" style="margin-left: 20px; margin-bottom: 20px;" ng-click="overview()">&larr;
+            Back to
             Overview
         </div>
         <ul class="row">
             <li ng-repeat="car in cars" ng-click="select(car)">
-                <div class="car-choice col-md-1" ng-class="{':active':selectedCar === car}">
+                <div class="car-choice col-lg-1" ng-class="{':active':selectedCar === car}">
                     <p class="car-choice-info" ng-bind="car.name"></p>
                     <img src="images/{{car.image}}"/>
                 </div>
@@ -17,7 +18,7 @@
     <div class="view-container row main" ng-class="{'fixed-menu':boolChangeClass}">
         <div class="car-details" ng-show="selectedCar !== undefined">
 
-            <div class="col-md-3 ">
+            <div class="col-lg-3 col-md-12">
                 <div class="info-overview">
                     <img class="car-img" src="images/{{selectedCar.image}}" style="background-color: white;">
 
@@ -45,26 +46,28 @@
                 </div>
             </div>
 
-            <div class="col-md-5">
+            <div class="col-lg-5 col-md-12">
                 <div class="info-main">
 
                     <map zoom="5" style="display:block;height:400px;width: 100%;padding-bottom: 20px;"/>
-                    <div class="plug-choice-bar col-md-12">
-                        <div ng-show="supportsPlug(plug, selectedCar)" ng-repeat="plug in plugs"
-                             style="text-align: center;" ng-click="setPower(plug, selectedCar)" class="plug-choice"
-                             ng-class="{'plug-selected':selectedPlug === plug}">
-                            <img class="plug-img" src="images/{{plug.image}}">
+                    <div class="row" style="padding-left:20px;">
+                        <div class="plug-choice-bar col-md-12 col-lg-12">
+                            <div ng-show="supportsPlug(plug, selectedCar)" ng-repeat="plug in plugs"
+                                 style="text-align: center;" ng-click="setPower(plug, selectedCar)" class="plug-choice"
+                                 ng-class="{'plug-selected':selectedPlug === plug}">
+                                <img class="plug-img" src="images/{{plug.image}}">
 
-                            <p class="plug-choice-info" ng-bind="plug.name"></p>
+                                <p class="plug-choice-info" ng-bind="plug.name"></p>
 
-                            <p class="plug-choice-info" ng-bind="plug.chargingPower"></p>
-                        </div>
+                                <p class="plug-choice-info" ng-bind="plug.chargingPower"></p>
+                            </div>
                         <span ng-show="selectedPlug" class="charge-power"><span
                                 ng-bind="selectedCar.chargePower"></span> kW</span>
+                        </div>
                     </div>
 
-                    <div class="row">
-                        <div ng-show="selectedPlug" class="col-md-12 result-panel">
+                    <div class="row" style="padding-left:20px;">
+                        <div ng-show="selectedPlug" class="col-md-12 col-lg-12 result-panel">
 
                             <p>Distance covered after <span ng-bind="maxHoursPerDay"></span> hours:
 
@@ -100,6 +103,12 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-12">
+                <div class="info-main">
+                    <highchart id="chart1" config="chartConfig"></highchart>
                 </div>
             </div>
         </div>
