@@ -3,7 +3,7 @@
 angular.module('car')
     .controller('CarCtrl', function ($scope, $location, $routeParams, Circles, Cars, Plugs) {
         var i = 0;
-        $scope.realityFactor = 0.7;
+        $scope.realityFactor = 0.8;
 
         $scope.carId = $routeParams.id;
         function queryCars() {
@@ -49,34 +49,6 @@ angular.module('car')
         $scope.speedKmh = 120;
         $scope.numCharges = 0;
         $scope.stopDuration = 0;
-        var calcDayRadius = function (car) {
-            if (!car.chargePower) {
-                return 0;
-            }
-            var realRange = car.range * $scope.realityFactor
-            $scope.trip.fullCharges.minutesPerCharge = car.battery / car.chargePower;
-            var chargingPerHour = car.range / $scope.trip.fullCharges.minutesPerCharge * $scope.realityFactor;
-            var v1 = $scope.maxHoursPerDay * chargingPerHour;
-            var v2 = realRange + v1;
-            var zaehler = ($scope.speedKmh * v2);
-            var nenner = (realRange * (chargingPerHour + ($scope.speedKmh * 1)));
-            $scope.trip.fullCharges.count = zaehler / nenner;
-            var dayRadius = $scope.trip.fullCharges.count * realRange;
-            $scope.numCharges = $scope.trip.fullCharges.count;
-            $scope.numStops = Math.max(Math.ceil($scope.numCharges) - 1, 0);
-            if ($scope.numCharges > 1) {
-                $scope.lastStopDuration = -1 * ($scope.numStops - $scope.numCharges) * $scope.stopDuration;
-            } else {
-                $scope.lastStopDuration = -1;
-            }
-
-            $scope.stopsImages = [];
-            for (var i = 0; i < $scope.numStops; i++) {
-                $scope.stopsImages.push({});
-            }
-
-            return dayRadius;
-        };
 
 
         $scope.setPower = function (plug, car) {
@@ -107,17 +79,128 @@ angular.module('car')
         };
 
 
+
         $scope.recalcRange = function() {
+            var distancePoints = [];
             var car = $scope.selectedCar;
             $scope.calculatedRange = car.range * $scope.realityFactor;
             $scope.calculatedReturnRange = car.range * $scope.realityFactor / 2;
-            $scope.calculatedDayRange = calcDayRadius(car);
             $scope.rangeCircle.setRadius($scope.calculatedRange * 1000);
             $scope.returnCircle.setRadius($scope.calculatedReturnRange * 1000);
-            $scope.dayRangeCircle.setRadius($scope.calculatedDayRange * 1000);
             $scope.rangeCircle.setMap($scope.map);
             $scope.returnCircle.setMap($scope.map);
+
+            if (!car.chargePower) {
+                car.chargePower = 0;
+            }
+
+            var currentMinute;
+            var maxMinutes = 600;
+            var speedKmh = 80;
+            var chargeKW = car.chargePower;
+            var capacityKWh = car.battery;
+            var fillupPercent = 80;
+            var distanceKmPerMinute = speedKmh / 60;
+            var consumptionKWhPerKm = car.battery / car.range;
+            var energyConsumptionKWhPerMinute = consumptionKWhPerKm * distanceKmPerMinute;
+
+            var tripSimulation = {
+                minutes: [
+                    {
+                        mode: 'DRIVING',
+                        distance: 0,
+                        chargeKWh: capacityKWh * fillupPercent / 100,
+                        minute: 0
+                    }
+                ]
+            };
+
+            for(currentMinute = 0; currentMinute < maxMinutes; currentMinute++) {
+                var currentMinuteState = tripSimulation.minutes[currentMinute];
+                var nextMinuteState = {};
+                nextMinuteState.minute = currentMinuteState.minute + 1;
+                if(currentMinuteState.mode === 'DRIVING') {
+                    nextMinuteState.distance = currentMinuteState.distance + distanceKmPerMinute;
+                    nextMinuteState.chargeKWh = currentMinuteState.chargeKWh - energyConsumptionKWhPerMinute;
+                    if(nextMinuteState.chargeKWh > 0) {
+                        nextMinuteState.mode = 'DRIVING';
+                    } else {
+                        nextMinuteState.mode = 'CHARGING';
+                    }
+                } else {
+                    nextMinuteState.distance = currentMinuteState.distance;
+                    nextMinuteState.chargeKWh = currentMinuteState.chargeKWh + (chargeKW / 60);
+                    if(nextMinuteState.chargeKWh >= (capacityKWh * fillupPercent / 100)) {
+                        nextMinuteState.mode = 'DRIVING';
+                    } else {
+                        nextMinuteState.mode = 'CHARGING';
+                    }
+                }
+                console.log(JSON.stringify(nextMinuteState));
+                tripSimulation.minutes.push(nextMinuteState);
+                distancePoints.push(nextMinuteState.distance);
+            }
+
+            if(car.chargePower) {
+            $scope.calculatedDayRange = nextMinuteState.distance;
+            $scope.dayRangeCircle.setRadius($scope.calculatedDayRange * 1000);
             $scope.dayRangeCircle.setMap($scope.map);
+            }
+
+            $scope.chartConfig = {
+                //This is not a highcharts object. It just looks a little like one!
+                options: {
+                    //This is the Main Highcharts chart config. Any Highchart options are valid here.
+                    //will be ovverriden by values specified below.
+                    chart: {
+                        animation: false,
+                        type: 'line',
+                        backgroundColor: 'rgba(255,255,255,0.7)',
+                        marginTop: 20,
+                        marginRight: 30
+                    },
+                    tooltip: {
+                        style: {
+                            padding: 10,
+                            fontWeight: 'bold'
+                        }
+                    },
+                    yAxis: {
+                        min: 0,
+                        max: 1000,
+                        tickInterval: 100,
+                        title: {text:'Distance [km]'}
+                    },
+                    xAxis: {
+                        tickInterval: 60,
+                        title:  {text:'Time [min]'}
+                    },
+                    legend: {
+                        enabled: false
+                    }
+                },
+
+                //The below properties are watched separately for changes.
+
+                //Series object (optional) - a list of series using normal highcharts series options.
+                series: [{
+                    data: distancePoints,
+                    color: 'black',
+                    animation: false
+                }],
+                //Title configuration (optional)
+                title: {
+                    text: ''
+                },
+                //Whether to use HighStocks instead of HighCharts (optional). Defaults to false.
+                useHighStocks: false,
+
+                //function (optional)
+                func: function (chart) {
+                    //setup some logic for the chart
+                }
+
+            };
         };
 
         queryCars()
@@ -128,42 +211,4 @@ angular.module('car')
             });
 
 
-
-
-
-        $scope.chartConfig = {
-            //This is not a highcharts object. It just looks a little like one!
-            options: {
-                //This is the Main Highcharts chart config. Any Highchart options are valid here.
-                //will be ovverriden by values specified below.
-                chart: {
-                    type: 'line'
-                },
-                tooltip: {
-                    style: {
-                        padding: 10,
-                        fontWeight: 'bold'
-                    }
-                }
-            },
-
-            //The below properties are watched separately for changes.
-
-            //Series object (optional) - a list of series using normal highcharts series options.
-            series: [{
-                data: [10, 15, 12, 8, 7]
-            }],
-            //Title configuration (optional)
-            title: {
-                text: ''
-            },
-            //Whether to use HighStocks instead of HighCharts (optional). Defaults to false.
-            useHighStocks: false,
-
-            //function (optional)
-            func: function (chart) {
-                //setup some logic for the chart
-            }
-
-        };
     });

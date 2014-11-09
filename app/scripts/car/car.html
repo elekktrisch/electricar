@@ -28,21 +28,6 @@
                         <strong>{{selectedCar.range}} km</strong>
                         Range with a single Charge
                     </p>
-
-                    <p ng-show="selectedPlug">
-                        <span ng-repeat="stop in stopsImages"><img src="images/charge-stop.png" width="50"></span>
-
-                    <p class="charges-result">
-            <span ng-show="selectedPlug && numStops > 1">
-                <span ng-bind="numStops - 1"></span> Stop(s) of <span ng-bind="stopDuration | number:1"></span> h <span
-                    ng-show="lastStopDuration > 0.1">plus</span>
-            </span>
-                <span ng-show="selectedPlug && lastStopDuration > 0.1">1 stop of <span
-                        ng-bind="lastStopDuration | number:1"></span> h </span>
-            <span ng-show="selectedPlug && numStops < 1">
-                none
-            </span>
-                    </p>
                 </div>
             </div>
 
