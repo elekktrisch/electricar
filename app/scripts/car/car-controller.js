@@ -102,6 +102,7 @@ angular.module('car')
             var fillupPercent = 80;
             var distanceKmPerMinute = speedKmh / 60;
             var consumptionKWhPerKm = car.battery / car.range;
+            $scope.numStops = 0;
             var energyConsumptionKWhPerMinute = consumptionKWhPerKm * distanceKmPerMinute;
 
             var tripSimulation = {
@@ -114,10 +115,12 @@ angular.module('car')
                     }
                 ]
             };
+            var currentChargeLastsForMin = 0;
 
             for(currentMinute = 0; currentMinute < maxMinutes; currentMinute++) {
                 var currentMinuteState = tripSimulation.minutes[currentMinute];
                 var nextMinuteState = {};
+                currentChargeLastsForMin = currentMinuteState.chargeKWh / energyConsumptionKWhPerMinute;
                 nextMinuteState.minute = currentMinuteState.minute + 1;
                 if(currentMinuteState.mode === 'DRIVING') {
                     nextMinuteState.distance = currentMinuteState.distance + distanceKmPerMinute;
@@ -126,21 +129,22 @@ angular.module('car')
                         nextMinuteState.mode = 'DRIVING';
                     } else {
                         nextMinuteState.mode = 'CHARGING';
+                        $scope.numStops++;
                     }
                 } else {
                     nextMinuteState.distance = currentMinuteState.distance;
                     nextMinuteState.chargeKWh = currentMinuteState.chargeKWh + (chargeKW / 60);
-                    if(nextMinuteState.chargeKWh >= (capacityKWh * fillupPercent / 100)) {
+                    if(nextMinuteState.chargeKWh >= (capacityKWh * fillupPercent / 100)
+                        || currentChargeLastsForMin >= (maxMinutes - currentMinute)) {
                         nextMinuteState.mode = 'DRIVING';
                     } else {
                         nextMinuteState.mode = 'CHARGING';
                     }
                 }
-                console.log(JSON.stringify(nextMinuteState));
+                //console.log(JSON.stringify(nextMinuteState));
                 tripSimulation.minutes.push(nextMinuteState);
                 distancePoints.push(nextMinuteState.distance);
             }
-
             if(car.chargePower) {
             $scope.calculatedDayRange = nextMinuteState.distance;
             $scope.dayRangeCircle.setRadius($scope.calculatedDayRange * 1000);
@@ -157,7 +161,8 @@ angular.module('car')
                         type: 'line',
                         backgroundColor: 'rgba(255,255,255,0.7)',
                         marginTop: 20,
-                        marginRight: 30
+                        marginRight: 30,
+                        height: 380
                     },
                     tooltip: {
                         style: {

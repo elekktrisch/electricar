@@ -1,7 +1,7 @@
 .quartett-board {
     background: url('../images/wind-energie.jpg') no-repeat;
     background-size: 100%;
-    padding: 70px;
+    padding: 50px;
 }
 
 .quartett-card {
@@ -9,8 +9,8 @@
     box-shadow: 5px 5px 8px rgba(0,0,0,0.3);
     border-radius: 8px;
     background-color: rgba(255,255,255,0.3);
-    height: 350px;
-    width: 280px;
+    height: 320px;
+    width: 230px;
     margin: 15px;
     text-align: center;
     cursor: pointer;
@@ -22,11 +22,10 @@
 }
 
 .quartett-card img {
-    width: 250px;
+    width: 200px;
 }
 
 .quartett-card img-div {
-    height: 400px;
     display: block;
 }
 
@@ -48,10 +47,6 @@ table.quartett-card-techpoints {
 .view-container {
     background: url('../images/bg2_solar.jpg') no-repeat 0 0;
     background-size: 100%;
-}
-
-.fixed-top .view-container {
-    margin-top: 130;
 }
 
 .container-fluid {
@@ -178,7 +173,7 @@ p.plug-choice-info {
 .info-main {
     background-color: rgba(255, 255, 255, 0.4);
     padding: 10px;
-    min-height: 600px;
+    min-height: 700px;
 }
 .info-overview {
     text-align: center;
@@ -208,7 +203,7 @@ p.plug-choice-info {
 }
 
 .superhero-font {
-    font-size: 100px;
+    font-size: 70px;
     font-weight: 800;
     color: rgba(0,0,0,0.2);
     text-shadow: 0px 0px 8px rgba(255,255,255,0.2);

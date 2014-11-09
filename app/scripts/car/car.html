@@ -51,15 +51,25 @@
                         </div>
                     </div>
 
-                    <div class="row" style="padding-left:20px;">
-                        <div ng-show="selectedPlug" class="col-md-12 col-lg-12 result-panel">
 
-                            <p>Distance covered after <span ng-bind="maxHoursPerDay"></span> hours:
+                </div>
+            </div>
 
-                            <p>
+            <div class="col-lg-4 col-md-12">
+                <div class="info-main">
+                    <highchart id="chart1" config="chartConfig"></highchart>
+
+                    <div style="padding:10px;margin-top:10px;background-color: rgba(255,255,255,0.7);text-align: center;">
+                    <p>Distance covered after <span ng-bind="maxHoursPerDay"></span> hours and <span ng-bind="numStops"></span> stop<span ng-show="numStops > 1">s</span>:
+
+                    <p>
                             <span class="superhero-font"><span
-                                    ng-bind="calculatedDayRange | number:0"></span> km</span></p>
-                            </p>
+                                    ng-bind="calculatedDayRange || selectedCar.range | number:0"></span> km</span></p>
+                    </p>
+                    </div>
+
+                    <div ng-show="selectedPlug">
+                        <div style="padding:10px;margin-top:10px;background-color: rgba(255,255,255,0.7);">
 
                             <span class="small-link"><a ng-click="toggleDetails()">Calculation Details</a></span>
 
@@ -88,12 +98,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-12">
-                <div class="info-main">
-                    <highchart id="chart1" config="chartConfig"></highchart>
                 </div>
             </div>
         </div>
