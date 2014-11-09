@@ -1,0 +1,37 @@
+<div ng-controller="MainCtrl">
+
+    <div class="row quartett-board" id="quartett-board">
+        <div ng-repeat="car in cars" ng-click="select(car)" class="col-md-1 quartett-card">
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="car-choice-info" ng-bind="car.name"></p>
+                </div>
+            </div>
+
+            <div class="row img-div" style="height: 190px;background-color: white">
+                <img src="images/{{car.image}}"/>
+            </div>
+            <div class="row">
+                <table class="col-md-12 quartett-card-techpoints">
+                    <tr>
+                        <td>Range</td>
+                        <td style="min-width: 100px;">{{car.range}} km</td>
+                    </tr>
+                    <tr>
+                        <td>Battery</td>
+                        <td>{{car.battery}} kW</td>
+                    </tr>
+                    <tr>
+                        <td>0-100 km/h</td>
+                        <td>{{car.acceleration}} s</td>
+                    </tr>
+                    <tr>
+                        <td>Max Speed</td>
+                        <td>{{car.maxSpeed}} km/h</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

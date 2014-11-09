@@ -4,5 +4,6 @@ angular.module('app', [
     'ngRoute',
     'ngMap',
 
-    'main'
+    'main',
+    'car'
 ]);

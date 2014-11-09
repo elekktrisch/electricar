@@ -1,0 +1,111 @@
+[
+    {
+        "id": 0,
+        "name": "BMW i3",
+        "range": 190,
+        "battery": 18.8,
+        "acceleration": 7.2,
+        "maxSpeed": 150,
+        "plugs": ["t15", "schuko", "type2", "ccs"],
+        "image": "bmwi3.jpg",
+        "logo": "bmw.png"
+    },
+    {
+        "id": 1,
+        "name": "Ford Focus Electric",
+        "range": 162,
+        "battery": 23,
+        "acceleration": 11.4,
+        "maxSpeed": 137,
+        "plugs": ["t15", "schuko", "type1"],
+        "image": "ford_focus.jpg",
+        "logo": "ford.png"
+    },
+    {
+        "id": 2,
+        "name": "smart fortwo ed",
+        "range": 145,
+        "battery": 17.6,
+        "acceleration": 11.5,
+        "maxSpeed": 125,
+        "plugs": ["t15", "schuko", "type2"],
+        "image": "smart_ed.jpg"
+    },
+    {
+        "id": 3,
+        "name": "Mitsubishi iMiEV",
+        "range": 150,
+        "battery": 16,
+        "acceleration": 15.9,
+        "maxSpeed": 130,
+        "plugs": ["t15", "schuko", "type1", "chademo"],
+        "image": "mitsubishi_imiev.jpg",
+        "logo": "mitsubishi.png"
+    },
+    {
+        "id": 4,
+        "name": "Nissan Leaf",
+        "range": 199,
+        "battery": 24,
+        "acceleration": 11.4,
+        "maxSpeed": 145,
+        "plugs": ["t15", "schuko", "type1", "chademo"],
+        "image": "nissan_leaf.jpg",
+        "logo": "nissan.png"
+    },
+    {
+        "id": 5,
+        "name": "Renault Kangoo Z.E.",
+        "range": 120,
+        "battery": 22,
+        "acceleration": 20.3,
+        "maxSpeed": 130,
+        "plugs": ["t15", "schuko", "type1"],
+        "image": "renault_kangoo.jpg",
+        "logo": "renault.png"
+    },
+    {
+        "id": 6,
+        "name": "Renault ZOE",
+        "range": 210,
+        "battery": 22,
+        "acceleration": 13.5,
+        "maxSpeed": 135,
+        "plugs": ["t15", "schuko", "type2"],
+        "image": "renault_zoe.jpg",
+        "logo": "renault.png"
+    },
+    {
+        "id": 7,
+        "name": "Tesla Model S",
+        "range": 502,
+        "battery": 85,
+        "acceleration": 4.2,
+        "maxSpeed": 210,
+        "plugs": ["t15", "schuko", "type2", "supercharger"],
+        "image": "tesla_model_s.png",
+        "logo": "tesla.png"
+    },
+    {
+        "id": 8,
+        "name": "VW e-Golf",
+        "range": 190,
+        "battery": 24.2,
+        "acceleration": 10.4,
+        "maxSpeed": 140,
+        "plugs": ["t15", "schuko", "type2", "ccs"],
+        "image": "vw_egolf.jpg",
+        "logo": "vw.png"
+    },
+    {
+        "id": 9,
+        "name": "VW e-Up",
+        "range": 160,
+        "battery": 18.7,
+        "acceleration": 12.4,
+        "maxSpeed": 130,
+        "plugs": ["t15", "schuko", "type2", "ccs"],
+        "image": "vw_eup.png",
+        "logo": "vw.png"
+    }
+]

@@ -1,0 +1,254 @@
+[
+    {
+        "image": "wall_t15.jpg",
+        "id": "t15",
+        "name": "T15",
+        "power": [
+            {
+                "name": "Phase 1",
+                "voltage": 230,
+                "ampere": 10
+            },
+            {
+                "name": "Phase 2",
+                "voltage": 0,
+                "ampere": 0
+            },
+            {
+                "name": "Phase 3",
+                "voltage": 0,
+                "ampere": 0
+            },
+            {
+                "name": "DC",
+                "voltage": 0,
+                "ampere": 0
+            }
+        ],
+        "continuous": false
+    },
+    {
+        "image": "wall_schuko.jpg",
+        "id": "schuko",
+        "name": "Schuko",
+        "power": [
+            {
+                "name": "Phase 1",
+                "voltage": 230,
+                "ampere": 16
+            },
+            {
+                "name": "Phase 2",
+                "voltage": 0,
+                "ampere": 0
+            },
+            {
+                "name": "Phase 3",
+                "voltage": 0,
+                "ampere": 0
+            },
+            {
+                "name": "DC",
+                "voltage": 0,
+                "ampere": 0
+            }
+        ],
+        "continuous": false
+    },
+    {
+        "image": "wall_cee.jpg",
+        "id": "cee16",
+        "name": "CEE 16",
+        "power": [
+            {
+                "name": "Phase 1",
+                "voltage": 230,
+                "ampere": 16
+            },
+            {
+                "name": "Phase 2",
+                "voltage": 230,
+                "ampere": 16
+            },
+            {
+                "name": "Phase 3",
+                "voltage": 230,
+                "ampere": 16
+            },
+            {
+                "name": "DC",
+                "voltage": 0,
+                "ampere": 0
+            }
+        ],
+        "continuous": true
+    },
+    {
+        "image": "wall_cee.jpg",
+        "id": "cee32",
+        "name": "CEE 32",
+        "power": [
+            {
+                "name": "Phase 1",
+                "voltage": 230,
+                "ampere": 32
+            },
+            {
+                "name": "Phase 2",
+                "voltage": 230,
+                "ampere": 32
+            },
+            {
+                "name": "Phase 3",
+                "voltage": 230,
+                "ampere": 32
+            },
+            {
+                "name": "DC",
+                "voltage": 0,
+                "ampere": 0
+            }
+        ],
+        "continuous": true
+    },
+    {
+        "image": "auto_type1.jpg",
+        "id": "type1",
+        "name": "Type 1",
+        "power": [
+            {
+                "name": "Phase 1",
+                "voltage": 230,
+                "ampere": 32
+            },
+            {
+                "name": "Phase 2",
+                "voltage": 230,
+                "ampere": 32
+            },
+            {
+                "name": "Phase 3",
+                "voltage": 230,
+                "ampere": 32
+            },
+            {
+                "name": "DC",
+                "voltage": 0,
+                "ampere": 0
+            }
+        ],
+        "continuous": true
+    },
+    {
+        "image": "wall_type2.jpg",
+        "id": "type2",
+        "name": "Type 2",
+        "power": [
+            {
+                "name": "Phase 1",
+                "voltage": 230,
+                "ampere": 32
+            },
+            {
+                "name": "Phase 2",
+                "voltage": 230,
+                "ampere": 32
+            },
+            {
+                "name": "Phase 3",
+                "voltage": 230,
+                "ampere": 32
+            },
+            {
+                "name": "DC",
+                "voltage": 0,
+                "ampere": 0
+            }
+        ],
+        "continuous": true
+    },
+    {
+        "image": "auto_chademo.jpg",
+        "id": "chademo",
+        "name": "CHAdeMO",
+        "power": [
+            {
+                "name": "Phase 1",
+                "voltage": 0,
+                "ampere": 0
+            },
+            {
+                "name": "Phase 2",
+                "voltage": 0,
+                "ampere": 0
+            },
+            {
+                "name": "Phase 3",
+                "voltage": 0,
+                "ampere": 0
+            },
+            {
+                "name": "DC",
+                "voltage": 400,
+                "ampere": 125
+            }
+        ],
+        "continuous": true
+    },
+    {
+        "image": "auto_ccs.jpg",
+        "id": "ccs",
+        "name": "CCS",
+        "power": [
+            {
+                "name": "Phase 1",
+                "voltage": 0,
+                "ampere": 0
+            },
+            {
+                "name": "Phase 2",
+                "voltage": 0,
+                "ampere": 0
+            },
+            {
+                "name": "Phase 3",
+                "voltage": 0,
+                "ampere": 0
+            },
+            {
+                "name": "DC",
+                "voltage": 400,
+                "ampere": 125
+            }
+        ],
+        "continuous": true
+    },
+    {
+        "image": "tesla-supercharger.jpg",
+        "id": "supercharger",
+        "name": "Supercharger",
+        "power": [
+            {
+                "name": "Phase 1",
+                "voltage": 0,
+                "ampere": 0
+            },
+            {
+                "name": "Phase 2",
+                "voltage": 0,
+                "ampere": 0
+            },
+            {
+                "name": "Phase 3",
+                "voltage": 0,
+                "ampere": 0
+            },
+            {
+                "name": "DC",
+                "voltage": 400,
+                "ampere": 330
+            }
+        ],
+        "continuous": true
+    }
+]

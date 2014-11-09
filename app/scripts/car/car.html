@@ -1,40 +1,10 @@
-<div ng-controller="MainCtrl">
+<div ng-controller="CarCtrl">
 
-    <div class="row quartett-board" id="quartett-board">
-        <div ng-repeat="car in cars" ng-click="select(car, true)" class="col-md-1 quartett-card">
-            <div class="row">
-                <div class="col-md-12">
-                    <p class="car-choice-info" ng-bind="car.name"></p>
-                </div>
-            </div>
-
-            <div class="row img-div" style="height: 190px;background-color: white">
-                <img src="images/{{car.image}}"/>
-            </div>
-            <div class="row">
-                <table class="col-md-12 quartett-card-techpoints">
-                    <tr>
-                        <td>Range</td>
-                        <td style="min-width: 100px;">{{car.range}} km</td>
-                    </tr>
-                    <tr>
-                        <td>Battery</td>
-                        <td>{{car.battery}} kW</td>
-                    </tr>
-                    <tr>
-                        <td>0-100 km/h</td>
-                        <td>{{car.acceleration}} s</td>
-                    </tr>
-                    <tr>
-                        <td>Max Speed</td>
-                        <td>{{car.maxSpeed}} km/h</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-    </div>
     <div id="cars-list" class="row cars-list" ng-class="{'fixed-top':boolChangeClass}">
-        <ul>
+        <div class="row btn btn-primary" style="margin-left: 20px; margin-bottom: 20px;" ng-click="overview()">&larr; Back to
+            Overview
+        </div>
+        <ul class="row">
             <li ng-repeat="car in cars" ng-click="select(car)">
                 <div class="car-choice col-md-1" ng-class="{':active':selectedCar === car}">
                     <p class="car-choice-info" ng-bind="car.name"></p>
@@ -42,9 +12,6 @@
                 </div>
             </li>
         </ul>
-        <div class="btn btn-primary pull-right" style="margin-right: 20px;" ng-click="scrollTo('page-top')">Back to
-            Overview
-        </div>
     </div>
 
     <div class="view-container row main" ng-class="{'fixed-menu':boolChangeClass}">
