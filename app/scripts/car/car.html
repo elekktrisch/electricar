@@ -29,6 +29,8 @@
                         Range with a single Charge
                     </p>
 
+                    <hr style="border-top: 2px solid white;"/>
+                    <h4>Chargers on Trip:</h4>
                     <div class="plug-choice-bar row">
                         <div ng-show="supportsPlug(plug, selectedCar)" ng-repeat="plug in plugs"
                              ng-click="setPower(plug, selectedCar)" class="col-md-12 plug-choice"
@@ -49,6 +51,16 @@
 
                     <div class="options-box">
                         <div class="row slider-row">
+                            <span class="col-md-3 slider-label">Distance to travel:</span>
+
+                            <div class="col-md-6 slider-bar">
+                                <div ui-slider min="0" max="2000"
+                                     ng-model="calcParams.distanceToTravel"></div>
+                            </div>
+                            <span class="col-md-3 slider-value"><span
+                                    ng-bind="calcParams.distanceToTravel"></span> km</span>
+                        </div>
+                        <div class="row slider-row">
                             <span class="col-md-3 slider-label">Start Journey with State of Charge:</span>
 
                             <div class="col-md-6 slider-bar">
@@ -68,6 +80,16 @@
                                     ng-bind="calcParams.batteryUseablePart[1]"></span> %</span>
                         </div>
                         <div class="row slider-row">
+                            <span class="col-md-3 slider-label">Range Reserve:</span>
+
+                            <div class="col-md-6 slider-bar">
+                                <div ui-slider="slider.reserveKm" min="0"
+                                     ng-model="calcParams.reserveKm"></div>
+                            </div>
+                            <span class="col-md-3 slider-value"><span
+                                    ng-bind="calcParams.reserveKm"></span> km</span>
+                        </div>
+                        <div class="row slider-row">
                             <span class="col-md-3 slider-label">Charging Power:</span>
 
                             <div class="col-md-6 slider-bar">
@@ -78,7 +100,7 @@
                                     ng-bind="calcParams.chargingPower"></span> kW</span>
                         </div>
                         <div class="row slider-row">
-                            <span class="col-md-3 slider-label">Driving Speed:</span>
+                            <span class="col-md-3 slider-label">Average Driving Speed:</span>
 
                             <div class="col-md-6 slider-bar">
                                 <div ui-slider min="0" max="300"
@@ -94,7 +116,9 @@
 
             <div class="col-lg-4 col-md-12">
                 <div class="info-main">
+                    <div ng-show="chartConfig">
                     <highchart id="chart1" config="chartConfig"></highchart>
+                    </div>
 
                     <div style="padding:10px;margin-top:10px;background-color: rgba(255,255,255,0.7);text-align: center;font-weight: 700;">
                         <p>Distance covered after <span ng-bind="totalDuration"></span> hours at <span
