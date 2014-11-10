@@ -1,9 +1,9 @@
+/*global _:false*/
 'use strict';
 
 angular.module('car')
-    .controller('CarCtrl', function ($scope, $q, $location, $routeParams, Circles, Cars, Plugs) {
+    .controller('CarCtrl', function ($scope, $q, $log, $location, $routeParams, Circles, Cars, Plugs) {
         var i = 0;
-        $scope.batteryCapacityFactor = 0.8;
 
         $scope.carId = $routeParams.id;
         function queryCars() {
@@ -58,22 +58,22 @@ angular.module('car')
         }
 
 
-        $scope.maxHoursPerDay = 10;
         $scope.speedKmh = 70;
         $scope.numCharges = 0;
         $scope.stopDuration = 0;
 
 
         $scope.setPower = function (plug, car) {
-            car.chargePower = 0;
+            var chargePower = 0;
             for (var i = 0; i < plug.power.length; i++) {
                 var p = plug.power[i];
-                car.chargePower += (p.voltage * p.ampere);
+                chargePower += (p.voltage * p.ampere);
             }
             if (!plug.continuous) {
-                car.chargePower = car.chargePower * 0.8;
+                chargePower = chargePower * 0.8;
             }
-            car.chargePower = Math.floor(car.chargePower / 100) / 10;
+            $scope.calcParams.chargingPower = Math.floor(chargePower / 100) / 10;
+            plug.chargingPower = $scope.calcParams.chargingPower;
             $scope.selectedPlug = plug;
             $scope.recalcRange();
         };
@@ -92,33 +92,37 @@ angular.module('car')
         };
 
 
-        $scope.recalcRange = function () {
+        function doRecalc() {
+            $scope.totalDistance = 800;
             var distancePoints = [];
+            var energyPoints = [];
+            var powerPoints = [];
             var car = $scope.selectedCar;
-            if ($scope.speedKmh > car.maxSpeed) {
-                $scope.speedKmh = car.maxSpeed;
-            }
-            $scope.calculatedRange = car.range * $scope.batteryCapacityFactor;
-            $scope.calculatedReturnRange = car.range * $scope.batteryCapacityFactor / 2;
-            $scope.rangeCircle.setRadius($scope.calculatedRange * 1000);
-            $scope.returnCircle.setRadius($scope.calculatedReturnRange * 1000);
-            $scope.rangeCircle.setMap($scope.map);
-            $scope.returnCircle.setMap($scope.map);
 
-            if (!car.chargePower) {
-                car.chargePower = 0;
+            if ($scope.calcParams.drivingSpeed > car.maxSpeed) {
+                $scope.calcParams.drivingSpeed = car.maxSpeed;
+            }
+            $scope.calculatedRange = car.range;
+            $scope.calculatedReturnRange = car.range / 2;
+            if ($scope.rangeCircle && $scope.returnCircle) {
+                $scope.rangeCircle.setRadius($scope.calculatedRange * 1000);
+                $scope.returnCircle.setRadius($scope.calculatedReturnRange * 1000);
+                $scope.rangeCircle.setMap($scope.map);
+                $scope.returnCircle.setMap($scope.map);
+            }
+
+            if (!$scope.calcParams.chargingPower) {
+                $scope.calcParams.chargingPower = 0;
             }
 
             var currentMinute;
-            var maxMinutes = $scope.maxHoursPerDay * 60;
-            var speedKmh = $scope.speedKmh;
-            var chargeKW = car.chargePower;
+            var speedKmh = $scope.calcParams.drivingSpeed;
+            var chargeKW = $scope.calcParams.chargingPower;
             var capacityKWh = car.battery;
-            var fillupPercent = $scope.batteryCapacityFactor * 100;
             var distanceKmPerMinute = speedKmh / 60;
             $scope.consumptionKWhPerKm = car.battery / car.range;
-            if ($scope.speedKmh > 70) {
-                var dragFactor = Math.pow(1.25, ($scope.speedKmh / 70));
+            if ($scope.speedKmh > 80) {
+                var dragFactor = Math.pow(1.05, 4 * ($scope.speedKmh / 80));
                 $scope.consumptionKWhPerKm = $scope.consumptionKWhPerKm * dragFactor;
             }
             $scope.numStops = 0;
@@ -129,21 +133,28 @@ angular.module('car')
                     {
                         mode: 'DRIVING',
                         distance: 0,
-                        chargeKWh: capacityKWh * fillupPercent / 100,
+                        chargeKWh: capacityKWh * $scope.calcParams.firstCharge / 100,
                         minute: 0
                     }
                 ]
             };
-            var currentChargeLastsForMin = 0;
+            var currentChargeLastsForKm = 0;
+            var currentDistance = 0;
+            var currentMinute = 0;
+            var maxTimeMinutes = 60 * 24;
 
-            for (currentMinute = 0; currentMinute < maxMinutes; currentMinute++) {
+            $scope.useableCapacityPercent = ($scope.calcParams.batteryUseablePart[1] - $scope.calcParams.batteryUseablePart[0]) / 100;
+            capacityKWh = capacityKWh * $scope.useableCapacityPercent;
+
+            while (currentDistance < $scope.totalDistance && currentMinute < maxTimeMinutes) {
                 var currentMinuteState = tripSimulation.minutes[currentMinute];
                 var nextMinuteState = {};
-                currentChargeLastsForMin = currentMinuteState.chargeKWh / energyConsumptionKWhPerMinute;
+                currentChargeLastsForKm = currentMinuteState.chargeKWh / $scope.consumptionKWhPerKm;
                 nextMinuteState.minute = currentMinuteState.minute + 1;
                 if (currentMinuteState.mode === 'DRIVING') {
                     nextMinuteState.distance = currentMinuteState.distance + distanceKmPerMinute;
                     nextMinuteState.chargeKWh = currentMinuteState.chargeKWh - energyConsumptionKWhPerMinute;
+                    powerPoints.push(-$scope.consumptionKWhPerKm * speedKmh);
                     if (nextMinuteState.chargeKWh > 0) {
                         nextMinuteState.mode = 'DRIVING';
                     } else {
@@ -152,21 +163,37 @@ angular.module('car')
                     }
                 } else {
                     nextMinuteState.distance = currentMinuteState.distance;
-                    nextMinuteState.chargeKWh = currentMinuteState.chargeKWh + (chargeKW / 60);
-                    if (nextMinuteState.chargeKWh >= (capacityKWh * fillupPercent / 100)
-                        || currentChargeLastsForMin >= (maxMinutes - currentMinute)) {
+                    var energyPerMinute = (chargeKW / 60);
+                    if (currentMinuteState.chargeKWh > (0.5 * capacityKWh)) {
+                        var SOC = currentMinuteState.chargeKWh / capacityKWh;
+                        energyPerMinute = energyPerMinute * Math.max(0.01, Math.pow(0.8, 10 * (SOC - 0.5)));
+                    }
+                    nextMinuteState.chargeKWh = currentMinuteState.chargeKWh + energyPerMinute;
+                    var chargingDone = nextMinuteState.chargeKWh >= capacityKWh;
+                    var chargingSufficient = currentChargeLastsForKm >= ($scope.totalDistance - currentDistance);
+
+                    if (chargingDone
+                        || chargingSufficient) {
                         nextMinuteState.mode = 'DRIVING';
                     } else {
                         nextMinuteState.mode = 'CHARGING';
                     }
+                    powerPoints.push(energyPerMinute * 60);
                 }
+                currentDistance = nextMinuteState.distance;
+                currentMinute++;
                 //console.log(JSON.stringify(nextMinuteState));
                 tripSimulation.minutes.push(nextMinuteState);
                 distancePoints.push(nextMinuteState.distance);
+                energyPoints.push(nextMinuteState.chargeKWh);
             }
+            $scope.totalDistance = currentDistance;
+            $scope.totalDuration = Math.round(currentMinute / 6) / 10;
             $scope.calculatedDayRange = nextMinuteState.distance;
-            $scope.dayRangeCircle.setRadius($scope.calculatedDayRange * 1000);
-            $scope.dayRangeCircle.setMap($scope.map);
+            if ($scope.dayRangeCircle) {
+                $scope.dayRangeCircle.setRadius($scope.calculatedDayRange * 1000);
+                $scope.dayRangeCircle.setMap($scope.map);
+            }
 
             $scope.chartConfig = {
                 //This is not a highcharts object. It just looks a little like one!
@@ -188,17 +215,22 @@ angular.module('car')
                         }
                     },
                     yAxis: {
-                        min: 0,
-                        max: 1200,
+                        max: 800,
                         tickInterval: 100,
                         title: {text: 'Distance [km]'}
                     },
                     xAxis: {
-                        tickInterval: 60,
-                        title: {text: 'Time [min]'}
+                        max: 1440,
+                        title: {text: 'Time [h]'},
+                        tickInterval: 360,
+                        labels: {
+                            formatter: function () {
+                                return this.value / 60;
+                            }
+                        }
                     },
                     legend: {
-                        enabled: false
+                        enabled: true
                     }
                 },
 
@@ -208,7 +240,20 @@ angular.module('car')
                 series: [
                     {
                         data: distancePoints,
+                        name: 'Distance [km]',
                         color: 'black',
+                        animation: false
+                    },
+                    {
+                        data: energyPoints,
+                        name: 'Energy [kWh]',
+                        color: 'blue',
+                        animation: false
+                    },
+                    {
+                        data: powerPoints,
+                        name: 'Power [kW]',
+                        color: 'red',
                         animation: false
                     }
                 ],
@@ -223,14 +268,34 @@ angular.module('car')
                 func: function (chart) {
                     //setup some logic for the chart
                 }
-
             };
+        }
+
+        var debouncedRecalc = _.debounce(doRecalc, 500, {leading: false, trailing: true});
+
+        $scope.recalcRange = function () {
+            doRecalc();
         };
 
+        $scope.slider = {
+            batteryRange: {
+                range: true
+            }};
+        $scope.calcParams = {};
+        $scope.calcParams.batteryUseablePart = [10,90];
+        $scope.calcParams.chargingPower = 0;
+        $scope.calcParams.firstCharge = 100;
+        $scope.calcParams.drivingSpeed = 70;
+
+/*        $scope.$watch('calcParams.batteryUseablePart', debouncedRecalc);
+        $scope.$watch('calcParams.chargingPower', debouncedRecalc);
+        $scope.$watch('calcParams.firstCharge', debouncedRecalc);
+        $scope.$watch('calcParams.drivingSpeed', debouncedRecalc);*/
+
         queryCars()
-            .then(resolvePosition)
             .then(queryPlugs)
             .then($scope.recalcRange)
+            .then(resolvePosition)
             .catch(function (reason) {
                 console.log('failed to query data: ' + JSON.stringify(reason));
             });

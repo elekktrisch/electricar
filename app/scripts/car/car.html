@@ -28,6 +28,17 @@
                         <strong>{{selectedCar.range}} km</strong>
                         Range with a single Charge
                     </p>
+
+                    <div class="plug-choice-bar row">
+                        <div ng-show="supportsPlug(plug, selectedCar)" ng-repeat="plug in plugs"
+                             ng-click="setPower(plug, selectedCar)" class="col-md-12 plug-choice"
+                             ng-class="{'plug-selected':selectedPlug === plug}">
+
+                            <img class="plug-img" src="images/{{plug.image}}">
+                            <span class="plug-choice-info"><span ng-bind="plug.name"></span> <span
+                                    ng-show="plug.chargingPower">(<span ng-bind="plug.chargingPower"></span> kW)</span></span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -35,23 +46,49 @@
                 <div class="info-main">
 
                     <map zoom="5" style="display:block;height:400px;width: 100%;padding-bottom: 20px;"/>
-                    <div class="row" style="padding-left:20px;">
-                        <div class="plug-choice-bar col-md-12 col-lg-12">
-                            <div ng-show="supportsPlug(plug, selectedCar)" ng-repeat="plug in plugs"
-                                 style="text-align: center;" ng-click="setPower(plug, selectedCar)" class="plug-choice"
-                                 ng-class="{'plug-selected':selectedPlug === plug}">
-                                <img class="plug-img" src="images/{{plug.image}}">
 
-                                <p class="plug-choice-info" ng-bind="plug.name"></p>
+                    <div class="options-box">
+                        <div class="row slider-row">
+                            <span class="col-md-3 slider-label">Start Journey with State of Charge:</span>
 
-                                <p class="plug-choice-info" ng-bind="plug.chargingPower"></p>
+                            <div class="col-md-6 slider-bar">
+                                <div ui-slider min="0" max="100"
+                                     ng-model="calcParams.firstCharge"></div>
                             </div>
-                        <span ng-show="selectedPlug" class="charge-power"><span
-                                ng-bind="selectedCar.chargePower"></span> kW</span>
+                            <span class="col-md-3 slider-value"><span ng-bind="calcParams.firstCharge"></span> %</span>
                         </div>
+                        <div class="row slider-row">
+                            <span class="col-md-3 slider-label">Use Battery Part:</span>
+
+                            <div class="col-md-6 slider-bar">
+                                <div ui-slider="slider.batteryRange" min="0" max="100"
+                                     ng-model="calcParams.batteryUseablePart"></div>
+                            </div>
+                            <span class="col-md-3 slider-value"><span ng-bind="calcParams.batteryUseablePart[0]"></span> - <span
+                                    ng-bind="calcParams.batteryUseablePart[1]"></span> %</span>
+                        </div>
+                        <div class="row slider-row">
+                            <span class="col-md-3 slider-label">Charging Power:</span>
+
+                            <div class="col-md-6 slider-bar">
+                                <div ui-slider min="0" max="200"
+                                     ng-model="calcParams.chargingPower"></div>
+                            </div>
+                            <span class="col-md-3 slider-value"><span
+                                    ng-bind="calcParams.chargingPower"></span> kW</span>
+                        </div>
+                        <div class="row slider-row">
+                            <span class="col-md-3 slider-label">Driving Speed:</span>
+
+                            <div class="col-md-6 slider-bar">
+                                <div ui-slider min="0" max="300"
+                                     ng-model="calcParams.drivingSpeed"></div>
+                            </div>
+                            <span class="col-md-3 slider-value"><span
+                                    ng-bind="calcParams.drivingSpeed"></span> km/h</span>
+                        </div>
+                        <a class="btn btn-info pull-right" style="margin:10px;" ng-click="recalcRange()">Calculate</a>
                     </div>
-
-
                 </div>
             </div>
 
@@ -60,12 +97,15 @@
                     <highchart id="chart1" config="chartConfig"></highchart>
 
                     <div style="padding:10px;margin-top:10px;background-color: rgba(255,255,255,0.7);text-align: center;font-weight: 700;">
-                    <p>Distance covered after <span ng-bind="maxHoursPerDay"></span> hours including <span ng-bind="numStops"></span> stop<span ng-show="numStops > 1">s</span>:
+                        <p>Distance covered after <span ng-bind="totalDuration"></span> hours at <span
+                                ng-bind="speedKmh"></span> km/h including <span ng-bind="numStops"></span> stop<span
+                                ng-show="numStops > 1">s</span>:
 
-                    <p>
+                        <p>
                             <span class="superhero-font"><span
-                                    ng-bind="calculatedDayRange || (selectedCar.range * batteryCapacityFactor) | number:0"></span> km</span></p>
-                    </p>
+                                    ng-bind="calculatedDayRange || (selectedCar.range * batteryCapacityFactor) | number:0"></span> km</span>
+                        </p>
+                        </p>
                     </div>
 
                     <div ng-show="selectedPlug">
@@ -74,28 +114,13 @@
                             <span class="small-link"><a ng-click="toggleDetails()">Calculation Details</a></span>
 
                             <div ng-show="showDetails" class="details-box">
-                                <p>Range: <input type="text" ng-model="selectedCar.range"
-                                                 ng-change="recalcRange()"/>
-                                </p>
-
-                                <p>Charge power [kW]: <input type="text" ng-model="selectedCar.chargePower"
-                                                             ng-change="recalcRange()"/></p>
-
-                                <p>Max Hours per day: <input type="text" ng-model="maxHoursPerDay"
-                                                             ng-change="recalcRange()"/>
-                                </p>
-
-                                <p>Speed kmh: <input type="text" ng-model="speedKmh" ng-change="recalcRange()"/>
-                                </p>
-
-                                <p>Battery Capacity Factor: <input type="text" ng-model="batteryCapacityFactor"
-                                                           ng-change="recalcRange()"/>
-                                </p>
-
                                 <p>One-way Range: <span ng-bind="calculatedRange | number:0"></span> km</p>
 
                                 <p>Return Range: <span ng-bind="calculatedReturnRange | number:0"></span> km</p>
-                                <p>Power Consumtion: <span ng-bind="consumptionKWhPerKm * 1000 | number:0"></span> Wh/km</p>
+
+                                <p>Power Consumtion: <span ng-bind="consumptionKWhPerKm * 1000 | number:0"></span>
+                                    Wh/km
+                                </p>
                             </div>
                         </div>
                     </div>

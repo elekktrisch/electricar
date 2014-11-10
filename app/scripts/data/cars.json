@@ -15,7 +15,7 @@
         "name": "Ford Focus Electric",
         "range": 162,
         "battery": 23,
-        "acceleration": 11.4,
+        "acceleration": 10.4,
         "maxSpeed": 137,
         "plugs": ["t15", "schuko", "type1"],
         "image": "ford_focus.jpg",
@@ -80,7 +80,7 @@
         "name": "Tesla Model S",
         "range": 440,
         "battery": 85,
-        "acceleration": 3.2,
+        "acceleration": 3.4,
         "maxSpeed": 250,
         "plugs": ["t15", "schuko", "type2", "supercharger"],
         "image": "tesla_model_s.png",
@@ -119,5 +119,17 @@
         "plugs": ["t15", "schuko", "type1", "chademo"],
         "image": "kia_soul_ev.png",
         "logo": "kia.png"
+    },
+    {
+        "id": 11,
+        "name": "Mercedes B-Class Electric",
+        "year": 2015,
+        "range": 200,
+        "battery": 28,
+        "acceleration": 7.9,
+        "maxSpeed": 160,
+        "plugs": ["t15", "schuko", "type2", "ccs"],
+        "image": "mercedes_b_class_electric.jpg",
+        "logo": "mercedes.png"
     }
 ]

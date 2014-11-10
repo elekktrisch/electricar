@@ -1,3 +1,3 @@
 'use strict';
 
-angular.module('car', ['ngResource']);
+angular.module('car', ['ngResource', 'ui.slider']);
