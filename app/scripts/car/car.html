@@ -29,7 +29,7 @@
             <a ng-disabled="!selectedCar.link" href="{{selectedCar.link}}" target="_blank"
                class="btn btn-primary">
                 <span ng-show="selectedCar.link"><span class="fa fa-automobile"></span> Order this Car</span>
-                <span ng-hide="selectedCar.link"><span class="fa fa-ban"></span> Not available</span>
+                <span ng-hide="selectedCar.link"><span class="fa fa-ban"></span> Not available in Europe</span>
             </a>
         </p>
 
@@ -152,6 +152,14 @@
                                     ng-bind="calcParams.batteryUseablePart[1]"></span> %</span>
             </div>
             <div class="row slider-row">
+                <span class="col-md-3 slider-label">Charging Loss:</span>
+                <div class="col-md-6 slider-bar">
+                    <div ui-slider min="0" max="30"
+                         ng-model="calcParams.chargingLossPercent"></div>
+                </div>
+                <span class="col-md-3 slider-value"><span ng-bind="calcParams.chargingLossPercent"></span> %</span>
+            </div>
+            <div class="row slider-row">
                 <span class="col-md-3 slider-label">Max C:</span>
 
                 <div class="col-md-6 slider-bar">
@@ -170,8 +178,8 @@
         <div style="padding:10px;padding-top:0;background-color: rgba(255,255,255,0.7);text-align: left;font-weight: 700;">
             <table border="0" width="100%">
                 <tr>
-                    <td width="100">
-                        <span class="fa fa-arrows-h fa-4x results-icon" style="color:#757085;"></span>
+                    <td width="100" class="results-icon">
+                        <span class="fa fa-arrows-h fa-4x" style="color:#757085;"></span>
                     </td>
                     <td colspan="2">
                         <span class="results-text">
@@ -181,7 +189,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td class="results-icon">
                         <span class="fa fa-plug fa-4x results-icon" style="color:#49484a;"></span>
                     </td>
                     <td width="40%">
@@ -193,17 +201,17 @@
                     <td>
                         <span class="results-text">
                             <span class="results-text-label">Number of Stops<br></span>
-                            <span ng-bind="numStops"></span>
+                            <span ng-bind="numStops"></span> <span ng-show="numStops > 5" class="fa fa-exclamation-triangle" style="color:yellow;text-shadow: 0px 0px 4px #da0700;"></span>
                         </span>
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td class="results-icon">
                         <span class="fa fa-bolt fa-4x results-icon" style="color:#adeaed;"></span>
                     </td>
                     <td>
                         <span class="results-text">
-                            <span class="results-text-label">Total Energy<br></span>
+                            <span class="results-text-label">Total Energy Charged<br></span>
                             <span ng-bind="totalEnergyConsumptionKWh"></span> kWh
                         </span>
                     </td>
@@ -215,7 +223,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td class="results-icon">
                         <span class="fa fa-tachometer fa-4x results-icon" style="color:#464169;"></span>
                     </td>
                     <td>
@@ -232,12 +240,12 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td class="results-icon">
                         <span class="fa fa-clock-o fa-4x results-icon" style="color:#dc6454;"></span>
                     </td>
                     <td>
                         <span class="results-text">
-                            <span class="results-text-label">Total Trip Duration:<br></span>
+                            <span class="results-text-label">Total Trip Duration<br></span>
                             <span ng-bind="totalDuration"></span> h
                         </span>
                     </td>

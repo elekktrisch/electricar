@@ -208,6 +208,7 @@ angular.module('car')
                 if (currentMinuteState.mode === 'DRIVING') {
                     nextMinuteState.distance = currentMinuteState.distance + distanceKmPerMinute;
                     nextMinuteState.chargeKWh = currentMinuteState.chargeKWh - energyConsumptionKWhPerMinute;
+                    $scope.totalEnergyConsumptionKWh += energyConsumptionKWhPerMinute + (energyConsumptionKWhPerMinute * $scope.calcParams.chargingLossPercent / 100);
                     powerPoints.push(-$scope.consumptionKWhPerKm * speedKmh);
                     if (nextMinuteState.chargeKWh > 0) {
                         nextMinuteState.mode = 'DRIVING';
@@ -236,7 +237,7 @@ angular.module('car')
                         energyPerMinute = Math.min(easeOffC * capacityKWh, chargeKW) / 60;
                         //console.log('minute ' + currentMinute + ', SOC: ' + SOC + ', easeOffC: ' + easeOffC);
                     }
-                    $scope.totalEnergyConsumptionKWh += energyPerMinute;
+                    energyPerMinute = energyPerMinute - (energyPerMinute * $scope.calcParams.chargingLossPercent / 100);
                     nextMinuteState.chargeKWh = currentMinuteState.chargeKWh + energyPerMinute;
                     var chargingDone = nextMinuteState.chargeKWh >= useableCapacityKWh;
                     var chargingSufficientForTrip = currentChargeLastsForKm >= ($scope.totalDistance - currentDistance);
@@ -390,6 +391,7 @@ angular.module('car')
         $scope.calcParams.drivingSpeed = 100;
         $scope.calcParams.distanceToTravel = 700;
         $scope.calcParams.detourPercent = 30;
+        $scope.calcParams.chargingLossPercent = 10;
 
         queryCars()
             .then(queryPlugs)
