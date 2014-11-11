@@ -161,10 +161,11 @@ angular.module('car')
             var capacityKWh = car.battery;
             var distanceKmPerMinute = speedKmh / 60;
             $scope.consumptionKWhPerKm = car.battery / car.range;
-            if ($scope.speedKmh > 90) {
-                var dragFactor = Math.pow(1.2, ($scope.speedKmh / 90));
-                $scope.consumptionKWhPerKm = $scope.consumptionKWhPerKm * dragFactor;
-            }
+
+            var dragFactor = Math.max(1, Math.pow(1.4, ($scope.speedKmh / 90)));
+            $scope.consumptionKWhPerKm = $scope.consumptionKWhPerKm * dragFactor;
+            console.log('drag: ' + dragFactor + ' -> consumption: ' + $scope.consumptionKWhPerKm + 'kWh/km');
+
             $scope.numStops = 0;
             var energyConsumptionKWhPerMinute = $scope.consumptionKWhPerKm * distanceKmPerMinute;
 
@@ -235,7 +236,7 @@ angular.module('car')
                         var easeOffC = Math.max(0.05, Math.min(maxC, C * easeOffFactor));
 
                         energyPerMinute = Math.min(easeOffC * capacityKWh, chargeKW) / 60;
-                        console.log('minute ' + currentMinute + ', SOC: ' + SOC + ', easeOffC: ' + easeOffC);
+                        //console.log('minute ' + currentMinute + ', SOC: ' + SOC + ', easeOffC: ' + easeOffC);
                     }
                     energyPerMinute = energyPerMinute - (energyPerMinute * $scope.calcParams.chargingLossPercent / 100);
                     nextMinuteState.chargeKWh = currentMinuteState.chargeKWh + energyPerMinute;
