@@ -238,6 +238,7 @@ angular.module('car')
                         energyPerMinute = Math.min(easeOffC * capacityKWh, chargeKW) / 60;
                         //console.log('minute ' + currentMinute + ', SOC: ' + SOC + ', easeOffC: ' + easeOffC);
                     }
+                    energyPerMinute = Math.min(energyPerMinute, maxC * capacityKWh / 60);
                     energyPerMinute = energyPerMinute - (energyPerMinute * $scope.calcParams.chargingLossPercent / 100);
                     nextMinuteState.chargeKWh = currentMinuteState.chargeKWh + energyPerMinute;
                     var chargingDone = nextMinuteState.chargeKWh >= useableCapacityKWh;
