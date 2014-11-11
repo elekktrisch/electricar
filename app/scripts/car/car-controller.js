@@ -18,9 +18,9 @@ angular.module('car')
 
 
                 $scope.slider.reserveKm = {
-                        range: false,
-                        max: $scope.selectedCar.range
-                    };
+                    range: false,
+                    max: $scope.selectedCar.range
+                };
                 return cars;
             }).$promise;
         }
@@ -50,14 +50,14 @@ angular.module('car')
         function resolvePosition() {
             var deferred = $q.defer();
             if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function (position) {
+                navigator.geolocation.getCurrentPosition(_.once(function (position) {
 
                     var center = {lat: position.coords.latitude, lng: position.coords.longitude};
                     $scope.rangeCircle = Circles.createCircle(center, '#0000ff');
                     $scope.returnCircle = Circles.createCircle(center, '#000000');
                     $scope.dayRangeCircle = Circles.createCircle(center, '#00FFff');
                     deferred.resolve(position);
-                });
+                }));
             } else {
                 deferred.reject('no navigator!');
             }
@@ -74,7 +74,9 @@ angular.module('car')
             var chargePower = 0;
             for (var i = 0; i < plug.power.length; i++) {
                 var p = plug.power[i];
-                chargePower += (p.voltage * p.ampere);
+                if (plug.power[i].name === 'DC' || i < car.acPhases) {
+                    chargePower += (p.voltage * p.ampere);
+                }
             }
             if (!plug.continuous) {
                 chargePower = chargePower * 0.8;
@@ -164,6 +166,7 @@ angular.module('car')
                 cap = cap - reserveKWh;
                 return cap;
             }
+
             var useableCapacityKWh = calcUsableCapacityKWh(capacityKWh, usablePercent);
             tripSimulation.minutes[0].chargeKWh = calcUsableCapacityKWh(tripSimulation.minutes[0].chargeKWh,
                 $scope.calcParams.firstCharge - brickProtectionSOCPercent);
@@ -185,32 +188,38 @@ angular.module('car')
                     }
                 } else {
                     nextMinuteState.distance = currentMinuteState.distance;
-                    var energyPerMinute = (chargeKW / 60);
-                    if (currentMinuteState.chargeKWh > (0.7 * capacityKWh) && chargeKW > (1.2 * capacityKWh)) {
-                        var SOC = (brickProtectionSOCPercent + currentMinuteState.chargeKWh) / capacityKWh;
-                        var potent = 16;
-                        var f1 = 10 * SOC;
-                        var f2 = Math.pow(f1, potent) * 7;
-                        var f3 = Math.pow(10, potent);
-                        var f4 = f3 - f2;
-                        var f3a = Math.pow(10, potent);
-                        var f5 = f4 / f3a;
-                        var easeOffFactor = Math.max(0.1, Math.min(0.999, f5));
+                    var SOC = (reserveKWh + brickProtectionSOCPercent + currentMinuteState.chargeKWh) / capacityKWh;
+                    var C = chargeKW / capacityKWh;
+                    var energyPerMinute = C * capacityKWh / 60;
+                    var maxC = $scope.calcParams.maxC;
+                    if (SOC > 0.6 && C > 0.1) {
 
-                        console.log('minute ' + currentMinute + ', SOC: ' + SOC + ', easeOffFactor: ' + easeOffFactor);
-                        energyPerMinute = energyPerMinute * easeOffFactor;
+                        var potent = 6;
+                        var f1 = 10 * SOC;
+                        var fx = 40 * SOC;
+                        var f2 = Math.pow(f1, potent);
+                        var f3 = Math.pow(10, potent);
+                        var f4 = fx + f3 - f2;
+                        var f5 = f4 / f3;
+                        var easeOffFactor = Math.max(0.001, Math.min(0.999, f5));
+                        var easeOffC = Math.max(0.3, Math.min(maxC, C * easeOffFactor));
+
+                        energyPerMinute = Math.min(easeOffC * capacityKWh, chargeKW) / 60;
+                        console.log('minute ' + currentMinute + ', SOC: ' + SOC + ', easeOffC: ' + easeOffC);
                     }
                     nextMinuteState.chargeKWh = currentMinuteState.chargeKWh + energyPerMinute;
                     var chargingDone = nextMinuteState.chargeKWh >= useableCapacityKWh;
-                    var chargingSufficient = currentChargeLastsForKm >= ($scope.totalDistance - currentDistance);
+                    var chargingSufficientForTrip = currentChargeLastsForKm >= ($scope.totalDistance - currentDistance);
+                    var chargingSufficientForTime = (currentChargeLastsForKm / $scope.calcParams.drivingSpeed * 60) >= (1440 - currentMinute);
 
                     if (chargingDone
-                        || chargingSufficient) {
+                        || chargingSufficientForTrip
+                        || chargingSufficientForTime) {
                         nextMinuteState.mode = 'DRIVING';
                     } else {
                         nextMinuteState.mode = 'CHARGING';
                     }
-                    powerPoints.push(chargeKW);
+                    powerPoints.push(energyPerMinute * 60);
                 }
                 currentDistance = nextMinuteState.distance;
                 currentMinute++;
@@ -234,19 +243,28 @@ angular.module('car')
                     //will be ovverriden by values specified below.
                     chart: {
                         animation: false,
-                        type: 'line',
+                        type: 'spline',
                         backgroundColor: 'rgba(255,255,255,0.7)',
                         marginTop: 20,
                         marginRight: 30,
-                        height: 380
+                        height: 380,
+                        zoomType: 'xy'
                     },
                     tooltip: {
                         style: {
                             padding: 10
                         },
-                        formatter: function() {
-                            return this.series.name + '<br>' + Math.round(this.point.x / 6) / 10 + 'h: ' + Math.round(this.point.y * 10) / 10;
-                        }
+                        formatter: function () {
+                            var s = '<b>' + Math.round(this.x / 6) / 10 + ' hours:</b>';
+
+                            $.each(this.points, function () {
+                                s += '<br/>' + this.series.name + ': <b>' +
+                                    Math.round(this.y * 10) / 10 + '</b>';
+                            });
+
+                            return s;
+                        },
+                        shared: true
                     },
                     yAxis: {
                         max: Math.max($scope.totalDistance, 1000),
@@ -276,19 +294,28 @@ angular.module('car')
                         data: distancePoints,
                         name: 'Distance [km]',
                         color: 'black',
-                        animation: false
+                        animation: false,
+                        tooltip: {
+                            valueSuffix: ' km'
+                        }
                     },
                     {
                         data: energyPoints,
                         name: 'Energy [kWh]',
                         color: '#8888bb',
-                        animation: false
+                        animation: false,
+                        tooltip: {
+                            valueSuffix: ' kWh'
+                        }
                     },
                     {
                         data: powerPoints,
                         name: 'Power [kW]',
                         color: '#bb6666',
-                        animation: false
+                        animation: false,
+                        tooltip: {
+                            valueSuffix: ' kW'
+                        }
                     }
                 ],
                 //Title configuration (optional)
@@ -313,25 +340,30 @@ angular.module('car')
 
         $scope.slider = {
             batteryRange: {
-            range: true
-        }};
+                range: true
+            },
+            CRange: {
+                range: true
+            }};
         $scope.calcParams = {};
-        $scope.calcParams.batteryUseablePart = [10,90];
+        $scope.calcParams.batteryUseablePart = [10, 90];
+        $scope.calcParams.maxC = 2.5;
         $scope.calcParams.reserveKm = 50;
         $scope.calcParams.chargingPower = 0;
         $scope.calcParams.firstCharge = 100;
         $scope.calcParams.drivingSpeed = 70;
         $scope.calcParams.distanceToTravel = 800;
 
-/*        $scope.$watch('calcParams.batteryUseablePart', debouncedRecalc);
-        $scope.$watch('calcParams.chargingPower', debouncedRecalc);
-        $scope.$watch('calcParams.firstCharge', debouncedRecalc);
-        $scope.$watch('calcParams.drivingSpeed', debouncedRecalc);*/
+        /*        $scope.$watch('calcParams.batteryUseablePart', debouncedRecalc);
+         $scope.$watch('calcParams.chargingPower', debouncedRecalc);
+         $scope.$watch('calcParams.firstCharge', debouncedRecalc);
+         $scope.$watch('calcParams.drivingSpeed', debouncedRecalc);*/
 
         queryCars()
             .then(queryPlugs)
             .then($scope.recalcRange)
             .then(resolvePosition)
+            .then($scope.recalcRange)
             .catch(function (reason) {
                 console.log('failed to query data: ' + JSON.stringify(reason));
             });

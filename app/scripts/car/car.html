@@ -61,6 +61,16 @@
                                     ng-bind="calcParams.distanceToTravel"></span> km</span>
                         </div>
                         <div class="row slider-row">
+                            <span class="col-md-3 slider-label">Average Driving Speed:</span>
+
+                            <div class="col-md-6 slider-bar">
+                                <div ui-slider min="0" max="300"
+                                     ng-model="calcParams.drivingSpeed"></div>
+                            </div>
+                            <span class="col-md-3 slider-value"><span
+                                    ng-bind="calcParams.drivingSpeed"></span> km/h</span>
+                        </div>
+                        <div class="row slider-row">
                             <span class="col-md-3 slider-label">Start Journey with State of Charge:</span>
 
                             <div class="col-md-6 slider-bar">
@@ -70,17 +80,7 @@
                             <span class="col-md-3 slider-value"><span ng-bind="calcParams.firstCharge"></span> %</span>
                         </div>
                         <div class="row slider-row">
-                            <span class="col-md-3 slider-label">Use Battery Part:</span>
-
-                            <div class="col-md-6 slider-bar">
-                                <div ui-slider="slider.batteryRange" min="0" max="100"
-                                     ng-model="calcParams.batteryUseablePart"></div>
-                            </div>
-                            <span class="col-md-3 slider-value"><span ng-bind="calcParams.batteryUseablePart[0]"></span> - <span
-                                    ng-bind="calcParams.batteryUseablePart[1]"></span> %</span>
-                        </div>
-                        <div class="row slider-row">
-                            <span class="col-md-3 slider-label">Range Reserve:</span>
+                            <span class="col-md-3 slider-label">Always Keep Range Reserve:</span>
 
                             <div class="col-md-6 slider-bar">
                                 <div ui-slider="slider.reserveKm" min="0"
@@ -93,22 +93,33 @@
                             <span class="col-md-3 slider-label">Charging Power:</span>
 
                             <div class="col-md-6 slider-bar">
-                                <div ui-slider min="0" max="200"
+                                <div ui-slider min="0" max="200" step="0.1" use-decimals
                                      ng-model="calcParams.chargingPower"></div>
                             </div>
                             <span class="col-md-3 slider-value"><span
                                     ng-bind="calcParams.chargingPower"></span> kW</span>
                         </div>
+
                         <div class="row slider-row">
-                            <span class="col-md-3 slider-label">Average Driving Speed:</span>
+                            <span class="col-md-3 slider-label">Use Battery Part:</span>
 
                             <div class="col-md-6 slider-bar">
-                                <div ui-slider min="0" max="300"
-                                     ng-model="calcParams.drivingSpeed"></div>
+                                <div ui-slider="slider.batteryRange" min="0" max="100"
+                                     ng-model="calcParams.batteryUseablePart"></div>
                             </div>
-                            <span class="col-md-3 slider-value"><span
-                                    ng-bind="calcParams.drivingSpeed"></span> km/h</span>
+                            <span class="col-md-3 slider-value"><span ng-bind="calcParams.batteryUseablePart[0]"></span> - <span
+                                    ng-bind="calcParams.batteryUseablePart[1]"></span> %</span>
                         </div>
+                        <div class="row slider-row">
+                            <span class="col-md-3 slider-label">Max C:</span>
+
+                            <div class="col-md-6 slider-bar">
+                                <div ui-slider min="0.0" max="10.0" step="0.1" use-decimals
+                                     ng-model="calcParams.maxC"></div>
+                            </div>
+                            <span class="col-md-3 slider-value"><span ng-bind="calcParams.maxC"></span> C</span>
+                        </div>
+
                         <a class="btn btn-info pull-right" style="margin:10px;" ng-click="recalcRange()">Calculate</a>
                     </div>
                 </div>
