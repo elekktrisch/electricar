@@ -218,7 +218,7 @@ angular.module('car')
                     }
                 } else {
                     nextMinuteState.distance = currentMinuteState.distance;
-                    var SOC = (reserveKWh + brickProtectionSOCPercent + currentMinuteState.chargeKWh) / capacityKWh;
+                    var SOC = (reserveKWh + (brickProtectionSOCPercent * capacityKWh / 100) + currentMinuteState.chargeKWh) / capacityKWh;
                     var C = chargeKW / capacityKWh;
                     var energyPerMinute = C * capacityKWh / 60;
                     var maxC = $scope.calcParams.maxC;
@@ -232,10 +232,10 @@ angular.module('car')
                         var f4 = fx + f3 - f2;
                         var f5 = f4 / f3;
                         var easeOffFactor = Math.max(0.001, Math.min(0.999, f5));
-                        var easeOffC = Math.max(0.3, Math.min(maxC, C * easeOffFactor));
+                        var easeOffC = Math.max(0.05, Math.min(maxC, C * easeOffFactor));
 
                         energyPerMinute = Math.min(easeOffC * capacityKWh, chargeKW) / 60;
-                        //console.log('minute ' + currentMinute + ', SOC: ' + SOC + ', easeOffC: ' + easeOffC);
+                        console.log('minute ' + currentMinute + ', SOC: ' + SOC + ', easeOffC: ' + easeOffC);
                     }
                     energyPerMinute = energyPerMinute - (energyPerMinute * $scope.calcParams.chargingLossPercent / 100);
                     nextMinuteState.chargeKWh = currentMinuteState.chargeKWh + energyPerMinute;
