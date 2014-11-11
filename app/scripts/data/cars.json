@@ -97,7 +97,7 @@
     },
     {
         "id": "teslaS60",
-        "name": "Tesla Model S60",
+        "name": "Tesla Model S-60",
         "range": 390,
         "motorPowerKw": 285,
         "battery": 60,
@@ -111,7 +111,7 @@
     },
     {
         "id": "teslaS85",
-        "name": "Tesla Model S85D",
+        "name": "Tesla Model S-P85D",
         "range": 502,
         "motorPowerKw": 515,
         "battery": 85,
