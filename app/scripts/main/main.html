@@ -4,7 +4,7 @@
         <div ng-repeat="car in cars" ng-click="select(car)" class="col-md-1 quartett-card">
             <div class="row">
                 <div class="col-md-12">
-                    <p class="car-choice-info" ng-bind="car.name"></p>
+                    <p class="car-choice-info" ng-bind="car.name" style="font-size: 1em;font-weight: 700;color:#4d4b68;"></p>
                 </div>
             </div>
 
@@ -14,20 +14,24 @@
             <div class="row">
                 <table class="col-md-12 quartett-card-techpoints">
                     <tr>
-                        <td>Range</td>
-                        <td style="min-width: 100px;">{{car.range}} km</td>
-                    </tr>
-                    <tr>
-                        <td>Battery</td>
-                        <td>{{car.battery}} kW</td>
-                    </tr>
-                    <tr>
                         <td>0-100 km/h</td>
-                        <td>{{car.acceleration}} s</td>
+                        <td style="min-width: 110px;" class="tech-value"><span ng-bind="car.acceleration"></span> s</td>
+                    </tr>
+                    <tr>
+                        <td>Motor</td>
+                        <td class="tech-value"><span ng-bind="car.motorPowerKw"></span> kW (<span ng-bind="car.motorPowerKw * 1.35962 | number:0"></span> PS)</td>
                     </tr>
                     <tr>
                         <td>Top Speed</td>
-                        <td>{{car.maxSpeed}} km/h</td>
+                        <td class="tech-value"><span ng-bind="car.maxSpeed"></span> km/h</td>
+                    </tr>
+                    <tr>
+                        <td>Range</td>
+                        <td class="tech-value"><span ng-bind="car.range"></span> km</td>
+                    </tr>
+                    <tr>
+                        <td>Battery</td>
+                        <td class="tech-value"><span ng-bind="car.battery"></span> kWh</td>
                     </tr>
                 </table>
             </div>

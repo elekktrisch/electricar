@@ -9,7 +9,8 @@
     "highcharts": "~4.0.4",
     "highcharts-ng": "~0.0.7",
     "lodash": "~2.4.1",
-    "angular-ui-slider": "~0.0.2"
+    "angular-ui-slider": "~0.0.2",
+    "font-awsome": "~4.2.0"
   },
   "devDependencies": {}
 }

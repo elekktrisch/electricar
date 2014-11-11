@@ -17,7 +17,7 @@
 }
 
 .quartett-card:hover {
-    border: 3px solid #6565eb;
+    border: 3px solid #5f5b8b;
     background-color: rgba(255,255,255,0.8);
 }
 
@@ -42,6 +42,13 @@ table.quartett-card-techpoints tr td {
 
 table.quartett-card-techpoints {
     margin: 10px;
+    font-size: 0.9em;
+    text-shadow: 0px 0px 4px #c9e3ff;
+    color: #191824;
+}
+
+table.quartett-card-techpoints .tech-value {
+    font-weight: 600;
 }
 
 .view-container {
@@ -64,7 +71,7 @@ table.quartett-card-techpoints {
 .cars-list {
     background-color: rgba(150, 150, 180, 0.8);
     padding-top: 10px;
-    padding-bottom: 10px;
+    padding-bottom: 0;
     padding-right: 0;
     margin: 0;
     border-bottom: 4px solid #45405c;
@@ -100,7 +107,7 @@ table.quartett-card-techpoints {
     background-color: white;
     padding: 0;
     margin-right: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 0;
     cursor: pointer;
     width: 84px;
     height: 100px;
@@ -137,8 +144,9 @@ table.quartett-card-techpoints {
 }
 
 .car-details img.plug-img {
-    border: 2px solid gray;
+    border: 2px solid #ffffff;
     border-radius: 3px;
+    margin-right: 20px;
 }
 
 .plug-choice-bar {
@@ -146,22 +154,11 @@ table.quartett-card-techpoints {
     text-align: left;
 }
 
-div.plug-choice {
-    height: 5.5em;
-    cursor: pointer;
-}
-
 div.plug-choice img {
     width: 5em;
     margin: 2px;
     border: 2px solid #dddddd;
     border-radius: 3px;
-}
-
-div.plug-selected {
-    background-color: #475577;
-    color: white;
-    font-weight: 800;
 }
 
 p.plug-choice-info {
@@ -248,4 +245,19 @@ p.plug-choice-info {
 
 .slider-bar {
     padding-top: 2px;
+}
+
+.results-icon {
+    margin: 8px;
+    text-align: center;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+}
+.results-text {
+    font-size: 1.3em;
+    margin: 5px;
+}
+.results-text-label {
+    font-size: 0.7em;
+    color: #6c6c6c;
+    margin-left: -5px;
 }
