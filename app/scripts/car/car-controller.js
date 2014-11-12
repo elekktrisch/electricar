@@ -159,11 +159,14 @@ angular.module('car')
             var speedKmh = $scope.calcParams.drivingSpeed;
             var chargeKW = $scope.calcParams.chargingPower;
             var capacityKWh = car.battery;
+            var maxSOC = $scope.calcParams.batteryUseablePart[1] / 100;
+            var maxStoredEnergykWh = maxSOC * car.battery;
             var distanceKmPerMinute = speedKmh / 60;
             $scope.consumptionKWhPerKm = car.battery / car.range;
 
             var dragFactor = Math.max(1, Math.pow(1.4, ($scope.speedKmh / 90)));
-            $scope.consumptionKWhPerKm = $scope.consumptionKWhPerKm * dragFactor;
+            var tweakCorrectionFactor = 0.90;
+            $scope.consumptionKWhPerKm = $scope.consumptionKWhPerKm * dragFactor * tweakCorrectionFactor;
             console.log('drag: ' + dragFactor + ' -> consumption: ' + $scope.consumptionKWhPerKm + 'kWh/km');
 
             $scope.numStops = 0;
@@ -185,9 +188,12 @@ angular.module('car')
             var maxTimeMinutes = 60 * 24;
 
             var maxSOCToUsePercent = $scope.calcParams.batteryUseablePart[1];
-            var brickProtectionSOCPercent = $scope.calcParams.batteryUseablePart[0];
-            var usablePercent = maxSOCToUsePercent - brickProtectionSOCPercent;
-            var reserveKWh = $scope.calcParams.reserveKm * $scope.consumptionKWhPerKm;
+            var batteryLowSOCLimitByStateOfCharge = $scope.calcParams.batteryUseablePart[0] + $scope.calcParams.brickProtectionPercent;
+            var batteryLowSOCLimitByRange = ($scope.calcParams.reserveKm * $scope.consumptionKWhPerKm / $scope.selectedCar.battery * 100) + $scope.calcParams.brickProtectionPercent;
+            var batteryLowSOC = Math.max(batteryLowSOCLimitByStateOfCharge, batteryLowSOCLimitByRange);
+            var usablePercent = maxSOCToUsePercent - batteryLowSOC;
+
+            var reserveKWh = batteryLowSOC * $scope.selectedCar.battery / 100;
 
             function calcUsableCapacityKWh(fullCapacityKWh, usablePercent) {
                 var cap = fullCapacityKWh;
@@ -199,7 +205,7 @@ angular.module('car')
 
             var useableCapacityKWh = calcUsableCapacityKWh(capacityKWh, usablePercent);
             tripSimulation.minutes[0].chargeKWh = calcUsableCapacityKWh(tripSimulation.minutes[0].chargeKWh,
-                $scope.calcParams.firstCharge - brickProtectionSOCPercent);
+                $scope.calcParams.firstCharge - batteryLowSOC);
 
             while (currentDistance < $scope.totalDistance && currentMinute < maxTimeMinutes) {
                 var currentMinuteState = tripSimulation.minutes[currentMinute];
@@ -219,29 +225,29 @@ angular.module('car')
                     }
                 } else {
                     nextMinuteState.distance = currentMinuteState.distance;
-                    var SOC = (reserveKWh + (brickProtectionSOCPercent * capacityKWh / 100) + currentMinuteState.chargeKWh) / capacityKWh;
+                    var SOC = currentMinuteState.chargeKWh / capacityKWh;
                     var C = chargeKW / capacityKWh;
                     var energyPerMinute = C * capacityKWh / 60;
                     var maxC = $scope.calcParams.maxC;
-                    if (SOC > 0.6 && C > 0.1) {
+                    if (C > 0.1) {
 
                         var potent = 6;
-                        var f1 = 10 * SOC;
-                        var fx = 40 * SOC;
+                        var f1 = 12 * SOC;
                         var f2 = Math.pow(f1, potent);
                         var f3 = Math.pow(10, potent);
+                        var fx = 0.5 * f2;
                         var f4 = fx + f3 - f2;
                         var f5 = f4 / f3;
                         var easeOffFactor = Math.max(0.001, Math.min(0.999, f5));
                         var easeOffC = Math.max(0.05, Math.min(maxC, C * easeOffFactor));
 
                         energyPerMinute = Math.min(easeOffC * capacityKWh, chargeKW) / 60;
-                        //console.log('minute ' + currentMinute + ', SOC: ' + SOC + ', easeOffC: ' + easeOffC);
+                        console.log('minute ' + currentMinute + ', SOC: ' + SOC + ', easeOffC: ' + easeOffC);
                     }
                     energyPerMinute = Math.min(energyPerMinute, maxC * capacityKWh / 60);
                     energyPerMinute = energyPerMinute - (energyPerMinute * $scope.calcParams.chargingLossPercent / 100);
                     nextMinuteState.chargeKWh = currentMinuteState.chargeKWh + energyPerMinute;
-                    var chargingDone = nextMinuteState.chargeKWh >= useableCapacityKWh;
+                    var chargingDone = nextMinuteState.chargeKWh >= maxStoredEnergykWh;
                     var chargingSufficientForTrip = currentChargeLastsForKm >= ($scope.totalDistance - currentDistance);
                     var chargingSufficientForTime = (currentChargeLastsForKm / $scope.calcParams.drivingSpeed * 60) >= (1440 - currentMinute);
 
@@ -260,7 +266,7 @@ angular.module('car')
                 //console.log(JSON.stringify(nextMinuteState));
                 tripSimulation.minutes.push(nextMinuteState);
                 distancePoints.push(nextMinuteState.distance);
-                energyPoints.push(nextMinuteState.chargeKWh + (brickProtectionSOCPercent * capacityKWh / 100) + reserveKWh);
+                energyPoints.push(nextMinuteState.chargeKWh);
             }
             $scope.totalDistance = Math.round(currentDistance * 10) / 10;
             $scope.totalDuration = Math.round(currentMinute / 6) / 10;
@@ -289,7 +295,7 @@ angular.module('car')
                     },
                     tooltip: {
                         style: {
-                            padding: 10
+                            padding: 5
                         },
                         formatter: function () {
                             var s = '<b>' + Math.round(this.x / 6) / 10 + ' hours:</b>';
@@ -298,6 +304,7 @@ angular.module('car')
                                 s += '<br/>' + this.series.name + ': <b>' +
                                     Math.round(this.y * 10) / 10 + '</b>';
                             });
+                            s += '<br><span style="color:blue;">Hint: Zoom by marking with the Mouse</span>';
 
                             return s;
                         },
@@ -394,6 +401,7 @@ angular.module('car')
         $scope.calcParams.distanceToTravel = 700;
         $scope.calcParams.detourPercent = 30;
         $scope.calcParams.chargingLossPercent = 10;
+        $scope.calcParams.brickProtectionPercent = 3;
 
         queryCars()
             .then(queryPlugs)

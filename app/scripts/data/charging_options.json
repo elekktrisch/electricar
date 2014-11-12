@@ -1,0 +1,68 @@
+[
+    {
+        "id": "1phase230ac10",
+        "name": "AC - 230V, 10A, 1 Phase",
+        "plug": "t15",
+        "chargingPowerKW": "2.3"
+    },
+    {
+        "id": "1phase230ac16",
+        "name": "AC - 230V, 16A, 1 Phase",
+        "plug": "schuko",
+        "chargingPowerKW": "3.7"
+    },
+    {
+        "id": "1phase230ac32",
+        "name": "AC - 230V, 32A, 1 Phase",
+        "plug": "camping",
+        "chargingPowerKW": "7.3"
+    },
+    {
+        "id": "3phase400ac16",
+        "name": "AC - 400V, 16A, 3 Phases",
+        "plug": "CEE16",
+        "chargingPowerKW": "11"
+    },
+    {
+        "id": "3phase400ac32",
+        "name": "AC - 400V, 32A, 3 Phases",
+        "plug": "Type2",
+        "chargingPowerKW": "22"
+    },
+    {
+        "id": "3phase400ac43",
+        "name": "AC - 400V, 64A, 3 Phases",
+        "plug": "Type2",
+        "chargingPowerKW": "43"
+    },
+    {
+        "id": "ccs20",
+        "name": "DC - 400V, 50A",
+        "plug": "ccs",
+        "chargingPowerKW": "20"
+    },
+    {
+        "id": "ccs50",
+        "name": "DC - 400V, 125A",
+        "plug": "ccs",
+        "chargingPowerKW": "50"
+    },
+    {
+        "id": "chademo20",
+        "name": "DC - 400V, 50A",
+        "plug": "chademo",
+        "chargingPowerKW": "20"
+    },
+    {
+        "id": "chademo50",
+        "name": "DC - 400V, 125A",
+        "plug": "chademo",
+        "chargingPowerKW": "50"
+    },
+    {
+        "id": "supercharger",
+        "name": "DC - 400V, 330A",
+        "plug": "supercharger",
+        "chargingPowerKW": "132"
+    }
+]

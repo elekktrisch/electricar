@@ -2,7 +2,7 @@
   "name": "ecompare",
   "version": "0.0.1",
   "dependencies": {
-    "angular-bootstrap": "~0.11.0",
+    "angular-bootstrap": "~0.11.2",
     "angular-route": "~1.2.23",
     "angular-resource": "~1.2.23",
     "ngmap": "~0.15.4",
@@ -10,7 +10,8 @@
     "highcharts-ng": "~0.0.7",
     "lodash": "~2.4.1",
     "angular-ui-slider": "~0.0.2",
-    "font-awsome": "~4.2.0"
+    "font-awsome": "~4.2.0",
+    "ui-bootstrap": "~0.11.2"
   },
   "devDependencies": {}
 }

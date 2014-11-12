@@ -6,9 +6,9 @@
 
 .quartett-card {
     border: 3px solid white;
-    box-shadow: 5px 5px 8px rgba(0,0,0,0.3);
+    box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.3);
     border-radius: 8px;
-    background-color: rgba(255,255,255,0.3);
+    background-color: rgba(255, 255, 255, 0.3);
     height: 320px;
     width: 230px;
     margin: 15px;
@@ -18,7 +18,7 @@
 
 .quartett-card:hover {
     border: 3px solid #5f5b8b;
-    background-color: rgba(255,255,255,0.8);
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 .quartett-card img {
@@ -172,6 +172,7 @@ p.plug-choice-info {
     padding: 10px;
     min-height: 700px;
 }
+
 .info-overview {
     text-align: center;
 }
@@ -192,7 +193,7 @@ p.plug-choice-info {
 
 .options-box {
     border: 1px solid gray;
-    background-color: rgba(255,255,255,0.6);
+    background-color: rgba(255, 255, 255, 0.6);
     border-radius: 4px;
     margin: 10px;
     padding-bottom: 55px;
@@ -210,8 +211,8 @@ p.plug-choice-info {
 .superhero-font {
     font-size: 70px;
     font-weight: 800;
-    color: rgba(0,0,0,0.2);
-    text-shadow: 0px 0px 8px rgba(255,255,255,0.2);
+    color: rgba(0, 0, 0, 0.2);
+    text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.2);
 }
 
 .charge-power {
@@ -224,7 +225,7 @@ p.plug-choice-info {
 }
 
 .result-panel {
-  margin-top: 50px;
+    margin-top: 50px;
 }
 
 .slider-label,
@@ -252,12 +253,33 @@ p.plug-choice-info {
     text-align: center;
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
 }
+
 .results-text {
     font-size: 1.1em;
     margin: 5px;
 }
+
 .results-text-label {
     font-size: 0.6em;
     color: #6c6c6c;
     margin-left: -5px;
+}
+
+.alternative-value {
+    color: #767388;
+    font-weight: 300;
+    font-size: 0.9em;
+}
+
+.nav-tabs {
+    color: black;
+    cursor: pointer;
+}
+
+.tab-pane {
+    background-color: white;
+}
+
+.ui-slider {
+    margin-top: 6px;
 }

@@ -1,8 +1,8 @@
 [
     {
         "image": "wall_t15.jpg",
-        "id": "t15",
-        "name": "T15",
+        "id": "t12",
+        "name": "T12",
         "power": [
             {
                 "name": "Phase 1",
@@ -25,7 +25,7 @@
                 "ampere": 0
             }
         ],
-        "continuous": false
+        "continuous": true
     },
     {
         "image": "wall_schuko.jpg",
@@ -53,7 +53,7 @@
                 "ampere": 0
             }
         ],
-        "continuous": false
+        "continuous": true
     },
     {
         "image": "wall_cee.jpg",
