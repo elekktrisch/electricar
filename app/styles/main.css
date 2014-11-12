@@ -21,12 +21,8 @@
     background-color: rgba(255, 255, 255, 0.8);
 }
 
-.quartett-card img {
+.quartett-card-img {
     width: 200px;
-}
-
-.quartett-card img-div {
-    display: block;
 }
 
 table.quartett-card-techpoints,
@@ -36,7 +32,7 @@ table.quartett-card-techpoints tr {
 }
 
 table.quartett-card-techpoints tr td {
-    padding: 3px;
+    padding: 1px;
     padding-left: 10px;
 }
 
@@ -125,8 +121,8 @@ table.quartett-card-techpoints .tech-value {
 
 .car-choice-info {
     font-size: 80%;
-    margin: 0 auto;
-    padding-bottom: 5px;
+    margin: 0;
+    text-shadow: 1px 1px 6px #b6e5ff;
 }
 
 .main {

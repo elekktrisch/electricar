@@ -4,22 +4,27 @@
         <div ng-repeat="car in cars" ng-click="select(car)" class="col-md-1 quartett-card">
             <div class="row">
                 <div class="col-md-12">
-                    <p class="car-choice-info" ng-bind="car.name" style="font-size: 1em;font-weight: 700;color:#4d4b68;"></p>
+                    <img src="images/logos/{{car.logo}}" height="40" style="margin: 4px;"/>
                 </div>
             </div>
 
-            <div class="row img-div" style="height: 150px;background-color: white">
-                <img src="images/{{car.image}}"/>
+            <div class="row img-div" style="height: 130px;background-color: white">
+                <img class="quartett-card-img" src="images/{{car.image}}"/>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="car-choice-info" ng-bind="car.name" style="font-size: 1em;font-weight: 700;color:#4d4b68;"></p>
+                </div>
             </div>
             <div class="row">
                 <table class="col-md-12 quartett-card-techpoints">
                     <tr>
-                        <td>0-100 km/h</td>
-                        <td style="min-width: 110px;" class="tech-value"><span ng-bind="car.acceleration"></span> s</td>
-                    </tr>
-                    <tr>
                         <td>Motor</td>
                         <td class="tech-value"><span ng-bind="car.motorPowerKw"></span> kW (<span ng-bind="car.motorPowerKw * 1.35962 | number:0"></span> PS)</td>
+                    </tr>
+                    <tr>
+                        <td>0-100 km/h</td>
+                        <td style="min-width: 110px;" class="tech-value"><span ng-bind="car.acceleration"></span> s</td>
                     </tr>
                     <tr>
                         <td>Top Speed</td>

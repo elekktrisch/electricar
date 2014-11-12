@@ -205,7 +205,7 @@ angular.module('car')
 
             var useableCapacityKWh = calcUsableCapacityKWh(capacityKWh, usablePercent);
             tripSimulation.minutes[0].chargeKWh = calcUsableCapacityKWh(tripSimulation.minutes[0].chargeKWh,
-                $scope.calcParams.firstCharge - batteryLowSOC);
+                $scope.calcParams.firstCharge - $scope.calcParams.brickProtectionPercent);
 
             while (currentDistance < $scope.totalDistance && currentMinute < maxTimeMinutes) {
                 var currentMinuteState = tripSimulation.minutes[currentMinute];
@@ -242,7 +242,7 @@ angular.module('car')
                         var easeOffC = Math.max(0.05, Math.min(maxC, C * easeOffFactor));
 
                         energyPerMinute = Math.min(easeOffC * capacityKWh, chargeKW) / 60;
-                        console.log('minute ' + currentMinute + ', SOC: ' + SOC + ', easeOffC: ' + easeOffC);
+                        //console.log('minute ' + currentMinute + ', SOC: ' + SOC + ', easeOffC: ' + easeOffC);
                     }
                     energyPerMinute = Math.min(energyPerMinute, maxC * capacityKWh / 60);
                     energyPerMinute = energyPerMinute - (energyPerMinute * $scope.calcParams.chargingLossPercent / 100);

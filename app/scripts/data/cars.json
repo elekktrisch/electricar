@@ -17,7 +17,7 @@
         "id": "focusEL",
         "name": "Ford Focus Electric",
         "range": 162,
-        "motorPowerKw": 125,
+        "motorPowerKw": 108,
         "battery": 23,
         "acPhases": 1,
         "acceleration": 10.4,
@@ -37,6 +37,7 @@
         "maxSpeed": 125,
         "plugs": ["t12", "schuko", "type2"],
         "image": "smart_ed.jpg",
+        "logo": "smart.png",
         "link": "http://www.smart.ch/ch/de/index/smart-fortwo-electric-drive.html"
     },
     {
@@ -158,10 +159,10 @@
         "motorPowerKw": 81,
         "battery": 27,
         "acPhases": 3,
-        "acceleration": 8.5,
+        "acceleration": 11.2,
         "maxSpeed": 145,
         "plugs": ["t12", "schuko", "type1", "chademo"],
-        "image": "kia_soul_ev.png",
+        "image": "kia_soul_ev.jpg",
         "logo": "kia.png",
         "link": "http://www.kia.ch/de/modelluebersicht/new-soul-ev/highlights"
     },
