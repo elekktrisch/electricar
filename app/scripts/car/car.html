@@ -192,7 +192,7 @@
                     <td class="results-icon">
                         <span class="fa fa-plug fa-4x results-icon" style="color:#49484a;"></span>
                     </td>
-                    <td width="40%">
+                    <td width="35%">
                         <span class="results-text">
                             <span class="results-text-label">Total Charging Time<br></span>
                             <span ng-bind="totalChargingTimeHours"></span> h
@@ -234,7 +234,7 @@
                     </td>
                     <td>
                         <span class="results-text">
-                            <span class="results-text-label">Average Driving Speed<br></span>
+                            <span class="results-text-label">Driving Speed<br></span>
                             <span ng-bind="speedKmh"></span> km/h
                         </span>
                     </td>
@@ -250,9 +250,9 @@
                         </span>
                     </td>
                     <td class="results-icon" style="color:#383552;text-shadow: 0px 0px 10px #dcf7ff;text-align: left;">
-                            <span ng-show="totalDuration === 24"><span class="fa fa-4x fa-frown-o"></span> didnt make it!</span>
-                            <span ng-show="totalDuration < 9"><span class="fa fa-4x fa-smile-o"></span> easy in one day.</span>
-                            <span ng-show="totalDuration >= 9 && totalDuration < 24"><span class="fa fa-4x fa-meh-o"></span> quite a long trip.</span>
+                            <span ng-show="totalDuration === 24"><span class="fa fa-2x fa-frown-o"></span><br>didnt make it!</span>
+                            <span ng-show="totalDuration < 9"><span class="fa fa-2x fa-smile-o"></span><br>easy in one day.</span>
+                            <span ng-show="totalDuration >= 9 && totalDuration < 24"><span class="fa fa-2x fa-meh-o"></span><br>quite a long trip.</span>
                     </td>
                 </tr>
             </table>
