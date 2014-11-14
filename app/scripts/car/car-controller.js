@@ -16,9 +16,12 @@ angular.module('car')
                     }
                 }
 
-                $scope.slider.reserveKm = {
-                    range: false,
-                    max: $scope.selectedCar.range
+                $scope.slider = {
+                    reserveKm: {
+                        range: false,
+                        max: $scope.selectedCar.range,
+                        start: $scope.invalidateResults
+                    }
                 };
                 return cars;
             }).$promise;
@@ -27,12 +30,12 @@ angular.module('car')
         function chooseBestCharger(plugQueryResult) {
             var bestPlug = $scope.plugs[0];
             var car = $scope.selectedCar;
-            for(var i = 0; i < plugQueryResult.length; i++) {
+            for (var i = 0; i < plugQueryResult.length; i++) {
                 var p = plugQueryResult[i];
-                if($scope.supportsPlug(p, car)) {
+                if ($scope.supportsPlug(p, car)) {
                     var lastPower = calcChargingPowerForCar(bestPlug, car);
                     var newPower = calcChargingPowerForCar(p, car);
-                    if(newPower > lastPower) {
+                    if (newPower > lastPower) {
                         bestPlug = p;
                     }
                 }
@@ -67,16 +70,30 @@ angular.module('car')
             var deferred = $q.defer();
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(_.once(function (position) {
-
                     var center = {lat: position.coords.latitude, lng: position.coords.longitude};
                     $scope.rangeCircle = Circles.createCircle(center, '#0000ff');
                     $scope.returnCircle = Circles.createCircle(center, '#000000');
                     $scope.dayRangeCircle = Circles.createCircle(center, '#00FFff');
                     $scope.positionResolved = true;
-                    deferred.resolve(position);
-                }));
+                    $scope.map.setCenter(center);
+                    deferred.resolve(center);
+                }), function (reason) {
+                    var center = {lat: 47.3712396, lng: 8.5366015};
+                    $scope.rangeCircle = Circles.createCircle(center, '#0000ff');
+                    $scope.returnCircle = Circles.createCircle(center, '#000000');
+                    $scope.dayRangeCircle = Circles.createCircle(center, '#00FFff');
+                    $scope.positionResolved = true;
+                    $scope.map.setCenter(center);
+                    deferred.resolve(reason);
+                });
             } else {
-                deferred.reject('no navigator!');
+                var center = {lat: 47.3712396, lng: 8.5366015};
+                $scope.rangeCircle = Circles.createCircle(center, '#0000ff');
+                $scope.returnCircle = Circles.createCircle(center, '#000000');
+                $scope.dayRangeCircle = Circles.createCircle(center, '#00FFff');
+                $scope.positionResolved = true;
+                $scope.map.setCenter(center);
+                deferred.resolve('no navigator found');
             }
             return deferred.promise;
         }
@@ -126,7 +143,29 @@ angular.module('car')
         $scope.totalEnergyConsumptionKWh = 0;
 
 
+        $scope.updateRangeCircles = function () {
+            $scope.calculatedRange = $scope.selectedCar.range;
+            $scope.calculatedReturnRange = $scope.selectedCar.range / 2;
+            var detourMapFactor = 1000 * (1 - $scope.calcParams.detourPercent / 100);
+            if ($scope.rangeCircle && $scope.returnCircle && $scope.positionResolved) {
+                $scope.rangeCircle.setRadius($scope.calculatedRange * detourMapFactor);
+                $scope.returnCircle.setRadius($scope.calculatedReturnRange * detourMapFactor);
+                $scope.rangeCircle.setMap($scope.map);
+                $scope.returnCircle.setMap($scope.map);
+                $scope.dayRangeCircle.setRadius(1);
+                $scope.dayRangeCircle.setMap($scope.map);
+            }
+            $scope.invalidateResults();
+            return detourMapFactor;
+        };
+
+        $scope.invalidateResults = function () {
+            $scope.resultsValid = false;
+        };
+
         function doRecalc() {
+            $scope.resultsValid = true;
+            $scope.calculating = true;
             //console.log('calculating... ' + new Date());
             $scope.totalDistance = $scope.calcParams.distanceToTravel;
             var totalChargingTimeMinutes = 0;
@@ -140,17 +179,7 @@ angular.module('car')
                 $scope.calcParams.drivingSpeed = car.maxSpeed;
             }
             $scope.speedKmh = $scope.calcParams.drivingSpeed;
-
-            $scope.calculatedRange = car.range;
-            $scope.calculatedReturnRange = car.range / 2;
-            var detourMapFactor = 1000 * (1 - $scope.calcParams.detourPercent / 100);
-            if ($scope.rangeCircle && $scope.returnCircle && $scope.positionResolved) {
-                $scope.rangeCircle.setRadius($scope.calculatedRange * detourMapFactor);
-                $scope.returnCircle.setRadius($scope.calculatedReturnRange * detourMapFactor);
-                $scope.rangeCircle.setMap($scope.map);
-                $scope.returnCircle.setMap($scope.map);
-            }
-
+            var detourMapFactor = $scope.updateRangeCircles();
             if (!$scope.calcParams.chargingPower) {
                 $scope.calcParams.chargingPower = 0;
             }
@@ -159,7 +188,7 @@ angular.module('car')
             var speedKmh = $scope.calcParams.drivingSpeed;
             var chargeKW = $scope.calcParams.chargingPower;
             var capacityKWh = car.battery;
-            var maxSOC = $scope.calcParams.batteryUseablePart[1] / 100;
+            var maxSOC = $scope.calcParams.maxBatteryChargePercent / 100;
             var maxStoredEnergykWh = maxSOC * car.battery;
             var distanceKmPerMinute = speedKmh / 60;
             $scope.consumptionKWhPerKm = car.battery / car.range;
@@ -187,10 +216,8 @@ angular.module('car')
             var currentMinute = 0;
             var maxTimeMinutes = 60 * 24;
 
-            var maxSOCToUsePercent = $scope.calcParams.batteryUseablePart[1];
-            var batteryLowSOCLimitByStateOfCharge = $scope.calcParams.batteryUseablePart[0] + $scope.calcParams.brickProtectionPercent;
-            var batteryLowSOCLimitByRange = ($scope.calcParams.reserveKm * $scope.consumptionKWhPerKm / $scope.selectedCar.battery * 100) + $scope.calcParams.brickProtectionPercent;
-            var batteryLowSOC = Math.max(batteryLowSOCLimitByStateOfCharge, batteryLowSOCLimitByRange);
+            var maxSOCToUsePercent = $scope.calcParams.maxBatteryChargePercent;
+            var batteryLowSOC = ($scope.calcParams.reserveKm * $scope.consumptionKWhPerKm / $scope.selectedCar.battery * 100) + $scope.calcParams.brickProtectionPercent;
             var usablePercent = maxSOCToUsePercent - batteryLowSOC;
 
             var reserveKWh = batteryLowSOC * $scope.selectedCar.battery / 100;
@@ -374,6 +401,7 @@ angular.module('car')
                     //setup some logic for the chart
                 }
             };
+            $scope.calculating = false;
         }
 
         var debouncedRecalc = _.debounce(doRecalc, 500, {leading: false, trailing: true});
@@ -382,17 +410,8 @@ angular.module('car')
             doRecalc();
         };
 
-        $scope.slider = {
-            batteryRange: {
-                //stop: $scope.recalcRange,
-                range: true
-            },
-            CRange: {
-                //stop: $scope.recalcRange,
-                range: true
-            }};
         $scope.calcParams = {};
-        $scope.calcParams.batteryUseablePart = [10, 90];
+        $scope.calcParams.maxBatteryChargePercent = 90;
         $scope.calcParams.maxC = 2.5;
         $scope.calcParams.reserveKm = 50;
         $scope.calcParams.chargingPower = 0;

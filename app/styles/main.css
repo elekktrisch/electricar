@@ -89,6 +89,45 @@ table.quartett-card-techpoints .tech-value {
     list-style-type: none;
 }
 
+@media(max-width:768px) {
+    .car-choice img {
+        display: none;
+    }
+    .car-choice {
+        width: auto;
+        padding: 3px;
+        border: 1px solid #9996bb;
+        height: auto;
+    }
+
+    .car-choice:hover {
+        border: 1px solid #5c5a72;
+    }
+
+    .car-choice:active {
+        border: 1px solid #16161d;
+    }
+}
+@media(min-width:768px) {
+    .car-choice img {
+        display: block;
+    }
+    .car-choice {
+        width: 84px;
+        padding: 0;
+        border: 2px solid #9996bb;
+        height: 100px;
+    }
+
+    .car-choice:hover {
+        border: 2px solid #5c5a72;
+    }
+
+    .car-choice:active {
+        border: 2px solid #16161d;
+    }
+}
+
 .car-choice img {
     position: absolute;
     top: 30px;
@@ -99,24 +138,12 @@ table.quartett-card-techpoints .tech-value {
 }
 
 .car-choice {
-    border: 2px solid #d5d4d1;
     background-color: white;
-    padding: 0;
     margin-right: 10px;
     margin-bottom: 0;
     cursor: pointer;
-    width: 84px;
-    height: 100px;
     text-align: center;
     border-radius: 5px;
-}
-
-.car-choice:hover {
-    border: 2px solid #777777;
-}
-
-.car-choice:active {
-    border: 2px solid #000335;
 }
 
 .car-choice-info {
@@ -267,8 +294,9 @@ p.plug-choice-info {
     font-size: 0.9em;
 }
 
-.nav-tabs {
-    color: black;
+.nav-tabs,
+.nav-tabs a {
+    color: #464654;
     cursor: pointer;
 }
 

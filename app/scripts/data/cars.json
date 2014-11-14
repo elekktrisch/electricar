@@ -135,7 +135,8 @@
         "maxSpeed": 140,
         "plugs": ["t12", "schuko", "type2", "ccs"],
         "image": "vw_egolf.jpg",
-        "logo": "vw.png"
+        "logo": "vw.png",
+        "link": "http://app.volkswagen.de/ihdcc/de/configurator.html#30300"
     },
     {
         "id": "eUp",
@@ -178,6 +179,7 @@
         "maxSpeed": 160,
         "plugs": ["t12", "schuko", "type2", "ccs"],
         "image": "mercedes_b_class_electric.jpg",
-        "logo": "mercedes.png"
+        "logo": "mercedes.png",
+        "link": "http://www.mercedes-benz.de/content/germany/mpc/mpc_germany_website/de/home_mpc/passengercars/home/new_cars/models/b-class/w242.html"
     }
 ]
