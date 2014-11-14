@@ -75,7 +75,7 @@ angular.module('car')
                     $scope.returnCircle = Circles.createCircle(center, '#000000');
                     $scope.dayRangeCircle = Circles.createCircle(center, '#00FFff');
                     $scope.positionResolved = true;
-                    $scope.map.setCenter(center);
+                    //$scope.map.setCenter(center);
                     deferred.resolve(center);
                 }), function (reason) {
                     var center = {lat: 47.3712396, lng: 8.5366015};
