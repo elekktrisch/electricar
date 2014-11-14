@@ -82,8 +82,6 @@
                 </span>
             </div>
         </div>
-        <a class="btn btn-primary" ng-disabled="resultsValid" style="width:100%;margin-bottom: 10px;"
-           ng-click="recalcRange()"><span class="fa fa-refresh"></span> Recalculate!</a>
 
         <div style="padding:10px;margin-top:0;background-color: rgba(255,255,255,0.3);text-align: left;font-weight: 700;">
 
@@ -309,6 +307,11 @@
                 </tr>
             </table>
         </div>
+        <a class="btn" ng-class="{'btn-default':resultsValid,'btn-primary':!resultsValid}" ng-disabled="resultsValid" style="width:100%;margin-top: 10px;"
+           ng-click="recalcRange()">
+            <span ng-show="!resultsValid"><span class="fa fa-refresh"></span> Recalculate!</span>
+            <span ng-show="resultsValid">(up-to-date)</span>
+        </a>
 
         <div ng-show="chartConfig" style="margin-top:10px;">
             <highchart id="chart1" config="chartConfig"></highchart>

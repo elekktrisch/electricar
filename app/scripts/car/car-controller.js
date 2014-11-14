@@ -152,19 +152,20 @@ angular.module('car')
                 $scope.returnCircle.setRadius($scope.calculatedReturnRange * detourMapFactor);
                 $scope.rangeCircle.setMap($scope.map);
                 $scope.returnCircle.setMap($scope.map);
-                $scope.dayRangeCircle.setRadius(1);
-                $scope.dayRangeCircle.setMap($scope.map);
             }
             $scope.invalidateResults();
             return detourMapFactor;
         };
 
         $scope.invalidateResults = function () {
+            if ($scope.rangeCircle && $scope.returnCircle && $scope.positionResolved) {
+                $scope.dayRangeCircle.setRadius(1);
+                $scope.dayRangeCircle.setMap($scope.map);
+            }
             $scope.resultsValid = false;
         };
 
         function doRecalc() {
-            $scope.resultsValid = true;
             $scope.calculating = true;
             //console.log('calculating... ' + new Date());
             $scope.totalDistance = $scope.calcParams.distanceToTravel;
@@ -180,6 +181,8 @@ angular.module('car')
             }
             $scope.speedKmh = $scope.calcParams.drivingSpeed;
             var detourMapFactor = $scope.updateRangeCircles();
+            $scope.resultsValid = true;
+
             if (!$scope.calcParams.chargingPower) {
                 $scope.calcParams.chargingPower = 0;
             }
@@ -196,7 +199,7 @@ angular.module('car')
             var dragFactor = Math.max(1, Math.pow(1.4, ($scope.speedKmh / 90)));
             var tweakCorrectionFactor = 0.90;
             $scope.consumptionKWhPerKm = $scope.consumptionKWhPerKm * dragFactor * tweakCorrectionFactor;
-            console.log('drag: ' + dragFactor + ' -> consumption: ' + $scope.consumptionKWhPerKm + 'kWh/km');
+            //console.log('drag: ' + dragFactor + ' -> consumption: ' + $scope.consumptionKWhPerKm + 'kWh/km');
 
             $scope.numStops = 0;
             var energyConsumptionKWhPerMinute = $scope.consumptionKWhPerKm * distanceKmPerMinute;
