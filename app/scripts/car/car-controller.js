@@ -15,6 +15,7 @@ angular.module('car')
                         $scope.selectedCar = cars[x];
                     }
                 }
+                $scope.calcParams.reservePercent = 50 / $scope.selectedCar.range * 100;
                 return cars;
             }).$promise;
         }
@@ -150,7 +151,6 @@ angular.module('car')
         $scope.calcParams = {};
         $scope.calcParams.maxBatteryChargePercent = 90;
         $scope.calcParams.maxC = 2.5;
-        $scope.calcParams.reservePercent = 10;
         $scope.calcParams.chargingPower = 0;
         $scope.calcParams.firstCharge = 100;
         $scope.calcParams.drivingSpeed = 100;
