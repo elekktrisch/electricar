@@ -140,6 +140,7 @@ angular.module('car')
                 $scope.dayRangeCircle.setMap($scope.map);
             }
             $scope.resultsValid = false;
+            //$scope.recalcRange();
         };
 
         $scope.recalcRange = function () {
