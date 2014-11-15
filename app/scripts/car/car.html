@@ -160,7 +160,8 @@
 
                             <img class="plug-img" width="70" src="images/{{plug.image}}">
                             <span class="plug-choice-info"><span ng-bind="plug.name"></span> <span
-                                    ng-show="plug.chargingPower">(<span ng-bind="plug.chargingPower"></span> kW)</span></span>
+                                    ng-show="plug.chargingPower">(<span ng-bind="plug.chargingPower"></span>
+                                kW<span style="font-size: 0.6em;font-weight: 700;" ng-show="plug.mode == 2">, requires connector box!</span>)</span></span>
                         </a>
                     </div>
 

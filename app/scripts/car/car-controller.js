@@ -21,6 +21,7 @@ angular.module('car')
 
         function chooseBestCharger(plugQueryResult) {
             var bestPlug = $scope.plugs[0];
+            var lastPlug = bestPlug;
             var car = $scope.selectedCar;
             for (var i = 0; i < plugQueryResult.length; i++) {
                 var p = plugQueryResult[i];
@@ -29,7 +30,10 @@ angular.module('car')
                     var newPower = Calculator.calcChargingPowerForCar(p, car);
                     if (newPower > lastPower) {
                         bestPlug = p;
+                    } else if (newPower === lastPower && p.mode > lastPlug.mode) {
+                        bestPlug = p;
                     }
+                    lastPlug = p;
                 }
             }
             return bestPlug;
@@ -55,6 +59,10 @@ angular.module('car')
                 minutesPerCharge: 0
             },
             lastChargeMinutes: 0
+        };
+
+        $scope.supportsPlug = function (plug, car) {
+            return Calculator.supportsPlug(plug, car);
         };
 
         $scope.positionResolved = false;

@@ -99,7 +99,6 @@ angular.module('car')
                     var cap = fullCapacityKWh;
                     $scope.useableCapacityFactor = usablePercent / 100;
                     cap = cap * $scope.useableCapacityFactor;
-                    cap = cap - reserveKWh;
                     return cap;
                 }
 
@@ -110,14 +109,15 @@ angular.module('car')
                 while (currentDistance < $scope.totalDistance && currentMinute < maxTimeMinutes) {
                     var currentMinuteState = tripSimulation.minutes[currentMinute];
                     var nextMinuteState = {};
-                    currentChargeLastsForKm = currentMinuteState.chargeKWh / $scope.consumptionKWhPerKm;
+                    currentChargeLastsForKm = (currentMinuteState.chargeKWh - reserveKWh) / $scope.consumptionKWhPerKm;
                     nextMinuteState.minute = currentMinuteState.minute + 1;
                     if (currentMinuteState.mode === 'DRIVING') {
                         nextMinuteState.distance = currentMinuteState.distance + distanceKmPerMinute;
                         nextMinuteState.chargeKWh = currentMinuteState.chargeKWh - energyConsumptionKWhPerMinute;
                         $scope.totalEnergyConsumptionKWh += energyConsumptionKWhPerMinute + (energyConsumptionKWhPerMinute * $scope.calcParams.chargingLossPercent / 100);
                         powerPoints.push(-$scope.consumptionKWhPerKm * speedKmh);
-                        if (nextMinuteState.chargeKWh > 0) {
+                        var lowBatt = nextMinuteState.chargeKWh < (batteryLowSOC * $scope.selectedCar.battery / 100);
+                        if (!lowBatt) {
                             nextMinuteState.mode = 'DRIVING';
                         } else {
                             nextMinuteState.mode = 'CHARGING';
@@ -147,9 +147,9 @@ angular.module('car')
                         energyPerMinute = Math.min(energyPerMinute, maxC * capacityKWh / 60);
                         energyPerMinute = energyPerMinute - (energyPerMinute * $scope.calcParams.chargingLossPercent / 100);
                         nextMinuteState.chargeKWh = currentMinuteState.chargeKWh + energyPerMinute;
-                        var chargingDone = nextMinuteState.chargeKWh >= maxStoredEnergykWh;
-                        var chargingSufficientForTrip = currentChargeLastsForKm >= ($scope.totalDistance - currentDistance);
-                        var chargingSufficientForTime = (currentChargeLastsForKm / $scope.calcParams.drivingSpeed * 60) >= (1440 - currentMinute);
+                        var chargingDone = nextMinuteState.chargeKWh > maxStoredEnergykWh;
+                        var chargingSufficientForTrip = currentChargeLastsForKm > (($scope.totalDistance - currentDistance) * 1.05);
+                        var chargingSufficientForTime = (currentChargeLastsForKm / $scope.calcParams.drivingSpeed * 60) > (1440 - currentMinute);
 
                         if (chargingDone
                             || chargingSufficientForTrip
