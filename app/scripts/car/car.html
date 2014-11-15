@@ -78,7 +78,7 @@
             <div style="box-shadow: 2px 2px 5px #686868;position:absolute;bottom:{{calcParams.detourPercent * 1.3}}%; width:100px;right: 50px;background-color: rgb(237,237,237);border: 1px solid #d4d4d4;border-radius: 5;padding-left:5px;">
                 <span class="slider-value">
                     Detours:
-                    <span ng-bind="calcParams.detourPercent"></span> %
+                    <span ng-bind="calcParams.detourPercent"></span>%
                 </span>
             </div>
         </div>
@@ -119,7 +119,7 @@
                                  ng-model="calcParams.firstCharge"></div>
                         </div>
                         <span class="slider-value">
-                            <span ng-bind="calcParams.firstCharge"></span> %<br>
+                            <span ng-bind="calcParams.firstCharge"></span>%<br>
                             <span class="alternative-value">(<span ng-bind="(selectedCar.battery * (calcParams.brickProtectionPercent / 100)) + (calcParams.firstCharge * (1 - (calcParams.brickProtectionPercent / 100)) * selectedCar.battery / 100) | number:1"></span> kWh)</span>
                         </span>
                     </div>
@@ -127,12 +127,12 @@
                         <span class="col-md-8 slider-label">Minimum Range Reserve:</span>
 
                         <div class="col-md-8 slider-bar">
-                            <div ui-slider="slider.reserveKm" min="0"
-                                 ng-model="calcParams.reserveKm"></div>
+                            <div ui-slider="{start:invalidateResults}" min="0" max="100"
+                                 ng-model="calcParams.reservePercent"></div>
                         </div>
                             <span class="slider-value">
-                                <span ng-bind="calcParams.reserveKm"></span> km<br>
-                                <span class="alternative-value">(<span ng-bind="(selectedCar.battery * (calcParams.brickProtectionPercent / 100)) + (selectedCar.battery * (1 - (calcParams.brickProtectionPercent / 100)) * calcParams.reserveKm / selectedCar.range) | number:1"></span> kWh)</span>
+                                <span ng-bind="calcParams.reservePercent"></span>%<br>
+                                <span class="alternative-value">(<span ng-bind="(selectedCar.battery * (calcParams.brickProtectionPercent / 100)) + (selectedCar.battery * (1 - (calcParams.brickProtectionPercent / 100)) * calcParams.maxBatteryChargePercent / 100) | number:1"></span> kWh)</span>
                             </span>
                     </div>
                     <div class="row slider-row">
@@ -143,7 +143,7 @@
                                  ng-model="calcParams.maxBatteryChargePercent"></div>
                         </div>
                         <span class="slider-value">
-                            <span ng-bind="calcParams.maxBatteryChargePercent"></span> % <br>
+                            <span ng-bind="calcParams.maxBatteryChargePercent"></span>% <br>
                             <span class="alternative-value">
                                 (<span ng-bind="(selectedCar.battery * (calcParams.brickProtectionPercent / 100)) + (selectedCar.battery * (1 - (calcParams.brickProtectionPercent / 100)) * calcParams.maxBatteryChargePercent / 100) | number:1"></span>  kWh)</span>
                         </span>
@@ -186,7 +186,7 @@
                                  ng-model="calcParams.chargingLossPercent"></div>
                         </div>
                         <span class="slider-value">
-                            <span ng-bind="calcParams.chargingLossPercent"></span> %<br>
+                            <span ng-bind="calcParams.chargingLossPercent"></span>%<br>
                             <span class="alternative-value">(<span ng-bind="calcParams.chargingPower * calcParams.chargingLossPercent / 100 | number:1"></span> kW)</span>
                         </span>
                     </div>
@@ -210,7 +210,7 @@
                                  ng-model="calcParams.brickProtectionPercent"></div>
                         </div>
                         <span class="slider-value">
-                            <span ng-bind="calcParams.brickProtectionPercent"></span> %<br>
+                            <span ng-bind="calcParams.brickProtectionPercent"></span>%<br>
                             <span class="alternative-value">(<span ng-bind="calcParams.brickProtectionPercent * selectedCar.battery / 100 | number:0"></span> kWh)</span>
                         </span>
                     </div>
@@ -249,7 +249,7 @@
                     <td>
                         <span class="results-text">
                             <span class="results-text-label">Number of Stops<br></span>
-                            <span ng-bind="numStops"></span> <span ng-show="numStops > 5"
+                            <span ng-bind="numStops"></span> <span ng-show="numStops > 2"
                                                                    class="fa fa-exclamation-triangle"
                                                                    style="color:yellow;text-shadow: 0px 0px 4px #da0700;"></span>
                         </span>
