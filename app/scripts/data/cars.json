@@ -8,7 +8,7 @@
         "acPhases": 1,
         "acceleration": 7.2,
         "maxSpeed": 150,
-        "plugs": ["t12", "schuko", "type2", "ccs"],
+        "plugs": ["t13", "schuko", "type2", "ccs"],
         "image": "bmwi3.jpg",
         "logo": "bmw.png",
         "link": "http://www.bmw.ch/de/neuwagen/bmw-i/i3/2013/start.html"
@@ -22,7 +22,7 @@
         "acPhases": 1,
         "acceleration": 10.4,
         "maxSpeed": 137,
-        "plugs": ["t12", "schuko", "type1"],
+        "plugs": ["t13", "schuko", "type1"],
         "image": "ford_focus.jpg",
         "logo": "ford.png"
     },
@@ -35,7 +35,7 @@
         "acPhases": 1,
         "acceleration": 11.5,
         "maxSpeed": 125,
-        "plugs": ["t12", "schuko", "type2"],
+        "plugs": ["t13", "schuko", "type2"],
         "image": "smart_ed.jpg",
         "logo": "smart.png",
         "link": "http://www.smart.ch/ch/de/index/smart-fortwo-electric-drive.html"
@@ -49,7 +49,7 @@
         "acPhases": 1,
         "acceleration": 15.9,
         "maxSpeed": 130,
-        "plugs": ["t12", "schuko", "type1", "chademo"],
+        "plugs": ["t13", "schuko", "type1", "chademo"],
         "image": "mitsubishi_imiev.jpg",
         "logo": "mitsubishi.png",
         "link": "http://www.mitsubishi-motors.ch/modelle/i-miev"
@@ -63,7 +63,7 @@
         "acPhases": 1,
         "acceleration": 11.4,
         "maxSpeed": 145,
-        "plugs": ["t12", "schuko", "type1", "chademo"],
+        "plugs": ["t13", "schuko", "type1", "chademo"],
         "image": "nissan_leaf.jpg",
         "logo": "nissan.png",
         "link": "http://de.nissan.ch/CH/de/vehicle/electric-vehicles/leaf.html"
@@ -77,7 +77,7 @@
         "acPhases": 1,
         "acceleration": 20.3,
         "maxSpeed": 130,
-        "plugs": ["t12", "schuko", "type1"],
+        "plugs": ["t13", "schuko", "type1"],
         "image": "renault_kangoo.jpg",
         "logo": "renault.png",
         "link": "http://www.renault.ch/de/renault-modellpalette/elektroauto-modellpalette/kangoo-ze/kangoo-ze/konfigurator"
@@ -91,7 +91,7 @@
         "acPhases": 3,
         "acceleration": 13.5,
         "maxSpeed": 135,
-        "plugs": ["t12", "schuko", "type2"],
+        "plugs": ["t13", "schuko", "type2"],
         "image": "renault_zoe.jpg",
         "logo": "renault.png",
         "link": "http://www.renault.ch/de/renault-modellpalette/elektroauto-modellpalette/zoe/zoe/konfigurator"
@@ -105,7 +105,7 @@
         "acPhases": 3,
         "acceleration": 6.2,
         "maxSpeed": 190,
-        "plugs": ["t12", "schuko", "type2"],
+        "plugs": ["t13", "schuko", "type2"],
         "image": "tesla_model_s.png",
         "logo": "tesla.png",
         "link": "http://www.teslamotors.com/de_CH/models/design"
@@ -119,7 +119,7 @@
         "acPhases": 3,
         "acceleration": 3.4,
         "maxSpeed": 250,
-        "plugs": ["t12", "schuko", "type2", "supercharger"],
+        "plugs": ["t13", "schuko", "type2", "supercharger"],
         "image": "tesla_model_s.png",
         "logo": "tesla.png",
         "link": "http://www.teslamotors.com/de_CH/models/design"
@@ -133,7 +133,7 @@
         "acPhases": 1,
         "acceleration": 10.4,
         "maxSpeed": 140,
-        "plugs": ["t12", "schuko", "type2", "ccs"],
+        "plugs": ["t13", "schuko", "type2", "ccs"],
         "image": "vw_egolf.jpg",
         "logo": "vw.png",
         "link": "http://app.volkswagen.de/ihdcc/de/configurator.html#30300"
@@ -147,7 +147,7 @@
         "acPhases": 1,
         "acceleration": 12.4,
         "maxSpeed": 130,
-        "plugs": ["t12", "schuko", "type2", "ccs"],
+        "plugs": ["t13", "schuko", "type2", "ccs"],
         "image": "vw_eup.png",
         "logo": "vw.png",
         "link": "http://app.volkswagen.ch/ihdcc/de/configurator.html#30100"
@@ -162,7 +162,7 @@
         "acPhases": 3,
         "acceleration": 11.2,
         "maxSpeed": 145,
-        "plugs": ["t12", "schuko", "type1", "chademo"],
+        "plugs": ["t13", "schuko", "type1", "chademo"],
         "image": "kia_soul_ev.jpg",
         "logo": "kia.png",
         "link": "http://www.kia.ch/de/modelluebersicht/new-soul-ev/highlights"
@@ -177,7 +177,7 @@
         "acPhases": 3,
         "acceleration": 7.9,
         "maxSpeed": 160,
-        "plugs": ["t12", "schuko", "type2", "ccs"],
+        "plugs": ["t13", "schuko", "type2", "ccs"],
         "image": "mercedes_b_class_electric.jpg",
         "logo": "mercedes.png",
         "link": "http://www.mercedes-benz.de/content/germany/mpc/mpc_germany_website/de/home_mpc/passengercars/home/new_cars/models/b-class/w242.html"
