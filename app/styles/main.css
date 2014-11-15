@@ -1,5 +1,6 @@
 .quartett-board {
     background: url('../images/wind-energie.jpg') no-repeat;
+    min-height: 1400px;
     background-size: 100%;
     padding: 50px;
 }
@@ -48,6 +49,7 @@ table.quartett-card-techpoints .tech-value {
 }
 
 .view-container {
+    min-height: 1400px;
     background: url('../images/bg2_solar.jpg') no-repeat 0 0;
     background-size: 100%;
 }
