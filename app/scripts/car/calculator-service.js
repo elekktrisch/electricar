@@ -12,7 +12,7 @@ angular.module('car')
                 lastChargeMinutes: 0
             },
 
-            calcChargingPowerForCar: function (plug, car) {
+            calcChargingPowerForCar: function ($scope, plug, car) {
                 var chargePower = 0;
                 for (var i = 0; i < plug.power.length; i++) {
                     var p = plug.power[i];
@@ -23,6 +23,12 @@ angular.module('car')
                 if (!plug.continuous) {
                     chargePower = chargePower * 0.8;
                 }
+                if(car.onBoardChargerKW
+                    && plug.mode < 4
+                    && chargePower > (1000 * car.onBoardChargerKW)) {
+                    chargePower = car.onBoardChargerKW * 1000;
+                }
+                $scope.calcParams.chargingPower = chargePower;
                 return chargePower;
             },
 
