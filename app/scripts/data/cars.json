@@ -55,7 +55,7 @@
         "acPhases": 3,
         "acceleration": 13.5,
         "maxSpeed": 135,
-        "plugs": ["t13", "schuko", "caravan", "cee16", "cee32", "type2"],
+        "plugs": ["t13", "schuko", "caravan", "cee16", "cee32", "cee64", "type2"],
         "image": "renault_zoe.jpg",
         "logo": "renault.png",
         "link": "http://www.renault.ch/de/renault-modellpalette/elektroauto-modellpalette/zoe/zoe/konfigurator"

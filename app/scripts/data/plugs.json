@@ -145,6 +145,35 @@
         "continuous": true
     },
     {
+        "image": "cee64.jpg",
+        "id": "cee64",
+        "name": "CEE 64",
+        "mode": "2",
+        "power": [
+            {
+                "name": "Phase 1",
+                "voltage": 230,
+                "ampere": 64
+            },
+            {
+                "name": "Phase 2",
+                "voltage": 230,
+                "ampere": 64
+            },
+            {
+                "name": "Phase 3",
+                "voltage": 230,
+                "ampere": 64
+            },
+            {
+                "name": "DC",
+                "voltage": 0,
+                "ampere": 0
+            }
+        ],
+        "continuous": true
+    },
+    {
         "image": "auto_type1.jpg",
         "id": "type1",
         "name": "Type 1",
