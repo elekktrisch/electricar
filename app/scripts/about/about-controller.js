@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('main')
-    .controller('MainCtrl', function ($scope, $window, $location, Cars) {
+angular.module('about')
+    .controller('AboutCtrl', function ($scope, $window, $location, Cars) {
 
         Cars.query(function (result) {
             $scope.cars = result;
@@ -13,8 +13,8 @@ angular.module('main')
             $location.path('/car/' + car.id)
         };
 
-        $scope.isPath = function(path) {
-            return $location.path().indexOf(path) != -1;
+        $scope.isSelectedCar = function() {
+            return $location.path() !== '/main';
         }
     });
 

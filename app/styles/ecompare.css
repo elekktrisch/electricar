@@ -23,7 +23,7 @@
 }
 
 .quartett-card-img {
-    width: 200px;
+    height: 128px;
 }
 
 table.quartett-card-techpoints,
@@ -131,8 +131,8 @@ table.quartett-card-techpoints .tech-value {
 }
 
 .car-choice img {
-    position: absolute;
-    top: 30px;
+    position: relative;
+    top: 0;
     left: 0;
     max-height: 70px;
     max-width: 80px;
@@ -308,4 +308,12 @@ p.plug-choice-info {
 
 .ui-slider {
     margin-top: 6px;
+}
+
+.navbar {
+    margin-bottom: 0;
+}
+
+.navbar-brand {
+    padding-left: 30px;
 }

@@ -1,0 +1,52 @@
+<div ng-controller="MainCtrl">
+
+    <div class="row quartett-board" id="quartett-board">
+        <div ng-repeat="car in cars" ng-click="select(car)" class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+            <div class="quartett-card">
+                <div class="row">
+                    <img src="images/logos/{{car.logo}}" height="40" style="margin: 4px;"/>
+                </div>
+
+                <div class="img-div" style="height: 130px;background-color: white">
+                    <img class="quartett-card-img" src="images/{{car.image}}"/>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <p class="car-choice-info" ng-bind="car.name"
+                           style="font-size: 1em;font-weight: 700;color:#4d4b68;"></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <table class="col-md-12 quartett-card-techpoints">
+                        <tr>
+                            <td>Motor</td>
+                            <td class="tech-value"><span ng-bind="car.motorPowerKw"></span> kW (<span
+                                    ng-bind="car.motorPowerKw * 1.35962 | number:0"></span> PS)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>0-100 km/h</td>
+                            <td style="min-width: 110px;" class="tech-value"><span
+                                    ng-bind="car.acceleration"></span> s
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Top Speed</td>
+                            <td class="tech-value"><span ng-bind="car.maxSpeed"></span> km/h</td>
+                        </tr>
+                        <tr>
+                            <td>Range</td>
+                            <td class="tech-value"><span ng-bind="car.range"></span> km</td>
+                        </tr>
+                        <tr>
+                            <td>Battery</td>
+                            <td class="tech-value"><span ng-bind="car.battery"></span> kWh</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

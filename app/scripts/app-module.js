@@ -7,6 +7,7 @@ angular.module('app', [
     'ui.slider',
     'ui.bootstrap',
 
+    'about',
     'main',
     'car'
 ]);

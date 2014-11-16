@@ -10,7 +10,7 @@
         "acceleration": 3.4,
         "maxSpeed": 250,
         "plugs": ["t13", "schuko", "caravan", "cee16", "cee32", "type2", "supercharger"],
-        "image": "tesla_model_s.png",
+        "image": "tesla_model_s.jpg",
         "logo": "tesla.png",
         "link": "http://www.teslamotors.com/de_CH/models/design"
     },
@@ -25,7 +25,7 @@
         "acceleration": 6.2,
         "maxSpeed": 190,
         "plugs": ["t13", "schuko", "caravan", "cee16", "cee32", "type2"],
-        "image": "tesla_model_s.png",
+        "image": "tesla_model_s.jpg",
         "logo": "tesla.png",
         "link": "http://www.teslamotors.com/de_CH/models/design"
     },
@@ -92,21 +92,6 @@
         "link": "http://de.nissan.ch/CH/de/vehicle/electric-vehicles/leaf.html"
     },
     {
-        "id": "eGolf",
-        "name": "VW e-Golf",
-        "range": 190,
-        "motorPowerKw": 85,
-        "onBoardChargerKW": 3.7,
-        "battery": 24.2,
-        "acPhases": 1,
-        "acceleration": 10.4,
-        "maxSpeed": 140,
-        "plugs": ["t13", "schuko", "caravan", "cee16", "cee32", "type2", "ccs"],
-        "image": "vw_egolf.jpg",
-        "logo": "vw.png",
-        "link": "http://app.volkswagen.de/ihdcc/de/configurator.html#30300"
-    },
-    {
         "id": "bmwi3",
         "name": "BMW i3",
         "range": 190,
@@ -120,6 +105,21 @@
         "image": "bmwi3.jpg",
         "logo": "bmw.png",
         "link": "http://www.bmw.ch/de/neuwagen/bmw-i/i3/2013/start.html"
+    },
+    {
+        "id": "eGolf",
+        "name": "VW e-Golf",
+        "range": 190,
+        "motorPowerKw": 85,
+        "onBoardChargerKW": 3.7,
+        "battery": 24.2,
+        "acPhases": 1,
+        "acceleration": 10.4,
+        "maxSpeed": 140,
+        "plugs": ["t13", "schuko", "caravan", "cee16", "cee32", "type2", "ccs"],
+        "image": "vw_egolf.jpg",
+        "logo": "vw.png",
+        "link": "http://app.volkswagen.de/ihdcc/de/configurator.html#30300"
     },
     {
         "id": "focusEL",
@@ -146,7 +146,7 @@
         "acceleration": 12.4,
         "maxSpeed": 130,
         "plugs": ["t13", "schuko", "caravan", "cee16", "cee32", "type2", "ccs"],
-        "image": "vw_eup.png",
+        "image": "vw_eup.jpg",
         "logo": "vw.png",
         "link": "http://app.volkswagen.ch/ihdcc/de/configurator.html#30100"
     },

@@ -1,25 +1,9 @@
 <div ng-controller="CarCtrl">
 
-<div id="cars-list" class="row cars-list" ng-class="{'fixed-top':boolChangeClass}">
-    <div class="btn btn-primary" style="margin-left: 20px; margin-bottom: 10px;" ng-click="overview()">
-        <span class="fa fa-angle-left"></span>
-        Back to
-        Overview
-    </div>
-    <ul class="row">
-        <li ng-repeat="car in cars" ng-click="select(car)">
-            <div class="car-choice col-lg-1" ng-class="{':active':selectedCar === car}">
-                <p class="car-choice-info" ng-bind="car.name"></p>
-                <img src="images/{{car.image}}"/>
-            </div>
-        </li>
-    </ul>
-</div>
-
 <div class="view-container row main" ng-class="{'fixed-menu':boolChangeClass}">
 <div class="car-details" ng-show="selectedCar !== undefined">
 
-<div class="col-xl-2 col-lg-3 col-sm-6 col-xs-12">
+<div class="col-xl-2 col-lg-3 col-sm-4 col-xs-12">
     <div class="info-overview">
         <img class="car-img" src="images/{{selectedCar.image}}" style="background-color: white;">
 
@@ -66,10 +50,12 @@
     </div>
 </div>
 
-<div class="col-xl-4 col-lg-5 col-sm-6 col-xs-12">
+<div class="col-xl-4 col-lg-5 col-sm-8 col-xs-12">
     <div class="info-main">
 
-        <map class="row col-md-11" zoom="5" style="display:block;height:365px;width: 100%;padding-bottom: 10px;"/>
+        <div class="row">
+            <map class="col-md-11" zoom="5" style="display:block;height:365px;width: 100%;padding-bottom: 10px;"/>
+        </div>
 
         <div class="slider-row" style="position: absolute;right: 20px;top:0;">
             <div class="slider-bar">
@@ -165,7 +151,7 @@
                            ng-class="{'active':selectedPlug === plug && calcParams.chargingPower === plug.chargingPower}"
                            style="font-size:130%;width:98%;height:80px;text-align: left;margin:3px;color:#5f5781;">
 
-                            <img class="plug-img" width="70" src="images/{{plug.image}}">
+                            <img class="plug-img" height="66" src="images/{{plug.image}}" style="border: 1px solid #b8bcc4;border-radius: 3px;">
                             <span class="plug-choice-info"><span ng-bind="plug.name"></span> <span
                                     ng-show="plug.chargingPower">(<span ng-bind="plug.chargingPower"></span>
                                 kW<span style="font-size: 0.6em;font-weight: 700;" ng-show="plug.mode == 2">, requires connector box!</span>)</span></span>
