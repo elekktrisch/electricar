@@ -2,9 +2,8 @@
 'use strict';
 
 angular.module('car')
-    .controller('CarCtrl', function ($scope, $q, $log, $location, $routeParams, Circles, Cars, Plugs, Calculator) {
+    .controller('CarCtrl', function ($scope, $q, $log, $location, $routeParams, Circles, Cars, Plugs, Calculator, Settings) {
         var i = 0;
-
         $scope.carId = $routeParams.id;
         function queryCars() {
             return Cars.query(function (cars) {
@@ -15,7 +14,8 @@ angular.module('car')
                         $scope.selectedCar = cars[x];
                     }
                 }
-                $scope.calcParams.reservePercent = 50 / $scope.selectedCar.range * 100;
+                Settings.reservePercent = 50 / $scope.selectedCar.range * 100;
+                Settings.carTopSpeed = $scope.selectedCar.maxSpeed;
                 return cars;
             }).$promise;
         }
@@ -107,8 +107,8 @@ angular.module('car')
 
         $scope.setPower = function (plug, car) {
             var chargePower = Calculator.calcChargingPowerForCar($scope, plug, car);
-            $scope.calcParams.chargingPower = Math.floor(chargePower / 100) / 10;
-            plug.chargingPower = $scope.calcParams.chargingPower;
+            Settings.chargingPower = Math.floor(chargePower / 100) / 10;
+            plug.chargingPower = Settings.chargingPower;
             $scope.selectedPlug = plug;
             $scope.recalcRange();
         };
@@ -124,7 +124,7 @@ angular.module('car')
         $scope.updateRangeCircles = function () {
             $scope.calculatedRange = $scope.selectedCar.range;
             $scope.calculatedReturnRange = $scope.selectedCar.range / 2;
-            var detourMapFactor = 1000 * (1 - $scope.calcParams.detourPercent / 100);
+            var detourMapFactor = 1000 * (1 - Settings.detourPercent / 100);
             if ($scope.rangeCircle && $scope.returnCircle && $scope.positionResolved) {
                 $scope.rangeCircle.setRadius($scope.calculatedRange * detourMapFactor);
                 $scope.returnCircle.setRadius($scope.calculatedReturnRange * detourMapFactor);
@@ -148,16 +148,18 @@ angular.module('car')
             Calculator.recalcRange($scope, $scope.updateRangeCircles);
         };
 
-        $scope.calcParams = {};
-        $scope.calcParams.maxBatteryChargePercent = 90;
-        $scope.calcParams.maxC = 2.5;
-        $scope.calcParams.chargingPower = 0;
-        $scope.calcParams.firstCharge = 100;
-        $scope.calcParams.drivingSpeed = 100;
-        $scope.calcParams.distanceToTravel = 300;
-        $scope.calcParams.detourPercent = 30;
-        $scope.calcParams.chargingLossPercent = 10;
-        $scope.calcParams.brickProtectionPercent = 3;
+        $scope.loadDailyDriving = function() {
+            Settings.loadDailyDriving();
+            $scope.recalcRange();
+        };
+        $scope.loadWeekendTrip = function() {
+            Settings.loadWeekendTrip();
+            $scope.recalcRange();
+        };
+        $scope.loadLongTrip = function() {
+            Settings.loadLongTrip();
+            $scope.recalcRange();
+        };
 
         queryCars()
             .then(queryPlugs)
@@ -168,5 +170,5 @@ angular.module('car')
                 console.log('failed to query data: ' + JSON.stringify(reason));
             });
 
-
+        $scope.calcParams = Settings;
     });

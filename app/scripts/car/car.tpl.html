@@ -91,7 +91,7 @@
                         <span class="col-md-8 slider-label">Cruise Speed:</span>
 
                         <div class="col-md-8 slider-bar">
-                            <div ui-slider="{start:invalidateResults}" min="0" max="300"
+                            <div ui-slider="{start:invalidateResults}" min="0" max="{{calcParams.carTopSpeed}}"
                                  ng-model="calcParams.drivingSpeed"></div>
                         </div>
                             <span class="slider-value">
@@ -150,7 +150,8 @@
                            ng-class="{'active':selectedPlug === plug && calcParams.chargingPower === plug.chargingPower}"
                            style="font-size:130%;width:98%;height:80px;text-align: left;margin:3px;color:#5f5781;">
 
-                            <img class="plug-img" height="66" src="images/{{plug.image}}" style="border: 1px solid #b8bcc4;border-radius: 3px;">
+                            <img class="plug-img" height="66" src="images/{{plug.image}}"
+                                 style="border: 1px solid #b8bcc4;border-radius: 3px;">
                             <span class="plug-choice-info"><span ng-bind="plug.name"></span> <span
                                     ng-show="plug.chargingPower">(<span ng-bind="plug.chargingPower"></span>
                                 kW<span style="font-size: 0.6em;font-weight: 700;" ng-show="plug.mode == 2">, requires connector box!</span>)</span></span>
@@ -213,7 +214,27 @@
                     </div>
                 </tab>
             </tabset>
-
+            <div class="row"
+                 style="padding:10px;padding-bottom: 0;">
+                <div class="col-md-4">
+                    <a class="btn btn-default" ng-class="{'active':calcParams.presetTrip === 'daily'}" style="width: 100%;"
+                       ng-click="loadDailyDriving()">
+                        <span class="fa fa-coffee"></span> Daily Driving
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a class="btn btn-default" ng-class="{'active':calcParams.presetTrip === 'weekend'}" style="width: 100%;"
+                       ng-click="loadWeekendTrip()">
+                        <span class="fa fa-paw"></span> Weekend Trip
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a class="btn btn-default" ng-class="{'active':calcParams.presetTrip === 'long'}" style="width: 100%;"
+                       ng-click="loadLongTrip()">
+                        <span class="fa fa-suitcase"></span> Long Trip
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -126,7 +126,7 @@
         "name": "Ford Focus Electric",
         "range": 162,
         "motorPowerKw": 108,
-        "onBoardChargerKW": 7.3,
+        "onBoardChargerKW": 6.6,
         "battery": 23,
         "acPhases": 1,
         "acceleration": 10.4,
