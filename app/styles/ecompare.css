@@ -49,6 +49,8 @@ table.quartett-card-techpoints .tech-value {
 }
 
 .view-container {
+    padding: 20px;
+    margin-top: 50px;
     min-height: 1400px;
     background: url('../images/bg2_solar.jpg') no-repeat 0 0;
     background-size: 100%;
@@ -311,6 +313,11 @@ p.plug-choice-info {
 }
 
 .navbar {
+    z-index: 1000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
     margin-bottom: 0;
 }
 
