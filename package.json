@@ -69,14 +69,8 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "webdriver-update": "webdriver-manager update",
     "unit": "node node_modules/karma/bin/karma start --singleRun",
-    "e2e": "protractor test/e2e/protractor.conf.js",
     "build-dist": "gulp",
-    "build-war": "grunt",
-    "build-watch": "gulp dev",
-    "serve-livereload": "grunt serve",
-    "dev": "dev.bat",
-    "dist": "npm run build-dist && npm run build-war"
+    "test": "gulp test-dev"
   }
 }
