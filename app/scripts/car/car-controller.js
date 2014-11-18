@@ -8,7 +8,6 @@ angular.module('car')
         function queryCars() {
             return Cars.query(function (cars) {
                 $scope.cars = cars;
-                var car;
                 for (var x = 0; x < cars.length; x++) {
                     if ($routeParams.id == cars[x].id) {
                         $scope.selectedCar = cars[x];

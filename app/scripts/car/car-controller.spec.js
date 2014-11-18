@@ -1,3 +1,13 @@
 'use strict';
 
-console.log('test tbd');
+describe('Unit: MainCtrl', function() {
+    beforeEach(module('app'));
+
+    var ctrl, scope;
+    beforeEach(inject(function($controller, $rootScope) {
+        scope = $rootScope.$new();
+        ctrl = $controller('MainCtrl', {
+            $scope: scope
+        });
+    }));
+});
