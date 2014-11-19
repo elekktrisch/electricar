@@ -122,6 +122,21 @@
         "link": "http://app.volkswagen.de/ihdcc/de/configurator.html#30300"
     },
     {
+        "id": "berlingo",
+        "name": "Citroën Berlingo Electric",
+        "range": 170,
+        "motorPowerKw": 49,
+        "onBoardChargerKW": 2.8,
+        "battery": 22,
+        "acPhases": 1,
+        "acceleration": "> 15",
+        "maxSpeed": 110,
+        "plugs": ["t13", "schuko", "caravan", "cee16", "cee32", "type2", "chademo"],
+        "image": "berlingo_electric.jpg",
+        "logo": "citroen.png",
+        "link": "http://www.citroen.de/modelle/nutzfahrzeuge/citroen-berlingo-electric.html"
+    },
+    {
         "id": "focusEL",
         "name": "Ford Focus Electric",
         "range": 162,
