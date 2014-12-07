@@ -87,7 +87,7 @@
                     </div>
                     <div class="row" style="margin-bottom:15px;margin-top:5px;padding-left:35px;padding-right:35px;">
                         <a ng-repeat="c in circles track by c.id"
-                           class="col-md-4 btn btn-default"
+                           class="col-md-4 col-sm-12 col-xs-12 btn btn-default"
                            ng-class="{'active':c.visible}" ng-click="c.visible = !c.visible"><span
                                 class="fa fa-circle-o" style="color:{{c.stroke.color}}"></span> <span
                                 ng-bind="c.name"></span></a>
@@ -114,15 +114,15 @@
                     Setting Presets:
                     <div class="row"
                          style="padding:10px;padding-top: 0;">
-                            <a class="col-md-4 btn btn-default" ng-class="{'active':calcParams.presetTrip === 'daily'}"
+                            <a class="col-md-4 col-sm-12 col-xs-12 btn btn-default" ng-class="{'active':calcParams.presetTrip === 'daily'}"
                                ng-click="loadDailyDriving()">
                                 <span class="fa fa-coffee"></span> Daily Driving
                             </a>
-                            <a class="col-md-4 btn btn-default" ng-class="{'active':calcParams.presetTrip === 'weekend'}"
+                            <a class="col-md-4 col-sm-12 col-xs-12 btn btn-default" ng-class="{'active':calcParams.presetTrip === 'weekend'}"
                                ng-click="loadWeekendTrip()">
                                 <span class="fa fa-paw"></span> Weekend Trip
                             </a>
-                            <a class="col-md-4 btn btn-default" ng-class="{'active':calcParams.presetTrip === 'long'}"
+                            <a class="col-md-4 col-sm-12 col-xs-12 btn btn-default" ng-class="{'active':calcParams.presetTrip === 'long'}"
                                ng-click="loadLongTrip()">
                                 <span class="fa fa-suitcase"></span> Long Trip
                             </a>
