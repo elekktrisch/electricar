@@ -176,7 +176,8 @@ gulp.task('build-lib', function () {
 
     var devResult = es.merge(bower(),
             gulp.src('bower_components/angular-bootstrap/ui-bootstrap.min.js'),
-            gulp.src('bower_components/valdr/valdr-message.min.js'))
+            gulp.src('bower_components/valdr/valdr-message.min.js'),
+            gulp.src('bower_components/angular-google-maps/dist/angular-google-maps.min.js'))
         .pipe(flatten())
         .pipe(jsFilesFilter)
         .pipe(jsDevLibFolder);

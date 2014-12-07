@@ -2,8 +2,9 @@
 'use strict';
 
 angular.module('car')
-    .controller('CarCtrl', function ($scope, $q, $log, $location, $routeParams, Circles, Cars, Plugs, Calculator, Settings) {
-        var i = 0;
+    .controller('CarCtrl', function ($scope, $q, $log, $location, $routeParams, uiGmapGoogleMapApi, Circles, Cars, Plugs, Calculator, Settings) {
+
+
         $scope.carId = $routeParams.id;
         function queryCars() {
             return Cars.query(function (cars) {
@@ -68,34 +69,38 @@ angular.module('car')
         $scope.positionResolved = false;
         function resolvePosition() {
             var deferred = $q.defer();
+            var zurich = {latitude: 47.3712396, longitude: 8.5366015};
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(_.once(function (position) {
-                    var center = {lat: position.coords.latitude, lng: position.coords.longitude};
-                    $scope.rangeCircle = Circles.createCircle(center, '#0000ff');
-                    $scope.returnCircle = Circles.createCircle(center, '#000000');
-                    $scope.dayRangeCircle = Circles.createCircle(center, '#00FFff');
-                    $scope.positionResolved = true;
-                    //$scope.map.setCenter(center);
+                    var center = {
+                        latitude: position.coords.latitude,
+                        longitude: position.coords.longitude
+                    };
                     deferred.resolve(center);
                 }), function (reason) {
-                    var center = {lat: 47.3712396, lng: 8.5366015};
-                    $scope.rangeCircle = Circles.createCircle(center, '#0000ff');
-                    $scope.returnCircle = Circles.createCircle(center, '#000000');
-                    $scope.dayRangeCircle = Circles.createCircle(center, '#00FFff');
-                    $scope.positionResolved = true;
-                    $scope.map.setCenter(center);
-                    deferred.resolve(reason);
+                    console.log(JSON.stringify(reason));
+                    deferred.resolve(zurich);
                 });
             } else {
-                var center = {lat: 47.3712396, lng: 8.5366015};
-                $scope.rangeCircle = Circles.createCircle(center, '#0000ff');
-                $scope.returnCircle = Circles.createCircle(center, '#000000');
-                $scope.dayRangeCircle = Circles.createCircle(center, '#00FFff');
-                $scope.positionResolved = true;
-                $scope.map.setCenter(center);
-                deferred.resolve('no navigator found');
+                console.log('no geolocation found!');
+                deferred.resolve(zurich);
             }
             return deferred.promise;
+        }
+
+        function drawMap(center) {
+            uiGmapGoogleMapApi.then(function (/*maps*/) {
+                $scope.map = {center: center, zoom: 5};
+            });
+            $scope.rangeCircle = Circles.createCircle(1, 'One-Way Range', center, '#0000ff');
+            $scope.returnCircle = Circles.createCircle(2, 'Return Range', center, '#000000');
+            $scope.dayRangeCircle = Circles.createCircle(3, 'Trip Distance', center, '#00aaaa');
+            $scope.positionResolved = true;
+            $scope.circles = [
+                $scope.rangeCircle,
+                $scope.returnCircle,
+                $scope.dayRangeCircle
+            ];
         }
 
 
@@ -125,10 +130,8 @@ angular.module('car')
             $scope.calculatedReturnRange = $scope.selectedCar.range / 2;
             var detourMapFactor = 1000 * (1 - Settings.detourPercent / 100);
             if ($scope.rangeCircle && $scope.returnCircle && $scope.positionResolved) {
-                $scope.rangeCircle.setRadius($scope.calculatedRange * detourMapFactor);
-                $scope.returnCircle.setRadius($scope.calculatedReturnRange * detourMapFactor);
-                $scope.rangeCircle.setMap($scope.map);
-                $scope.returnCircle.setMap($scope.map);
+                $scope.rangeCircle.radius = $scope.calculatedRange * detourMapFactor;
+                $scope.returnCircle.radius = $scope.calculatedReturnRange * detourMapFactor;
             }
             $scope.invalidateResults();
             return detourMapFactor;
@@ -136,8 +139,7 @@ angular.module('car')
 
         $scope.invalidateResults = function () {
             if ($scope.rangeCircle && $scope.returnCircle && $scope.positionResolved) {
-                $scope.dayRangeCircle.setRadius(1);
-                $scope.dayRangeCircle.setMap($scope.map);
+                $scope.dayRangeCircle.radius = 1;
             }
             $scope.resultsValid = false;
             //$scope.recalcRange();
@@ -147,15 +149,15 @@ angular.module('car')
             Calculator.recalcRange($scope, $scope.updateRangeCircles);
         };
 
-        $scope.loadDailyDriving = function() {
+        $scope.loadDailyDriving = function () {
             Settings.loadDailyDriving();
             $scope.recalcRange();
         };
-        $scope.loadWeekendTrip = function() {
+        $scope.loadWeekendTrip = function () {
             Settings.loadWeekendTrip();
             $scope.recalcRange();
         };
-        $scope.loadLongTrip = function() {
+        $scope.loadLongTrip = function () {
             Settings.loadLongTrip();
             $scope.recalcRange();
         };
@@ -164,6 +166,7 @@ angular.module('car')
             .then(queryPlugs)
             .then($scope.recalcRange)
             .then(resolvePosition)
+            .then(drawMap)
             .then($scope.recalcRange)
             .catch(function (reason) {
                 console.log('failed to query data: ' + JSON.stringify(reason));

@@ -92,10 +92,11 @@ table.quartett-card-techpoints .tech-value {
     list-style-type: none;
 }
 
-@media(max-width:768px) {
+@media (max-width: 768px) {
     .car-choice img {
         display: none;
     }
+
     .car-choice {
         width: auto;
         padding: 3px;
@@ -111,10 +112,12 @@ table.quartett-card-techpoints .tech-value {
         border: 1px solid #16161d;
     }
 }
-@media(min-width:768px) {
+
+@media (min-width: 768px) {
     .car-choice img {
         display: block;
     }
+
     .car-choice {
         width: 84px;
         padding: 0;
@@ -200,11 +203,6 @@ p.plug-choice-info {
 
 .info-overview {
     text-align: center;
-}
-
-.info-main input {
-    position: absolute;
-    left: 200px;
 }
 
 .charges-result {
@@ -318,12 +316,15 @@ p.plug-choice-info {
     margin-bottom: 0;
 }
 
-
 .navbar-brand {
     padding-left: 30px;
 }
 
 .container-fluid {
-    padding-left:0;
-    padding-right:0;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.angular-google-map-container {
+    height: 360px;
 }

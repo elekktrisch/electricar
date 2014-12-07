@@ -189,8 +189,7 @@ angular.module('car')
                 $scope.totalAverageSpeedKmh = Math.round(currentDistance / $scope.totalDuration * 10) / 10;
                 $scope.calculatedDayRange = nextMinuteState.distance;
                 if ($scope.dayRangeCircle && $scope.positionResolved) {
-                    $scope.dayRangeCircle.setRadius($scope.calculatedDayRange * detourMapFactor);
-                    $scope.dayRangeCircle.setMap($scope.map);
+                    $scope.dayRangeCircle.radius = $scope.calculatedDayRange * detourMapFactor;
                 }
 
                 $scope.chartConfig = {

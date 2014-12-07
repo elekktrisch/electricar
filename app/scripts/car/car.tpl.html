@@ -1,347 +1,373 @@
 <div ng-controller="CarCtrl">
 
-<div class="view-container car-details" ng-show="selectedCar !== undefined" style="padding-top: 40px;">
+    <div class="view-container car-details" ng-show="selectedCar !== undefined" style="padding-top: 40px;">
 
-<div class="col-xl-2 col-lg-3 col-sm-4 col-xs-12">
-    <div class="info-overview">
-        <img class="car-img" src="images/{{selectedCar.image}}" style="background-color: white;">
+        <div class="col-xl-2 col-lg-3 col-sm-4 col-xs-12">
+            <div class="info-overview">
+                <img class="car-img" src="images/{{selectedCar.image}}" style="background-color: white;">
 
-        <h2 class="car-title">{{selectedCar.name}}</h2>
+                <h2 class="car-title">{{selectedCar.name}}</h2>
 
-        <p>
-            <a ng-disabled="!selectedCar.link" href="{{selectedCar.link}}" target="_blank"
-               class="btn btn-primary">
-                <span ng-show="selectedCar.link"><span class="fa fa-automobile"></span> Order this Car</span>
-                <span ng-hide="selectedCar.link"><span class="fa fa-ban"></span> Not available in Europe</span>
-            </a>
-        </p>
+                <p>
+                    <a ng-disabled="!selectedCar.link" href="{{selectedCar.link}}" target="_blank"
+                       class="btn btn-primary">
+                        <span ng-show="selectedCar.link"><span class="fa fa-automobile"></span> Order this Car</span>
+                        <span ng-hide="selectedCar.link"><span class="fa fa-ban"></span> Not available in Europe</span>
+                    </a>
+                </p>
 
-        <hr style="border-top: 2px solid white;"/>
-        <h3 style="color:white;text-shadow: 3px 3px 5px gray;">Car Options</h3>
+                <hr style="border-top: 2px solid white;"/>
+                <h3 style="color:white;text-shadow: 3px 3px 5px gray;">Car Options</h3>
 
-        <p>(available soon)</p>
-        <hr style="border-top: 2px solid white;"/>
-        <table class="row quartett-card-techpoints"
-               style="margin-left:0;background-color: rgba(255,255,255,0.5);text-align: left;font-size: 1.2em;color:#4a497c;">
-            <tr>
-                <td>0-100 km/h</td>
-                <td style="min-width: 110px;" class="tech-value"><span ng-bind="selectedCar.acceleration"></span> s</td>
-            </tr>
-            <tr>
-                <td>Motor</td>
-                <td class="tech-value"><span ng-bind="selectedCar.motorPowerKw"></span> kW (<span
-                        ng-bind="selectedCar.motorPowerKw * 1.35962 | number:0"></span> PS)
-                </td>
-            </tr>
-            <tr>
-                <td>Top Speed</td>
-                <td class="tech-value"><span ng-bind="selectedCar.maxSpeed"></span> km/h</td>
-            </tr>
-            <tr>
-                <td>Range</td>
-                <td class="tech-value"><span ng-bind="selectedCar.range"></span> km</td>
-            </tr>
-            <tr>
-                <td>Battery</td>
-                <td class="tech-value"><span ng-bind="selectedCar.battery"></span> kWh</td>
-            </tr>
-        </table>
-    </div>
-</div>
-
-<div class="col-xl-4 col-lg-5 col-sm-8 col-xs-12">
-    <div class="info-main">
-
-        <div class="row">
-            <map class="col-md-11" zoom="5" style="display:block;height:365px;width: 100%;padding-bottom: 10px;"/>
+                <p>(available soon)</p>
+                <hr style="border-top: 2px solid white;"/>
+                <table class="row quartett-card-techpoints"
+                       style="margin-left:0;background-color: rgba(255,255,255,0.5);text-align: left;font-size: 1.2em;color:#4a497c;">
+                    <tr>
+                        <td>0-100 km/h</td>
+                        <td style="min-width: 110px;" class="tech-value"><span
+                                ng-bind="selectedCar.acceleration"></span> s
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Motor</td>
+                        <td class="tech-value"><span ng-bind="selectedCar.motorPowerKw"></span> kW (<span
+                                ng-bind="selectedCar.motorPowerKw * 1.35962 | number:0"></span> PS)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Top Speed</td>
+                        <td class="tech-value"><span ng-bind="selectedCar.maxSpeed"></span> km/h</td>
+                    </tr>
+                    <tr>
+                        <td>Range</td>
+                        <td class="tech-value"><span ng-bind="selectedCar.range"></span> km</td>
+                    </tr>
+                    <tr>
+                        <td>Battery</td>
+                        <td class="tech-value"><span ng-bind="selectedCar.battery"></span> kWh</td>
+                    </tr>
+                </table>
+            </div>
         </div>
 
-        <div class="slider-row" style="position: absolute;right: 20px;top:0;">
-            <div class="slider-bar">
-                <div ui-slider="{orientation:'vertical',start:updateRangeCircles,stop:updateRangeCircles}" min="0"
-                     max="70" style="height: 330px;"
-                     ng-model="calcParams.detourPercent"></div>
-            </div>
-            <div style="box-shadow: 2px 2px 5px #686868;position:absolute;bottom:{{calcParams.detourPercent * 1.3}}%; width:100px;right: 50px;background-color: rgb(237,237,237);border: 1px solid #d4d4d4;border-radius: 5;padding-left:5px;">
+        <div class="col-xl-4 col-lg-5 col-sm-8 col-xs-12">
+            <div class="info-main">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <ui-gmap-google-map center='map.center' zoom='map.zoom'>
+                            <ui-gmap-circle ng-repeat="c in circles track by c.id" center="c.center" stroke="c.stroke"
+                                            fill="c.fill" radius="c.radius"
+                                            visible="c.visible" geodesic="c.geodesic" editable="c.editable"
+                                            draggable="c.draggable" clickable="c.clickable"></ui-gmap-circle>
+                        </ui-gmap-google-map>
+                    </div>
+                    <div class="col-md-4" ng-repeat="c in circles track by c.id">
+                        <div style="padding:10px;margin-top:0;background-color: rgba(255,255,255,0.3);text-align: left;font-weight: 700;">
+                            <input type="checkbox" ng-checked="c.visible" ng-model="c.visible"
+                                   style="margin-right: 4px;"> <span ng-bind="c.name"></span> <span class="fa fa-circle-o" style="color:{{c.stroke.color}}"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slider-row" style="position: absolute;right: 20px;top:0;">
+                    <div class="slider-bar">
+                        <div ui-slider="{orientation:'vertical',start:updateRangeCircles,stop:updateRangeCircles}"
+                             min="0"
+                             max="70" style="height: 330px;"
+                             ng-model="calcParams.detourPercent"></div>
+                    </div>
+                    <div style="box-shadow: 2px 2px 5px #686868;position:absolute;bottom:{{calcParams.detourPercent * 1.3}}%; width:100px;right: 50px;background-color: rgb(237,237,237);border: 1px solid #d4d4d4;border-radius: 5;padding-left:5px;">
                 <span class="slider-value">
                     Detours:
                     <span ng-bind="calcParams.detourPercent"></span>%
                 </span>
-            </div>
-        </div>
+                    </div>
+                </div>
 
-        <div style="padding:10px;margin-top:0;background-color: rgba(255,255,255,0.3);text-align: left;font-weight: 700;">
+                <div style="padding:10px;margin-top:0;background-color: rgba(255,255,255,0.3);text-align: left;font-weight: 700;">
 
-            <tabset justified="true">
-                <tab heading="Trip">
-                    <div class="row slider-row">
-                        <span class="col-md-8 slider-label">Total Trip Distance:</span>
+                    <tabset justified="true">
+                        <tab heading="Trip">
+                            <div class="row slider-row">
+                                <span class="col-md-8 slider-label">Total Trip Distance:</span>
 
-                        <div class="col-md-8 slider-bar">
-                            <div ui-slider="{start:invalidateResults}" min="0" max="2000"
-                                 ng-model="calcParams.distanceToTravel"></div>
-                        </div>
+                                <div class="col-md-8 slider-bar">
+                                    <div ui-slider="{start:invalidateResults}" min="0" max="2000"
+                                         ng-model="calcParams.distanceToTravel"></div>
+                                </div>
                             <span class="slider-value">
                                 <span ng-bind="calcParams.distanceToTravel"></span> km <br>
                                 <span class="alternative-value">(<span
                                         ng-bind="calcParams.distanceToTravel / 1.60934 | number:1"></span> miles)</span>
                             </span>
-                    </div>
-                    <div class="row slider-row">
-                        <span class="col-md-8 slider-label">Cruise Speed:</span>
+                            </div>
+                            <div class="row slider-row">
+                                <span class="col-md-8 slider-label">Cruise Speed:</span>
 
-                        <div class="col-md-8 slider-bar">
-                            <div ui-slider="{start:invalidateResults}" min="0" max="{{calcParams.carTopSpeed}}"
-                                 ng-model="calcParams.drivingSpeed"></div>
-                        </div>
+                                <div class="col-md-8 slider-bar">
+                                    <div ui-slider="{start:invalidateResults}" min="0" max="{{calcParams.carTopSpeed}}"
+                                         ng-model="calcParams.drivingSpeed"></div>
+                                </div>
                             <span class="slider-value">
                                 <span ng-bind="calcParams.drivingSpeed"></span> km/h <br>
                                 <span class="alternative-value">(<span
                                         ng-bind="calcParams.drivingSpeed / 1.60934 | number:1"></span> mph)</span>
                             </span>
-                    </div>
-                    <div class="row slider-row">
-                        <span class="col-md-8 slider-label">Start Journey with State of Charge:</span>
+                            </div>
+                            <div class="row slider-row">
+                                <span class="col-md-8 slider-label">Start Journey with State of Charge:</span>
 
-                        <div class="col-md-8 slider-bar">
-                            <div ui-slider="{start:invalidateResults}" min="0" max="100"
-                                 ng-model="calcParams.firstCharge"></div>
-                        </div>
+                                <div class="col-md-8 slider-bar">
+                                    <div ui-slider="{start:invalidateResults}" min="0" max="100"
+                                         ng-model="calcParams.firstCharge"></div>
+                                </div>
                         <span class="slider-value">
                             <span ng-bind="calcParams.firstCharge"></span>%<br>
                             <span class="alternative-value">(<span
                                     ng-bind="(selectedCar.battery * (calcParams.brickProtectionPercent / 100)) + (calcParams.firstCharge * (1 - (calcParams.brickProtectionPercent / 100)) * selectedCar.battery / 100) | number:1"></span> kWh)</span>
                         </span>
-                    </div>
-                    <div class="row slider-row">
-                        <span class="col-md-8 slider-label">Charges during Trip:</span>
+                            </div>
+                            <div class="row slider-row">
+                                <span class="col-md-8 slider-label">Charges during Trip:</span>
 
-                        <div class="col-md-8 slider-bar">
-                            <div ui-slider="{start:invalidateResults}" min="0" max="100"
-                                 ng-model="calcParams.maxBatteryChargePercent"></div>
-                        </div>
+                                <div class="col-md-8 slider-bar">
+                                    <div ui-slider="{start:invalidateResults}" min="0" max="100"
+                                         ng-model="calcParams.maxBatteryChargePercent"></div>
+                                </div>
                         <span class="slider-value">
                             <span ng-bind="calcParams.maxBatteryChargePercent"></span>% <br>
                             <span class="alternative-value">
                                 (<span
                                     ng-bind="(selectedCar.battery * (calcParams.brickProtectionPercent / 100)) + (selectedCar.battery * (1 - (calcParams.brickProtectionPercent / 100)) * calcParams.maxBatteryChargePercent / 100) | number:1"></span>  kWh)</span>
                         </span>
-                    </div>
-                    <div class="row slider-row">
-                        <span class="col-md-8 slider-label">Minimum Range Reserve:</span>
+                            </div>
+                            <div class="row slider-row">
+                                <span class="col-md-8 slider-label">Minimum Range Reserve:</span>
 
-                        <div class="col-md-8 slider-bar">
-                            <div ui-slider="{start:invalidateResults}" min="0" max="100"
-                                 ng-model="calcParams.reservePercent"></div>
-                        </div>
+                                <div class="col-md-8 slider-bar">
+                                    <div ui-slider="{start:invalidateResults}" min="0" max="100"
+                                         ng-model="calcParams.reservePercent"></div>
+                                </div>
                             <span class="slider-value">
                                 <span ng-bind="(selectedCar.battery * (calcParams.brickProtectionPercent / 100)) + (selectedCar.battery * (1 - (calcParams.brickProtectionPercent / 100)) * calcParams.reservePercent / 100) / selectedCar.battery * selectedCar.range | number:0"></span> km<br>
                                 <span class="alternative-value">(<span
                                         ng-bind="(selectedCar.battery * (calcParams.brickProtectionPercent / 100)) + (selectedCar.battery * (1 - (calcParams.brickProtectionPercent / 100)) * calcParams.reservePercent / 100) | number:1"></span> kWh)</span>
                             </span>
-                    </div>
-                </tab>
-                <tab heading="Infrastructure">
-                    <div class="plug-choice-bar row" style="text-align: left;margin-left:5px;margin-right:5px;">
-                        <a ng-show="supportsPlug(plug, selectedCar)"
-                           ng-repeat="plug in plugs"
-                           ng-click="setPower(plug, selectedCar)"
-                           class="btn btn-default"
-                           ng-class="{'active':selectedPlug === plug && calcParams.chargingPower === plug.chargingPower}"
-                           style="font-size:130%;width:98%;height:80px;text-align: left;margin:3px;color:#5f5781;">
+                            </div>
+                        </tab>
+                        <tab heading="Infrastructure">
+                            <div class="plug-choice-bar row" style="text-align: left;margin-left:5px;margin-right:5px;">
+                                <a ng-show="supportsPlug(plug, selectedCar)"
+                                   ng-repeat="plug in plugs"
+                                   ng-click="setPower(plug, selectedCar)"
+                                   class="btn btn-default"
+                                   ng-class="{'active':selectedPlug === plug && calcParams.chargingPower === plug.chargingPower}"
+                                   style="font-size:130%;width:98%;height:80px;text-align: left;margin:3px;color:#5f5781;">
 
-                            <img height="66" src="images/{{plug.image}}"
-                                 style="border: 1px solid #b8bcc4;border-radius: 3px;">
-                            <span ng-show="plug.chargingPower && plug.mode == 2">+ <img src="images/connector_box.jpg" height="66" style="border: 1px solid #b8bcc4;border-radius: 3px;"></span>
+                                    <img height="66" src="images/{{plug.image}}"
+                                         style="border: 1px solid #b8bcc4;border-radius: 3px;">
+                                    <span ng-show="plug.chargingPower && plug.mode == 2">+ <img
+                                            src="images/connector_box.jpg" height="66"
+                                            style="border: 1px solid #b8bcc4;border-radius: 3px;"></span>
                             <span class="plug-choice-info" style="margin-left: 10px;"><span ng-bind="plug.name"></span> <span
                                     ng-show="plug.chargingPower">(<span ng-bind="plug.chargingPower"></span>
                                 kW)</span></span>
-                        </a>
-                    </div>
+                                </a>
+                            </div>
 
-                    <div class="row slider-row">
-                        <span class="col-md-8 slider-label">Choose Custom Charging Power:</span>
+                            <div class="row slider-row">
+                                <span class="col-md-8 slider-label">Choose Custom Charging Power:</span>
 
-                        <div class="col-md-8 slider-bar">
-                            <div ui-slider="{start:invalidateResults}" min="0" max="200" step="0.1" use-decimals
-                                 ng-model="calcParams.chargingPower"></div>
-                        </div>
+                                <div class="col-md-8 slider-bar">
+                                    <div ui-slider="{start:invalidateResults}" min="0" max="200" step="0.1" use-decimals
+                                         ng-model="calcParams.chargingPower"></div>
+                                </div>
                             <span class="slider-value">
                                 <span ng-bind="calcParams.chargingPower"></span> kW<br>
                                 <span class="alternative-value">(<span
                                         ng-bind="calcParams.chargingPower / selectedCar.battery | number:1"></span> C)</span>
                             </span>
-                    </div>
-                </tab>
-                <tab heading="Car">
-                    <div class="row slider-row">
-                        <span class="col-md-8 slider-label">Charging Loss:</span>
+                            </div>
+                        </tab>
+                        <tab heading="Car">
+                            <div class="row slider-row">
+                                <span class="col-md-8 slider-label">Charging Loss:</span>
 
-                        <div class="col-md-8 slider-bar">
-                            <div ui-slider="{start:invalidateResults}" min="0" max="30"
-                                 ng-model="calcParams.chargingLossPercent"></div>
-                        </div>
+                                <div class="col-md-8 slider-bar">
+                                    <div ui-slider="{start:invalidateResults}" min="0" max="30"
+                                         ng-model="calcParams.chargingLossPercent"></div>
+                                </div>
                         <span class="slider-value">
                             <span ng-bind="calcParams.chargingLossPercent"></span>%<br>
                             <span class="alternative-value">(<span
                                     ng-bind="calcParams.chargingPower * calcParams.chargingLossPercent / 100 | number:1"></span> kW)</span>
                         </span>
-                    </div>
-                    <div class="row slider-row">
-                        <span class="col-md-8 slider-label">Maximum usable Charging Power:</span>
+                            </div>
+                            <div class="row slider-row">
+                                <span class="col-md-8 slider-label">Maximum usable Charging Power:</span>
 
-                        <div class="col-md-8 slider-bar">
-                            <div ui-slider="{start:invalidateResults}" min="0.0" max="10.0" step="0.1" use-decimals
-                                 ng-model="calcParams.maxC"></div>
-                        </div>
+                                <div class="col-md-8 slider-bar">
+                                    <div ui-slider="{start:invalidateResults}" min="0.0" max="10.0" step="0.1"
+                                         use-decimals
+                                         ng-model="calcParams.maxC"></div>
+                                </div>
                         <span class="slider-value">
                             <span ng-bind="calcParams.maxC"></span> C <br>
                             <span class="alternative-value">(<span
                                     ng-bind="calcParams.maxC * selectedCar.battery | number:0"></span> kW)</span>
                         </span>
-                    </div>
-                    <div class="row slider-row">
-                        <span class="col-md-8 slider-label">Battery Brick Protection:</span>
+                            </div>
+                            <div class="row slider-row">
+                                <span class="col-md-8 slider-label">Battery Brick Protection:</span>
 
-                        <div class="col-md-8 slider-bar">
-                            <div ui-slider="{start:invalidateResults}" min="0.0" max="10.0" step="0.1" use-decimals
-                                 ng-model="calcParams.brickProtectionPercent"></div>
-                        </div>
+                                <div class="col-md-8 slider-bar">
+                                    <div ui-slider="{start:invalidateResults}" min="0.0" max="10.0" step="0.1"
+                                         use-decimals
+                                         ng-model="calcParams.brickProtectionPercent"></div>
+                                </div>
                         <span class="slider-value">
                             <span ng-bind="calcParams.brickProtectionPercent"></span>%<br>
                             <span class="alternative-value">(<span
                                     ng-bind="calcParams.brickProtectionPercent * selectedCar.battery / 100 | number:0"></span> kWh)</span>
                         </span>
+                            </div>
+                        </tab>
+                    </tabset>
+                    <div class="row"
+                         style="padding:10px;padding-bottom: 0;">
+                        <div class="col-md-4">
+                            <a class="btn btn-default" ng-class="{'active':calcParams.presetTrip === 'daily'}"
+                               style="width: 100%;"
+                               ng-click="loadDailyDriving()">
+                                <span class="fa fa-coffee"></span> Daily Driving
+                            </a>
+                        </div>
+                        <div class="col-md-4">
+                            <a class="btn btn-default" ng-class="{'active':calcParams.presetTrip === 'weekend'}"
+                               style="width: 100%;"
+                               ng-click="loadWeekendTrip()">
+                                <span class="fa fa-paw"></span> Weekend Trip
+                            </a>
+                        </div>
+                        <div class="col-md-4">
+                            <a class="btn btn-default" ng-class="{'active':calcParams.presetTrip === 'long'}"
+                               style="width: 100%;"
+                               ng-click="loadLongTrip()">
+                                <span class="fa fa-suitcase"></span> Long Trip
+                            </a>
+                        </div>
                     </div>
-                </tab>
-            </tabset>
-            <div class="row"
-                 style="padding:10px;padding-bottom: 0;">
-                <div class="col-md-4">
-                    <a class="btn btn-default" ng-class="{'active':calcParams.presetTrip === 'daily'}" style="width: 100%;"
-                       ng-click="loadDailyDriving()">
-                        <span class="fa fa-coffee"></span> Daily Driving
-                    </a>
-                </div>
-                <div class="col-md-4">
-                    <a class="btn btn-default" ng-class="{'active':calcParams.presetTrip === 'weekend'}" style="width: 100%;"
-                       ng-click="loadWeekendTrip()">
-                        <span class="fa fa-paw"></span> Weekend Trip
-                    </a>
-                </div>
-                <div class="col-md-4">
-                    <a class="btn btn-default" ng-class="{'active':calcParams.presetTrip === 'long'}" style="width: 100%;"
-                       ng-click="loadLongTrip()">
-                        <span class="fa fa-suitcase"></span> Long Trip
-                    </a>
                 </div>
             </div>
         </div>
-    </div>
-</div>
 
-<div class="col-xl-3 col-lg-4 col-sm-6 col-xs-12">
-    <div class="info-main">
-        <div style="padding:10px;padding-top:0;background-color: rgba(255,255,255,0.7);text-align: left;font-weight: 700;">
-            <table border="0" width="100%">
-                <tr>
-                    <td width="100" class="results-icon">
-                        <span class="fa fa-arrows-h fa-4x" style="color:#757085;"></span>
-                    </td>
-                    <td colspan="2">
+        <div class="col-xl-3 col-lg-4 col-sm-6 col-xs-12">
+            <div class="info-main">
+                <div style="padding:10px;padding-top:0;background-color: rgba(255,255,255,0.7);text-align: left;font-weight: 700;">
+                    <table border="0" width="100%">
+                        <tr>
+                            <td width="100" class="results-icon">
+                                <span class="fa fa-arrows-h fa-4x" style="color:#757085;"></span>
+                            </td>
+                            <td colspan="2">
                         <span class="results-text">
                             <span class="results-text-label">Total Distance<br></span>
                             <span ng-bind="calcParams.distanceToTravel"></span> km
                         </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="results-icon">
-                        <span class="fa fa-plug fa-4x results-icon" style="color:#49484a;"></span>
-                    </td>
-                    <td width="35%">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="results-icon">
+                                <span class="fa fa-plug fa-4x results-icon" style="color:#49484a;"></span>
+                            </td>
+                            <td width="35%">
                         <span class="results-text">
                             <span class="results-text-label">Total Charging Time<br></span>
                             <span ng-bind="totalChargingTimeHours"></span> h
                         </span>
-                    </td>
-                    <td>
+                            </td>
+                            <td>
                         <span class="results-text">
                             <span class="results-text-label">Number of Stops<br></span>
                             <span ng-bind="numStops"></span> <span ng-show="numStops > 2"
                                                                    class="fa fa-exclamation-triangle"
                                                                    style="color:yellow;text-shadow: 0px 0px 4px #da0700;"></span>
                         </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="results-icon">
-                        <span class="fa fa-bolt fa-4x results-icon" style="color:#adeaed;"></span>
-                    </td>
-                    <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="results-icon">
+                                <span class="fa fa-bolt fa-4x results-icon" style="color:#adeaed;"></span>
+                            </td>
+                            <td>
                         <span class="results-text">
                             <span class="results-text-label">Total Energy Charged<br></span>
                             <span ng-bind="totalEnergyConsumptionKWh"></span> kWh
                         </span>
-                    </td>
-                    <td>
+                            </td>
+                            <td>
                         <span class="results-text">
                             <span class="results-text-label">Consumption per km<br></span>
                             <span ng-bind="consumptionKWhPerKm * 1000 | number:0"></span> Wh
                         </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="results-icon">
-                        <span class="fa fa-tachometer fa-4x results-icon" style="color:#464169;"></span>
-                    </td>
-                    <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="results-icon">
+                                <span class="fa fa-tachometer fa-4x results-icon" style="color:#464169;"></span>
+                            </td>
+                            <td>
                         <span class="results-text">
                             <span class="results-text-label">Average Speed<br></span>
                             <span ng-bind="totalAverageSpeedKmh"></span> km/h
                         </span>
-                    </td>
-                    <td>
+                            </td>
+                            <td>
                         <span class="results-text">
                             <span class="results-text-label">Driving Speed<br></span>
                             <span ng-bind="speedKmh"></span> km/h
                         </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="results-icon">
-                        <span class="fa fa-clock-o fa-4x results-icon" style="color:#dc6454;"></span>
-                    </td>
-                    <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="results-icon">
+                                <span class="fa fa-clock-o fa-4x results-icon" style="color:#dc6454;"></span>
+                            </td>
+                            <td>
                         <span class="results-text">
                             <span class="results-text-label">Total Trip Duration<br></span>
                             <span ng-bind="totalDuration"></span> h
                         </span>
-                    </td>
-                    <td class="results-icon" style="color:#383552;text-shadow: 0px 0px 10px #dcf7ff;text-align: left;">
-                        <span ng-show="totalDuration === 24"><span class="fa fa-2x fa-frown-o"></span><br>didnt make it!</span>
-                        <span ng-show="totalDuration < 9"><span class="fa fa-2x fa-smile-o"></span><br>easy in one day.</span>
-                        <span ng-show="totalDuration >= 9 && totalDuration < 24"><span class="fa fa-2x fa-meh-o"></span><br>quite a long trip.</span>
-                    </td>
-                </tr>
-            </table>
+                            </td>
+                            <td class="results-icon"
+                                style="color:#383552;text-shadow: 0px 0px 10px #dcf7ff;text-align: left;">
+                                <span ng-show="totalDuration === 24"><span class="fa fa-2x fa-frown-o"></span><br>didnt make it!</span>
+                                <span ng-show="totalDuration < 9"><span class="fa fa-2x fa-smile-o"></span><br>easy in one day.</span>
+                                <span ng-show="totalDuration >= 9 && totalDuration < 24"><span
+                                        class="fa fa-2x fa-meh-o"></span><br>quite a long trip.</span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <a class="btn" ng-class="{'btn-default':resultsValid,'btn-primary':!resultsValid}"
+                   ng-disabled="resultsValid"
+                   style="width:100%;margin-top: 10px;font-size: 1.5em;padding:20px;"
+                   ng-click="recalcRange()">
+                    <span ng-show="!resultsValid"><span class="fa fa-line-chart"></span> Calculate!</span>
+                    <span ng-show="resultsValid">(up-to-date)</span>
+                </a>
+            </div>
         </div>
-        <a class="btn" ng-class="{'btn-default':resultsValid,'btn-primary':!resultsValid}" ng-disabled="resultsValid"
-           style="width:100%;margin-top: 10px;font-size: 1.5em;padding:20px;"
-           ng-click="recalcRange()">
-            <span ng-show="!resultsValid"><span class="fa fa-line-chart"></span> Calculate!</span>
-            <span ng-show="resultsValid">(up-to-date)</span>
-        </a>
-    </div>
-</div>
 
-<div class="col-xl-3 col-lg-4 col-sm-6 col-xs-12">
-    <div class="info-main">
-        <div ng-show="chartConfig">
-            <highchart id="chart1" config="chartConfig"></highchart>
+        <div class="col-xl-3 col-lg-4 col-sm-6 col-xs-12">
+            <div class="info-main">
+                <div ng-show="chartConfig">
+                    <highchart id="chart1" config="chartConfig"></highchart>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
 
-</div>
+    </div>
 </div>
