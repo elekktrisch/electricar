@@ -90,9 +90,9 @@ angular.module('car')
             uiGmapGoogleMapApi.then(function (/*maps*/) {
                 $scope.map = {center: center, zoom: 5};
             });
-            $scope.rangeCircle = Circles.createCircle(1, 'One-Way Range', center, '#0000ff');
+            $scope.rangeCircle = Circles.createCircle(1, 'One-Way Range', center, '#00aaaa');
             $scope.returnCircle = Circles.createCircle(2, 'Return Range', center, '#000000');
-            $scope.dayRangeCircle = Circles.createCircle(3, 'Trip Distance', center, '#00aaaa');
+            $scope.dayRangeCircle = Circles.createCircle(3, 'Trip Distance', center, '#6666ff');
             $scope.positionResolved = true;
             $scope.circles = [
                 $scope.rangeCircle,
