@@ -63,8 +63,8 @@
                                             draggable="c.draggable" clickable="c.clickable"></ui-gmap-circle>
                         </ui-gmap-google-map>
                     </div>
-                    <div class="col-md-4" ng-repeat="c in circles track by c.id">
-                        <div style="padding:10px;margin-top:0;background-color: rgba(255,255,255,0.3);text-align: left;font-weight: 700;">
+                    <div class="col-md-4" ng-repeat="c in circles track by c.id" style="margin-bottom:15px;">
+                        <div style="padding:5px;padding-left:10px;margin-top:0;background-color: rgba(255,255,255,0.5);text-align: left;font-weight: 700;font-size:80%;">
                             <input type="checkbox" ng-checked="c.visible" ng-model="c.visible"
                                    style="margin-right: 4px;"> <span ng-bind="c.name"></span> <span class="fa fa-circle-o" style="color:{{c.stroke.color}}"></span>
                         </div>
