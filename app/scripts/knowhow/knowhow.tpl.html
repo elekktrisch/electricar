@@ -1,0 +1,187 @@
+<div style="padding:40px;background-color: #f7eef8;">
+    <h3>Expert Knowledge</h3>
+
+    <div class="row">
+        <div class="col-md-6">
+
+            <p>This page describes everything a driver of an electric car needs to know.</p>
+            <h4>Alternating Current vs Direct Current</h4>
+            <dl>
+                <dt>Alternating Current</dt>
+                <dd>Alternating Current (AC) is changing the voltage from positive to negative several times per second,
+                    and is used
+                    in our power grid. AC is what a power turbines produce.
+                    The voltage can be transformed to any desired value. Higher voltage allows
+                    for thinner cables, but requires more insulation.
+                    <div class="row" style="background-color: white;text-align: center;margin-left:10px;">
+                        <tabset justified="true" class="knowhow-tab">
+                            <tab heading="Water turbine">
+                                <img src="images/hydroturbine.jpg">
+                            </tab>
+                            <tab heading="Wind turbine">
+                                <img src="images/windturbine.jpeg">
+                            </tab>
+                            <tab heading="Steam turbine">
+                                <img src="images/steamturbine.jpg">
+                            </tab>
+                        </tabset>
+                    </div>
+                </dd>
+                <dt>Direct Current</dt>
+                <dd>Direct Current (DC) has a constant voltage. This is produced e.g. by Photovoltaics, or by converting
+                    AC to DC. It can be used to charge batteries. Converting DC to AC can also be done by using an
+                    Inverter.
+                    <div class="row" style="background-color: white;text-align: center;margin-left:10px;">
+                        <tabset justified="true" class="knowhow-tab">
+                            <tab heading="Photovoltaics">
+                                <img src="images/photovoltaics.jpg">
+                            </tab>
+                            <tab heading="Batteries">
+                                <img src="images/liionbattery.jpg">
+                            </tab>
+                        </tabset>
+                    </div>
+                </dd>
+            </dl>
+            <h4>Charging Station</h4>
+
+            <p>A charging station provides one or several options to charge electric cars. </p>
+            <dl>
+                <dt>"Dumb" Power outlet ("Mode 1 and 2")</dt>
+                <dd>The simplest variant of a charging station just provides a power outlet with grid power. If the
+                    connection to the car is made with a simple cable, it is "Mode 1" charging (none of the currently
+                    available cars allows for this anymore).
+                    All currently available cars support "Mode 2", which means a wall connector (see further below) is requred to connect to the onbord charger, and
+                    the onboard charger has to convert the alternating current into direct current to make it
+                    useable for charging the battery.
+                    <br><b>Example Plugs (more details at <a href="http://www.e-driver.net/strom-infos" target="_blank">e-driver.net</a>):</b><br>
+
+                    <p><img width="50" src="images/wall_t13.jpg"> T13 (Switzerland only)</p>
+
+                    <p><img width="50" src="images/wall_schuko.jpg"> Schuko (several European countries)</p>
+
+                    <p><img width="50" src="images/caravan.jpg"> Caravan (European campsites)</p>
+                    <p><img width="50" src="images/wall_cee.jpg"> CEE 16 / 32 (European Industry)</p>
+
+                    <p><img width="50" src="images/cee64.jpg"> CEE 64 (European Industry)</p>
+                </dd>
+                <dt>Car Charging Outlet ("Mode 3")</dt>
+                <dd>A car charging outlet already contains the electronics to communicate
+                    with the car and only switches on power once the car confirms the cable is safely connected. But the
+                    power which flows to the car is the exact same AC current which is on the grid just like it would be
+                    a "dumb" power outlet. It has to be converted into direct current by the onboard charger.
+                    <br><b>Example Plugs (more details at <a href="http://www.e-driver.net/strom-infos" target="_blank">e-driver.net</a>):</b><br>
+
+                    <p><img width="50" src="images/auto_type1.jpg"> Type 1</p>
+
+                    <p><img width="50" src="images/wall_type2.jpg"> Type 2</p>
+
+                </dd>
+                <dt>Quick Charging Station</dt>
+                <dd>The so called quick charger stations contain charging devices which already convert the AC from the
+                    grid to DC which will be applied directly to the battery. The onboard charger of the car is
+                    bypassed. However, this requires the charging station to be compatible with the car obviously.
+                    <br><b>Example Plugs:</b><br>
+
+                    <p><img width="50" src="images/auto_chademo.jpg"> CHAdeMO</p>
+
+                    <p><img width="50" src="images/auto_ccs.jpg"> CCS (Combined Chargin Standard)</p>
+
+                    <p><img width="50" src="images/tesla-supercharger.jpg"> Tesla Supercharger</p>
+                </dd>
+            </dl>
+            <h4>Wall Connector</h4>
+
+            <p>The wall connector is used to connect the car to a wall outlet. It is required because electric cars use
+                a handshake protocol to confirm a safe connection before any electric power is applied to the cable.</p>
+
+            <h4>Charger</h4>
+
+            <p>The charger is a device with a rectifier and some electronics. It converts alternating current into
+                direct current, but has some logic to make sure the battery is charged according to the specs. Most cars
+                have an on-board charger. However, there are also some charging
+                stations which have built-in chargers to provide higher power and quicker charging.</p>
+
+            <h4>(Traction-) Battery</h4>
+
+            <p>The battery, which consists of several hundreds or thousands of cells, is used to store electric energy.
+                Lithium Ion cells usually have a voltage of 3.7 Volts.
+                Combining the cells into packs with some serial circuits brings the voltage of the traction battery to
+                approximately
+                400V. It is called <i>traction</i> battery because it is used to generate forward traction of the car.
+            </p>
+
+            <h4>Inverter</h4>
+
+            <p>The inverter does the opposite of the Rectifier: it converts DC to AC and can be used if an AC motor
+                should
+                be powered by a battery. Or if power from Photovoltaics should be fed into the grid.</p>
+
+            <h4>Motor</h4>
+
+            <p>The motor converts electric energy into kinetic energy (in the case of cars, it first becomes a rotating
+                motion
+                of the shafts and gears, but since they turn the wheels which apply the rotating energy to the street,
+                in the
+                end it becomes a linear motion of the car). This conversion obviously can't be 100% efficient either
+                since some energy is "lost" in the form of heat.</p>
+
+        </div>
+        <div class="col-md-6">
+            <h4>Basic Terms</h4>
+            <dl>
+                <dt>A</dt>
+                <dd><b>Ampere</b> is the SI unit to measure electrical current. A higher value requires a thicker cable.
+                </dd>
+                <dt>AC</dt>
+                <dd><b>Alternating Current</b> (see descreption on the left)</dd>
+                <dt>Brick protection</dt>
+                <dd>Not a scientific term. If a battery is "bricked", it means it is dead due to very low discharge and
+                    therefore doesn't any help more than a brick.
+                    A low discharge may severely damage the battery, which is why most manufacturers use some
+                    software logic to prevent such a discharge.
+                </dd>
+                <dt>C</dt>
+                <dd><b>Coulumb</b> is an SI unit to measure charge. Charging a 22kWh battery with 22kW is 1C. Charging
+                    it with 44kW is 2C. With current battery technology, 2C is just about the maximum recommended
+                    factor. Anything above it will shorten the battery life.
+                </dd>
+                <dt>Charging loss</dt>
+                <dd>This term may be a bit confusing since according to physics, energy can not actually be lost. It can
+                    only be transformed. But the
+                    purpose of a charger in combination with a battery is to convert electric energy to chemical energy.
+                    And this purpose is only met usually to about 90%. The rest of the electric energy is transformed
+                    into thermal energy (aka heat). Depending on the charger, it may even be required to cool the
+                    devices, which consumes power as well.
+                </dd>
+                <dt>DC</dt>
+                <dd><b>Direct Current</b> (see descreption on the left)</dd>
+                <dt>SoC</dt>
+                <dd><b>State of Charge</b> is a percentage value of the battery capacity.</dd>
+                <dt>kW</dt>
+                <dd><b>Kilowatt</b> is electrical power. If a 22kWh battery should be charged in 2 hours, it requires an
+                    11kW charger (simplified).
+                </dd>
+                <dt>kWh</dt>
+                <dd><b>Kilowatthour</b> is electrical energy. When using an 11kW charger for 2 hours, 22kWh will be
+                    charged (simplified).
+                </dd>
+                <dt>&#8486;</dt>
+                <dd><b>Ohm</b> is the SI unit to measure resistance. A higher value will make the voltage drop more over
+                    a given distance.
+                <dt>Recuperation</dt>
+                <dd>If the motor of an electric car is used as a generator to convert kinetic energy back to electric
+                    energy, it is called recuperation. The energy which is produced by the motor/generator is fed back
+                    to the traction battery for later use.
+                </dd>
+                <dt>V</dt>
+                <dd><b>Volt</b> is the SI unit to measure voltage. A higher value requires more insulation.
+                <dt>W</dt>
+                <dd><b>Watt</b> is the SI unit to measure electrical power. For direct current, the voltage (V)
+                    multiplied by the current (A) is equal to the Watt value. AC has an additional power factor between
+                    W and VA, but lets neglect that for simplicitys sake.
+                </dd>
+            </dl>
+        </div>
+    </div>
+</div>

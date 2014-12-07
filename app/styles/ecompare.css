@@ -328,3 +328,26 @@ p.plug-choice-info {
 .angular-google-map-container {
     height: 360px;
 }
+
+dl {
+    font-size: 90%;
+    margin-left: 30px;
+}
+
+dd {
+    margin-left: 10px;
+}
+
+dt {
+    margin-top: 0.8em;
+}
+
+h4 {
+    margin-top: 1.5em;
+}
+
+.knowhow-tab img {
+    padding: 5px;
+    max-width: 100%;
+    max-height: 200px;
+}

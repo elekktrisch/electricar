@@ -9,6 +9,7 @@ angular.module('app', [
     'uiGmapgoogle-maps',
 
     'about',
+    'knowhow',
     'main',
     'car'
 ])

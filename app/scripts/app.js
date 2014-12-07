@@ -22,5 +22,17 @@ app.config(['$routeProvider', function ($routeProvider) {
             templateUrl: 'scripts/about/about.tpl.html',
             publicAccess: true
         })
+        .when('/knowhow',
+        {
+            controller: 'KnowhowCtrl',
+            templateUrl: 'scripts/knowhow/knowhow.tpl.html',
+            publicAccess: true
+        })
+        .when('/knowhow/:term',
+        {
+            controller: 'KnowhowCtrl',
+            templateUrl: 'scripts/knowhow/knowhow.tpl.html',
+            publicAccess: true
+        })
         .otherwise({redirectTo: '/main'});
 }]);

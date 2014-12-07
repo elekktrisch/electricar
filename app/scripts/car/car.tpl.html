@@ -152,7 +152,7 @@
                             </span>
                             </div>
                             <div class="row slider-row">
-                                <span class="col-md-8 slider-label">Start Journey with State of Charge:</span>
+                                <span class="col-md-8 slider-label">Start Journey with State of Charge: <a href="#/knowhow/C"><span class="fa fa-question-circle"></span></a></span>
 
                                 <div class="col-md-8 slider-bar">
                                     <div ui-slider="{start:invalidateResults}" min="0" max="100"
@@ -193,6 +193,8 @@
                             </div>
                         </tab>
                         <tab heading="Infrastructure">
+                            <p class="col-md-11" style="margin-top:10px;font-size: 1em;font-weight: 100;">
+                                For Information about charing infrastructure, please refer to our <a href="#/knowhow">Expert Knowledge <span class="fa fa-question-circle"></span></a> Section.</p>
                             <div class="plug-choice-bar row" style="text-align: left;margin-left:5px;margin-right:5px;">
                                 <a ng-show="supportsPlug(plug, selectedCar)"
                                    ng-repeat="plug in plugs"
@@ -256,7 +258,7 @@
                         </tab>
                         <tab heading="Car">
                             <div class="row slider-row">
-                                <span class="col-md-8 slider-label">Charging Loss:</span>
+                                <span class="col-md-8 slider-label">Charging Loss: <a href="#/knowhow/chargingLoss"><span class="fa fa-question-circle"></span></a></span>
 
                                 <div class="col-md-8 slider-bar">
                                     <div ui-slider="{start:invalidateResults}" min="0" max="30"
@@ -269,7 +271,7 @@
                         </span>
                             </div>
                             <div class="row slider-row">
-                                <span class="col-md-8 slider-label">Maximum usable Charging Power:</span>
+                                <span class="col-md-8 slider-label">Maximum usable Charging Power: <a href="#/knowhow/C"><span class="fa fa-question-circle"></span></a></span>
 
                                 <div class="col-md-8 slider-bar">
                                     <div ui-slider="{start:invalidateResults}" min="0.0" max="10.0" step="0.1"
@@ -283,7 +285,7 @@
                         </span>
                             </div>
                             <div class="row slider-row">
-                                <span class="col-md-8 slider-label">Battery Brick Protection:</span>
+                                <span class="col-md-8 slider-label">Battery Brick Protection: <a href="#/knowhow/brickProtection"><span class="fa fa-question-circle"></span></a></span>
 
                                 <div class="col-md-8 slider-bar">
                                     <div ui-slider="{start:invalidateResults}" min="0.0" max="10.0" step="0.1"
