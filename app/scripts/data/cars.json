@@ -3,6 +3,14 @@
         "id": "teslaS85",
         "name": "Tesla Model S-P85D",
         "range": 502,
+        "rangeParams": {
+            "totalWeightKg": 2180,
+            "cw": 0.24,
+            "frontAreaM2": 2.34,
+            "cr": 0.01,
+            "averageHvacPower": 800,
+            "totalEfficiency": 0.76
+        },
         "motorPowerKw": 515,
         "onBoardChargerKW": 22,
         "battery": 85,
@@ -18,6 +26,14 @@
         "id": "teslaS60",
         "name": "Tesla Model S-60",
         "range": 390,
+        "rangeParams": {
+            "totalWeightKg": 2080,
+            "cw": 0.24,
+            "frontAreaM2": 2.34,
+            "cr": 0.01,
+            "averageHvacPower": 800,
+            "totalEfficiency": 0.76
+        },
         "motorPowerKw": 285,
         "onBoardChargerKW": 22,
         "battery": 60,
@@ -34,6 +50,14 @@
         "name": "Kia Soul EV",
         "year": 2015,
         "range": 210,
+        "rangeParams": {
+            "totalWeightKg": 1580,
+            "cw": 0.34,
+            "frontAreaM2": 2.5,
+            "cr": 0.01,
+            "averageHvacPower": 800,
+            "totalEfficiency": 0.76
+        },
         "motorPowerKw": 81,
         "onBoardChargerKW": 7.3,
         "battery": 27,
@@ -49,6 +73,14 @@
         "id": "zoe",
         "name": "Renault ZOE",
         "range": 210,
+        "rangeParams": {
+            "totalWeightKg": 1580,
+            "cw": 0.34,
+            "frontAreaM2": 2.5,
+            "cr": 0.01,
+            "averageHvacPower": 800,
+            "totalEfficiency": 0.76
+        },
         "motorPowerKw": 65,
         "onBoardChargerKW": 43,
         "battery": 22,
@@ -65,6 +97,14 @@
         "name": "Mercedes B-Class Electric",
         "year": 2015,
         "range": 200,
+        "rangeParams": {
+            "totalWeightKg": 1580,
+            "cw": 0.34,
+            "frontAreaM2": 2.5,
+            "cr": 0.01,
+            "averageHvacPower": 800,
+            "totalEfficiency": 0.76
+        },
         "motorPowerKw": 132,
         "onBoardChargerKW": 11,
         "battery": 28,
@@ -80,6 +120,14 @@
         "id": "leaf",
         "name": "Nissan Leaf",
         "range": 199,
+        "rangeParams": {
+            "totalWeightKg": 1580,
+            "cw": 0.28,
+            "frontAreaM2": 2.3,
+            "cr": 0.01,
+            "averageHvacPower": 800,
+            "totalEfficiency": 0.76
+        },
         "motorPowerKw": 80,
         "onBoardChargerKW": 11,
         "battery": 24,
@@ -95,6 +143,14 @@
         "id": "bmwi3",
         "name": "BMW i3",
         "range": 190,
+        "rangeParams": {
+            "totalWeightKg": 1580,
+            "cw": 0.26,
+            "frontAreaM2": 2.4,
+            "cr": 0.01,
+            "averageHvacPower": 800,
+            "totalEfficiency": 0.8
+        },
         "motorPowerKw": 125,
         "onBoardChargerKW": 4.6,
         "battery": 18.8,
@@ -110,6 +166,14 @@
         "id": "eGolf",
         "name": "VW e-Golf",
         "range": 190,
+        "rangeParams": {
+            "totalWeightKg": 1600,
+            "cw": 0.28,
+            "frontAreaM2": 2.3,
+            "cr": 0.01,
+            "averageHvacPower": 800,
+            "totalEfficiency": 0.76
+        },
         "motorPowerKw": 85,
         "onBoardChargerKW": 3.7,
         "battery": 24.2,
@@ -125,6 +189,14 @@
         "id": "berlingo",
         "name": "Citroën Berlingo Electric",
         "range": 170,
+        "rangeParams": {
+            "totalWeightKg": 1580,
+            "cw": 0.34,
+            "frontAreaM2": 2.8,
+            "cr": 0.01,
+            "averageHvacPower": 800,
+            "totalEfficiency": 0.76
+        },
         "motorPowerKw": 49,
         "onBoardChargerKW": 2.8,
         "battery": 22,
@@ -140,6 +212,14 @@
         "id": "focusEL",
         "name": "Ford Focus Electric",
         "range": 162,
+        "rangeParams": {
+            "totalWeightKg": 1580,
+            "cw": 0.28,
+            "frontAreaM2": 2.1,
+            "cr": 0.01,
+            "averageHvacPower": 800,
+            "totalEfficiency": 0.8
+        },
         "motorPowerKw": 108,
         "onBoardChargerKW": 6.6,
         "battery": 23,
@@ -154,6 +234,14 @@
         "id": "eUp",
         "name": "VW e-Up",
         "range": 160,
+        "rangeParams": {
+            "totalWeightKg": 1580,
+            "cw": 0.28,
+            "frontAreaM2": 2.1,
+            "cr": 0.01,
+            "averageHvacPower": 800,
+            "totalEfficiency": 0.76
+        },
         "motorPowerKw": 60,
         "onBoardChargerKW": 3.7,
         "battery": 18.7,
@@ -169,6 +257,14 @@
         "id": "imiev",
         "name": "Mitsubishi iMiEV",
         "range": 150,
+        "rangeParams": {
+            "totalWeightKg": 1580,
+            "cw": 0.28,
+            "frontAreaM2": 2.0,
+            "cr": 0.01,
+            "averageHvacPower": 800,
+            "totalEfficiency": 0.76
+        },
         "motorPowerKw": 49,
         "onBoardChargerKW": 3,
         "battery": 16,
@@ -184,6 +280,14 @@
         "id": "smartEd",
         "name": "smart fortwo ed",
         "range": 145,
+        "rangeParams": {
+            "totalWeightKg": 1580,
+            "cw": 0.28,
+            "frontAreaM2": 1.9,
+            "cr": 0.01,
+            "averageHvacPower": 800,
+            "totalEfficiency": 0.76
+        },
         "motorPowerKw": 55,
         "onBoardChargerKW": 22,
         "battery": 17.6,
@@ -199,6 +303,14 @@
         "id": "kangooZE",
         "name": "Renault Kangoo Z.E.",
         "range": 120,
+        "rangeParams": {
+            "totalWeightKg": 1580,
+            "cw": 0.34,
+            "frontAreaM2": 2.8,
+            "cr": 0.01,
+            "averageHvacPower": 800,
+            "totalEfficiency": 0.76
+        },
         "motorPowerKw": 44,
         "onBoardChargerKW": 3.7,
         "battery": 22,

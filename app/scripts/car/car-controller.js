@@ -2,9 +2,7 @@
 'use strict';
 
 angular.module('car')
-    .controller('CarCtrl', function ($scope, $q, $log, $location, $routeParams, uiGmapGoogleMapApi, Circles, Cars, Plugs, Calculator, Settings) {
-
-
+    .controller('CarCtrl', function ($scope, $q, $log, $location, $routeParams, uiGmapGoogleMapApi, Circles, Cars, Plugs, Calculator, RangeCalculator, Settings) {
         $scope.carId = $routeParams.id;
         function queryCars() {
             return Cars.query(function (cars) {

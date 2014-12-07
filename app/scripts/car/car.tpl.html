@@ -48,12 +48,34 @@
                         <td class="tech-value"><span ng-bind="selectedCar.battery"></span> kWh</td>
                     </tr>
                 </table>
+                <hr style="border-top: 2px solid white;"/>
+                <p style="color:white;text-shadow: 1px 1px 4px black;">range calculation parameters:</p>
+                <table class="row quartett-card-techpoints"
+                       style="margin-left:0;background-color: rgba(255,255,255,0.5);text-align: left;font-size: 1.2em;color:#4a497c;">
+                    <tr>
+                        <td>Cw</td>
+                        <td class="tech-value"><span ng-bind="selectedCar.rangeParams.cw"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Weight</td>
+                        <td class="tech-value"><span ng-bind="selectedCar.rangeParams.totalWeightKg - 80"></span> kg
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Frontal Area</td>
+                        <td class="tech-value"><span ng-bind="selectedCar.rangeParams.frontAreaM2"></span> m<sup>2</sup>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Bat2Wheel efficiency</td>
+                        <td class="tech-value"><span ng-bind="selectedCar.rangeParams.totalEfficiency"></span></td>
+                    </tr>
+                </table>
             </div>
         </div>
 
         <div class="col-xl-4 col-lg-5 col-sm-8 col-xs-12">
             <div class="info-main">
-
                 <div class="row">
                     <div class="col-md-12">
                         <ui-gmap-google-map center='map.center' zoom='map.zoom'>
@@ -66,7 +88,8 @@
                     <div class="col-md-4" ng-repeat="c in circles track by c.id" style="margin-bottom:15px;">
                         <div style="padding:5px;padding-left:10px;margin-top:0;background-color: rgba(255,255,255,0.5);text-align: left;font-weight: 700;font-size:80%;">
                             <input type="checkbox" ng-checked="c.visible" ng-model="c.visible"
-                                   style="margin-right: 4px;"> <span ng-bind="c.name"></span> <span class="fa fa-circle-o" style="color:{{c.stroke.color}}"></span>
+                                   style="margin-right: 4px;"> <span ng-bind="c.name"></span> <span
+                                class="fa fa-circle-o" style="color:{{c.stroke.color}}"></span>
                         </div>
                     </div>
                 </div>
@@ -114,6 +137,18 @@
                                 <span ng-bind="calcParams.drivingSpeed"></span> km/h <br>
                                 <span class="alternative-value">(<span
                                         ng-bind="calcParams.drivingSpeed / 1.60934 | number:1"></span> mph)</span>
+                            </span>
+                            </div>
+                            <div class="row slider-row">
+                                <span class="col-md-8 slider-label">Acceleration/Breaking:</span>
+
+                                <div class="col-md-8 slider-bar">
+                                    <div ui-slider="{start:invalidateResults}" min="0" max="100"
+                                         ng-model="calcParams.accelerationBreaking"></div>
+                                </div>
+                            <span class="slider-value">
+                                <span ng-bind="calcParams.accelerationBreaking"></span> %<br>
+                                <span class="alternative-value">(driving style)</span>
                             </span>
                             </div>
                             <div class="row slider-row">
@@ -188,6 +223,34 @@
                                 <span ng-bind="calcParams.chargingPower"></span> kW<br>
                                 <span class="alternative-value">(<span
                                         ng-bind="calcParams.chargingPower / selectedCar.battery | number:1"></span> C)</span>
+                            </span>
+                            </div>
+                        </tab>
+                        <tab heading="Weather">
+                            <div class="row slider-row">
+                                <span class="col-md-8 slider-label">Temperature</span>
+
+                                <div class="col-md-8 slider-bar">
+                                    <div ui-slider="{start:invalidateResults}" min="-40" max="40"
+                                         ng-model="calcParams.temperature"></div>
+                                </div>
+                            <span class="slider-value">
+                                <span ng-bind="calcParams.temperature"></span> °C<br>
+                                <span class="alternative-value">(<span
+                                        ng-bind="(calcParams.temperature * 9 / 5) + 32 | number:1"></span> °F)</span>
+                            </span>
+                            </div>
+                            <div class="row slider-row">
+                                <span class="col-md-8 slider-label">Rain</span>
+
+                                <div class="col-md-8 slider-bar">
+                                    <div ui-slider="{start:invalidateResults}" min="0" max="80"
+                                         ng-model="calcParams.rain"></div>
+                                </div>
+                            <span class="slider-value">
+                                <span ng-bind="calcParams.rain"></span> mm/h<br>
+                                <span class="alternative-value">(<span
+                                        ng-bind="calcParams.rain"></span> l/m<sup>2</sup> per h)</span>
                             </span>
                             </div>
                         </tab>

@@ -10,14 +10,17 @@ angular.module('car')
                 this.maxC = 2.5;
                 this.chargingLossPercent = 10;
                 this.brickProtectionPercent = 3;
+                this.temperature = 16;
+                this.rain = 0;
             },
             loadDailyDriving: function () {
                 this.resetCommonSettings();
                 this.firstCharge = 80;
-                this.drivingSpeed = 60;
+                this.drivingSpeed = 75;
                 this.distanceToTravel = 40;
                 this.detourPercent = 25;
                 this.presetTrip = 'daily';
+                this.accelerationBreaking = 40;
             },
             loadWeekendTrip: function () {
                 this.resetCommonSettings();
@@ -26,14 +29,16 @@ angular.module('car')
                 this.distanceToTravel = 300;
                 this.detourPercent = 30;
                 this.presetTrip = 'weekend';
+                this.accelerationBreaking = 30;
             },
             loadLongTrip: function () {
                 this.resetCommonSettings();
                 this.firstCharge = 100;
-                this.drivingSpeed = 100;
+                this.drivingSpeed = 110;
                 this.distanceToTravel = 700;
                 this.detourPercent = 30;
                 this.presetTrip = 'long';
+                this.accelerationBreaking = 10;
             }
         };
         newSettings.loadWeekendTrip();
