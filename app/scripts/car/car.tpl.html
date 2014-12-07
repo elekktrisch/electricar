@@ -85,12 +85,12 @@
                                             draggable="c.draggable" clickable="c.clickable"></ui-gmap-circle>
                         </ui-gmap-google-map>
                     </div>
-                    <div class="col-md-4" ng-repeat="c in circles track by c.id" style="margin-bottom:15px;">
-                        <div style="padding:5px;padding-left:10px;margin-top:0;background-color: rgba(255,255,255,0.5);text-align: left;font-weight: 700;font-size:80%;">
-                            <input type="checkbox" ng-checked="c.visible" ng-model="c.visible"
-                                   style="margin-right: 4px;"> <span ng-bind="c.name"></span> <span
-                                class="fa fa-circle-o" style="color:{{c.stroke.color}}"></span>
-                        </div>
+                    <div class="row" style="margin-bottom:15px;margin-top:5px;padding-left:35px;padding-right:35px;">
+                        <a ng-repeat="c in circles track by c.id"
+                           class="col-md-4 btn btn-default"
+                           ng-class="{'active':c.visible}" ng-click="c.visible = !c.visible"><span
+                                class="fa fa-circle-o" style="color:{{c.stroke.color}}"></span> <span
+                                ng-bind="c.name"></span></a>
                     </div>
                 </div>
 
@@ -111,6 +111,24 @@
 
                 <div style="padding:10px;margin-top:0;background-color: rgba(255,255,255,0.3);text-align: left;font-weight: 700;">
 
+                    Setting Presets:
+                    <div class="row"
+                         style="padding:10px;padding-top: 0;">
+                            <a class="col-md-4 btn btn-default" ng-class="{'active':calcParams.presetTrip === 'daily'}"
+                               ng-click="loadDailyDriving()">
+                                <span class="fa fa-coffee"></span> Daily Driving
+                            </a>
+                            <a class="col-md-4 btn btn-default" ng-class="{'active':calcParams.presetTrip === 'weekend'}"
+                               ng-click="loadWeekendTrip()">
+                                <span class="fa fa-paw"></span> Weekend Trip
+                            </a>
+                            <a class="col-md-4 btn btn-default" ng-class="{'active':calcParams.presetTrip === 'long'}"
+                               ng-click="loadLongTrip()">
+                                <span class="fa fa-suitcase"></span> Long Trip
+                            </a>
+                    </div>
+
+                    Setting Details:
                     <tabset justified="true">
                         <tab heading="Trip">
                             <div class="row slider-row">
@@ -152,7 +170,8 @@
                             </span>
                             </div>
                             <div class="row slider-row">
-                                <span class="col-md-8 slider-label">Start Journey with State of Charge: <a href="#/knowhow/C"><span class="fa fa-question-circle"></span></a></span>
+                                <span class="col-md-8 slider-label">Start Journey with State of Charge: <a
+                                        href="#/knowhow/C"><span class="fa fa-question-circle"></span></a></span>
 
                                 <div class="col-md-8 slider-bar">
                                     <div ui-slider="{start:invalidateResults}" min="0" max="100"
@@ -194,7 +213,9 @@
                         </tab>
                         <tab heading="Infrastructure">
                             <p class="col-md-11" style="margin-top:10px;font-size: 1em;font-weight: 100;">
-                                For Information about charing infrastructure, please refer to our <a href="#/knowhow">Expert Knowledge <span class="fa fa-question-circle"></span></a> Section.</p>
+                                For Information about charing infrastructure, please refer to our <a href="#/knowhow">Expert
+                                Knowledge <span class="fa fa-question-circle"></span></a> Section.</p>
+
                             <div class="plug-choice-bar row" style="text-align: left;margin-left:5px;margin-right:5px;">
                                 <a ng-show="supportsPlug(plug, selectedCar)"
                                    ng-repeat="plug in plugs"
@@ -258,7 +279,9 @@
                         </tab>
                         <tab heading="Car">
                             <div class="row slider-row">
-                                <span class="col-md-8 slider-label">Charging Loss: <a href="#/knowhow/chargingLoss"><span class="fa fa-question-circle"></span></a></span>
+                                <span class="col-md-8 slider-label">Charging Loss: <a
+                                        href="#/knowhow/chargingLoss"><span
+                                        class="fa fa-question-circle"></span></a></span>
 
                                 <div class="col-md-8 slider-bar">
                                     <div ui-slider="{start:invalidateResults}" min="0" max="30"
@@ -271,7 +294,8 @@
                         </span>
                             </div>
                             <div class="row slider-row">
-                                <span class="col-md-8 slider-label">Maximum usable Charging Power: <a href="#/knowhow/C"><span class="fa fa-question-circle"></span></a></span>
+                                <span class="col-md-8 slider-label">Maximum usable Charging Power: <a
+                                        href="#/knowhow/C"><span class="fa fa-question-circle"></span></a></span>
 
                                 <div class="col-md-8 slider-bar">
                                     <div ui-slider="{start:invalidateResults}" min="0.0" max="10.0" step="0.1"
@@ -285,7 +309,8 @@
                         </span>
                             </div>
                             <div class="row slider-row">
-                                <span class="col-md-8 slider-label">Battery Brick Protection: <a href="#/knowhow/brickProtection"><span class="fa fa-question-circle"></span></a></span>
+                                <span class="col-md-8 slider-label">Battery Brick Protection: <a
+                                        href="#/knowhow/brickProtection"><span class="fa fa-question-circle"></span></a></span>
 
                                 <div class="col-md-8 slider-bar">
                                     <div ui-slider="{start:invalidateResults}" min="0.0" max="10.0" step="0.1"
@@ -300,30 +325,6 @@
                             </div>
                         </tab>
                     </tabset>
-                    <div class="row"
-                         style="padding:10px;padding-bottom: 0;">
-                        <div class="col-md-4">
-                            <a class="btn btn-default" ng-class="{'active':calcParams.presetTrip === 'daily'}"
-                               style="width: 100%;"
-                               ng-click="loadDailyDriving()">
-                                <span class="fa fa-coffee"></span> Daily Driving
-                            </a>
-                        </div>
-                        <div class="col-md-4">
-                            <a class="btn btn-default" ng-class="{'active':calcParams.presetTrip === 'weekend'}"
-                               style="width: 100%;"
-                               ng-click="loadWeekendTrip()">
-                                <span class="fa fa-paw"></span> Weekend Trip
-                            </a>
-                        </div>
-                        <div class="col-md-4">
-                            <a class="btn btn-default" ng-class="{'active':calcParams.presetTrip === 'long'}"
-                               style="width: 100%;"
-                               ng-click="loadLongTrip()">
-                                <span class="fa fa-suitcase"></span> Long Trip
-                            </a>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
