@@ -46,12 +46,13 @@
             <h4>Charging Station</h4>
 
             <p>A charging station provides one or several options to charge electric cars. </p>
-            <dl>
+            <dl ng-class="{'selected-term':term === 'infrastructure'}">
                 <dt>"Dumb" Power outlet ("Mode 1 and 2")</dt>
                 <dd>The simplest variant of a charging station just provides a power outlet with grid power. If the
                     connection to the car is made with a simple cable, it is "Mode 1" charging (none of the currently
                     available cars allows for this anymore).
-                    All currently available cars support "Mode 2", which means a wall connector (see further below) is requred to connect to the onbord charger, and
+                    All currently available cars support "Mode 2", which means a wall connector (see further below) is
+                    requred to connect to the onbord charger, and
                     the onboard charger has to convert the alternating current into direct current to make it
                     useable for charging the battery.
                     <br><b>Example Plugs (more details at <a href="http://www.e-driver.net/strom-infos" target="_blank">e-driver.net</a>):</b><br>
@@ -61,6 +62,7 @@
                     <p><img width="50" src="images/wall_schuko.jpg"> Schuko (several European countries)</p>
 
                     <p><img width="50" src="images/caravan.jpg"> Caravan (European campsites)</p>
+
                     <p><img width="50" src="images/wall_cee.jpg"> CEE 16 / 32 (European Industry)</p>
 
                     <p><img width="50" src="images/cee64.jpg"> CEE 64 (European Industry)</p>
@@ -136,28 +138,31 @@
                 <dt>AC</dt>
                 <dd><b>Alternating Current</b> (see descreption on the left)</dd>
                 <dt>Brick protection</dt>
-                <dd>Not a scientific term. If a battery is "bricked", it means it is dead due to very low discharge and
+                <dd ng-class="{'selected-term':term === 'brickProtection'}">Not a scientific term. If a battery is "bricked", it means it is dead due to very low discharge and
                     therefore doesn't any help more than a brick.
                     A low discharge may severely damage the battery, which is why most manufacturers use some
                     software logic to prevent such a discharge.
                 </dd>
                 <dt>C</dt>
-                <dd><b>Coulumb</b> is an SI unit to measure charge. Charging a 22kWh battery with 22kW is 1C. Charging
+                <dd ng-class="{'selected-term':term === 'C'}"><b>Coulumb</b> is an SI unit to measure charge. Charging a 22kWh battery with 22kW is 1C. Charging
                     it with 44kW is 2C. With current battery technology, 2C is just about the maximum recommended
                     factor. Anything above it will shorten the battery life.
                 </dd>
                 <dt>Charging loss</dt>
-                <dd>This term may be a bit confusing since according to physics, energy can not actually be lost. It can
+                <dd ng-class="{'selected-term':term === 'chargingLoss'}">This term may be a bit confusing since according to physics, energy can not actually be lost. It can
                     only be transformed. But the
                     purpose of a charger in combination with a battery is to convert electric energy to chemical energy.
-                    And this purpose is only met usually to about 90%. The rest of the electric energy is transformed
-                    into thermal energy (aka heat). Depending on the charger, it may even be required to cool the
-                    devices, which consumes power as well.
+                    And this purpose is only met usually to 90-95%. The rest of the electric energy is transformed
+                    into thermal energy (aka heat). Depending on the
+                    charger, it may even be required to cool the
+                    devices during the charging procedure, which consumes power as well.
+                    <br><b>Example:</b> When charging at a 50kW outlet, if there are 10%
+                    charging loss, the air around the car will be heated up as if there would be a 5kW heater. So after charging for 1 hour, the battery will only have 45kWh more energy stored instead of 50kWh more.
                 </dd>
                 <dt>DC</dt>
                 <dd><b>Direct Current</b> (see descreption on the left)</dd>
                 <dt>SoC</dt>
-                <dd><b>State of Charge</b> is a percentage value of the battery capacity.</dd>
+                <dd ng-class="{'selected-term':term === 'SoC'}"><b>State of Charge</b> is a percentage value of the battery capacity.</dd>
                 <dt>kW</dt>
                 <dd><b>Kilowatt</b> is electrical power. If a 22kWh battery should be charged in 2 hours, it requires an
                     11kW charger (simplified).

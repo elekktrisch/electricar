@@ -351,3 +351,9 @@ h4 {
     max-width: 100%;
     max-height: 200px;
 }
+
+.selected-term {
+    border: 2px dashed blue;
+    padding: 2px;
+    background-color: #d6d4ff;
+}
