@@ -280,7 +280,7 @@
 
         <div class="col-xl-6 col-lg-5 col-sm-8 col-xs-12">
             <div class="info-main" style="background-color: rgba(255,255,255,0.3);text-align: left;font-weight: 700;">
-                <div ng-show="!resultsValid" style="height:400px;">
+                <div ng-show="!resultsValid" style="background-color:rgba(200,200,240,0.6);position:absolute;top:0;left:0;z-index: 9999;height:100%;width:100%;padding:50px;">
                     <a class="btn" ng-class="{'btn-default':resultsValid,'btn-primary':!resultsValid}"
                        ng-disabled="resultsValid"
                        style="width:100%;margin-top: 40px;font-size: 1.5em;padding:20px;"
@@ -291,7 +291,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                <tabset justified="true" ng-show="resultsValid">
+                <tabset justified="true">
                     <tab heading="Calculation Results">
                         <div style="padding:10px;padding-top:0;background-color: rgba(255,255,255,0.7);text-align: left;font-weight: 700;">
                             <table border="0" width="100%">
