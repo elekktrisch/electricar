@@ -357,3 +357,8 @@ h4 {
     padding: 2px;
     background-color: #d6d4ff;
 }
+
+h4 {
+    color: white;
+    text-shadow: 2px 2px 3px black;
+}
