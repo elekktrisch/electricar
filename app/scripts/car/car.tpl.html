@@ -106,10 +106,10 @@
                             </span>
                             </div>
                             <div class="row slider-row">
-                                <span class="col-md-8 slider-label">Acceleration/Breaking:</span>
+                                <span class="col-md-8 slider-label">Driving Style (consumption factor):</span>
 
                                 <div class="col-md-8 slider-bar">
-                                    <div ui-slider="{start:invalidateResults}" min="0" max="100"
+                                    <div ui-slider="{start:invalidateResults}" min="80" max="250"
                                          ng-model="calcParams.accelerationBreaking"></div>
                                 </div>
                             <span class="slider-value">
@@ -199,6 +199,10 @@
                             </div>
                         </tab>
                         <tab heading="Weather">
+                            <div class="row slider-row slider-label">
+                                <input style="margin:15px;" type="checkbox" ng-checked="calcParams.preHeatCabin" ng-model="calcParams.preHeatCabin"
+                                        ng-click="invalidateResults()"/> Pre-heat/cool cabin
+                            </div>
                             <div class="row slider-row">
                                 <span class="col-md-8 slider-label">Temperature</span>
 
@@ -338,7 +342,7 @@
                                     <td>
                         <span class="results-text">
                             <span class="results-text-label">Consumption per km<br></span>
-                            <span ng-bind="consumptionKWhPerKm * 1000 | number:0"></span> Wh
+                            <span ng-bind="totalConsumptionPerKm | number:0"></span> Wh
                         </span>
                                     </td>
                                 </tr>

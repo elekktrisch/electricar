@@ -12,6 +12,7 @@ angular.module('car')
                 this.brickProtectionPercent = 3;
                 this.temperature = 16;
                 this.rain = 0;
+                this.preHeatCabin = true;
             },
             loadDailyDriving: function () {
                 this.resetCommonSettings();
@@ -20,7 +21,7 @@ angular.module('car')
                 this.distanceToTravel = 40;
                 this.detourPercent = 25;
                 this.presetTrip = 'daily';
-                this.accelerationBreaking = 40;
+                this.accelerationBreaking = 130;
             },
             loadWeekendTrip: function () {
                 this.resetCommonSettings();
@@ -29,7 +30,7 @@ angular.module('car')
                 this.distanceToTravel = 300;
                 this.detourPercent = 30;
                 this.presetTrip = 'weekend';
-                this.accelerationBreaking = 30;
+                this.accelerationBreaking = 110;
             },
             loadLongTrip: function () {
                 this.resetCommonSettings();
@@ -38,7 +39,7 @@ angular.module('car')
                 this.distanceToTravel = 700;
                 this.detourPercent = 30;
                 this.presetTrip = 'long';
-                this.accelerationBreaking = 10;
+                this.accelerationBreaking = 100;
             }
         };
         newSettings.loadWeekendTrip();

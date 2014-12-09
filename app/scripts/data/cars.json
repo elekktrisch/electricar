@@ -75,11 +75,11 @@
         "range": 210,
         "rangeParams": {
             "totalWeightKg": 1580,
-            "cw": 0.34,
-            "frontAreaM2": 2.5,
+            "cw": 0.26,
+            "frontAreaM2": 2,
             "cr": 0.01,
             "averageHvacPower": 800,
-            "totalEfficiency": 0.76
+            "totalEfficiency": 0.88
         },
         "motorPowerKw": 65,
         "onBoardChargerKW": 43,
