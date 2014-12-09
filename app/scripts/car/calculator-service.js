@@ -201,8 +201,8 @@ car.factory('Calculator', function (RangeCalculator) {
                         var potent = 6;
                         var f1 = 12 * SOC;
                         var f2 = Math.pow(f1, potent);
-                        var f3 = Math.pow(10, potent) * Math.min(2, Math.max(1, car.onBoardChargerKW / chargeKW));
-                        var fx = 0.7 * f2;
+                        var f3 = Math.pow(10, potent) * Math.max(1, car.onBoardChargerKW / chargeKW * 10);
+                        var fx = 0.3 * f2;
                         var f4 = fx + f3 - f2;
                         var f5 = f4 / f3;
                         var easeOffFactor = Math.max(0.001, Math.min(0.999, f5));
