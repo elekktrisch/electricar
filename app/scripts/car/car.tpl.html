@@ -106,7 +106,7 @@
                             </span>
                             </div>
                             <div class="row slider-row">
-                                <span class="col-md-8 slider-label">Driving Style (consumption factor):</span>
+                                <span class="col-md-8 slider-label">Driving Style (acceleration/braking):</span>
 
                                 <div class="col-md-8 slider-bar">
                                     <div ui-slider="{start:invalidateResults}" min="80" max="250"
@@ -114,7 +114,7 @@
                                 </div>
                             <span class="slider-value">
                                 <span ng-bind="calcParams.accelerationBreaking"></span> %<br>
-                                <span class="alternative-value">(driving style)</span>
+                                <span class="alternative-value">(factor = <span ng-bind="calcParams.accelerationBreaking / 100 | number:2"></span>)</span>
                             </span>
                             </div>
                             <div class="row slider-row">
