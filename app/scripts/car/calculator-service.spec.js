@@ -148,44 +148,59 @@ describe('range calculator service', function () {
 
     describe('power consumption', function () {
         it('should be quite low for 60km/h', function () {
-            var c = RangeCalculator.calcConsumption(tesla, 60, 20, 0, 0);
+            //car, speedKmh, temperature, rain, accelerationBreakingPercent, preHeat, minuteFromStart, altitudeDifferenceM
+            var c = RangeCalculator.calcConsumption(tesla, 60, 20, 0, 100, true, 1, 0);
             expect(Math.round(c)).toBe(7);
         });
         it('should be quite high for 250km/h', function () {
-            var c = RangeCalculator.calcConsumption(tesla, 250, 30, 0, 0);
+            var c = RangeCalculator.calcConsumption(tesla, 250, 30, 0, 100, true, 1, 0);
             expect(Math.round(c)).toBe(176);
         });
     });
 
     describe('range', function () {
         it('should be quite high for 60km/h', function () {
-            var r = RangeCalculator.calcRange(tesla, 80, 60, 16, 0, 0);
-            expect(Math.round(r)).toBe(626);
+            var r = RangeCalculator.calcRange(tesla, 80, 60, 16, 0, 100, true, 1, 0);
+            expect(Math.round(r)).toBe(598);
         });
         it('should be a bit lower for cold temperatures', function () {
-            var r = RangeCalculator.calcRange(tesla, 80, 60, -10, 0, 0);
-            expect(Math.round(r)).toBe(399);
+            var r = RangeCalculator.calcRange(tesla, 80, 60, -10, 0, 100, true, 1, 0);
+            expect(Math.round(r)).toBe(374);
         });
         it('should be a bit lower for hot temperatures', function () {
-            var r = RangeCalculator.calcRange(tesla, 80, 60, 40, 0, 0);
-            expect(Math.round(r)).toBe(479);
+            var r = RangeCalculator.calcRange(tesla, 80, 60, 40, 0, 100, true, 1, 0);
+            expect(Math.round(r)).toBe(421);
         });
         it('should be average for 100kmh', function () {
-            var r = RangeCalculator.calcRange(tesla, 80, 100, 20, 0, 0);
-            expect(Math.round(r)).toBe(447);
+            var r = RangeCalculator.calcRange(tesla, 80, 100, 20, 0, 100, true, 1, 0);
+            expect(Math.round(r)).toBe(446);
         });
         it('rain should affect range', function () {
-            var r = RangeCalculator.calcRange(tesla, 80, 100, 20, 40, 0);
-            expect(Math.round(r)).toBe(299);
+            var r = RangeCalculator.calcRange(tesla, 80, 100, 20, 40, 100, true, 1, 0);
+            expect(Math.round(r)).toBe(298);
         });
         it('should be very low for 180km/h', function () {
-            var r = RangeCalculator.calcRange(tesla, 80, 180, 16, 0, 0);
-            expect(Math.round(r)).toBe(198);
+            var r = RangeCalculator.calcRange(tesla, 80, 180, 16, 0, 100, true, 1, 0);
+            expect(Math.round(r)).toBe(197);
         });
         it('should be half for half the charge', function () {
-            var r = RangeCalculator.calcRange(tesla, 40, 180, 16, 0, 0);
+            var r = RangeCalculator.calcRange(tesla, 40, 180, 16, 0, 100, true, 1, 0);
             expect(Math.round(r)).toBe(99);
         });
     });
 
+    ddescribe('altitude difference', function () {
+        it('should low for slow speed', function () {
+            var alt = RangeCalculator.calcAltitudeDifferenceForMinute(10, 1000, 500);
+            expect(Math.round(alt * 1000) / 1000).toBe(0.333);
+        });
+        it('should high for high speed', function () {
+            var alt = RangeCalculator.calcAltitudeDifferenceForMinute(100, 1000, 500);
+            expect(Math.round(alt * 1000) / 1000).toBe(3.333);
+        });
+        it('default example', function () {
+            var alt = RangeCalculator.calcAltitudeDifferenceForMinute(90, 500, 300);
+            expect(Math.round(alt * 1000) / 1000).toBe(2.5);
+        });
+    });
 });

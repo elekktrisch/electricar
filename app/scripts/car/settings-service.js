@@ -13,6 +13,7 @@ angular.module('car')
                 this.temperature = 16;
                 this.rain = 0;
                 this.preHeatCabin = true;
+                this.altitudeDifferenceM = 0;
             },
             loadDailyDriving: function () {
                 this.resetCommonSettings();

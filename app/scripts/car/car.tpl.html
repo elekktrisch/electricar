@@ -93,7 +93,9 @@
                             </span>
                             </div>
                             <div class="row slider-row">
-                                <span class="col-md-8 slider-label">Cruise Speed:</span>
+                                <span class="col-md-8 slider-label">Cruise Speed: <a
+                                        href="#/knowhow/speed"><span
+                                        class="fa fa-question-circle"></span></a></span>
 
                                 <div class="col-md-8 slider-bar">
                                     <div ui-slider="{start:invalidateResults}" min="0" max="{{calcParams.carTopSpeed}}"
@@ -106,7 +108,24 @@
                             </span>
                             </div>
                             <div class="row slider-row">
-                                <span class="col-md-8 slider-label">Driving Style (acceleration/braking):</span>
+                                <span class="col-md-8 slider-label">Altitude Difference: <a
+                                        href="#/knowhow/terrain"><span
+                                        class="fa fa-question-circle"></span></a></span>
+
+                                <div class="col-md-8 slider-bar">
+                                    <div ui-slider="{start:invalidateResults}" min="-2000" max="2000"
+                                         ng-model="calcParams.altitudeDifferenceM"></div>
+                                </div>
+                            <span class="slider-value">
+                                <span ng-bind="calcParams.altitudeDifferenceM"></span> m <br>
+                                <span class="alternative-value">(<span
+                                        ng-bind="calcParams.altitudeDifferenceM * 3.28084 | number:0"></span> feet)</span>
+                            </span>
+                            </div>
+                            <div class="row slider-row">
+                                <span class="col-md-8 slider-label">Driving Style (acceleration/braking): <a
+                                        href="#/knowhow/drivingStyle"><span
+                                        class="fa fa-question-circle"></span></a></span>
 
                                 <div class="col-md-8 slider-bar">
                                     <div ui-slider="{start:invalidateResults}" min="80" max="250"
@@ -204,7 +223,9 @@
                                         ng-click="invalidateResults()"/> Pre-heat/cool cabin
                             </div>
                             <div class="row slider-row">
-                                <span class="col-md-8 slider-label">Temperature</span>
+                                <span class="col-md-8 slider-label">Temperature: <a
+                                        href="#/knowhow/temperature"><span
+                                        class="fa fa-question-circle"></span></a></span>
 
                                 <div class="col-md-8 slider-bar">
                                     <div ui-slider="{start:invalidateResults}" min="-40" max="40"
@@ -217,7 +238,9 @@
                             </span>
                             </div>
                             <div class="row slider-row">
-                                <span class="col-md-8 slider-label">Rain</span>
+                                <span class="col-md-8 slider-label">Rain: <a
+                                        href="#/knowhow/rain"><span
+                                        class="fa fa-question-circle"></span></a></span>
 
                                 <div class="col-md-8 slider-bar">
                                     <div ui-slider="{start:invalidateResults}" min="0" max="80"

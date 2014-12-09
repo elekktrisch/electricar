@@ -11,9 +11,10 @@ car.constant('RANGE_CONSTANTS', {
 
 car.factory('RangeCalculator', function (RANGE_CONSTANTS) {
     return {
-        calcConsumption: function (car, speedKmh, temperature, rain, accelerationBreakingPercent, preHeat, minuteFromStart) {
+        calcConsumption: function (car, speedKmh, temperature, rain, accelerationBreakingPercent, preHeat, minuteFromStart, altitudeDifferenceM, totalDistance) {
             var p = car.rangeParams;
             if (p) {
+
                 var initialCabinConditioningPowerW = 0;
                 var maxHeaterPowerW = 6000;
                 if (!preHeat && minuteFromStart && minuteFromStart < 20) {
@@ -32,17 +33,28 @@ car.factory('RangeCalculator', function (RANGE_CONSTANTS) {
 
                 var drivingPowerKW = drivingPowerW / 1000 * (accelerationBreakingPercent) / 100;
                 //console.log('POWER: ' + Math.round(drivingPowerKW) + 'kW');
-                return drivingPowerKW;
+
+                var altDiffInOneMin = this.calcAltitudeDifferenceForMinute(speedKmh, altitudeDifferenceM, totalDistance);
+                var potentialEnergyJoule = (p.totalWeightKg + 200) * RANGE_CONSTANTS.g * altDiffInOneMin;
+                var potentialEnergyKWh = potentialEnergyJoule / 3600000;
+                var uphillPowerKW = Math.max(-60, potentialEnergyKWh * 60) * Math.pow(accelerationBreakingPercent / 100, 2);
+
+                return drivingPowerKW + uphillPowerKW;
             }
-            return 50;
+            return 1000;
         },
 
-        calcRange: function (car, useableChargeKWh, speedKmh, temperature, rain, accelerationBreakingPercent, preHeat, minuteFromStart) {
-            var consumptionKW = this.calcConsumption(car, speedKmh, temperature, rain, accelerationBreakingPercent, preHeat, minuteFromStart);
-            var sustainableForNumHours = useableChargeKWh / consumptionKW;
+        calcRange: function (car, useableChargeKWh, speedKmh, consumptionkW) {
+            var sustainableForNumHours = useableChargeKWh / consumptionkW;
             var rangeKm = sustainableForNumHours * speedKmh;
             //console.log('RANGE: ' + Math.round(rangeKm) + 'km');
             return rangeKm;
+        },
+
+        calcAltitudeDifferenceForMinute: function(speedKmh, altitudeDifferenceTotalM, totalDistanceKm) {
+            var totalDistanceM = totalDistanceKm * 1000;
+            var distanceInOneMinuteM = speedKmh / 60 * 1000;
+            return altitudeDifferenceTotalM * distanceInOneMinuteM / totalDistanceM;
         }
     }
 });
@@ -150,7 +162,9 @@ car.factory('Calculator', function (RangeCalculator) {
                     $scope.calcParams.rain,
                     $scope.calcParams.accelerationBreaking,
                     $scope.calcParams.preHeatCabin,
-                    currentMinute
+                    currentMinute,
+                    $scope.calcParams.altitudeDifferenceM,
+                    $scope.totalDistance
                 );
                 $scope.consumptionKWhPerKm = consumptionkW / speedKmh;
 
@@ -160,12 +174,9 @@ car.factory('Calculator', function (RangeCalculator) {
                 var nextMinuteState = {};
                 currentChargeLastsForKm = RangeCalculator.calcRange(car,
                     currentMinuteState.chargeKWh - reserveKWh,
-                    $scope.speedKmh,
-                    $scope.calcParams.temperature,
-                    $scope.calcParams.rain,
-                    $scope.calcParams.accelerationBreaking,
-                    $scope.calcParams.preHeatCabin,
-                    currentMinute);
+                    speedKmh,
+                    consumptionkW
+                );
                 nextMinuteState.minute = currentMinuteState.minute + 1;
                 if (currentMinuteState.mode === 'DRIVING') {
                     nextMinuteState.distance = currentMinuteState.distance + distanceKmPerMinute;
@@ -198,7 +209,7 @@ car.factory('Calculator', function (RangeCalculator) {
                         var easeOffC = Math.max(0.05, Math.min(maxC, C * easeOffFactor));
 
                         energyPerMinute = Math.min(easeOffC * capacityKWh, chargeKW) / 60;
-                        console.log('minute ' + currentMinute + ', SOC: ' + SOC + ', easeOffC: ' + easeOffC);
+                        //console.log('minute ' + currentMinute + ', SOC: ' + SOC + ', easeOffC: ' + easeOffC);
                     }
                     energyPerMinute = Math.min(energyPerMinute, maxC * capacityKWh / 60);
                     energyPerMinute = energyPerMinute - (energyPerMinute * $scope.calcParams.chargingLossPercent / 100);
