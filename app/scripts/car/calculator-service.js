@@ -20,7 +20,7 @@ car.factory('RangeCalculator', function (RANGE_CONSTANTS) {
                 if (!preHeat && minuteFromStart && minuteFromStart < 20) {
                     initialCabinConditioningPowerW = Math.abs(temperature - RANGE_CONSTANTS.inCarTemperature) * 250;
                 }
-                var hvacFactor = Math.abs(temperature - RANGE_CONSTANTS.inCarTemperature) * 1.5;
+                var hvacFactor = Math.abs(temperature - RANGE_CONSTANTS.inCarTemperature) * 1.3;
                 var hvacPowerW = Math.min(maxHeaterPowerW, (hvacFactor * p.averageHvacPower / 5) + initialCabinConditioningPowerW);
 
                 var speedMs = speedKmh / 3600 * 1000;
