@@ -22,7 +22,7 @@ angular.module('car')
                 this.distanceToTravel = 40;
                 this.detourPercent = 25;
                 this.presetTrip = 'daily';
-                this.accelerationBreaking = 130;
+                this.accelerationBreaking = 120;
             },
             loadWeekendTrip: function () {
                 this.resetCommonSettings();
