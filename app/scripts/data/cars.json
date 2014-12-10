@@ -228,7 +228,8 @@
         "maxSpeed": 137,
         "plugs": ["t13", "schuko", "caravan", "cee16", "cee32", "type1"],
         "image": "ford_focus.jpg",
-        "logo": "ford.png"
+        "logo": "ford.png",
+        "link": "http://www.ford.de/Pkw-Modelle/FordFocus-Electric"
     },
     {
         "id": "eUp",
