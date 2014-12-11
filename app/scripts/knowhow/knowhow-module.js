@@ -1,3 +1,3 @@
 'use strict';
 
-angular.module('knowhow', []);
+angular.module('knowhow', ['youtube-embed']);
