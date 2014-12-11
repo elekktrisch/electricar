@@ -3,7 +3,7 @@
     <div class="view-container car-details" ng-show="selectedCar !== undefined" style="padding-top: 40px;">
 
         <div class="col-xl-2 col-lg-3 col-sm-4 col-xs-12" style="margin-bottom:40px;">
-            <div class="info-overview">
+            <div class="row info-overview">
                 <img class="car-img" src="images/{{selectedCar.image}}" style="background-color: white;">
 
                 <h2 class="car-title">{{selectedCar.name}}</h2>
@@ -48,6 +48,7 @@
                         <td class="tech-value"><span ng-bind="selectedCar.battery"></span> kWh</td>
                     </tr>
                 </table>
+                <youtube-video video-id="selectedCar.reviewVideo" class="col-xs-12 col-sm-12 col-md-12" style="padding:0;" player-height="250"></youtube-video>
             </div>
         </div>
 
