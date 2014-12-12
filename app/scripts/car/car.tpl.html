@@ -319,8 +319,6 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                <tabset justified="true">
-                    <tab heading="Calculation Results">
                         <div style="padding:10px;padding-top:0;background-color: rgba(255,255,255,0.7);text-align: left;font-weight: 700;">
                             <table border="0" width="100%">
                                 <tr>
@@ -427,10 +425,11 @@
                                         ng-bind="c.name"></span></a>
                             </div>
                         </div>
-                    </tab>
-                    <tab heading="Calculation Details">
-                        <div ng-show="chartConfig" style="width:100%;">
-                            <highchart id="chart1" config="chartConfig"></highchart>
+                        <div ng-show="consumptionChartConfig">
+                            <highchart id="consumption" config="consumptionChartConfig"></highchart>
+                        </div>
+                        <div ng-show="chartConfig">
+                            <highchart id="plot" config="chartConfig"></highchart>
                         </div>
                         <div class="col-md-12" style="margin-left:0;background-color: rgba(255,255,255,0.5);text-align: left;font-size: 1.2em;color:#4a497c;">
                         <h4>car specific parameters:</h4>
@@ -456,9 +455,7 @@
                             </tr>
                         </table>
                         </div>
-                    </tab>
-                </tabset>
-                    </div>
+                        </div>
                 </div>
             </div>
         </div>

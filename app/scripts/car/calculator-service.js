@@ -28,8 +28,8 @@ car.factory('RangeCalculator', function (RANGE_CONSTANTS) {
                 var rainDragFactor = 1 + rain / 80;
 
                 var airDrag = 0.5 * RANGE_CONSTANTS.airDensity * p.frontAreaM2 * p.cw * Math.pow(speedMs, 3);
-                var rollDrag = p.cr * p.totalWeightKg * RANGE_CONSTANTS.g * speedMs;
-                var drivingPowerW = initialCabinConditioningPowerW + hvacPowerW + ((airDrag + rollDrag) * rainDragFactor / p.totalEfficiency);
+                var rollDrag = p.cr * p.totalWeightKg * RANGE_CONSTANTS.g * speedMs * rainDragFactor;
+                var drivingPowerW = initialCabinConditioningPowerW + hvacPowerW + ((airDrag + rollDrag) / p.totalEfficiency);
 
                 var drivingPowerKW = drivingPowerW / 1000 * (accelerationBreakingPercent) / 100;
                 //console.log('POWER: ' + Math.round(drivingPowerKW) + 'kW');
@@ -39,7 +39,13 @@ car.factory('RangeCalculator', function (RANGE_CONSTANTS) {
                 var potentialEnergyKWh = potentialEnergyJoule / 3600000;
                 var uphillPowerKW = Math.max(-60, potentialEnergyKWh * 60) * Math.pow(accelerationBreakingPercent / 100, 2);
 
-                return drivingPowerKW + uphillPowerKW;
+                return {
+                    hvacPowerW: hvacPowerW,
+                    airDragW: airDrag,
+                    rollDragW: rollDrag,
+                    uphillPowerW: uphillPowerKW * 1000,
+                    totalKW: drivingPowerKW + uphillPowerKW
+                };
             }
             return 1000;
         },
@@ -51,7 +57,7 @@ car.factory('RangeCalculator', function (RANGE_CONSTANTS) {
             return rangeKm;
         },
 
-        calcAltitudeDifferenceForMinute: function(speedKmh, altitudeDifferenceTotalM, totalDistanceKm) {
+        calcAltitudeDifferenceForMinute: function (speedKmh, altitudeDifferenceTotalM, totalDistanceKm) {
             var totalDistanceM = totalDistanceKm * 1000;
             var distanceInOneMinuteM = speedKmh / 60 * 1000;
             return altitudeDifferenceTotalM * distanceInOneMinuteM / totalDistanceM;
@@ -155,8 +161,16 @@ car.factory('Calculator', function (RangeCalculator) {
             //console.log('first charge: ' + Math.round(firstChargeKWh) + 'kWh');
             $scope.numStops = 0;
 
+            $scope.consumptionTotals = {
+                hvacPowerW: 0,
+                airDragW: 0,
+                rollDragW: 0,
+                uphillPowerW: 0,
+                totalKW: 0
+            };
+
             while (currentDistance < $scope.totalDistance && currentMinute < maxTimeMinutes) {
-                var consumptionkW = RangeCalculator.calcConsumption(car,
+                var consumption = RangeCalculator.calcConsumption(car,
                     $scope.speedKmh,
                     $scope.calcParams.temperature,
                     $scope.calcParams.rain,
@@ -166,16 +180,22 @@ car.factory('Calculator', function (RangeCalculator) {
                     $scope.calcParams.altitudeDifferenceM,
                     $scope.totalDistance
                 );
-                $scope.consumptionKWhPerKm = consumptionkW / speedKmh;
+                $scope.consumptionTotals.hvacPowerW += consumption.hvacPowerW;
+                $scope.consumptionTotals.airDragW += consumption.airDragW;
+                $scope.consumptionTotals.rollDragW += consumption.rollDragW;
+                $scope.consumptionTotals.uphillPowerW += consumption.uphillPowerW;
+                $scope.consumptionTotals.totalKW += consumption.totalKW;
 
-                var energyConsumptionKWhPerMinute = consumptionkW / 60;
+                $scope.consumptionKWhPerKm = consumption.totalKW / speedKmh;
+
+                var energyConsumptionKWhPerMinute = consumption.totalKW / 60;
 
                 var currentMinuteState = tripSimulation.minutes[currentMinute];
                 var nextMinuteState = {};
                 currentChargeLastsForKm = RangeCalculator.calcRange(car,
                     currentMinuteState.chargeKWh - reserveKWh,
                     speedKmh,
-                    consumptionkW
+                    consumption.totalKW
                 );
                 nextMinuteState.minute = currentMinuteState.minute + 1;
                 if (currentMinuteState.mode === 'DRIVING') {
@@ -245,6 +265,78 @@ car.factory('Calculator', function (RangeCalculator) {
             if ($scope.dayRangeCircle && $scope.positionResolved) {
                 $scope.dayRangeCircle.radius = $scope.calculatedDayRange * detourMapFactor;
             }
+            $scope.toKwh = function (powerW) {
+                return powerW / 1000 / 60;
+            };
+
+            $scope.consumptionChartConfig = {
+                options: {
+                    chart: {
+                        animation: false,
+                        type: 'bar',
+                        height: 150,
+                        backgroundColor: 'rgba(255,255,255,0.0)'
+                    },
+                    exporting: {
+                        enabled: false
+                    },
+                    title: {
+                        text: ''
+                    },
+                    xAxis: {
+                        enabled: false,
+                        categories: ['']
+                    },
+                    yAxis: {
+                        min: -30,
+                        tickInterval: 10,
+                        title: {
+                            text: ''
+                        }
+                    },
+                    tooltip: {
+                        pointFormat: '<span>{series.name}</span>: {point.y:.0f}kWh ({point.percentage:.0f}%)<br/>',
+                        style: {
+                            color: '#333333',
+                            fontSize: '10px',
+                            padding: '2px',
+                            margin: 0
+                        },
+                        borderColor: 'black',
+                        headerFormat: ''
+                    },
+                    labels: {
+                        enabled: true
+                    },
+                    plotOptions: {
+                        bar: {
+                            stacking: 'percent',
+                            borderColor: 'rgba(255,255,255,0.0)'
+                        }
+                    }
+                },
+                series: [{
+                    name: 'Cabin Conditioning',
+                    color: '#df724c',
+                    animation: false,
+                    data: [$scope.toKwh($scope.consumptionTotals.hvacPowerW)]
+                }, {
+                    name: 'Air Drag',
+                    color: '#444488',
+                    animation: false,
+                    data: [$scope.toKwh($scope.consumptionTotals.airDragW)]
+                }, {
+                    name: 'Roll Drag',
+                    color: '#555555',
+                    animation: false,
+                    data: [$scope.toKwh($scope.consumptionTotals.rollDragW)]
+               }, {
+                    name: 'Altitude Difference',
+                    color: '#30a893',
+                    animation: false,
+                    data: [$scope.toKwh($scope.consumptionTotals.uphillPowerW)]
+                }]
+            };
 
             $scope.chartConfig = {
                 //This is not a highcharts object. It just looks a little like one!
@@ -256,8 +348,6 @@ car.factory('Calculator', function (RangeCalculator) {
                         type: 'spline',
                         backgroundColor: 'rgba(255,255,255,0.7)',
                         marginTop: 120,
-                        marginRight: 30,
-                        height: 500,
                         zoomType: 'xy'
                     },
                     marker: {
@@ -308,8 +398,6 @@ car.factory('Calculator', function (RangeCalculator) {
                     }
                 },
 
-                //The below properties are watched separately for changes.
-
                 //Series object (optional) - a list of series using normal highcharts series options.
                 series: [
                     {
@@ -355,13 +443,6 @@ car.factory('Calculator', function (RangeCalculator) {
                 //Title configuration (optional)
                 title: {
                     text: ''
-                },
-                //Whether to use HighStocks instead of HighCharts (optional). Defaults to false.
-                useHighStocks: false,
-
-                //function (optional)
-                func: function (chart) {
-                    //setup some logic for the chart
                 }
             };
             $scope.calculating = false;
