@@ -194,6 +194,30 @@
         "reviewVideo": "itWx7UUiu2c"
     },
     {
+        "id": "env200",
+        "name": "Nissan e-NV200",
+        "range": 170,
+        "rangeParams": {
+            "totalWeightKg": 1520,
+            "cw": 0.34,
+            "frontAreaM2": 2.8,
+            "cr": 0.01,
+            "averageHvacPower": 800,
+            "totalEfficiency": 0.76
+        },
+        "motorPowerKw": 80,
+        "onBoardChargerKW": 2.8,
+        "battery": 24,
+        "acPhases": 1,
+        "acceleration": "14",
+        "maxSpeed": 120,
+        "plugs": ["t13", "schuko", "caravan", "cee16", "cee32", "type2", "chademo"],
+        "image": "nissan_env200.jpg",
+        "logo": "nissan.png",
+        "link": "http://de.nissan.ch/CH/de/vehicle/electric-vehicles/e-nv200.html",
+        "reviewVideo": "k6F0U_OVDJw"
+    },
+    {
         "id": "berlingo",
         "name": "Citroën Berlingo Electric",
         "range": 170,
@@ -267,11 +291,59 @@
         "adVideo": "ElWw2G4MhY4"
     },
     {
+        "id": "ion",
+        "name": "Peugeot i-On",
+        "range": 150,
+        "rangeParams": {
+            "totalWeightKg": 1140,
+            "cw": 0.28,
+            "frontAreaM2": 2.0,
+            "cr": 0.01,
+            "averageHvacPower": 800,
+            "totalEfficiency": 0.76
+        },
+        "motorPowerKw": 49,
+        "onBoardChargerKW": 3,
+        "battery": 16,
+        "acPhases": 1,
+        "acceleration": 15.9,
+        "maxSpeed": 130,
+        "plugs": ["t13", "schuko", "caravan", "cee16", "cee32", "type1", "chademo"],
+        "image": "ion.jpg",
+        "logo": "peugeot.png",
+        "link": "http://www.peugeot.ch/entdecken/ion/5-turig/",
+        "reviewVideo": "BepG4Z9CtfU"
+    },
+    {
+        "id": "czero",
+        "name": "Citroën C-Zero",
+        "range": 150,
+        "rangeParams": {
+            "totalWeightKg": 1140,
+            "cw": 0.28,
+            "frontAreaM2": 2.0,
+            "cr": 0.01,
+            "averageHvacPower": 800,
+            "totalEfficiency": 0.76
+        },
+        "motorPowerKw": 49,
+        "onBoardChargerKW": 3,
+        "battery": 16,
+        "acPhases": 1,
+        "acceleration": 15.9,
+        "maxSpeed": 130,
+        "plugs": ["t13", "schuko", "caravan", "cee16", "cee32", "type1", "chademo"],
+        "image": "czero.jpg",
+        "logo": "citroen.png",
+        "link": "http://www.citroen.de/modelle/citroen/citroen-c-zero.html",
+        "reviewVideo": "BepG4Z9CtfU"
+    },
+    {
         "id": "imiev",
         "name": "Mitsubishi iMiEV",
         "range": 150,
         "rangeParams": {
-            "totalWeightKg": 1580,
+            "totalWeightKg": 1140,
             "cw": 0.28,
             "frontAreaM2": 2.0,
             "cr": 0.01,
