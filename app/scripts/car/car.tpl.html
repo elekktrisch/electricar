@@ -1,9 +1,12 @@
 <div ng-controller="CarCtrl">
 
     <div class="view-container car-details" ng-show="selectedCar !== undefined" style="padding-top: 40px;">
+        <p style="text-align:center;margin-top:20px;">Choose the trip settings, charging infrastructure, weather and car settings, and see on the rightmost column how the different cars perform for the respective trip.</p>
+        <p class="hint">hint: the settings are persistent even if the cars are switched with the car menu (see above)</p>
 
-        <div class="col-xl-2 col-lg-3 col-sm-4 col-xs-12" style="margin-bottom:40px;">
-            <div class="row info-overview">
+        <div class="col-xl-3 col-lg-3 col-sm-4 col-xs-12" style="margin-bottom:40px;">
+            <div class="info-with-text">
+                <h4>Car Details</h4>
                 <img class="car-img" src="images/{{selectedCar.image}}" style="background-color: white;">
 
                 <h2 class="car-title">{{selectedCar.name}}</h2>
@@ -48,36 +51,36 @@
                         <td class="tech-value"><span ng-bind="selectedCar.battery"></span> kWh</td>
                     </tr>
                 </table>
+                <div style="height:250px;">
                 <youtube-video video-id="selectedCar.reviewVideo" class="col-xs-12 col-sm-12 col-md-12" style="padding:0;" player-height="250"></youtube-video>
+                </div>
             </div>
         </div>
 
         <div class="col-xl-4 col-lg-4 col-sm-8 col-xs-12" style="margin-bottom:20px;">
-            <div class="info-main row">
+            <div class="info-main row info-with-text">
 
-                <div style="padding:10px;margin-top:0;background-color: rgba(255,255,255,0.3);text-align: left;font-weight: 700;">
-
-                    Setting Presets:
+                    <h4>Setting Presets</h4>
                     <div class="row"
                          style="padding:10px;padding-top: 0;">
-                        <a class="col-md-4 col-sm-12 col-xs-12 btn btn-default"
+                        <a class="col-md-4 col-sm-12 col-xs-12 btn btn-info"
                            ng-class="{'active':calcParams.presetTrip === 'daily'}"
                            ng-click="loadDailyDriving()">
                             <span class="fa fa-coffee"></span> Daily Driving
                         </a>
-                        <a class="col-md-4 col-sm-12 col-xs-12 btn btn-default"
+                        <a class="col-md-4 col-sm-12 col-xs-12 btn btn-info"
                            ng-class="{'active':calcParams.presetTrip === 'weekend'}"
                            ng-click="loadWeekendTrip()">
                             <span class="fa fa-paw"></span> Weekend Trip
                         </a>
-                        <a class="col-md-4 col-sm-12 col-xs-12 btn btn-default"
+                        <a class="col-md-4 col-sm-12 col-xs-12 btn btn-info"
                            ng-class="{'active':calcParams.presetTrip === 'long'}"
                            ng-click="loadLongTrip()">
                             <span class="fa fa-suitcase"></span> Long Trip
                         </a>
                     </div>
 
-                    Setting Details:
+                    <h4 style="margin-top: 2em;">Setting Details</h4>
                     <tabset justified="true">
                         <tab heading="Trip">
                             <div class="row slider-row">
@@ -303,13 +306,13 @@
                         </tab>
                     </tabset>
                 </div>
-            </div>
         </div>
 
-        <div class="col-xl-6 col-lg-5 col-sm-8 col-xs-12">
-            <div class="row info-main" style="background-color: rgba(255,255,255,0.3);text-align: left;font-weight: 700;">
+        <div class="col-xl-5 col-lg-5 col-sm-8 col-xs-12">
+            <div class="row info-main info-with-text">
+                <h4>Calculation Results</h4>
                 <div ng-show="!resultsValid" style="background-color:rgba(200,200,240,0.6);position:absolute;top:0;left:0;z-index: 9999;height:100%;width:100%;padding:50px;">
-                    <a class="btn" ng-class="{'btn-default':resultsValid,'btn-primary':!resultsValid}"
+                    <a class="btn" ng-class="{'btn-info':resultsValid,'btn-primary':!resultsValid}"
                        ng-disabled="resultsValid"
                        style="width:100%;margin-top: 40px;font-size: 1.5em;padding:20px;"
                        ng-click="recalcRange()">
@@ -407,7 +410,16 @@
                             </table>
                         </div>
                         <div class="row">
-                            <div class="col-md-12" style="height:360px;">
+                            <div class="col-md-12"
+                                 style="padding-left:35px;padding-right:35px;">
+                                <h4 style="margin-top:2em;">Range Visualisation</h4>
+                                <a ng-repeat="c in circles track by c.id"
+                                   class="col-md-4 col-sm-12 col-xs-12 btn btn-info"
+                                   ng-class="{'active':c.visible}" ng-click="c.visible = !c.visible"><span
+                                        class="fa fa-circle-o" style="color:{{c.stroke.color}}"></span> <span
+                                        ng-bind="c.name"></span></a>
+                            </div>
+                            <div class="col-md-12" style="height:380px;padding-top:10px;">
                                 <ui-gmap-google-map center='map.center' zoom='map.zoom'>
                                     <ui-gmap-circle ng-repeat="c in circles track by c.id" center="c.center"
                                                     stroke="c.stroke"
@@ -416,23 +428,16 @@
                                                     draggable="c.draggable" clickable="c.clickable"></ui-gmap-circle>
                                 </ui-gmap-google-map>
                             </div>
-                            <div class="row"
-                                 style="margin-bottom:15px;margin-top:5px;padding-left:35px;padding-right:35px;">
-                                <a ng-repeat="c in circles track by c.id"
-                                   class="col-md-4 col-sm-12 col-xs-12 btn btn-default"
-                                   ng-class="{'active':c.visible}" ng-click="c.visible = !c.visible"><span
-                                        class="fa fa-circle-o" style="color:{{c.stroke.color}}"></span> <span
-                                        ng-bind="c.name"></span></a>
-                            </div>
                         </div>
+                        <h4 style="margin-top:2em;">Energy Requirements</h4>
                         <div ng-show="consumptionChartConfig">
                             <highchart id="consumption" config="consumptionChartConfig"></highchart>
                         </div>
+                        <h4 style="margin-top:2em;">Time/Distance Plot</h4>
                         <div ng-show="chartConfig">
                             <highchart id="plot" config="chartConfig"></highchart>
                         </div>
-                        <div class="col-md-12" style="margin-left:0;background-color: rgba(255,255,255,0.5);text-align: left;font-size: 1.2em;color:#4a497c;">
-                        <h4>car specific parameters:</h4>
+                        <h4 style="margin-top:2em;">Car Specific Parameters:</h4>
                         <table class="quartett-card-techpoints"
                                >
                             <tr>
@@ -454,7 +459,6 @@
                                 <td class="tech-value"><span ng-bind="selectedCar.rangeParams.totalEfficiency"></span></td>
                             </tr>
                         </table>
-                        </div>
                         </div>
                 </div>
             </div>

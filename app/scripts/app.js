@@ -4,6 +4,12 @@ var app = angular.module('app');
 
 app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider
+        .when('/intro',
+        {
+            controller: 'IntroCtrl',
+            templateUrl: 'scripts/intro/intro.tpl.html',
+            publicAccess: true
+        })
         .when('/main',
         {
             controller: 'MainCtrl',
@@ -34,5 +40,5 @@ app.config(['$routeProvider', function ($routeProvider) {
             templateUrl: 'scripts/knowhow/knowhow.tpl.html',
             publicAccess: true
         })
-        .otherwise({redirectTo: '/main'});
+        .otherwise({redirectTo: '/intro'});
 }]);

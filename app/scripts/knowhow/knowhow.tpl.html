@@ -1,4 +1,4 @@
-<div style="padding:40px;background-color: #f7eef8;">
+<div style="padding:40px;">
     <h3>Expert Knowledge</h3>
 
     <div class="row">
@@ -6,6 +6,7 @@
 
             <p>This page describes everything a driver of an electric car needs to know.</p>
             <h4>Alternating Current vs Direct Current</h4>
+
             <dl>
                 <dt>Alternating Current</dt>
                 <dd>Alternating Current (AC) is changing the voltage from positive to negative several times per second,
@@ -30,11 +31,12 @@
                 </dd>
             </dl>
             <h4>Charging Station</h4>
-
             <p>A charging station provides one or several options to charge electric cars. </p>
             <dl ng-class="{'selected-term':term === 'infrastructure'}">
                 <dt>"Dumb" Power outlet ("Mode 1 and 2")</dt>
-                <dd>The simplest variant of a charging station just provides a power outlet with grid power. If the
+                <dd>
+                    <a name="infrastructure"></a>
+                    The simplest variant of a charging station just provides a power outlet with grid power. If the
                     connection to the car is made with a simple cable, it is "Mode 1" charging (none of the currently
                     available cars allows for this anymore).
                     All currently available cars support "Mode 2", which means a wall connector (see further below) is
@@ -52,7 +54,6 @@
                     <p><img width="50" src="images/wall_cee.jpg"> CEE 16 / 32 (European Industry)</p>
 
                     <p><img width="50" src="images/cee64.jpg"> CEE 64 (European Industry)</p>
-                    <a name="infrastructure"></a>
                 </dd>
                 <dt>Car Charging Outlet ("Mode 3")</dt>
                 <dd>A car charging outlet already contains the electronics to communicate
@@ -123,30 +124,31 @@
             <dl>
                 <dt>Speed</dt>
                 <dd ng-class="{'selected-term':term === 'speed'}">
+                    <a name="speed"></a>
                     Speed has a very big impact on energy consumption, especially with speeds above 60km/h. The air drag
                     increases exponentially with higher speeds, which is why sustaining e.g. 200km/h requires an
                     incredible amount of
                     energy. This can easily be confirmed by measuring the amount of fuel a normal gasoline car uses at
                     that speed.
-                    <a name="speed"></a>
                 </dd>
                 <dt>Driving Style</dt>
-                <dd ng-class="{'selected-term':term === 'drivingStyle'}">Just like gasoline cars, also electric cars use
+                <dd ng-class="{'selected-term':term === 'drivingStyle'}">
+                    <a name="drivingStyle"></a>
+                    Just like gasoline cars, also electric cars use
                     more energy when driving more agressive.
-                    Also, every acceleration/deceleration cycles uses more energy than just driving with the respective
+                    Also, every acceleration/deceleration cycle uses more energy than just driving with the respective
                     average speed. Since electric
                     cars can feed energy back to the battery, stop-and-go traffic doesn't have such a big impact on
                     range like in
                     gasoline cars, but recuperation is only about 75% efficient. That's 75% better than a gasoline car,
                     but still the overall energy consumption is higher than in normal fluent driving.
-                    <a name="drivingStyle"></a>
                 </dd>
                 <dt>Terrain</dt>
                 <dd ng-class="{'selected-term':term === 'terrain'}">
+                    <a name="terrain"></a>
                     The terrain is an important factor for the range of any vehicle because overcoming the earths
                     gravity takes energy as well. There is a rule of thumb vor electric cars: 1km climbing takes about
                     the same amount as if the car would drive for 40km extra on flat terrain.
-                    <a name="terrain"></a>
                 </dd>
                 <dt>Car Aerodynamics and Vehicle Size</dt>
                 <dd>
@@ -163,7 +165,9 @@
                     vehicles.
                 </dd>
                 <dt>Weather</dt>
-                <dd ng-class="{'selected-term':term === 'temperature'}">Both heating and cooling the cabin draws energy
+                <dd ng-class="{'selected-term':term === 'temperature'}">
+                    <a name="temperature"></a>
+                    Both heating and cooling the cabin draws energy
                     from the battery. The bigger the delta between
                     outside
                     and desired cabin temperature (21° Celsius is assumed), the more energy will be needed to adjust the
@@ -171,10 +175,9 @@
                     This is why in cold winter temperatures, it is recommended to pre-heat the cabin while the car is
                     still plugged into a power outlet.
                     Modern electric cars use shore power instead of power from the battery if it is plugged in.
-                    <a name="temperature"></a>
-                    Rain or snow change the rolling and drag coefficients, which means energy consomption will be higher
-                    than in dry conditions.
                     <a name="rain"></a>
+                    Also, rain or snow increase the rolling and drag coefficients, which means energy consomption will be higher
+                    than in dry conditions.
                 </dd>
             </dl>
             </p>
@@ -190,11 +193,11 @@
                 <dd><b>Alternating Current</b> (see descreption on the left)</dd>
                 <dt>Brick protection</dt>
                 <dd ng-class="{'selected-term':term === 'brickProtection'}">Not a scientific term. If a battery is
+                    <a name="brickProtection"></a>
                     "bricked", it means it is dead due to very low discharge and
                     therefore doesn't any help more than a brick.
                     A low discharge may severely damage the battery, which is why most manufacturers use some
                     software logic to prevent such a discharge.
-                    <a name="brickProtection"></a>
                 </dd>
                 <dt>Battery</dt>
                 <dd>
@@ -207,17 +210,20 @@
                     </div>
                 </dd>
                 <dt>C</dt>
-                <dd ng-class="{'selected-term':term === 'C'}"><b>Coulomb</b> is an SI unit to measure charge. Charging a
+                <dd ng-class="{'selected-term':term === 'C'}">
+                    <a name="C"></a>
+                    <b>Coulomb</b> is an SI unit to measure charge. Charging a
                     22kWh battery with 22kW is 1C. Charging
                     it with 44kW is 2C. With current battery technology, 2C is just about the maximum recommended
                     factor. Anything above it will shorten the battery life.
                     <div class="row">
                     <youtube-video video-id="'cxkVxi9P0EA'" class="row col-xs-12 col-sm-6 col-md-6" style="margin-left: 10px;margin-bottom: 30px;" player-height="250"></youtube-video>
                     </div>
-                    <a name="C"></a>
                 </dd>
                 <dt>Charging loss</dt>
-                <dd ng-class="{'selected-term':term === 'chargingLoss'}">This term may be a bit confusing since
+                <dd ng-class="{'selected-term':term === 'chargingLoss'}">
+                    <a name="chargingLoss"></a>
+                    This term may be a bit confusing since
                     according to physics, energy can not actually be lost. It can
                     only be transformed. But the
                     purpose of a charger in combination with a battery is to convert electric energy to chemical energy.
@@ -228,7 +234,6 @@
                     <br><b>Example:</b> When charging at a 50kW outlet, if there are 10%
                     charging loss, the air around the car will be heated up as if there would be a 5kW heater. So after
                     charging for 1 hour, the battery will only have 45kWh more energy stored instead of 50kWh more.
-                    <a name="chargingLoss"></a>
                 </dd>
                 <dt>DC</dt>
                 <dd><b>Direct Current</b> (see descreption on the left)</dd>
@@ -240,7 +245,9 @@
                     </div>
                 </dd>
                 <dt>SoC</dt>
-                <dd ng-class="{'selected-term':term === 'SoC'}"><b>State of Charge</b> is a percentage value of the
+                <dd ng-class="{'selected-term':term === 'SoC'}">
+                    <a name="SoC"></a>
+                    <b>State of Charge</b> is a percentage value of the
                     battery capacity.
                 </dd>
                 <dt>kW</dt>

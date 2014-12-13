@@ -3,7 +3,6 @@ body {
 }
 
 .quartett-board {
-    background: url('../images/wind-energie.jpg') no-repeat;
     min-height: 1400px;
     background-size: 100%;
     padding-top: 20px;
@@ -55,9 +54,6 @@ table.quartett-card-techpoints .tech-value {
 
 .view-container {
     padding: 1%;
-    min-height: 1400px;
-    background: url('../images/bg2_solar.jpg') no-repeat 0 0;
-    background-size: 100%;
 }
 
 .car-title {
@@ -354,7 +350,21 @@ h4 {
 }
 
 .selected-term {
-    border: 2px dashed blue;
+    border: 2px solid #1f1c59;
     padding: 2px;
-    background-color: #d6d4ff;
+    background-color: #f0e8ff;
+}
+
+p.hint {
+    text-align: center;
+    font-style: italic;
+    font-size: 1.1em;
+}
+
+.info-with-text {
+    padding: 10px;
+    margin-top: 0;
+    background-color: rgba(255, 255, 255, 0.3);
+    text-align: left;
+    font-weight: 700;
 }
