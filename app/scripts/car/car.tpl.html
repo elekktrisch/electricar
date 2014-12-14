@@ -62,18 +62,18 @@
 
                     <h4>Setting Presets</h4>
                     <div class="row"
-                         style="padding:10px;padding-top: 0;">
-                        <a class="col-md-4 col-sm-12 col-xs-12 btn btn-info"
+                         style="padding:20px;padding-top: 0;">
+                        <a class="col-xl-4 col-md-12 col-sm-12 col-xs-12 btn btn-info"
                            ng-class="{'active':calcParams.presetTrip === 'daily'}"
                            ng-click="loadDailyDriving()">
                             <span class="fa fa-coffee"></span> Daily Driving
                         </a>
-                        <a class="col-md-4 col-sm-12 col-xs-12 btn btn-info"
+                        <a class="col-xl-4 col-md-12 col-sm-12 col-xs-12 btn btn-info"
                            ng-class="{'active':calcParams.presetTrip === 'weekend'}"
                            ng-click="loadWeekendTrip()">
                             <span class="fa fa-paw"></span> Weekend Trip
                         </a>
-                        <a class="col-md-4 col-sm-12 col-xs-12 btn btn-info"
+                        <a class="col-xl-4 col-md-12 col-sm-12 col-xs-12 btn btn-info"
                            ng-class="{'active':calcParams.presetTrip === 'long'}"
                            ng-click="loadLongTrip()">
                             <span class="fa fa-suitcase"></span> Long Trip
@@ -419,6 +419,8 @@
                                         class="fa fa-circle-o" style="color:{{c.stroke.color}}"></span> <span
                                         ng-bind="c.name"></span></a>
                             </div>
+                        </div>
+                        <div class="row">
                             <div class="col-md-12" style="height:380px;padding-top:10px;">
                                 <ui-gmap-google-map center='map.center' zoom='map.zoom'>
                                     <ui-gmap-circle ng-repeat="c in circles track by c.id" center="c.center"
