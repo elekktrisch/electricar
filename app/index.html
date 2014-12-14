@@ -4,7 +4,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
     <meta name="description" content="Electric Car comparison, Range calculation, Expert knowledge">
-    <meta name="keywords" content="Electric, Car, comparison, Range, calculation, Expert, ev, electric vehicles, tesla model s, kia soul ev, renault zoe, mercedes b250 e, nissan leaf, bmw i3, vw e-golf, nissan e-nv200, peugeot berlingo electric, ford focus electric, vw e-up, citroen i-on, citroen c-zero, mitsubishi imiev, smart fortwo ed, renault kangoo z.e.">
+    <meta name="keywords"
+          content="Electric, Car, comparison, Range, calculation, Expert, ev, electric vehicles, tesla model s, kia soul ev, renault zoe, mercedes b250 e, nissan leaf, bmw i3, vw e-golf, nissan e-nv200, peugeot berlingo electric, ford focus electric, vw e-up, citroen i-on, citroen c-zero, mitsubishi imiev, smart fortwo ed, renault kangoo z.e.">
     <title>ElectriCar.Guru</title>
     <!-- inject:css -->
     <!-- endinject -->
@@ -18,7 +19,8 @@
 <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" ng-init="isCollapsed = true" ng-click="isCollapsed = !isCollapsed" data-target=".navbar-main-collapse">
+            <button type="button" class="navbar-toggle" ng-init="isCollapsed = true"
+                    ng-click="isCollapsed = !isCollapsed" data-target=".navbar-main-collapse">
                 <i class="fa fa-bars"></i>
             </button>
             <a class="navbar-brand page-scroll" href="#/intro">
@@ -29,12 +31,15 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div collapse="isCollapsed" class="collapse navbar-collapse navbar-right navbar-main-collapse">
             <ul class="nav navbar-nav">
-                <li ng-class="{'active':isPath('/main')}" ng-click="isCollapsed = !isCollapsed"><a href="#/main">Overview</a></li>
+                <li ng-class="{'active':isPath('/main')}" ng-click="isCollapsed = !isCollapsed"><a href="#/main">Overview</a>
+                </li>
                 <li class="dropdown hidden-xs" ng-class="{'active':isPath('/car')}">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Car <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Car
+                        <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu" ng-click="isCollapsed = !isCollapsed">
                         <li ng-repeat="car in cars" style="cursor:pointer;">
-                            <a ng-click="select(car)"><img src="images/{{car.image}}" height="40"/> <span ng-bind="car.name"></span></a>
+                            <a ng-click="select(car)"><img src="images/{{car.image}}" height="40"/> <span
+                                    ng-bind="car.name"></span></a>
                         </li>
                     </ul>
                 </li>
@@ -48,7 +53,7 @@
 </nav>
 
 <!-- Intro Header -->
-<header class="intro">
+<header class="intro" style="padding-bottom: 30px;">
     <div class="intro-body">
         <div class="container">
             <div class="row">
@@ -60,6 +65,25 @@
     </div>
 </header>
 
+<!-- Footer -->
+<footer style="background-color: white;">
+    <div class="container text-center">
+        <p style="font-size: 1em;"><b>Disclaimer:</b> this page is not authorized by any car manufacturer. The data was
+            collected from various publicly available sources <br>(among others:
+            <a target="_blank" href="http://www.wikipedia.org">http://www.wikipedia.org</a>,
+            <a target="_blank" href="http://www.tff-forum.de">http://www.tff-forum.de</a>,
+            <a target="_blank" href="http://www.goingelectric.de">http://www.goingelectric.de</a>,
+            <a target="_blank" href="http://www.youtube.com">http://www.youtube.com</a>)
+            <br>
+            Before you consider buying any electric car, make sure you verify all data for the respective vehicle. For
+            german speaking countries, the <a target="_blank" href="http://www.tff-forum.de">TFF</a> and the
+            <a target="_blank" href="http://www.goingelectric.de">Goingelectric</a> forums have proven very helpful.
+        </p>
+
+        <p>see also <a class="btn btn-default" href="#/about">about this page</a></p>
+
+    </div>
+</footer>
 
 <!-- inject:js -->
 <!-- endinject -->
