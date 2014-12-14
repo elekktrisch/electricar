@@ -290,6 +290,36 @@
         "continuous": true
     },
     {
+        "image": "wall_type2.jpg",
+        "id": "mercedes_wallbox",
+        "name": "Mercedes Wallbox",
+        "mode": "4",
+        "power": [
+            {
+                "name": "Phase 1",
+                "voltage": 230,
+                "ampere": 32
+            },
+            {
+                "name": "Phase 2",
+                "voltage": 230,
+                "ampere": 32
+            },
+            {
+                "name": "Phase 3",
+                "voltage": 230,
+                "ampere": 32
+            },
+            {
+                "name": "DC",
+                "voltage": 0,
+                "ampere": 0
+            }
+        ],
+        "continuous": true,
+        "rare": true
+    },
+    {
         "image": "tesla-supercharger.jpg",
         "id": "supercharger",
         "name": "Supercharger",

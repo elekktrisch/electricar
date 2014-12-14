@@ -65,15 +65,15 @@
         "motorPowerKw": 552,
         "onBoardChargerKW": 3.7,
         "battery": 60,
-        "acPhases": 1,
+        "acPhases": 3,
         "acceleration": 3.9,
         "maxSpeed": 250,
-        "plugs": ["t13", "schuko", "caravan", "cee16", "cee32", "type2", "ccs"],
+        "plugs": ["t13", "schuko", "caravan", "cee16", "cee32", "type2", "mercedes_wallbox"],
         "image": "mercedes_sls.jpg",
         "logo": "mercedes.png",
         "link": "http://www.mercedes-amg.com/webspecial/sls_e-drive/eng.php",
         "reviewVideo": "IElqf-FCMs8",
-        "adVideos": ["PeQHdJ6V73c"]
+        "adVideos": ["PeQHdJ6V73c", "CpOJHICnytQ"]
     },
     {
         "id": "soulEV",

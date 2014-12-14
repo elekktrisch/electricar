@@ -24,7 +24,7 @@ angular.module('car')
             var car = $scope.selectedCar;
             for (var i = 0; i < plugQueryResult.length; i++) {
                 var p = plugQueryResult[i];
-                if (Calculator.supportsPlug(p, car)) {
+                if (!p.rare && Calculator.supportsPlug(p, car)) {
                     var lastPower = Calculator.calcChargingPowerForCar($scope, bestPlug, car);
                     var newPower = Calculator.calcChargingPowerForCar($scope, p, car);
                     if (newPower > lastPower) {
