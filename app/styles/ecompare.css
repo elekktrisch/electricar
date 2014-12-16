@@ -254,10 +254,37 @@ p.plug-choice-info {
     font-weight: 700;
 }
 
-.slider-value {
+.slider-value
+.slider-value input {
     font-size: 90%;
     text-align: right;
     color: #322f82;
+}
+.slider-value input[type=number] {
+    width: 50%;
+    text-align: right;
+}
+.slider-value input[type=number]::selection {
+    background: #b4cbde; /* WebKit/Blink Browsers */
+}
+.slider-value input[type=number],
+.slider-value textarea {
+    -webkit-transition: all 0.30s ease-in-out;
+    -moz-transition: all 0.30s ease-in-out;
+    -ms-transition: all 0.30s ease-in-out;
+    -o-transition: all 0.30s ease-in-out;
+    outline: none;
+    padding-right: 2px;
+    margin-right: 2px;
+    border: 1px solid #DDDDDD;
+}
+
+.slider-value input[type=number]:focus,
+.slider-value textarea:focus {
+    box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+    padding-right: 2px;
+    margin-right: 2px;
+    border: 1px solid rgba(81, 203, 238, 1);
 }
 
 .slider-row {
