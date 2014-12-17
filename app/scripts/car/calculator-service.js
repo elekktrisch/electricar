@@ -135,9 +135,9 @@ car.factory('Calculator', function (RangeCalculator) {
 
             var speedKmh = $scope.calcParams.drivingSpeed;
             var chargeKW = $scope.calcParams.chargingPower;
-            var capacityKWh = car.battery;
+            var capacityKWh = (car.useableBatteryKw || car.battery);
             var maxSOC = $scope.calcParams.maxBatteryChargePercent / 100;
-            var maxStoredEnergykWh = maxSOC * car.battery;
+            var maxStoredEnergykWh = maxSOC * capacityKWh;
             var distanceKmPerMinute = speedKmh / 60;
 
             var tripSimulation = {

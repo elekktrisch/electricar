@@ -83,14 +83,15 @@
         "rangeParams": {
             "totalWeightKg": 1580,
             "cw": 0.35,
-            "frontAreaM2": 2.5,
+            "frontAreaM2": 2.2,
             "cr": 0.01,
             "averageHvacPower": 700,
-            "totalEfficiency": 0.76
+            "totalEfficiency": 0.85
         },
         "motorPowerKw": 81,
         "onBoardChargerKW": 7.3,
         "battery": 27,
+        "useableBatteryKw": 30,
         "acPhases": 1,
         "acceleration": 11.2,
         "maxSpeed": 145,
@@ -98,7 +99,7 @@
         "image": "kia_soul_ev.jpg",
         "logo": "kia.png",
         "link": "http://www.kia.ch/de/modelluebersicht/new-soul-ev/highlights",
-        "reviewVideo": "2NfGFfWP2a4",
+        "reviewVideo": "AR3NCObaPW0",
         "adVideos": ["ZYWHsOeDf3M", "f-U8YDol-l0"]
     },
     {
