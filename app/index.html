@@ -6,12 +6,11 @@
     <meta name="description" content="Electric Car comparison, Range calculation, Expert knowledge">
     <meta name="keywords"
           content="Electric, Car, comparison, Range, calculation, Expert, ev, electric vehicles, tesla model s, kia soul ev, renault zoe, mercedes b250 e, nissan leaf, bmw i3, vw e-golf, nissan e-nv200, peugeot berlingo electric, ford focus electric, vw e-up, citroen i-on, citroen c-zero, mitsubishi imiev, smart fortwo ed, renault kangoo z.e.">
-    <title>ElectriCar.Guru</title>
+    <title>Electric Cars</title>
     <!-- inject:css -->
     <!-- endinject -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <title>ElectriCar - compare of electric cars</title>
 </head>
 <body ng-app="app" ng-controller="MainCtrl">
 
@@ -24,7 +23,7 @@
                 <i class="fa fa-bars"></i>
             </button>
             <a class="navbar-brand page-scroll" href="#/intro">
-                <i class="fa fa-bolt"></i> <span class="light">Electri</span>Car
+                <i class="fa fa-bolt"></i> <span class="light" ng-bind="titlePrefix"></span><span ng-bind="titlePostfix"></span>
             </a>
         </div>
 

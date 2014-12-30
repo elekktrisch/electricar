@@ -1,7 +1,10 @@
 'use strict';
 
 angular.module('main')
-    .controller('MainCtrl', function ($scope, $window, $location, Cars) {
+    .controller('MainCtrl', function ($scope, $window, $location, Cars, DomainInfo) {
+
+        $scope.titlePrefix = DomainInfo.titlePrefix();
+        $scope.titlePostfix = DomainInfo.titlePostfix();
 
         Cars.query(function (result) {
             $scope.cars = result;

@@ -2,6 +2,19 @@
 
 var app = angular.module('app');
 
+app.factory('DomainInfo', function () {
+    //var alternativeHost = 'localhost';
+    var alternativeHost = 'digital-driving.info';
+    return {
+        titlePrefix: function() {
+            return window.location.hostname === alternativeHost ? 'Digital' : 'Electri';
+        },
+        titlePostfix: function() {
+            return window.location.hostname === alternativeHost ? 'Driving' : 'Car';
+        }
+    };
+});
+
 app.factory('Cars', function ($resource) {
     return $resource('scripts/data/cars.json');
 });
