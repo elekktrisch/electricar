@@ -107,6 +107,7 @@ car.factory('Calculator', function (RangeCalculator) {
         recalcRange: function ($scope, updateRangeCirclesCallback) {
             //console.log('============calculating range...');
             //var deferred = $q.defer();
+            $scope.firstChargeRange = undefined;
             $scope.calculating = true;
             if ($scope.calcParams.reservePercent > $scope.calcParams.maxBatteryChargePercent) {
                 $scope.calcParams.reservePercent = Math.max(0, $scope.calcParams.maxBatteryChargePercent - 10);
@@ -207,6 +208,9 @@ car.factory('Calculator', function (RangeCalculator) {
                     if (!lowBatt) {
                         nextMinuteState.mode = 'DRIVING';
                     } else {
+                        if($scope.numStops === 0) {
+                            $scope.firstChargeRange = nextMinuteState.distance;
+                        }
                         nextMinuteState.mode = 'CHARGING';
                         $scope.numStops++;
                     }

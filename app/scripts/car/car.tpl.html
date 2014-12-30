@@ -335,10 +335,19 @@
                                     <td width="100" class="results-icon">
                                         <span class="fa fa-arrows-h fa-4x" style="color:#757085;"></span>
                                     </td>
-                                    <td colspan="2">
+                                    <td>
                         <span class="results-text">
                             <span class="results-text-label">Total Trip Distance<br></span>
                             <span ng-bind="calcParams.distanceToTravel"></span> km
+                        </span>
+                                    </td>
+                                    <td>
+                        <span class="results-text" ng-show="firstChargeRange">
+                            <span class="results-text-label">First Stop after<br></span>
+                            <span ng-bind="firstChargeRange | number: 0"></span> km
+                        </span>
+                        <span class="results-text" ng-show="!firstChargeRange">
+                            <span class="results-text-label">No Stops required<br></span>
                         </span>
                                     </td>
                                 </tr>
