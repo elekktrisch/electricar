@@ -56,7 +56,7 @@
         "range": 340,
         "rangeParams": {
             "totalWeightKg": 1335,
-            "cw": 0.28,
+            "cw": 0.35,
             "frontAreaM2": 1.8,
             "cr": 0.013,
             "averageHvacPower": 600,
