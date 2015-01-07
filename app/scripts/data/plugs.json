@@ -347,5 +347,35 @@
             }
         ],
         "continuous": true
+    },
+    {
+        "image": "tesla-hpwc.jpg",
+        "id": "teslahpwc",
+        "name": "Tesla HPWC",
+        "mode": "4",
+        "power": [
+            {
+                "name": "Phase 1",
+                "voltage": 0,
+                "ampere": 0
+            },
+            {
+                "name": "Phase 2",
+                "voltage": 0,
+                "ampere": 0
+            },
+            {
+                "name": "Phase 3",
+                "voltage": 0,
+                "ampere": 0
+            },
+            {
+                "name": "DC",
+                "voltage": 240,
+                "ampere": 70
+            }
+        ],
+        "continuous": true,
+        "rare": true
     }
 ]

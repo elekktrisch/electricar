@@ -50,6 +50,31 @@
         "adVideos": ["QweNsLesMrM", "2-DqlK-0IXQ", "RqVWGLEwyyo", "BCcfiwQZIQg", "h1zsRCDJ4Ds"]
     },
     {
+        "id": "teslaroadster",
+        "name": "Tesla Roadster",
+        "year": 2008,
+        "range": 340,
+        "rangeParams": {
+            "totalWeightKg": 1335,
+            "cw": 0.28,
+            "frontAreaM2": 1.8,
+            "cr": 0.01,
+            "averageHvacPower": 600,
+            "totalEfficiency": 0.76
+        },
+        "motorPowerKw": 225,
+        "onBoardChargerKW": 7.4,
+        "battery": 57,
+        "acPhases": 1,
+        "acceleration": 3.7,
+        "maxSpeed": 200,
+        "plugs": ["t13", "schuko", "caravan", "cee16", "cee32", "type2", "teslahpwc"],
+        "image": "tesla_roadster-gray.jpg",
+        "logo": "tesla.png",
+        "reviewVideo": "Lyo0HOyiosI",
+        "adVideos": ["044BAhBRjtI", "aBKI1WmzaUw"]
+    },
+    {
         "id": "slsamg",
         "name": "Mercedes SLS AMG Electric",
         "year": 2013,
