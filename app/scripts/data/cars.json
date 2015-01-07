@@ -58,9 +58,9 @@
             "totalWeightKg": 1335,
             "cw": 0.28,
             "frontAreaM2": 1.8,
-            "cr": 0.01,
+            "cr": 0.013,
             "averageHvacPower": 600,
-            "totalEfficiency": 0.76
+            "totalEfficiency": 0.7
         },
         "motorPowerKw": 225,
         "onBoardChargerKW": 7.4,

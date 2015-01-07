@@ -5,6 +5,7 @@ var car = angular.module('car');
 
 car.constant('RANGE_CONSTANTS', {
     inCarTemperature: 21,
+    appliancesPowerKW: 0.5,
     airDensity: 1.25, // ρ = 1.25 kg/m^3: Luftdichte
     g: 9.81 // 9.81 m/s^2: Erdbeschleunigung
 });
@@ -65,7 +66,7 @@ car.factory('RangeCalculator', function (RANGE_CONSTANTS) {
     }
 });
 
-car.factory('Calculator', function (RangeCalculator) {
+car.factory('Calculator', function (RangeCalculator, RANGE_CONSTANTS) {
     return {
         trip: {
             fullCharges: {
@@ -189,7 +190,8 @@ car.factory('Calculator', function (RangeCalculator) {
 
                 $scope.consumptionKWhPerKm = consumption.totalKW / speedKmh;
 
-                var energyConsumptionKWhPerMinute = consumption.totalKW / 60;
+                var energyConsumptionKWhPerMinuteAppliances = RANGE_CONSTANTS.appliancesPowerKW / 60;
+                var energyConsumptionKWhPerMinute = (consumption.totalKW / 60) + energyConsumptionKWhPerMinuteAppliances;
 
                 var currentMinuteState = tripSimulation.minutes[currentMinute];
                 var nextMinuteState = {};
