@@ -400,3 +400,17 @@ p.page-intro {
     text-align: left;
     font-weight: 700;
 }
+
+ul.car-options {
+    list-style-type: none;
+    padding-left: 0;
+    color: #797979;
+}
+ul.car-options li input {
+    margin-right: 10px;
+}
+
+.info-with-text h5 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}

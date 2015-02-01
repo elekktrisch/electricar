@@ -290,6 +290,36 @@
         "continuous": true
     },
     {
+        "image": "auto_ccs.jpg",
+        "id": "ccs50",
+        "name": "CCS 50kW",
+        "mode": "4",
+        "power": [
+            {
+                "name": "Phase 1",
+                "voltage": 0,
+                "ampere": 0
+            },
+            {
+                "name": "Phase 2",
+                "voltage": 0,
+                "ampere": 0
+            },
+            {
+                "name": "Phase 3",
+                "voltage": 0,
+                "ampere": 0
+            },
+            {
+                "name": "DC",
+                "voltage": 400,
+                "ampere": 50
+            }
+        ],
+        "continuous": true,
+        "rare": true
+    },
+    {
         "image": "wall_type2.jpg",
         "id": "mercedes_wallbox",
         "name": "Mercedes Wallbox",

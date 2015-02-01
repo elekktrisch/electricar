@@ -24,6 +24,9 @@ angular.module('car')
             var car = $scope.selectedCar;
             for (var i = 0; i < plugQueryResult.length; i++) {
                 var p = plugQueryResult[i];
+                var chargePower = Calculator.calcChargingPowerForCar($scope, p, car);
+                p.chargingPower = Math.floor(chargePower / 100) / 10;
+
                 if (!p.rare && Calculator.supportsPlug(p, car)) {
                     var lastPower = Calculator.calcChargingPowerForCar($scope, bestPlug, car);
                     var newPower = Calculator.calcChargingPowerForCar($scope, p, car);
@@ -107,11 +110,9 @@ angular.module('car')
         $scope.stopDuration = 0;
 
 
-        $scope.setPower = function (plug, car) {
-            var chargePower = Calculator.calcChargingPowerForCar($scope, plug, car);
-            Settings.chargingPower = Math.floor(chargePower / 100) / 10;
-            plug.chargingPower = Settings.chargingPower;
+        $scope.setPower = function (plug) {
             $scope.selectedPlug = plug;
+            Settings.chargingPower = plug.chargingPower;
             $scope.recalcRange();
         };
 
@@ -160,9 +161,13 @@ angular.module('car')
             $scope.recalcRange();
         };
 
+        $scope.recalcChargingAndRange = function() {
+            queryPlugs()
+                .then($scope.recalcRange);
+        };
+
         queryCars()
-            .then(queryPlugs)
-            .then($scope.recalcRange)
+            .then($scope.recalcChargingAndRange)
             .then(resolvePosition)
             .then(drawMap)
             .then($scope.recalcRange)

@@ -32,7 +32,15 @@ car.factory('RangeCalculator', function (RANGE_CONSTANTS) {
                 var rollDrag = p.cr * p.totalWeightKg * RANGE_CONSTANTS.g * speedMs * rainDragFactor;
                 var drivingPowerW = initialCabinConditioningPowerW + hvacPowerW + ((airDrag + rollDrag) / p.totalEfficiency);
 
-                var drivingPowerKW = drivingPowerW / 1000 * (accelerationBreakingPercent) / 100;
+                var drivingPowerKW = drivingPowerW / 1000 * accelerationBreakingPercent / 100;
+                if(car.options && car.options.extras) {
+                    for (var i = 0; i < car.options.extras.length; i++) {
+                        var extra = car.options.extras[i];
+                        if(extra.selected) {
+                            drivingPowerKW = drivingPowerKW * extra.consumptionFactor;
+                        }
+                    }
+                }
                 //console.log('POWER: ' + Math.round(drivingPowerKW) + 'kW');
 
                 var altDiffInOneMin = this.calcAltitudeDifferenceForMinute(speedKmh, altitudeDifferenceM, totalDistance);
@@ -76,21 +84,51 @@ car.factory('Calculator', function (RangeCalculator, RANGE_CONSTANTS) {
             lastChargeMinutes: 0
         },
 
+        getOnboardChargerPower: function (car) {
+            var onBoardChargerKW = car.onBoardChargerKW;
+            if (car.options && car.options.chargers) {
+                var chargers = car.options.chargers;
+                for (var i = 0; i < chargers.length; i++) {
+                    var charger = chargers[i];
+                    if (charger.selected && charger.onBoardChargerKW > onBoardChargerKW) {
+                        onBoardChargerKW = charger.onBoardChargerKW;
+                    }
+                }
+            }
+            return onBoardChargerKW;
+        },
+
+        getNumSupportedAcPhases: function (car) {
+            var acPhases = car.acPhases;
+            if (car.options && car.options.chargers) {
+                var chargers = car.options.chargers;
+                for (var i = 0; i < chargers.length; i++) {
+                    var charger = chargers[i];
+                    if (charger.selected && charger.acPhases > acPhases) {
+                        acPhases = charger.acPhases;
+                    }
+                }
+            }
+            return acPhases;
+        },
+
         calcChargingPowerForCar: function ($scope, plug, car) {
             var chargePower = 0;
             for (var i = 0; i < plug.power.length; i++) {
                 var p = plug.power[i];
-                if (plug.power[i].name === 'DC' || i < car.acPhases) {
+                var acPhases = this.getNumSupportedAcPhases(car);
+                if (plug.power[i].name === 'DC' || i < acPhases) {
                     chargePower += (p.voltage * p.ampere);
                 }
             }
             if (!plug.continuous) {
                 chargePower = chargePower * 0.8;
             }
-            if (car.onBoardChargerKW
+            var onBoardChargerKW = this.getOnboardChargerPower(car);
+            if (onBoardChargerKW
                 && plug.mode < 4
-                && chargePower > (1000 * car.onBoardChargerKW)) {
-                chargePower = car.onBoardChargerKW * 1000;
+                && chargePower > (1000 * onBoardChargerKW)) {
+                chargePower = onBoardChargerKW * 1000;
             }
             $scope.calcParams.chargingPower = chargePower;
             return chargePower;
@@ -102,7 +140,28 @@ car.factory('Calculator', function (RangeCalculator, RANGE_CONSTANTS) {
                     return true;
                 }
             }
+            if (car.options && car.options.chargers) {
+                var chargers = car.options.chargers;
+                for (var i = 0; i < chargers.length; i++) {
+                    if (chargers[i].plug === plug.id) {
+                        return chargers[i].selected === true;
+                    }
+                }
+            }
             return false;
+        },
+
+        getBatteryCapacity: function (car) {
+            var capacityKWh = (car.useableBatteryKw || car.battery);
+            if (car.options && car.options.batteries) {
+                for (var i = 0; i < car.options.batteries.length; i++) {
+                    var battery = car.options.batteries[i];
+                    if (battery.selected && battery.capacityKw > capacityKWh) {
+                        capacityKWh = battery.capacityKw;
+                    }
+                }
+            }
+            return capacityKWh;
         },
 
         recalcRange: function ($scope, updateRangeCirclesCallback) {
@@ -137,7 +196,7 @@ car.factory('Calculator', function (RangeCalculator, RANGE_CONSTANTS) {
 
             var speedKmh = $scope.calcParams.drivingSpeed;
             var chargeKW = $scope.calcParams.chargingPower;
-            var capacityKWh = (car.useableBatteryKw || car.battery);
+            var capacityKWh = this.getBatteryCapacity(car);
             var maxSOC = $scope.calcParams.maxBatteryChargePercent / 100;
             var maxStoredEnergykWh = maxSOC * capacityKWh;
             var distanceKmPerMinute = speedKmh / 60;
@@ -210,7 +269,7 @@ car.factory('Calculator', function (RangeCalculator, RANGE_CONSTANTS) {
                     if (!lowBatt) {
                         nextMinuteState.mode = 'DRIVING';
                     } else {
-                        if($scope.numStops === 0) {
+                        if ($scope.numStops === 0) {
                             $scope.firstChargeRange = nextMinuteState.distance;
                         }
                         nextMinuteState.mode = 'CHARGING';
@@ -336,7 +395,7 @@ car.factory('Calculator', function (RangeCalculator, RANGE_CONSTANTS) {
                     color: '#555555',
                     animation: false,
                     data: [$scope.toKwh($scope.consumptionTotals.rollDragW)]
-               }, {
+                }, {
                     name: 'Altitude Difference',
                     color: '#30a893',
                     animation: false,
