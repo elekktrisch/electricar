@@ -590,6 +590,54 @@
     "adVideos": ["Xc1MltZiz8k"]
   },
   {
+    "id": "tezzarizero",
+    "name": "Tezzari Zero",
+    "range": 150,
+    "rangeParams": {
+      "totalWeightKg": 542,
+      "cw": 0.34,
+      "frontAreaM2": 2.3,
+      "cr": 0.005,
+      "averageHvacPower": 800,
+      "totalEfficiency": 0.76
+    },
+    "motorPowerKw": 15,
+    "onBoardChargerKW": 2.3,
+    "battery": 12.3,
+    "acPhases": 1,
+    "acceleration": "> 15",
+    "maxSpeed": 130,
+    "plugs": [
+      "t13",
+      "schuko",
+      "caravan",
+      "cee16",
+      "cee32",
+      "type2"
+    ],
+    "options": {
+      "chargers": [
+        {
+          "name": "Mini Superfast Portable",
+          "onBoardChargerKW": 5.5,
+          "acPhases": 3,
+          "selected": false
+        },
+        {
+          "name": "Superfast Portable",
+          "onBoardChargerKW": 11,
+          "acPhases": 3,
+          "selected": false
+        }
+      ]
+    },
+    "image": "tezzari_zero.jpg",
+    "logo": "tezzari.png",
+    "link": "http://www.tazzari-zero.com/auto/classic.html",
+    "reviewVideo": "RiqRrvmtC9Q",
+    "adVideos": []
+  },
+  {
     "id": "smartEd",
     "name": "smart fortwo ed",
     "range": 145,
@@ -638,7 +686,7 @@
     "battery": 22,
     "acPhases": 1,
     "acceleration": 20.3,
-    "maxSpeed": 130,
+    "maxSpeed": 100,
     "plugs": [
       "t13",
       "schuko",
