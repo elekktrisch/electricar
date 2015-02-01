@@ -606,7 +606,7 @@
     "battery": 12.3,
     "acPhases": 1,
     "acceleration": "> 15",
-    "maxSpeed": 130,
+    "maxSpeed": 100,
     "plugs": [
       "t13",
       "schuko",
@@ -686,7 +686,7 @@
     "battery": 22,
     "acPhases": 1,
     "acceleration": 20.3,
-    "maxSpeed": 100,
+    "maxSpeed": 130,
     "plugs": [
       "t13",
       "schuko",
