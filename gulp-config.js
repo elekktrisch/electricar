@@ -13,16 +13,8 @@ Config.prototype = {
   jqueryUiTheme: 'start',
   env: {
     dev: {
-      serverPort: ':18080',
-      serverBasePath: '',
-      serverProtocol: 'http:',
-      includeDevtools: true
     },
     dist: {
-      serverPort: '',
-      serverBasePath: '/merchantportal',
-      serverProtocol: 'https:',
-      includeDevtools: false
     }
   },
   patterns: {
