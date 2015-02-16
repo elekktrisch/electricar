@@ -283,18 +283,18 @@ car.factory('Calculator', function (RangeCalculator, RANGE_CONSTANTS) {
                     var maxC = $scope.calcParams.maxC;
                     if (C > 0.1) {
 
-                        var potent = 6;
-                        var f1 = 12 * SOC;
+                        var potent = 10;
+                        var f1 = 100 * SOC;
                         var f2 = Math.pow(f1, potent);
-                        var f3 = Math.pow(10, potent) * Math.max(1, car.onBoardChargerKW / chargeKW * 10);
-                        var fx = 0.3 * f2;
+                        var f3 = Math.pow(80, potent) * Math.max(1, car.onBoardChargerKW / chargeKW * 10);
+                        var fx = 0.5 * f2;
                         var f4 = fx + f3 - f2;
                         var f5 = f4 / f3;
                         var easeOffFactor = Math.max(0.001, Math.min(0.999, f5));
                         var easeOffC = Math.max(0.05, Math.min(maxC, C * easeOffFactor));
 
                         energyPerMinute = Math.min(easeOffC * capacityKWh, chargeKW) / 60;
-                        //console.log('minute ' + currentMinute + ', SOC: ' + SOC + ', easeOffC: ' + easeOffC);
+                        console.log('minute ' + currentMinute + ', SOC: ' + SOC + ', easeOffC: ' + easeOffC);
                     }
                     energyPerMinute = Math.min(energyPerMinute, maxC * capacityKWh / 60);
                     energyPerMinute = energyPerMinute - (energyPerMinute * $scope.calcParams.chargingLossPercent / 100);

@@ -1,5 +1,36 @@
 [
   {
+    "id": "icar",
+    "name": "Apple iCar ;-)",
+    "range": 900,
+    "rangeParams": {
+      "totalWeightKg": 2300,
+      "cw": 0.22,
+      "frontAreaM2": 2.31,
+      "cr": 0.01,
+      "averageHvacPower": 800,
+      "totalEfficiency": 0.76
+    },
+    "motorPowerKw": 600,
+    "onBoardChargerKW": 43,
+    "battery": 170,
+    "acPhases": 3,
+    "acceleration": 2.8,
+    "maxSpeed": 270,
+    "plugs": [
+      "t13",
+      "schuko",
+      "caravan",
+      "cee16",
+      "cee32",
+      "type2",
+      "supercharger"
+    ],
+    "image": "apple_icar.jpg",
+    "logo": "apple.png",
+    "reviewVideo": "1i5gFwEhGPk"
+  },
+  {
     "id": "teslaS85",
     "name": "Tesla Model S-85",
     "range": 502,
@@ -735,7 +766,10 @@
     "logo": "tezzari.png",
     "link": "http://www.tazzari-zero.com/auto/classic.html",
     "reviewVideo": "n1yNT3bC97s",
-    "adVideos": ["RiqRrvmtC9Q", "hOuxVQ7bMJI"]
+    "adVideos": [
+      "RiqRrvmtC9Q",
+      "hOuxVQ7bMJI"
+    ]
   },
   {
     "id": "smartEd",
@@ -800,6 +834,37 @@
     "link": "http://www.renault.ch/de/renault-modellpalette/elektroauto-modellpalette/kangoo-ze/kangoo-ze/konfigurator",
     "reviewVideo": "vPmBenHMPsk",
     "adVideos": ["mQFq7QkKAvE"]
+  },
+  {
+    "id": "cetos",
+    "name": "German E-Cars CETOS",
+    "range": 120,
+    "rangeParams": {
+      "totalWeightKg": 1400,
+      "cw": 0.3,
+      "frontAreaM2": 2.7,
+      "cr": 0.01,
+      "averageHvacPower": 800,
+      "totalEfficiency": 0.76
+    },
+    "motorPowerKw": 60,
+    "onBoardChargerKW": 11,
+    "battery": 19.2,
+    "acPhases": 3,
+    "acceleration": "> 15",
+    "maxSpeed": 130,
+    "plugs": [
+      "t13",
+      "schuko",
+      "cee16",
+      "cee32",
+      "type2"
+    ],
+    "image": "cetos.jpg",
+    "logo": "german_ecars.png",
+    "link": "http://www.german-e-cars.de/Anfrage-stellen.63.0.html?&L=0ckmctnjs%22",
+    "reviewVideo": "1nCnctVGDYs",
+    "adVideos": ["1nCnctVGDYs"]
   },
   {
     "id": "stromos",
