@@ -8,7 +8,7 @@ angular.module('car')
             return Cars.query(function (cars) {
                 $scope.cars = cars;
                 for (var x = 0; x < cars.length; x++) {
-                    if ($routeParams.id == cars[x].id) {
+                    if ($routeParams.id === cars[x].id) {
                         $scope.selectedCar = cars[x];
                     }
                 }
@@ -53,7 +53,7 @@ angular.module('car')
         };
 
         $scope.select = function (car) {
-            $location.path('/car/' + car.id)
+            $location.path('/car/' + car.id);
         };
         $scope.trip = {
             fullCharges: {

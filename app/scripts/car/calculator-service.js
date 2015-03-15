@@ -1,4 +1,4 @@
-/*global _:false*/
+/*global $:false*/
 'use strict';
 
 var car = angular.module('car');
@@ -71,7 +71,7 @@ car.factory('RangeCalculator', function (RANGE_CONSTANTS) {
             var distanceInOneMinuteM = speedKmh / 60 * 1000;
             return altitudeDifferenceTotalM * distanceInOneMinuteM / totalDistanceM;
         }
-    }
+    };
 });
 
 car.factory('Calculator', function (RangeCalculator, RANGE_CONSTANTS) {
@@ -125,9 +125,9 @@ car.factory('Calculator', function (RangeCalculator, RANGE_CONSTANTS) {
                 chargePower = chargePower * 0.8;
             }
             var onBoardChargerKW = this.getOnboardChargerPower(car);
-            if (onBoardChargerKW
-                && plug.mode < 4
-                && chargePower > (1000 * onBoardChargerKW)) {
+            if (onBoardChargerKW &&
+                plug.mode < 4 &&
+                chargePower > (1000 * onBoardChargerKW)) {
                 chargePower = onBoardChargerKW * 1000;
             }
             $scope.calcParams.chargingPower = chargePower;
@@ -135,14 +135,15 @@ car.factory('Calculator', function (RangeCalculator, RANGE_CONSTANTS) {
         },
 
         supportsPlug: function (plug, car) {
-            for (var i = 0; i < car.plugs.length; i++) {
+            var i;
+            for (i = 0; i < car.plugs.length; i++) {
                 if (car.plugs[i] === plug.id) {
                     return true;
                 }
             }
             if (car.options && car.options.chargers) {
                 var chargers = car.options.chargers;
-                for (var i = 0; i < chargers.length; i++) {
+                for (i = 0; i < chargers.length; i++) {
                     if (chargers[i].plug === plug.id) {
                         return chargers[i].selected === true;
                     }
@@ -230,6 +231,7 @@ car.factory('Calculator', function (RangeCalculator, RANGE_CONSTANTS) {
                 totalKW: 0
             };
 
+            var nextMinuteState = {};
             while (currentDistance < $scope.totalDistance && currentMinute < maxTimeMinutes) {
                 var consumption = RangeCalculator.calcConsumption(car,
                     $scope.speedKmh,
@@ -253,7 +255,6 @@ car.factory('Calculator', function (RangeCalculator, RANGE_CONSTANTS) {
                 var energyConsumptionKWhPerMinute = (consumption.totalKW / 60) + energyConsumptionKWhPerMinuteAppliances;
 
                 var currentMinuteState = tripSimulation.minutes[currentMinute];
-                var nextMinuteState = {};
                 currentChargeLastsForKm = RangeCalculator.calcRange(car,
                     currentMinuteState.chargeKWh - reserveKWh,
                     speedKmh,
@@ -297,9 +298,9 @@ car.factory('Calculator', function (RangeCalculator, RANGE_CONSTANTS) {
                     var chargingSufficientForTrip = currentChargeLastsForKm > (($scope.totalDistance - currentDistance) * 1.05);
                     var chargingSufficientForTime = (currentChargeLastsForKm / $scope.calcParams.drivingSpeed * 60) > (1440 - currentMinute);
 
-                    if (chargingDone
-                        || chargingSufficientForTrip
-                        || chargingSufficientForTime) {
+                    if (chargingDone ||
+                        chargingSufficientForTrip ||
+                        chargingSufficientForTime) {
                         nextMinuteState.mode = 'DRIVING';
                     } else {
                         nextMinuteState.mode = 'CHARGING';
@@ -434,7 +435,7 @@ car.factory('Calculator', function (RangeCalculator, RANGE_CONSTANTS) {
                             return {
                                 x: point.plotX,
                                 y: 10
-                            }
+                            };
                         }
                     },
                     yAxis: {

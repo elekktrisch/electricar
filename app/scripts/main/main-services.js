@@ -47,5 +47,5 @@ app.factory('Circles', function () {
                 visible: true // optional: defaults to true
             };
         }
-    }
+    };
 });

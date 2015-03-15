@@ -142,6 +142,7 @@ gulp.task('build-app-dev', function () {
         .pipe(gulp.dest(paths.dev))
         .pipe(filter('**/!(chartFormats).js'))
         .pipe(filter('**/!(templates).js'))
+        .pipe(filter('**/!(grayscale).js'))
         .pipe(jshint())
         .pipe(jshint.reporter(stylish));
 });

@@ -13,11 +13,11 @@ angular.module('main')
         });
 
         $scope.select = function (car) {
-            $location.path('/car/' + car.id)
+            $location.path('/car/' + car.id);
         };
 
         $scope.isPath = function(path) {
-            return $location.path().indexOf(path) != -1;
-        }
+            return $location.path().indexOf(path) !== -1;
+        };
     });
 
