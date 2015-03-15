@@ -281,19 +281,13 @@ car.factory('Calculator', function (RangeCalculator, RANGE_CONSTANTS) {
                     var C = chargeKW / capacityKWh;
                     var energyPerMinute = C * capacityKWh / 60;
                     var maxC = $scope.calcParams.maxC;
-                    if (C > 0.1) {
+                    if (C > 0.5) {
+                        var easeOffC = C;
+                        if(SOC > 0.5) {
+                            easeOffC = C * (0.5 / SOC);
 
-                        var potent = 10;
-                        var f1 = 100 * SOC;
-                        var f2 = Math.pow(f1, potent);
-                        var f3 = Math.pow(80, potent) * Math.max(1, car.onBoardChargerKW / chargeKW * 10);
-                        var fx = 0.5 * f2;
-                        var f4 = fx + f3 - f2;
-                        var f5 = f4 / f3;
-                        var easeOffFactor = Math.max(0.001, Math.min(0.999, f5));
-                        var easeOffC = Math.max(0.05, Math.min(maxC, C * easeOffFactor));
-
-                        energyPerMinute = Math.min(easeOffC * capacityKWh, chargeKW) / 60;
+                            energyPerMinute = Math.min(easeOffC * capacityKWh, chargeKW) / 60;
+                        }
                         console.log('minute ' + currentMinute + ', SOC: ' + SOC + ', easeOffC: ' + easeOffC);
                     }
                     energyPerMinute = Math.min(energyPerMinute, maxC * capacityKWh / 60);
@@ -479,21 +473,22 @@ car.factory('Calculator', function (RangeCalculator, RANGE_CONSTANTS) {
                         }
                     },
                     {
-                        data: energyPoints,
-                        name: 'Stored Energy [kWh]',
+                        data: powerPoints,
+                        name: 'Power [kW]',
                         color: '#8888bb',
                         animation: false,
+                        lineWidth: 1,
                         marker: {
                             enabled: false
                         },
                         states: {hover: {enabled: false}},
                         tooltip: {
-                            valueSuffix: ' kWh'
+                            valueSuffix: ' kW'
                         }
                     },
                     {
-                        data: powerPoints,
-                        name: 'Power [kW]',
+                        data: energyPoints,
+                        name: 'Stored Energy [kWh]',
                         color: '#bb6666',
                         animation: false,
                         marker: {
@@ -501,7 +496,7 @@ car.factory('Calculator', function (RangeCalculator, RANGE_CONSTANTS) {
                         },
                         states: {hover: {enabled: false}},
                         tooltip: {
-                            valueSuffix: ' kW'
+                            valueSuffix: ' kWh'
                         }
                     }
                 ],

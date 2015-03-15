@@ -1,36 +1,5 @@
 [
   {
-    "id": "icar",
-    "name": "Apple iCar ;-)",
-    "range": 900,
-    "rangeParams": {
-      "totalWeightKg": 2300,
-      "cw": 0.22,
-      "frontAreaM2": 2.31,
-      "cr": 0.01,
-      "averageHvacPower": 800,
-      "totalEfficiency": 0.76
-    },
-    "motorPowerKw": 600,
-    "onBoardChargerKW": 43,
-    "battery": 170,
-    "acPhases": 3,
-    "acceleration": 2.8,
-    "maxSpeed": 270,
-    "plugs": [
-      "t13",
-      "schuko",
-      "caravan",
-      "cee16",
-      "cee32",
-      "type2",
-      "supercharger"
-    ],
-    "image": "apple_icar.jpg",
-    "logo": "apple.png",
-    "reviewVideo": "1i5gFwEhGPk"
-  },
-  {
     "id": "teslaS85",
     "name": "Tesla Model S-85",
     "range": 502,
@@ -394,9 +363,9 @@
       "totalEfficiency": 0.76
     },
     "motorPowerKw": 80,
-    "onBoardChargerKW": 11,
+    "onBoardChargerKW": 7.3,
     "battery": 24,
-    "acPhases": 3,
+    "acPhases": 1,
     "acceleration": 11.4,
     "maxSpeed": 145,
     "plugs": [
