@@ -87,12 +87,12 @@
                         <td class="tech-value"><span ng-bind="selectedCar.battery"></span> kWh</td>
                     </tr>
                 </table>
-                <div style="height:310px;">
+                <div style="height:310px;" ng-show="selectedCar.reviewVideo">
                     <h4 style="margin-top:30px;">Review</h4>
                     <youtube-video video-id="selectedCar.reviewVideo" class="col-xs-12 col-sm-12 col-md-12"
                                    style="padding:0;" player-height="250"></youtube-video>
                 </div>
-                <div style="height:45px;">
+                <div style="height:45px;" ng-show="selectedCar.adVideos">
                     <h4 style="margin-top:30px;">Promotion Videos</h4>
                 </div>
                 <div style="height:260px;" ng-repeat="adVideo in selectedCar.adVideos" ng-show="selectedCar.adVideos">
