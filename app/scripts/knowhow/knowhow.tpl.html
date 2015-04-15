@@ -66,6 +66,8 @@
 
                     <p><img width="50" src="images/wall_type2.jpg"> Type 2</p>
 
+                    <p><img width="50" src="images/auto_type3.jpg"> Type 3</p>
+
                 </dd>
                 <dt>Quick Charging Station</dt>
                 <dd>The so called quick charger stations contain charging devices which already convert the AC from the
@@ -131,9 +133,18 @@
                     energy. This can easily be confirmed by measuring the amount of fuel a normal gasoline car uses at
                     that speed.
                 </dd>
-                <dt>Driving Style</dt>
-                <dd ng-class="{'selected-term':term === 'drivingStyle'}">
+                <dt>Conditions</dt>
+                <dd ng-class="{'selected-term':term === 'drivingStyle' || term === 'temperature' || term === 'rain'}">
                     <a name="drivingStyle"></a>
+                    <b>Road:</b>
+                    It is a big difference in energy consumption if the road is flat, smooth and straight or very rough and with a lot of corners, or even covered with sand or gravel.
+
+                    <br><br>
+                    <b>Tires:</b>
+                    Tires come with a label which indicates grip, noise and rolling resistance: <a href="http://en.wikipedia.org/wiki/Tyre_label" target="_blank">http://en.wikipedia.org/wiki/Tyre_label</a>.
+                    Especially the rolling resistance rating is relevant for the real-world range of any vehicle (electric or anything else).
+                    <br><br>
+                    <b>Driving Style:</b>
                     Just like gasoline cars, also electric cars use
                     more energy when driving more agressive.
                     Also, every acceleration/deceleration cycle uses more energy than just driving with the respective
@@ -142,6 +153,23 @@
                     range like in
                     gasoline cars, but recuperation is only about 75% efficient. That's 75% better than a gasoline car,
                     but still the overall energy consumption is higher than in normal fluent driving.
+                    <br><br>
+                    <b>Weather:</b>
+                    <a name="temperature"></a>
+                    <a name="rain"></a>
+                    Weather conditions can have a very significant impact on the range. Wind changes the aerodynamic situation for any vehicle at a certain speed.
+                    While tailwind improves range, headwind and crosswind will require more energy to travel at the same speed.<br>
+                    Also, rainfall or any other precipitation adds a layer of water to the road which has to be pushed away by the tires.
+                    This process takes more power with higher amounts of water to be pushed away.<br>
+                    Finally, low or very high temperature lead to increased power consumption for the cabin and battery conditioning. Both heating and cooling are very energy consuming.
+                    But the amount of energy is mostly depending on the duration, not the distance travelled, which means when travelling far and fast (e.g. 2 hours of Autobahn), the energy consumption for
+                    cabin conditioning per km travelled is very low.<br>
+                    The bigger the difference of outside temperature
+                    and desired cabin temperature (21° Celsius is assumed), the more energy will be needed to adjust the
+                    temperature.
+                    This is why in cold winter temperatures, it is recommended to pre-heat the cabin while the car is
+                    still plugged into a power outlet.
+                    Modern electric cars use shore power instead of power from the battery if it is plugged in.
                 </dd>
                 <dt>Terrain</dt>
                 <dd ng-class="{'selected-term':term === 'terrain'}">
@@ -163,21 +191,6 @@
                     battery, and this is even a better value than light cars have (probably around 70%).
                     But still, those missing 25% will be a higher absolute number than the missing 30% of light
                     vehicles.
-                </dd>
-                <dt>Weather</dt>
-                <dd ng-class="{'selected-term':term === 'temperature'}">
-                    <a name="temperature"></a>
-                    Both heating and cooling the cabin draws energy
-                    from the battery. The bigger the delta between
-                    outside
-                    and desired cabin temperature (21° Celsius is assumed), the more energy will be needed to adjust the
-                    temperature.
-                    This is why in cold winter temperatures, it is recommended to pre-heat the cabin while the car is
-                    still plugged into a power outlet.
-                    Modern electric cars use shore power instead of power from the battery if it is plugged in.
-                    <a name="rain"></a>
-                    Also, rain or snow increase the rolling and drag coefficients, which means energy consomption will be higher
-                    than in dry conditions.
                 </dd>
             </dl>
             </p>

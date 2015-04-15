@@ -46,7 +46,8 @@ car.factory('RangeCalculator', function (RANGE_CONSTANTS) {
                 var altDiffInOneMin = this.calcAltitudeDifferenceForMinute(speedKmh, altitudeDifferenceM, totalDistance);
                 var potentialEnergyJoule = (p.totalWeightKg + 200) * RANGE_CONSTANTS.g * altDiffInOneMin;
                 var potentialEnergyKWh = potentialEnergyJoule / 3600000;
-                var uphillPowerKW = Math.max(-60, potentialEnergyKWh * 60) * Math.pow(accelerationBreakingPercent / 100, 2);
+                var correctionFactor = 1.3;
+                var uphillPowerKW = Math.max(-60, potentialEnergyKWh * 60) * Math.pow(accelerationBreakingPercent / 100, 2) * correctionFactor;
 
                 return {
                     hvacPowerW: hvacPowerW,

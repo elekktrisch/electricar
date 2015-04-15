@@ -35,7 +35,7 @@
                 <li class="dropdown hidden-xs" ng-class="{'active':isPath('/car')}">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Car
                         <span class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu" ng-click="isCollapsed = !isCollapsed">
+                    <ul class="dropdown-menu" role="menu" ng-click="isCollapsed = !isCollapsed" style="height:500px;overflow:auto;">
                         <li ng-repeat="car in cars" style="cursor:pointer;">
                             <a ng-click="select(car)"><img src="images/{{car.image}}" height="30"/> <span
                                     ng-bind="car.name"></span></a>

@@ -1,7 +1,7 @@
 [
   {
     "id": "teslaS85",
-    "name": "Tesla Model S-85",
+    "name": "Tesla Model S-85D",
     "range": 502,
     "rangeParams": {
       "totalWeightKg": 2180,
@@ -11,12 +11,12 @@
       "averageHvacPower": 800,
       "totalEfficiency": 0.76
     },
-    "motorPowerKw": 283,
+    "motorPowerKw": 315,
     "onBoardChargerKW": 11,
     "battery": 85,
     "acPhases": 3,
-    "acceleration": 5.6,
-    "maxSpeed": 225,
+    "acceleration": 4.6,
+    "maxSpeed": 250,
     "plugs": [
       "t13",
       "schuko",
@@ -113,9 +113,41 @@
     ]
   },
   {
-    "id": "teslaS60",
-    "name": "Tesla Model S-60",
-    "range": 390,
+    "id": "kreiselPanamera",
+    "name": "Kreisel Porsche Panamera",
+    "range": 450,
+    "rangeParams": {
+      "totalWeightKg": 2100,
+      "cw": 0.28,
+      "frontAreaM2": 2.34,
+      "cr": 0.01,
+      "averageHvacPower": 800,
+      "totalEfficiency": 0.76
+    },
+    "motorPowerKw": 360,
+    "onBoardChargerKW": 22,
+    "battery": 90,
+    "acPhases": 3,
+    "acceleration": 5.4,
+    "maxSpeed": 300,
+    "plugs": [
+      "t13",
+      "schuko",
+      "caravan",
+      "cee16",
+      "cee32",
+      "type2"
+    ],
+    "image": "kreisel_panamera.jpg",
+    "logo": "kreisel.png",
+    "reviewVideo": "rZ09VNbJ4pI",
+    "adVideos": [
+    ]
+  },
+  {
+    "id": "teslaS70",
+    "name": "Tesla Model S-70D",
+    "range": 442,
     "rangeParams": {
       "totalWeightKg": 2080,
       "cw": 0.24,
@@ -124,19 +156,20 @@
       "averageHvacPower": 800,
       "totalEfficiency": 0.76
     },
-    "motorPowerKw": 283,
+    "motorPowerKw": 246,
     "onBoardChargerKW": 11,
-    "battery": 60,
+    "battery": 70,
     "acPhases": 3,
-    "acceleration": 6.2,
-    "maxSpeed": 190,
+    "acceleration": 5.4,
+    "maxSpeed": 225,
     "plugs": [
       "t13",
       "schuko",
       "caravan",
       "cee16",
       "cee32",
-      "type2"
+      "type2",
+      "supercharger"
     ],
     "options": {
       "chargers": [
@@ -148,11 +181,6 @@
         {
           "name": "Chademo Adapter",
           "plug": "chademo",
-          "selected": false
-        },
-        {
-          "name": "Tesla Supercharger",
-          "plug": "supercharger",
           "selected": false
         }
       ]
@@ -167,6 +195,69 @@
       "RqVWGLEwyyo",
       "BCcfiwQZIQg",
       "h1zsRCDJ4Ds"
+    ]
+  },
+  {
+    "id": "kreiselBmw",
+    "name": "Kreisel BMW 3er Touring",
+    "range": 420,
+    "rangeParams": {
+      "totalWeightKg": 1900,
+      "cw": 0.28,
+      "frontAreaM2": 2,
+      "cr": 0.01,
+      "averageHvacPower": 800,
+      "totalEfficiency": 0.76
+    },
+    "motorPowerKw": 120,
+    "onBoardChargerKW": 22,
+    "battery": 65,
+    "acPhases": 3,
+    "acceleration": "~ 10",
+    "maxSpeed": 180,
+    "plugs": [
+      "t13",
+      "schuko",
+      "caravan",
+      "cee16",
+      "cee32",
+      "type2"
+    ],
+    "image": "kreisel_bmw.jpg",
+    "logo": "kreisel.png",
+    "adVideos": [
+    ]
+  },
+  {
+    "id": "kreiselCaddy",
+    "name": "Kreisel VW Caddy",
+    "range": 350,
+    "rangeParams": {
+      "totalWeightKg": 1900,
+      "cw": 0.28,
+      "frontAreaM2": 2.34,
+      "cr": 0.01,
+      "averageHvacPower": 800,
+      "totalEfficiency": 0.76
+    },
+    "motorPowerKw": 82,
+    "onBoardChargerKW": 22,
+    "battery": 60,
+    "acPhases": 3,
+    "acceleration": "> 10",
+    "maxSpeed": 165,
+    "plugs": [
+      "t13",
+      "schuko",
+      "caravan",
+      "cee16",
+      "cee32",
+      "type2"
+    ],
+    "image": "kreisel_caddy.jpg",
+    "logo": "kreisel.png",
+    "link": "http://www.kreiselelectric.com/kontakt/",
+    "adVideos": [
     ]
   },
   {
