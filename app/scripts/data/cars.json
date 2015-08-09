@@ -13,9 +13,9 @@
     },
     "motorPowerKw": 315,
     "onBoardChargerKW": 11,
-    "battery": 85,
+    "battery": 90,
     "acPhases": 3,
-    "acceleration": 4.6,
+    "acceleration": 4.4,
     "maxSpeed": 250,
     "plugs": [
       "t13",
@@ -68,7 +68,7 @@
     "onBoardChargerKW": 11,
     "battery": 85,
     "acPhases": 3,
-    "acceleration": 4.6,
+    "acceleration": 4.4,
     "maxSpeed": 250,
     "plugs": [
       "t13",
@@ -107,7 +107,7 @@
   },
   {
     "id": "teslaP90",
-    "name": "Tesla Model S-P90D",
+    "name": "Tesla Model S-P90DL",
     "range": 491,
     "rangeParams": {
       "totalWeightKg": 2250,
@@ -119,9 +119,9 @@
     },
     "motorPowerKw": 568,
     "onBoardChargerKW": 11,
-    "battery": 85,
+    "battery": 90,
     "acPhases": 3,
-    "acceleration": 4.6,
+    "acceleration": 3.0,
     "maxSpeed": 250,
     "plugs": [
       "t13",
