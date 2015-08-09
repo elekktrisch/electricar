@@ -1,5 +1,58 @@
 [
   {
+    "id": "teslaS90",
+    "name": "Tesla Model S-90D",
+    "range": 528,
+    "rangeParams": {
+      "totalWeightKg": 2250,
+      "cw": 0.24,
+      "frontAreaM2": 2.34,
+      "cr": 0.01,
+      "averageHvacPower": 800,
+      "totalEfficiency": 0.76
+    },
+    "motorPowerKw": 315,
+    "onBoardChargerKW": 11,
+    "battery": 85,
+    "acPhases": 3,
+    "acceleration": 4.6,
+    "maxSpeed": 250,
+    "plugs": [
+      "t13",
+      "schuko",
+      "caravan",
+      "cee16",
+      "cee32",
+      "type2",
+      "supercharger"
+    ],
+    "options": {
+      "chargers": [
+        {
+          "name": "Dual Charger",
+          "onBoardChargerKW": 22,
+          "selected": true
+        },
+        {
+          "name": "Chademo Adapter",
+          "plug": "chademo",
+          "selected": false
+        }
+      ]
+    },
+    "image": "tesla_model_s.jpg",
+    "logo": "tesla.png",
+    "link": "http://www.teslamotors.com/de_CH/models/design",
+    "reviewVideo": "SEKEE4fNMM4",
+    "adVideos": [
+      "QweNsLesMrM",
+      "2-DqlK-0IXQ",
+      "RqVWGLEwyyo",
+      "BCcfiwQZIQg",
+      "h1zsRCDJ4Ds"
+    ]
+  },
+  {
     "id": "teslaS85",
     "name": "Tesla Model S-85D",
     "range": 502,
@@ -38,11 +91,57 @@
           "plug": "chademo",
           "selected": false
         }
-      ],
-      "extras": [
+      ]
+    },
+    "image": "tesla_model_s.jpg",
+    "logo": "tesla.png",
+    "link": "http://www.teslamotors.com/de_CH/models/design",
+    "reviewVideo": "SEKEE4fNMM4",
+    "adVideos": [
+      "QweNsLesMrM",
+      "2-DqlK-0IXQ",
+      "RqVWGLEwyyo",
+      "BCcfiwQZIQg",
+      "h1zsRCDJ4Ds"
+    ]
+  },
+  {
+    "id": "teslaP90",
+    "name": "Tesla Model S-P90D",
+    "range": 491,
+    "rangeParams": {
+      "totalWeightKg": 2250,
+      "cw": 0.24,
+      "frontAreaM2": 2.34,
+      "cr": 0.01,
+      "averageHvacPower": 800,
+      "totalEfficiency": 0.76
+    },
+    "motorPowerKw": 568,
+    "onBoardChargerKW": 11,
+    "battery": 85,
+    "acPhases": 3,
+    "acceleration": 4.6,
+    "maxSpeed": 250,
+    "plugs": [
+      "t13",
+      "schuko",
+      "caravan",
+      "cee16",
+      "cee32",
+      "type2",
+      "supercharger"
+    ],
+    "options": {
+      "chargers": [
         {
-          "name": "Dual Motor AWD",
-          "consumptionFactor": 0.97,
+          "name": "Dual Charger",
+          "onBoardChargerKW": 22,
+          "selected": true
+        },
+        {
+          "name": "Chademo Adapter",
+          "plug": "chademo",
           "selected": false
         }
       ]
@@ -124,7 +223,7 @@
       "averageHvacPower": 800,
       "totalEfficiency": 0.76
     },
-    "motorPowerKw": 246,
+    "motorPowerKw": 244,
     "onBoardChargerKW": 11,
     "battery": 70,
     "acPhases": 3,
