@@ -159,6 +159,57 @@
     ]
   },
   {
+    "id": "teslaX90",
+    "name": "Tesla Model X-P90DL",
+    "range": 485,
+    "rangeParams": {
+      "totalWeightKg": 2450,
+      "cw": 0.24,
+      "frontAreaM2": 2.74,
+      "cr": 0.01,
+      "averageHvacPower": 800,
+      "totalEfficiency": 0.8
+    },
+    "motorPowerKw": 568,
+    "onBoardChargerKW": 11,
+    "battery": 90,
+    "acPhases": 3,
+    "acceleration": 3.5,
+    "maxSpeed": 250,
+    "plugs": [
+      "t13",
+      "schuko",
+      "caravan",
+      "cee16",
+      "cee32",
+      "type2",
+      "supercharger"
+    ],
+    "options": {
+      "chargers": [
+        {
+          "name": "Dual Charger",
+          "onBoardChargerKW": 22,
+          "selected": true
+        },
+        {
+          "name": "Chademo Adapter",
+          "plug": "chademo",
+          "selected": false
+        }
+      ]
+    },
+    "image": "tesla_model_x.jpg",
+    "logo": "tesla.png",
+    "link": "http://www.teslamotors.com/de_CH/modelx",
+    "reviewVideo": "uGqcY4e1iGk",
+    "adVideos": [
+      "KbO6-C2Yajg",
+      "mURbzh9t0_0",
+      "kL2Q_s4JCDs"
+    ]
+  },
+  {
     "id": "teslaP85",
     "name": "Tesla Model S-P85D",
     "range": 480,
