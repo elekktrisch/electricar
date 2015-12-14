@@ -58,7 +58,7 @@ module.exports = function (config) {
     // if true, it capture browsers, run tests and exit
     singleRun: false,
 
-    reporters: ['progress', 'html', 'dots', 'coverage', 'junit'],
+    reporters: ['progress', 'dots', 'coverage', 'junit'],
     
     // http://karma-runner.github.io/0.8/plus/Jenkins-CI.html
     junitReporter : {
