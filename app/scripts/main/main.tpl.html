@@ -4,6 +4,12 @@
         <p class="hint">The list is sorted by range, starting with the most capable car</p>
         <div ng-repeat="car in cars" ng-click="select(car)" class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
             <div class="quartett-card">
+                <div ng-if="car.discontinued" style="position: absolute;left:50px;top:30px;height: 130px;">
+                    <img src="images/discontinued-stamp.png" style="margin: 4px;"/>
+                </div>
+                <div ng-if="car.soon" style="position: absolute;left:50px;top:40px;height: 130px;">
+                    <img src="images/coming_soon_stamp.png" style="margin: 4px;"/>
+                </div>
                 <div class="row">
                     <img src="images/logos/{{car.logo}}" height="40" style="margin: 4px;"/>
                 </div>

@@ -158,6 +158,7 @@
   },
   {
     "id": "teslaS85",
+    "discontinued": true,
     "name": "Tesla Model S-85 (classic)",
     "range": 502,
     "rangeParams": {
@@ -368,6 +369,7 @@
   },
   {
     "id": "chevyBolt",
+    "soon": true,
     "name": "Chevrolet Bolt",
     "range": 385,
     "rangeParams": {
@@ -393,10 +395,42 @@
       "type2",
       "ccs"
     ],
-    "future": true,
     "image": "bolt.jpg",
     "logo": "chevrolet.png",
     "link": "http://www.chevrolet.com/bolt-ev-electric-vehicle.html",
+    "adVideos": [
+    ]
+  },
+  {
+    "id": "byde6",
+    "soon": true,
+    "name": "BYD e6",
+    "range": 300,
+    "rangeParams": {
+      "totalWeightKg": 2380,
+      "cw": 0.32,
+      "frontAreaM2": 2.34,
+      "cr": 0.01,
+      "averageHvacPower": 800,
+      "totalEfficiency": 0.7
+    },
+    "motorPowerKw": 160,
+    "onBoardChargerKW": 40,
+    "battery": 61.4,
+    "acPhases": 3,
+    "acceleration": "8",
+    "maxSpeed": 140,
+    "plugs": [
+      "t13",
+      "schuko",
+      "caravan",
+      "cee16",
+      "cee32",
+      "type2"
+    ],
+    "image": "byd_e6.jpg",
+    "logo": "byd.png",
+    "link": "http://www.byd.com/la/auto/e6.html",
     "adVideos": [
     ]
   },
@@ -434,6 +468,7 @@
   },
   {
     "id": "teslaroadster",
+    "discontinued": true,
     "name": "Tesla Roadster",
     "year": 2008,
     "range": 340,
