@@ -157,6 +157,59 @@
     ]
   },
   {
+    "id": "teslaS85",
+    "name": "Tesla Model S-85 (classic)",
+    "range": 502,
+    "rangeParams": {
+      "totalWeightKg": 2180,
+      "cw": 0.24,
+      "frontAreaM2": 2.34,
+      "cr": 0.01,
+      "averageHvacPower": 800,
+      "totalEfficiency": 0.76
+    },
+    "motorPowerKw": 272,
+    "onBoardChargerKW": 11,
+    "battery": 85,
+    "acPhases": 3,
+    "acceleration": 5.6,
+    "maxSpeed": 250,
+    "plugs": [
+      "t13",
+      "schuko",
+      "caravan",
+      "cee16",
+      "cee32",
+      "type2",
+      "supercharger"
+    ],
+    "options": {
+      "chargers": [
+        {
+          "name": "Dual Charger",
+          "onBoardChargerKW": 22,
+          "selected": true
+        },
+        {
+          "name": "Chademo Adapter",
+          "plug": "chademo",
+          "selected": false
+        }
+      ]
+    },
+    "image": "tesla_model_s_original.jpg",
+    "logo": "tesla.png",
+    "link": "http://www.tesla.com/de_CH/models/design",
+    "reviewVideo": "SEKEE4fNMM4",
+    "adVideos": [
+      "QweNsLesMrM",
+      "2-DqlK-0IXQ",
+      "RqVWGLEwyyo",
+      "BCcfiwQZIQg",
+      "h1zsRCDJ4Ds"
+    ]
+  },
+  {
     "id": "teslaS75",
     "name": "Tesla Model S-75D",
     "range": 490,
@@ -416,6 +469,42 @@
     ]
   },
   {
+    "id": "bmwi3_94",
+    "name": "BMW i3 (94Ah)",
+    "range": 312,
+    "rangeParams": {
+      "totalWeightKg": 1320,
+      "cw": 0.29,
+      "frontAreaM2": 2.4,
+      "cr": 0.01,
+      "averageHvacPower": 800,
+      "totalEfficiency": 0.8
+    },
+    "motorPowerKw": 125,
+    "onBoardChargerKW": 11,
+    "battery": 33.2,
+    "acPhases": 3,
+    "acceleration": 7.3,
+    "maxSpeed": 150,
+    "plugs": [
+      "t13",
+      "schuko",
+      "caravan",
+      "cee16",
+      "cee32",
+      "type2",
+      "ccs"
+    ],
+    "image": "bmwi3.jpg",
+    "logo": "bmw.png",
+    "link": "http://www.bmw.ch/de/neuwagen/bmw-i/i3/2013/start.html",
+    "reviewVideo": "fkMdTeJHvZA",
+    "adVideos": [
+      "g1LsT1PVjUA",
+      "ssOqQzLvnVs"
+    ]
+  },
+  {
     "id": "slsamg",
     "name": "Mercedes SLS AMG Electric",
     "year": 2013,
@@ -672,7 +761,7 @@
   },
   {
     "id": "bmwi3",
-    "name": "BMW i3",
+    "name": "BMW i3 (18.8kWh)",
     "range": 190,
     "rangeParams": {
       "totalWeightKg": 1580,
