@@ -8,6 +8,5 @@
       <excludeFolder url="file://$MODULE_DIR$/myApp/platforms" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="ecompare node_modules" level="project" />
   </component>
 </module>
