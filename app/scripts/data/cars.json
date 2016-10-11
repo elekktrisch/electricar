@@ -29,12 +29,12 @@
     "options": {
       "chargers": [
         {
-          "name": "Dual Charger",
-          "onBoardChargerKW": 22,
+          "name": "High Power Charger (16.5kW)",
+          "onBoardChargerKW": 16.5,
           "selected": true
         },
         {
-          "name": "Chademo Adapter",
+          "name": "Chademo Adapter (50kW)",
           "plug": "chademo",
           "selected": false
         }
@@ -82,12 +82,12 @@
     "options": {
       "chargers": [
         {
-          "name": "Dual Charger",
-          "onBoardChargerKW": 22,
+          "name": "High Power Charger (16.5kW)",
+          "onBoardChargerKW": 16.5,
           "selected": true
         },
         {
-          "name": "Chademo Adapter",
+          "name": "Chademo Adapter (50kW)",
           "plug": "chademo",
           "selected": false
         }
@@ -133,12 +133,12 @@
     "options": {
       "chargers": [
         {
-          "name": "Dual Charger",
-          "onBoardChargerKW": 22,
+          "name": "High Power Charger (16.5kW)",
+          "onBoardChargerKW": 16.5,
           "selected": true
         },
         {
-          "name": "Chademo Adapter",
+          "name": "Chademo Adapter (50kW)",
           "plug": "chademo",
           "selected": false
         }
@@ -192,7 +192,7 @@
           "selected": true
         },
         {
-          "name": "Chademo Adapter",
+          "name": "Chademo Adapter (50kW)",
           "plug": "chademo",
           "selected": false
         }
@@ -240,12 +240,12 @@
     "options": {
       "chargers": [
         {
-          "name": "Dual Charger",
-          "onBoardChargerKW": 22,
+          "name": "High Power Charger (16.5kW)",
+          "onBoardChargerKW": 16.5,
           "selected": true
         },
         {
-          "name": "Chademo Adapter",
+          "name": "Chademo Adapter (50kW)",
           "plug": "chademo",
           "selected": false
         }
@@ -293,12 +293,12 @@
     "options": {
       "chargers": [
         {
-          "name": "Dual Charger",
-          "onBoardChargerKW": 22,
+          "name": "High Power Charger (16.5kW)",
+          "onBoardChargerKW": 16.5,
           "selected": true
         },
         {
-          "name": "Chademo Adapter",
+          "name": "Chademo Adapter (50kW)",
           "plug": "chademo",
           "selected": false
         }
@@ -344,12 +344,12 @@
     "options": {
       "chargers": [
         {
-          "name": "Dual Charger",
-          "onBoardChargerKW": 22,
+          "name": "High Power Charger (16.5kW)",
+          "onBoardChargerKW": 16.5,
           "selected": true
         },
         {
-          "name": "Chademo Adapter",
+          "name": "Chademo Adapter (50kW)",
           "plug": "chademo",
           "selected": false
         }
