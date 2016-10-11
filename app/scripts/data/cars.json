@@ -384,7 +384,7 @@
     "onBoardChargerKW": 7.2,
     "battery": 60,
     "acPhases": 1,
-    "acceleration": "6.5",
+    "acceleration": "7.3",
     "maxSpeed": 150,
     "plugs": [
       "t13",
@@ -541,6 +541,7 @@
   },
   {
     "id": "slsamg",
+    "discontinued": true,
     "name": "Mercedes SLS AMG Electric",
     "year": 2013,
     "range": 240,
