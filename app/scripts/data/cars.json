@@ -402,6 +402,41 @@
     ]
   },
   {
+    "id": "rimac_concept_one",
+    "name": "Rimac Concept_One",
+    "range": 300,
+    "rangeParams": {
+      "totalWeightKg": 1850,
+      "cw": 0.24,
+      "frontAreaM2": 1.5,
+      "cr": 0.01,
+      "averageHvacPower": 800,
+      "totalEfficiency": 0.7
+    },
+    "motorPowerKw": 800,
+    "onBoardChargerKW": 22,
+    "battery": 82,
+    "acPhases": 3,
+    "acceleration": "2.6",
+    "maxSpeed": 355,
+    "plugs": [
+      "t13",
+      "schuko",
+      "caravan",
+      "cee16",
+      "cee32",
+      "type2"
+    ],
+    "image": "rimac_concept-one.jpg",
+    "logo": "rimac.png",
+    "link": "http://www.rimac-automobili.com/en/supercars/concept_one",
+    "adVideos": [
+      "eT7KKxoAvvk",
+      "RQQwOI5qoJw",
+      "iCd32Eiuxak"
+    ]
+  },
+  {
     "id": "byde6",
     "soon": true,
     "name": "BYD e6",
