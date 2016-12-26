@@ -6,7 +6,7 @@ angular.module('car')
         $scope.carId = $routeParams.id;
         function queryCars() {
             return Cars.query(function (cars) {
-                $scope.cars = cars;
+                $scope.cars = _.sortBy(cars, ["range"]);
                 for (var x = 0; x < cars.length; x++) {
                     if ($routeParams.id === cars[x].id) {
                         $scope.selectedCar = cars[x];
@@ -14,7 +14,7 @@ angular.module('car')
                 }
                 Settings.reservePercent = 50 / $scope.selectedCar.range * 100;
                 Settings.carTopSpeed = $scope.selectedCar.maxSpeed;
-                return cars;
+                return $scope.cars;
             }).$promise;
         }
 

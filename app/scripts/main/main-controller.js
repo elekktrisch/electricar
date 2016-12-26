@@ -6,8 +6,9 @@ angular.module('main')
         $scope.titlePrefix = DomainInfo.titlePrefix();
         $scope.titlePostfix = DomainInfo.titlePostfix();
 
-        Cars.query(function (result) {
-            $scope.cars = result;
+        Cars.query(function (cars) {
+            $scope.cars = _.sortBy(cars, ["range"]).reverse();
+            $scope.carsSortedByName = _.sortBy(cars, ["name"]);
         }, function (reason) {
             console.log('failed to load cars: ' + JSON.stringify(reason));
         });
