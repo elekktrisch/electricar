@@ -37,7 +37,7 @@
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu" ng-click="isCollapsed = !isCollapsed" style="height:500px;overflow:auto;">
                         <li ng-repeat="car in carsSortedByName" style="cursor:pointer;">
-                            <a ng-click="select(car)"><img src="images/{{car.image}}" height="30"/> <span
+                            <a ng-click="select(car)"><img ng-src="images/{{car.image}}" height="30"/> <span
                                     ng-bind="car.name"></span></a>
                         </li>
                     </ul>

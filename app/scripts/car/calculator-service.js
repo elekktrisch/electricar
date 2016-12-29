@@ -125,6 +125,9 @@ car.factory('Calculator', function (RangeCalculator, RANGE_CONSTANTS) {
                     chargePower += (p.voltage * p.ampere);
                 }
             }
+            if(chargePower > (car.maxExternalDirectChargerKW * 1000)) {
+                chargePower = (car.maxExternalDirectChargerKW * 1000);
+            }
             if (!plug.continuous) {
                 chargePower = chargePower * 0.8;
             }
@@ -293,7 +296,7 @@ car.factory('Calculator', function (RangeCalculator, RANGE_CONSTANTS) {
 
                             energyPerMinute = Math.min(easeOffC * capacityKWh, chargeKW) / 60;
                         }
-                        console.log('minute ' + currentMinute + ', SOC: ' + SOC + ', easeOffC: ' + easeOffC);
+                        // console.log('minute ' + currentMinute + ', SOC: ' + SOC + ', easeOffC: ' + easeOffC);
                     }
                     energyPerMinute = Math.min(energyPerMinute, maxC * capacityKWh / 60);
                     energyPerMinute = energyPerMinute - (energyPerMinute * $scope.calcParams.chargingLossPercent / 100);

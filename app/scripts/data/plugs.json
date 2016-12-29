@@ -255,7 +255,7 @@
             {
                 "name": "DC",
                 "voltage": 400,
-                "ampere": 125
+                "ampere": 250
             }
         ],
         "continuous": true
@@ -284,7 +284,7 @@
             {
                 "name": "DC",
                 "voltage": 400,
-                "ampere": 125
+                "ampere": 875
             }
         ],
         "continuous": true
@@ -313,7 +313,7 @@
             {
                 "name": "DC",
                 "voltage": 400,
-                "ampere": 50
+                "ampere": 125
             }
         ],
         "continuous": true,

@@ -1,3 +1,4 @@
+/*global _:false*/
 'use strict';
 
 angular.module('main')
@@ -7,8 +8,8 @@ angular.module('main')
         $scope.titlePostfix = DomainInfo.titlePostfix();
 
         Cars.query(function (cars) {
-            $scope.cars = _.sortBy(cars, ["range"]).reverse();
-            $scope.carsSortedByName = _.sortBy(cars, ["name"]);
+            $scope.cars = _.sortBy(cars, ['range']).reverse();
+            $scope.carsSortedByName = _.sortBy(cars, ['name']);
         }, function (reason) {
             console.log('failed to load cars: ' + JSON.stringify(reason));
         });
