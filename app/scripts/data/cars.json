@@ -1,5 +1,49 @@
 [
   {
+    "id": "teslaP100D_EGT",
+    "soon": true,
+    "name": "Tesla Model S-P100D EGT",
+    "range": 650,
+    "rangeParams": {
+      "totalWeightKg": 1750,
+      "cw": 0.24,
+      "frontAreaM2": 2.34,
+      "cr": 0.01,
+      "averageHvacPower": 800,
+      "totalEfficiency": 0.76
+    },
+    "motorPowerKw": 568,
+    "onBoardChargerKW": 16.5,
+    "maxExternalDirectChargerKW": 130,
+    "battery": 100.1,
+    "acPhases": 3,
+    "acceleration": 2.1,
+    "maxSpeed": 250,
+    "plugs": [
+      "t13",
+      "schuko",
+      "caravan",
+      "cee16",
+      "cee32",
+      "type2",
+      "supercharger"
+    ],
+    "options": {
+      "chargers": [
+      ]
+    },
+    "image": "tesla_model_s_egt.jpg",
+    "logo": "tesla.png",
+    "link": "http://www.tesla.com/de_CH/models/design",
+    "reviewVideo": "kvJIEIzIm0c",
+    "adVideos": [
+      "AuqEYlLX9o4",
+      "bK12lGVFHf4",
+      "knsiGP6JWdQ",
+      "_CohSu7fpvs"
+    ]
+  },
+  {
     "id": "teslaP100",
     "name": "Tesla Model S-P100D",
     "range": 613,
@@ -1001,7 +1045,7 @@
   },
   {
     "id": "eGolf",
-    "name": "VW e-Golf",
+    "name": "VW e-Golf (24 kWh)",
     "range": 190,
     "rangeParams": {
       "totalWeightKg": 1600,
@@ -1018,6 +1062,7 @@
     "acPhases": 1,
     "acceleration": 10.4,
     "maxSpeed": 140,
+    "discontinued": true,
     "plugs": [
       "t13",
       "schuko",
@@ -1032,6 +1077,40 @@
     "link": "http://app.volkswagen.de/ihdcc/de/configurator.html#30300",
     "reviewVideo": "itWx7UUiu2c",
     "adVideos": ["Wc6keIjI06I"]
+  },
+  {
+    "id": "eGolf2",
+    "name": "VW e-Golf (36 kWh)",
+    "range": 300,
+    "rangeParams": {
+      "totalWeightKg": 1600,
+      "cw": 0.28,
+      "frontAreaM2": 2.3,
+      "cr": 0.01,
+      "averageHvacPower": 800,
+      "totalEfficiency": 0.76
+    },
+    "motorPowerKw": 100,
+    "onBoardChargerKW": 7.3,
+    "maxExternalDirectChargerKW": 50,
+    "battery": 35.8,
+    "acPhases": 1,
+    "acceleration": 9.6,
+    "maxSpeed": 150,
+    "plugs": [
+      "t13",
+      "schuko",
+      "caravan",
+      "cee16",
+      "cee32",
+      "type2",
+      "ccs"
+    ],
+    "image": "vw_egolf.jpg",
+    "logo": "vw.png",
+    "link": "https://www.volkswagen.at/e-golf",
+    "reviewVideo": "2yx8klUC3gs",
+    "adVideos": ["7Yxz16y7rBY","49aRI8-xcsU"]
   },
   {
     "id": "env200",
@@ -1409,6 +1488,7 @@
     "acPhases": 3,
     "acceleration": "> 15",
     "maxSpeed": 130,
+    "discontinued": true,
     "plugs": [
       "t13",
       "schuko",
@@ -1441,6 +1521,7 @@
     "acPhases": 3,
     "acceleration": "> 15",
     "maxSpeed": 120,
+    "discontinued": true,
     "plugs": [
       "t13",
       "schuko",

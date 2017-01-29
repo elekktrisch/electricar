@@ -1,5 +1,8 @@
+import "angular-ui-bootstrap";
+
 export class MainCtrl {
     constructor($scope, $location, Cars, DomainInfo) {
+        $scope.loading = false;
         $scope.titlePrefix = DomainInfo.titlePrefix();
         $scope.titlePostfix = DomainInfo.titlePostfix();
 
@@ -14,7 +17,7 @@ export class MainCtrl {
             $location.path('/car/' + car.id);
         };
 
-        $scope.isPath = function(path) {
+        $scope.isPath = function (path) {
             return $location.path().indexOf(path) !== -1;
         };
     }
