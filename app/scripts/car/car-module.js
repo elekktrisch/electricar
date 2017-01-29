@@ -2,12 +2,14 @@ import angular from 'angular';
 import 'angular-resource';
 import "angular-ui-slider";
 import {CarCtrl} from "./car-controller";
+import {Settings} from "./settings-service";
 import {Calculator, RangeCalculator} from "./calculator-service";
 
 export default angular.module('car', ['ngResource', 'ui.slider'])
     .controller("CarCtrl", CarCtrl)
     .service("Calculator", Calculator.factory)
     .service("RangeCalculator", RangeCalculator.factory)
+    .service("Settings", Settings.factory)
     .constant('RANGE_CONSTANTS', {
         inCarTemperature: 21,
         appliancesPowerKW: 0.5,

@@ -1,4 +1,5 @@
 import angular from 'angular';
+import "../styles/styles";
 import "angular-route";
 import "highcharts";
 import "highcharts-ng";
@@ -23,13 +24,13 @@ export default angular.module('app', [
     mainModule.name,
     carModule.name
 ])
-    .config(['uiGmapGoogleMapApiProvider', function (uiGmapGoogleMapApiProvider) {
-        uiGmapGoogleMapApiProvider.configure({
-            key: 'AIzaSyCG3Tz0Eg27w_f1yg8Rem2MSKZpLeNQ7R0',
-            v: '3.17',
-            libraries: 'weather,geometry,visualization'
-        });
-    }])
+/* .config(['uiGmapGoogleMapApiProvider', function (uiGmapGoogleMapApiProvider) {
+ uiGmapGoogleMapApiProvider.configure({
+ key: 'AIzaSyCG3Tz0Eg27w_f1yg8Rem2MSKZpLeNQ7R0',
+ v: '3.17',
+ libraries: 'weather,geometry,visualization'
+ });
+ }]) */
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
             .when('/intro',

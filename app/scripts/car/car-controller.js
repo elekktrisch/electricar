@@ -1,5 +1,5 @@
 export class CarCtrl {
-    constructor($scope, $q, $location, $routeParams, uiGmapGoogleMapApi, Circles, Cars, Plugs, Calculator, RangeCalculator, Settings) {
+    constructor($scope, $q, $location, $routeParams, /*uiGmapGoogleMapApi,*/ Circles, Cars, Plugs, Calculator, Settings) {
         $scope.carId = $routeParams.id;
         function queryCars() {
             return Cars.query(function (cars) {
@@ -7,6 +7,7 @@ export class CarCtrl {
                 for (var x = 0; x < cars.length; x++) {
                     if ($routeParams.id === cars[x].id) {
                         $scope.selectedCar = cars[x];
+                        $scope.selectedCarImage = require(`../../images/${$scope.selectedCar.image}`);
                     }
                 }
                 Settings.reservePercent = 50 / $scope.selectedCar.range * 100;
