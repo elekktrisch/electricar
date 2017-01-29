@@ -1,10 +1,11 @@
+import "jquery";
+import "jquery-ui";
 import angular from 'angular';
+import "angular-ui-slider";
 import "../styles/styles";
 import "angular-route";
 import "highcharts";
 import "highcharts-ng";
-import "angular-ui-bootstrap";
-import "angular-ui-slider";
 import introModule from "./intro/intro-module";
 import aboutModule from "./about/about-module";
 import knowhowModule from "./knowhow/knowhow-module";

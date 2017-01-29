@@ -1,11 +1,12 @@
 import angular from 'angular';
 import 'angular-resource';
-import "angular-ui-slider";
+import "angular-material";
+import "angular-ui-bootstrap";
 import {CarCtrl} from "./car-controller";
 import {Settings} from "./settings-service";
 import {Calculator, RangeCalculator} from "./calculator-service";
 
-export default angular.module('car', ['ngResource', 'ui.slider'])
+export default angular.module('car', ['ngResource', 'ngMaterial'])
     .controller("CarCtrl", CarCtrl)
     .service("Calculator", Calculator.factory)
     .service("RangeCalculator", RangeCalculator.factory)

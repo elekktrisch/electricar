@@ -7,3 +7,4 @@ require("font-awesome-webpack");
 require("moment");
 require("selectize");
 require("highcharts");
+require("angular-material");

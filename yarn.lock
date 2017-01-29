@@ -53,6 +53,14 @@ amdefine@>=0.0.4:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
 
+angular-animate@^1.6.1:
+  version "1.6.1"
+  resolved "https://registry.yarnpkg.com/angular-animate/-/angular-animate-1.6.1.tgz#19e3b82b7392e2bbdd83af33c0af0d85437f3a14"
+
+angular-aria@^1.6.1:
+  version "1.6.1"
+  resolved "https://registry.yarnpkg.com/angular-aria/-/angular-aria-1.6.1.tgz#0fcbf1152b4c26e8671daddea7443a1b983434b9"
+
 angular-cookies@1.6.1:
   version "1.6.1"
   resolved "https://registry.yarnpkg.com/angular-cookies/-/angular-cookies-1.6.1.tgz#d728a39361b47d3fe4b2a6fd769a5f0b34e43d0e"
@@ -69,6 +77,10 @@ angular-google-maps@^2.4.1:
     js-rich-marker "git://github.com/MikaFima/js-rich-marker.git#0383f4bbdad4ddf154772fedbdd27e464600e943"
     lodash "3.X - 4.X"
     markerclustererplus "2.1.4"
+
+angular-material@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/angular-material/-/angular-material-1.1.1.tgz#ed12f394ba71a9189d664115624f6787a7439af2"
 
 angular-messages@1.6.1:
   version "1.6.1"
@@ -109,13 +121,13 @@ angular-translate@2.8.0, angular-translate@~2.8.0:
   version "2.8.0"
   resolved "https://registry.yarnpkg.com/angular-translate/-/angular-translate-2.8.0.tgz#282199d0429639b5f83d8aa998e7063ce1fcc1b7"
 
-angular-ui-bootstrap@0.13.4:
-  version "0.13.4"
-  resolved "https://registry.yarnpkg.com/angular-ui-bootstrap/-/angular-ui-bootstrap-0.13.4.tgz#d9981523b12ecb5f911cb0b4829fa3e5f20ed9ec"
+angular-ui-bootstrap@^2.5.0:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/angular-ui-bootstrap/-/angular-ui-bootstrap-2.5.0.tgz#2facefb915386655dc5f44150258032517236d01"
 
-angular-ui-slider@^0.4.0:
+angular-ui-slider@angular-ui/ui-slider:
   version "0.4.0"
-  resolved "https://registry.yarnpkg.com/angular-ui-slider/-/angular-ui-slider-0.4.0.tgz#d76c0a54648d0d18d59c87e6c8338fae74135c75"
+  resolved "https://codeload.github.com/angular-ui/ui-slider/tar.gz/ff9645b6380c95fa653608966c6de14b3dc76a2e"
 
 angular-youtube-mb@^1.0.3:
   version "1.0.3"
@@ -2555,6 +2567,10 @@ jodid25519@^1.0.0:
   resolved "https://registry.yarnpkg.com/jodid25519/-/jodid25519-1.0.2.tgz#06d4912255093419477d425633606e0e90782967"
   dependencies:
     jsbn "~0.1.0"
+
+jquery-ui@^1.12.1:
+  version "1.12.1"
+  resolved "https://registry.yarnpkg.com/jquery-ui/-/jquery-ui-1.12.1.tgz#bcb4045c8dd0539c134bc1488cdd3e768a7a9e51"
 
 jquery@2.1.4:
   version "2.1.4"

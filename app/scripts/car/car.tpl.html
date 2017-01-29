@@ -10,6 +10,7 @@
         <div class="col-xl-3 col-lg-3 col-sm-4 col-xs-12" style="margin-bottom:40px;">
             <div class="info-with-text">
                 <h4>Car Details</h4>
+
                 <img class="car-img" ng-src="{{selectedCarImage}}" style="background-color: white;">
 
                 <h2 class="car-title">{{selectedCar.name}}</h2>
@@ -130,109 +131,157 @@
                 <tabset justified="true">
                     <tab heading="Trip">
                         <div class="row slider-row">
-                            <span class="col-xs-8 col-sm-8 col-md-8 slider-label">Total Trip Distance:</span>
+                            <span class="col-xs-12 slider-label">Total Trip Distance:</span>
 
-                            <div class="col-xs-8 col-sm-8 col-md-8 slider-bar">
-                                <div ui-slider="{start:invalidateResults}" min="0" max="2000"
-                                     ng-model="calcParams.distanceToTravel"></div>
+                            <div class="col-xs-12 slider-bar">
+                                <div class="unit-label">
+                                    km
+                                    <div class="alternative-value">
+                                        (<span ng-bind="calcParams.distanceToTravel / 1.60934 | number:1"></span> miles)
+                                    </div>
+                                </div>
+                                <md-slider-container>
+                                    <md-slider flex min="0" max="2000" ng-model="calcParams.distanceToTravel"
+                                               aria-label="distanceToTravel" id="distanceToTravel" class="md-primary"></md-slider>
+                                    <md-input-container>
+                                        <input flex type="number" ng-model="calcParams.distanceToTravel" ng-change="recalcRange()"
+                                               aria-label="distanceToTravel" aria-controls="distanceToTravel">
+                                    </md-input-container>
+                                </md-slider-container>
                             </div>
-                            <span class="col-xs-4 col-sm-4 col-md-4 slider-value">
-                                <input type="number" ng-model="calcParams.distanceToTravel" ng-change="recalcRange()"
-                                       min="0" max="2000"></input> km <br>
-                                <span class="alternative-value">(<span
-                                        ng-bind="calcParams.distanceToTravel / 1.60934 | number:1"></span> miles)</span>
-                            </span>
+
                         </div>
                         <div class="row slider-row">
-                                <span class="col-xs-8 col-sm-8 col-md-8 slider-label">Cruise Speed: <a
+                                <span class="col-xs-12 slider-label">Cruise Speed: <a
                                         href="#/knowhow/speed"><span
                                         class="fa fa-question-circle"></span></a></span>
 
-                            <div class="col-xs-8 col-sm-8 col-md-8 slider-bar">
-                                <div ui-slider="{start:invalidateResults}" min="0" max="{{calcParams.carTopSpeed}}"
-                                     ng-model="calcParams.drivingSpeed"></div>
+                            <div class="col-xs-12 slider-bar">
+                                <div class="unit-label">
+                                    km/h
+                                    <div class="alternative-value">
+                                        (<span ng-bind="calcParams.drivingSpeed / 1.60934 | number:1"></span> mph)
+                                    </div>
+                                </div>
+                                <md-slider-container>
+                                    <md-slider flex min="0" max="{{calcParams.carTopSpeed}}" ng-model="calcParams.drivingSpeed"
+                                               aria-label="drivingSpeed" id="drivingSpeed" class="md-primary"></md-slider>
+                                    <md-input-container>
+                                        <input flex type="number" ng-model="calcParams.drivingSpeed" ng-change="recalcRange()"
+                                               aria-label="drivingSpeed" aria-controls="drivingSpeed">
+                                    </md-input-container>
+                                </md-slider-container>
                             </div>
-                            <span class="col-xs-4 col-sm-4 col-md-4 slider-value">
-                                <input type="number" ng-model="calcParams.drivingSpeed" ng-change="recalcRange()"
-                                       min="0" max="{{calcParams.carTopSpeed}}"></input> km/h <br>
-                                <span class="alternative-value">(<span
-                                        ng-bind="calcParams.drivingSpeed / 1.60934 | number:1"></span> mph)</span>
-                            </span>
                         </div>
                         <div class="row slider-row">
-                                <span class="col-xs-8 col-sm-8 col-md-8 slider-label">Altitude Difference: <a
+                                <span class="col-xs-12 slider-label">Altitude Difference: <a
                                         href="#/knowhow/terrain"><span
                                         class="fa fa-question-circle"></span></a></span>
 
-                            <div class="col-xs-8 col-sm-8 col-md-8 slider-bar">
-                                <div ui-slider="{start:invalidateResults}" min="-2000" max="2000"
-                                     ng-model="calcParams.altitudeDifferenceM"></div>
+                            <div class="col-xs-12 slider-bar">
+                                <div class="unit-label">
+                                    m
+                                    <div class="alternative-value">
+                                        (<span ng-bind="calcParams.altitudeDifferenceM * 3.28084 | number:0"></span> feet)
+                                    </div>
+                                </div>
+                                <md-slider-container>
+                                    <md-slider flex min="-2000" max="2000" ng-model="calcParams.altitudeDifferenceM"
+                                               aria-label="altitudeDifferenceM" id="altitudeDifferenceM" class="md-primary"></md-slider>
+                                    <md-input-container>
+                                        <input flex type="number" ng-model="calcParams.altitudeDifferenceM" ng-change="recalcRange()"
+                                               aria-label="altitudeDifferenceM" aria-controls="altitudeDifferenceM">
+                                    </md-input-container>
+                                </md-slider-container>
                             </div>
-                            <span class="col-xs-4 col-sm-4 col-md-4 slider-value">
-                                <input type="number" ng-model="calcParams.altitudeDifferenceM" ng-change="recalcRange()"
-                                       min="-2000" max="2000"></input> m <br>
-                                <span class="alternative-value">(<span
-                                        ng-bind="calcParams.altitudeDifferenceM * 3.28084 | number:0"></span> feet)</span>
-                            </span>
+
                         </div>
                         <div class="row slider-row">
-                                <span class="col-xs-8 col-sm-8 col-md-8 slider-label">Conditions Adjustment (road, tires, driving style, wind): <a
+                                <span class="col-xs-12 slider-label">Conditions Adjustment (road, tires, driving style, wind): <a
                                         href="#/knowhow/drivingStyle"><span
                                         class="fa fa-question-circle"></span></a></span>
 
-                            <div class="col-xs-8 col-sm-8 col-md-8 slider-bar">
-                                <div ui-slider="{start:invalidateResults}" min="80" max="250"
-                                     ng-model="calcParams.accelerationBreaking"></div>
+                            <div class="col-xs-12 slider-bar">
+                                <div class="unit-label">
+                                    %
+                                    <div class="alternative-value">
+                                        (factor = <span ng-bind="calcParams.accelerationBreaking / 100 | number:2"></span>)
+                                    </div>
+                                </div>
+                                <md-slider-container>
+                                    <md-slider flex min="80" max="250" ng-model="calcParams.accelerationBreaking"
+                                               aria-label="accelerationBreaking" id="accelerationBreaking" class="md-primary"></md-slider>
+                                    <md-input-container>
+                                        <input flex type="number" ng-model="calcParams.accelerationBreaking" ng-change="recalcRange()"
+                                               aria-label="accelerationBreaking" aria-controls="accelerationBreaking">
+                                    </md-input-container>
+                                </md-slider-container>
                             </div>
-                            <span class="col-xs-4 col-sm-4 col-md-4 slider-value">
-                                <input type="number" ng-model="calcParams.accelerationBreaking"
-                                       ng-change="recalcRange()" min="80" max="250"></input> %<br>
-                                <span class="alternative-value">(factor = <span
-                                        ng-bind="calcParams.accelerationBreaking / 100 | number:2"></span>)</span>
-                            </span>
+
                         </div>
                         <div class="row slider-row">
-                                <span class="col-xs-8 col-sm-8 col-md-8 slider-label">Start Journey with State of Charge: <a
+                                <span class="col-xs-12 slider-label">Start Journey with State of Charge: <a
                                         href="#/knowhow/SoC"><span class="fa fa-question-circle"></span></a></span>
 
-                            <div class="col-xs-8 col-sm-8 col-md-8 slider-bar">
-                                <div ui-slider="{start:invalidateResults}" min="0" max="100"
-                                     ng-model="calcParams.firstCharge"></div>
+                            <div class="col-xs-12 slider-bar">
+                                <div class="unit-label">
+                                    %
+                                    <div class="alternative-value">
+                                        (<span ng-bind="(selectedCar.battery * (calcParams.brickProtectionPercent / 100)) + (calcParams.firstCharge * (1 - (calcParams.brickProtectionPercent / 100)) * selectedCar.battery / 100) | number:1"></span> kWh)
+                                    </div>
+                                </div>
+                                <md-slider-container>
+                                    <md-slider flex min="0" max="100" ng-model="calcParams.firstCharge"
+                                               aria-label="firstCharge" id="firstCharge" class="md-primary"></md-slider>
+                                    <md-input-container>
+                                        <input flex type="number" ng-model="calcParams.firstCharge" ng-change="recalcRange()"
+                                               aria-label="firstCharge" aria-controls="firstCharge">
+                                    </md-input-container>
+                                </md-slider-container>
                             </div>
-                        <span class="col-xs-4 col-sm-4 col-md-4 slider-value">
-                            <input type="number" ng-model="calcParams.firstCharge" ng-change="recalcRange()" min="0"
-                                   max="100"></input>%<br>
-                            <span class="alternative-value">(<span
-                                    ng-bind="(selectedCar.battery * (calcParams.brickProtectionPercent / 100)) + (calcParams.firstCharge * (1 - (calcParams.brickProtectionPercent / 100)) * selectedCar.battery / 100) | number:1"></span> kWh)</span>
-                        </span>
+
                         </div>
                         <div class="row slider-row">
-                            <span class="col-xs-8 col-sm-8 col-md-8 slider-label">Charges during Trip:</span>
+                            <span class="col-xs-12 slider-label">Charges during Trip:</span>
 
-                            <div class="col-xs-8 col-sm-8 col-md-8 slider-bar">
-                                <div ui-slider="{start:invalidateResults}" min="0" max="100"
-                                     ng-model="calcParams.maxBatteryChargePercent"></div>
+                            <div class="col-xs-12 slider-bar">
+                                <div class="unit-label">
+                                    %
+                                    <div class="alternative-value">
+                                        (<span ng-bind="(selectedCar.battery * (calcParams.brickProtectionPercent / 100)) + (selectedCar.battery * (1 - (calcParams.brickProtectionPercent / 100)) * calcParams.maxBatteryChargePercent / 100) | number:1"></span> kWh)
+                                    </div>
+                                </div>
+                                <md-slider-container>
+                                    <md-slider flex min="0" max="100" ng-model="calcParams.maxBatteryChargePercent"
+                                               aria-label="maxBatteryChargePercent" id="maxBatteryChargePercent" class="md-primary"></md-slider>
+                                    <md-input-container>
+                                        <input flex type="number" ng-model="calcParams.maxBatteryChargePercent" ng-change="recalcRange()"
+                                               aria-label="maxBatteryChargePercent" aria-controls="maxBatteryChargePercent">
+                                    </md-input-container>
+                                </md-slider-container>
                             </div>
-                        <span class="col-xs-4 col-sm-4 col-md-4 slider-value">
-                            <input type="number" ng-model="calcParams.maxBatteryChargePercent" ng-change="recalcRange()"
-                                   min="0" max="100"></input>% <br>
-                            <span class="alternative-value">
-                                (<span
-                                    ng-bind="(selectedCar.battery * (calcParams.brickProtectionPercent / 100)) + (selectedCar.battery * (1 - (calcParams.brickProtectionPercent / 100)) * calcParams.maxBatteryChargePercent / 100) | number:1"></span>  kWh)</span>
-                        </span>
+
                         </div>
                         <div class="row slider-row">
-                            <span class="col-xs-8 col-sm-8 col-md-8 slider-label">Minimum Range Reserve:</span>
+                            <span class="col-xs-12 slider-label">Minimum Range Reserve:</span>
 
-                            <div class="col-xs-8 col-sm-8 col-md-8 slider-bar">
-                                <div ui-slider="{start:invalidateResults}" min="0" max="100"
-                                     ng-model="calcParams.reservePercent"></div>
+                            <div class="col-xs-12 slider-bar">
+                                <div class="unit-label">
+                                    %
+                                    <div class="alternative-value">
+                                        (<span ng-bind="(selectedCar.battery * (calcParams.brickProtectionPercent / 100)) + (selectedCar.battery * (1 - (calcParams.brickProtectionPercent / 100)) * calcParams.reservePercent / 100) | number:1"></span> kWh)
+                                    </div>
+                                </div>
+                                <md-slider-container>
+                                    <md-slider flex min="0" max="100" ng-model="calcParams.reservePercent"
+                                               aria-label="reservePercent" id="reservePercent" class="md-primary"></md-slider>
+                                    <md-input-container>
+                                        <input flex type="number" ng-model="calcParams.reservePercent | number:0" ng-change="recalcRange()"
+                                               aria-label="reservePercent" aria-controls="reservePercent">
+                                    </md-input-container>
+                                </md-slider-container>
                             </div>
-                            <span class="col-xs-4 col-sm-4 col-md-4 slider-value">
-                                <span ng-bind="(selectedCar.battery * (calcParams.brickProtectionPercent / 100)) + (selectedCar.battery * (1 - (calcParams.brickProtectionPercent / 100)) * calcParams.reservePercent / 100) / selectedCar.battery * selectedCar.range | number:0"></span> km<br>
-                                <span class="alternative-value">(<span
-                                        ng-bind="(selectedCar.battery * (calcParams.brickProtectionPercent / 100)) + (selectedCar.battery * (1 - (calcParams.brickProtectionPercent / 100)) * calcParams.reservePercent / 100) | number:1"></span> kWh)</span>
-                            </span>
+
                         </div>
                     </tab>
                     <tab heading="Infrastructure">
@@ -261,18 +310,25 @@
                         </div>
 
                         <div class="row slider-row">
-                            <span class="col-xs-8 col-sm-8 col-md-8 slider-label">Choose Custom Charging Power:</span>
+                            <span class="col-xs-12 slider-label">Choose Custom Charging Power:</span>
 
-                            <div class="col-xs-8 col-sm-8 col-md-8 slider-bar">
-                                <div ui-slider="{start:invalidateResults}" min="0" max="200" step="0.1" use-decimals
-                                     ng-model="calcParams.chargingPower"></div>
+                            <div class="col-xs-12 slider-bar">
+                                <div class="unit-label">
+                                    kW
+                                    <div class="alternative-value">
+                                        (<span ng-bind="calcParams.chargingPower / selectedCar.battery | number:1"></span> C)
+                                    </div>
+                                </div>
+                                <md-slider-container>
+                                    <md-slider flex min="0" max="200" ng-model="calcParams.chargingPower"
+                                               aria-label="chargingPower" id="chargingPower" class="md-primary"></md-slider>
+                                    <md-input-container>
+                                        <input flex type="number" ng-model="calcParams.chargingPower" ng-change="recalcRange()"
+                                               aria-label="chargingPower" aria-controls="chargingPower">
+                                    </md-input-container>
+                                </md-slider-container>
                             </div>
-                            <span class="col-xs-4 col-sm-4 col-md-4 slider-value">
-                                <input type="number" ng-model="calcParams.chargingPower" ng-change="recalcRange()"
-                                       min="0" max="200"></input> kW<br>
-                                <span class="alternative-value">(<span
-                                        ng-bind="calcParams.chargingPower / selectedCar.battery | number:1"></span> C)</span>
-                            </span>
+
                         </div>
                     </tab>
                     <tab heading="Weather">
@@ -282,86 +338,119 @@
                                    ng-click="invalidateResults()"/> Pre-heat/cool cabin
                         </div>
                         <div class="row slider-row">
-                                <span class="col-xs-8 col-sm-8 col-md-8 slider-label">Temperature: <a
+                                <span class="col-xs-12 slider-label">Temperature: <a
                                         href="#/knowhow/temperature"><span
                                         class="fa fa-question-circle"></span></a></span>
 
-                            <div class="col-xs-8 col-sm-8 col-md-8 slider-bar">
-                                <div ui-slider="{start:invalidateResults}" min="-40" max="40"
-                                     ng-model="calcParams.temperature"></div>
+                            <div class="col-xs-12 slider-bar">
+                                <div class="unit-label">
+                                    °C
+                                    <div class="alternative-value">
+                                        (<span ng-bind="(calcParams.temperature * 9 / 5) + 32 | number:1"></span> °F)
+                                    </div>
+                                </div>
+                                <md-slider-container>
+                                    <md-slider flex min="-40" max="40" ng-model="calcParams.temperature"
+                                               aria-label="temperature" id="temperature" class="md-primary"></md-slider>
+                                    <md-input-container>
+                                        <input flex type="number" ng-model="calcParams.temperature" ng-change="recalcRange()"
+                                               aria-label="temperature" aria-controls="temperature">
+                                    </md-input-container>
+                                </md-slider-container>
                             </div>
-                            <span class="col-xs-4 col-sm-4 col-md-4 slider-value">
-                                <input type="number" ng-model="calcParams.temperature" ng-change="recalcRange()"
-                                       min="-40" max="40"></input> °C<br>
-                                <span class="alternative-value">(<span
-                                        ng-bind="(calcParams.temperature * 9 / 5) + 32 | number:1"></span> °F)</span>
-                            </span>
+
                         </div>
                         <div class="row slider-row">
                                 <span class="col-xs-8 col-sm-8 col-md-8 slider-label">Rain: <a
                                         href="#/knowhow/rain"><span
                                         class="fa fa-question-circle"></span></a></span>
 
-                            <div class="col-xs-8 col-sm-8 col-md-8 slider-bar">
-                                <div ui-slider="{start:invalidateResults}" min="0" max="80"
-                                     ng-model="calcParams.rain"></div>
+                            <div class="col-xs-12 slider-bar">
+                                <div class="unit-label">
+                                    mm/h
+                                    <div class="alternative-value">
+                                        (<span ng-bind="calcParams.rain"></span> per h)
+                                    </div>
+                                </div>
+                                <md-slider-container>
+                                    <md-slider flex min="0" max="80" ng-model="calcParams.rain"
+                                               aria-label="rain" id="rain" class="md-primary"></md-slider>
+                                    <md-input-container>
+                                        <input flex type="number" ng-model="calcParams.rain" ng-change="recalcRange()"
+                                               aria-label="rain" aria-controls="rain">
+                                    </md-input-container>
+                                </md-slider-container>
                             </div>
-                            <span class="col-xs-4 col-sm-4 col-md-4 slider-value">
-                                <input type="number" ng-model="calcParams.rain" ng-change="recalcRange()" min="0"
-                                       max="80"></input> mm/h<br>
-                                <span class="alternative-value">(<span
-                                        ng-bind="calcParams.rain"></span> l/m<sup>2</sup> per h)</span>
-                            </span>
+
                         </div>
                     </tab>
                     <tab heading="Car">
                         <div class="row slider-row">
-                                <span class="col-xs-8 col-sm-8 col-md-8 slider-label">Charging Loss: <a
+                                <span class="col-xs-12 slider-label">Charging Loss: <a
                                         href="#/knowhow/chargingLoss"><span
                                         class="fa fa-question-circle"></span></a></span>
 
-                            <div class="col-xs-8 col-sm-8 col-md-8 slider-bar">
-                                <div ui-slider="{start:invalidateResults}" min="0" max="30"
-                                     ng-model="calcParams.chargingLossPercent"></div>
+                            <div class="col-xs-12 slider-bar">
+                                <div class="unit-label">
+                                    %
+                                    <div class="alternative-value">
+                                        (<span ng-bind="calcParams.chargingPower * calcParams.chargingLossPercent / 100 | number:1"></span> kW)
+                                    </div>
+                                </div>
+                                <md-slider-container>
+                                    <md-slider flex min="0" max="30" ng-model="calcParams.chargingLossPercent"
+                                               aria-label="chargingLossPercent" id="chargingLossPercent" class="md-primary"></md-slider>
+                                    <md-input-container>
+                                        <input flex type="number" ng-model="calcParams.chargingLossPercent" ng-change="recalcRange()"
+                                               aria-label="chargingLossPercent" aria-controls="chargingLossPercent">
+                                    </md-input-container>
+                                </md-slider-container>
                             </div>
-                        <span class="col-xs-4 col-sm-4 col-md-4 slider-value">
-                            <input type="number" ng-model="calcParams.chargingLossPercent" ng-change="recalcRange()"
-                                   min="0" max="30"></input>%<br>
-                            <span class="alternative-value">(<span
-                                    ng-bind="calcParams.chargingPower * calcParams.chargingLossPercent / 100 | number:1"></span> kW)</span>
-                        </span>
+
                         </div>
                         <div class="row slider-row">
-                                <span class="col-xs-8 col-sm-8 col-md-8 slider-label">Maximum usable Charging Power: <a
+                                <span class="col-xs-12 slider-label">Maximum usable Charging Power: <a
                                         href="#/knowhow/C"><span class="fa fa-question-circle"></span></a></span>
 
-                            <div class="col-xs-8 col-sm-8 col-md-8 slider-bar">
-                                <div ui-slider="{start:invalidateResults}" min="0.0" max="10.0" step="0.1"
-                                     use-decimals
-                                     ng-model="calcParams.maxC"></div>
+                            <div class="col-xs-12 slider-bar">
+                                <div class="unit-label">
+                                    C
+                                    <div class="alternative-value">
+                                        (<span ng-bind="calcParams.maxC * selectedCar.battery | number:0"></span> kW)
+                                    </div>
+                                </div>
+                                <md-slider-container>
+                                    <md-slider flex min="0" max="10" ng-model="calcParams.maxC"
+                                               aria-label="maxC" id="maxC" class="md-primary"></md-slider>
+                                    <md-input-container>
+                                        <input flex type="number" ng-model="calcParams.maxC" ng-change="recalcRange()"
+                                               aria-label="maxC" aria-controls="maxC">
+                                    </md-input-container>
+                                </md-slider-container>
                             </div>
-                        <span class="col-xs-4 col-sm-4 col-md-4 slider-value">
-                            <input type="number" ng-model="calcParams.maxC" ng-change="recalcRange()" min="0.0"
-                                   max="10.0"></input> C <br>
-                            <span class="alternative-value">(<span
-                                    ng-bind="calcParams.maxC * selectedCar.battery | number:0"></span> kW)</span>
-                        </span>
+
                         </div>
                         <div class="row slider-row">
-                                <span class="col-xs-8 col-sm-8 col-md-8 slider-label">Battery Brick Protection: <a
+                                <span class="col-xs-12 slider-label">Battery Brick Protection: <a
                                         href="#/knowhow/brickProtection"><span class="fa fa-question-circle"></span></a></span>
 
-                            <div class="col-xs-8 col-sm-8 col-md-8 slider-bar">
-                                <div ui-slider="{start:invalidateResults}" min="0.0" max="10.0" step="0.1"
-                                     use-decimals
-                                     ng-model="calcParams.brickProtectionPercent"></div>
+                            <div class="col-xs-12 slider-bar">
+                                <div class="unit-label">
+                                    %
+                                    <div class="alternative-value">
+                                        (<span ng-bind="calcParams.brickProtectionPercent * selectedCar.battery / 100 | number:0"></span> kWh)
+                                    </div>
+                                </div>
+                                <md-slider-container>
+                                    <md-slider flex min="0" max="10" ng-model="calcParams.brickProtectionPercent"
+                                               aria-label="brickProtectionPercent" id="brickProtectionPercent" class="md-primary"></md-slider>
+                                    <md-input-container>
+                                        <input flex type="number" ng-model="calcParams.brickProtectionPercent" ng-change="recalcRange()"
+                                               aria-label="brickProtectionPercent" aria-controls="brickProtectionPercent">
+                                    </md-input-container>
+                                </md-slider-container>
                             </div>
-                        <span class="col-xs-4 col-sm-4 col-md-4 slider-value">
-                            <input type="number" ng-model="calcParams.brickProtectionPercent" ng-change="recalcRange()"
-                                   min="0.0" max="10.0"></input>%<br>
-                            <span class="alternative-value">(<span
-                                    ng-bind="calcParams.brickProtectionPercent * selectedCar.battery / 100 | number:0"></span> kWh)</span>
-                        </span>
+
                         </div>
                     </tab>
                 </tabset>
@@ -501,16 +590,7 @@
                                 </ui-gmap-google-map>
                             </div>
                         </div>
-                        <h4 style="margin-top:2em;">Energy Requirements</h4>
 
-                        <div ng-show="consumptionChartConfig">
-                            <highchart id="consumption" config="consumptionChartConfig"></highchart>
-                        </div>
-                        <h4 style="margin-top:2em;">Time/Distance Plot</h4>
-
-                        <div ng-show="chartConfig">
-                            <highchart id="plot" config="chartConfig"></highchart>
-                        </div>
                         <h4 style="margin-top:2em;">Car Specific Parameters:</h4>
                         <table class="quartett-card-techpoints"
                                 >

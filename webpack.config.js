@@ -50,8 +50,7 @@ var config = {
         port: 3000
     },
 
-    // support source maps
-    devtool: TARGET === "DEV" ? "#cheap-module-eval-source-map" : "none"
+    devtool: "eval-source-map"
 
 };
 
