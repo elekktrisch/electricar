@@ -581,13 +581,23 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12" style="height:380px;padding-top:10px;">
-                                <ui-gmap-google-map center='map.center' zoom='map.zoom'>
-                                    <ui-gmap-circle ng-repeat="c in circles track by c.id" center="c.center"
-                                                    stroke="c.stroke"
-                                                    fill="c.fill" radius="c.radius"
-                                                    visible="c.visible" geodesic="c.geodesic" editable="c.editable"
-                                                    draggable="c.draggable" clickable="c.clickable"></ui-gmap-circle>
-                                </ui-gmap-google-map>
+                                <div ng-if="map" map-lazy-load="https://maps.google.com/maps/api/js"
+                                     map-lazy-load-params="{{googleMapsUrl}}" class="angular-google-map-container">
+                                    <ng-map center="{{map.center}}" zoom="5" style="height: 360px;">
+
+                                        <shape id="circle" name="circle" centered="true" ng-repeat="c in circles track by c.id"
+                                               visible="{{c.visible}}"
+                                               fill-color="{{c.fill.color}}"
+                                               stroke-color='{{c.stroke.color}}'
+                                               stroke-opacity="0.8"
+                                               stroke-weight="2"
+                                               center="current-position"
+                                               radius="{{c.radius}}"
+                                               editable="false"></shape>
+
+                                        </shape>
+                                    </ng-map>
+                                </div>
                             </div>
                         </div>
 

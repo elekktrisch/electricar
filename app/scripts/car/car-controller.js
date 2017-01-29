@@ -1,6 +1,7 @@
 export class CarCtrl {
     constructor($scope, $q, $location, $routeParams, /*uiGmapGoogleMapApi,*/ Circles, Cars, Plugs, Calculator, Settings) {
         $scope.carId = $routeParams.id;
+        $scope.googleMapsUrl = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDQAddfsGAlCCbkoevn5OF1JD2HbeVN9fQ";
         function queryCars() {
             return Cars.query(function (cars) {
                 $scope.cars = _.sortBy(cars, ['battery']);
@@ -75,22 +76,19 @@ export class CarCtrl {
                         latitude: position.coords.latitude,
                         longitude: position.coords.longitude
                     };
-                    deferred.resolve(center);
+                    deferred.resolve([center.latitude, center.longitude]);
                 }), function (reason) {
                     console.log(JSON.stringify(reason));
-                    deferred.resolve(zurich);
+                    deferred.resolve([zurich.latitude, zurich.longitude]);
                 });
             } else {
                 console.log('no geolocation found!');
-                deferred.resolve(zurich);
+                deferred.resolve([zurich.latitude, zurich.longitude]);
             }
             return deferred.promise;
         }
 
         function drawMap(center) {
-            uiGmapGoogleMapApi.then(function (/*maps*/) {
-                $scope.map = {center: center, zoom: 5};
-            });
             $scope.rangeCircle = Circles.createCircle(1, 'One-Way Range', center, '#00aaaa');
             $scope.returnCircle = Circles.createCircle(2, 'Return Range', center, '#000000');
             $scope.dayRangeCircle = Circles.createCircle(3, 'Trip Distance', center, '#6666ff');
@@ -100,6 +98,7 @@ export class CarCtrl {
                 $scope.returnCircle,
                 $scope.dayRangeCircle
             ];
+            $scope.map = {center: center, zoom: 5};
         }
 
 

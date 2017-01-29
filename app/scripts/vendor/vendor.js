@@ -1,3 +1,4 @@
+require("core-js");
 require("expose?$!jquery");
 require("expose?_!lodash");
 require("expose?jQuery!jquery");
