@@ -22,7 +22,7 @@
                     ng-click="isCollapsed = !isCollapsed" data-target=".navbar-main-collapse">
                 <i class="fa fa-bars"></i>
             </button>
-            <a class="navbar-brand page-scroll" href="#/intro">
+            <a class="navbar-brand page-scroll" href="#!/intro">
                 <i class="fa fa-bolt"></i> <span class="light" ng-bind="titlePrefix"></span><span ng-bind="titlePostfix"></span>
             </a>
         </div>
@@ -30,10 +30,10 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div collapse="isCollapsed" class="collapse navbar-collapse navbar-right navbar-main-collapse">
             <ul class="nav navbar-nav">
-                <li ng-class="{'active':isPath('/main')}" ng-click="isCollapsed = !isCollapsed"><a href="#/main">Overview</a>
+                <li ng-class="{'active':isPath('/main')}" ng-click="isCollapsed = !isCollapsed"><a href="#!/main">Overview</a>
                 </li>
                 <li class="dropdown hidden-xs" ng-class="{'active':isPath('/car')}">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Car
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Car
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu" ng-click="isCollapsed = !isCollapsed" style="height:500px;overflow:auto;">
                         <li ng-repeat="car in carsSortedByName" style="cursor:pointer;">
@@ -42,8 +42,8 @@
                         </li>
                     </ul>
                 </li>
-                <li ng-class="{'active':isPath('/knowhow')}"><a href="#/knowhow">Experts</a></li>
-                <li ng-class="{'active':isPath('/about')}"><a href="#/about">About</a></li>
+                <li ng-class="{'active':isPath('/knowhow')}"><a href="#!/knowhow">Experts</a></li>
+                <li ng-class="{'active':isPath('/about')}"><a href="#!/about">About</a></li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -79,7 +79,7 @@
             <a target="_blank" href="http://www.goingelectric.de">Goingelectric</a> forums have proven very helpful.
         </p>
 
-        <p>see also <a class="btn btn-default" href="#/about">about this page</a></p>
+        <p>see also <a class="btn btn-default" href="#!/about">about this page</a></p>
 
     </div>
 </footer>
