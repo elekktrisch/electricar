@@ -141,7 +141,7 @@
                                     </div>
                                 </div>
                                 <md-slider-container>
-                                    <md-slider flex min="0" max="2000" ng-model="calcParams.distanceToTravel"
+                                    <md-slider ng-change="recalcRange()" flex min="0" max="2000" ng-model="calcParams.distanceToTravel"
                                                aria-label="distanceToTravel" id="distanceToTravel" class="md-primary"></md-slider>
                                     <md-input-container>
                                         <input flex type="number" ng-model="calcParams.distanceToTravel" ng-change="recalcRange()"
@@ -164,7 +164,7 @@
                                     </div>
                                 </div>
                                 <md-slider-container>
-                                    <md-slider flex min="0" max="{{calcParams.carTopSpeed}}" ng-model="calcParams.drivingSpeed"
+                                    <md-slider ng-change="recalcRange()" flex min="0" max="{{calcParams.carTopSpeed}}" ng-model="calcParams.drivingSpeed"
                                                aria-label="drivingSpeed" id="drivingSpeed" class="md-primary"></md-slider>
                                     <md-input-container>
                                         <input flex type="number" ng-model="calcParams.drivingSpeed" ng-change="recalcRange()"
@@ -186,7 +186,7 @@
                                     </div>
                                 </div>
                                 <md-slider-container>
-                                    <md-slider flex min="-2000" max="2000" ng-model="calcParams.altitudeDifferenceM"
+                                    <md-slider ng-change="recalcRange()" flex min="-2000" max="2000" ng-model="calcParams.altitudeDifferenceM"
                                                aria-label="altitudeDifferenceM" id="altitudeDifferenceM" class="md-primary"></md-slider>
                                     <md-input-container>
                                         <input flex type="number" ng-model="calcParams.altitudeDifferenceM" ng-change="recalcRange()"
@@ -209,7 +209,7 @@
                                     </div>
                                 </div>
                                 <md-slider-container>
-                                    <md-slider flex min="80" max="250" ng-model="calcParams.accelerationBreaking"
+                                    <md-slider ng-change="recalcRange()" flex min="80" max="250" ng-model="calcParams.accelerationBreaking"
                                                aria-label="accelerationBreaking" id="accelerationBreaking" class="md-primary"></md-slider>
                                     <md-input-container>
                                         <input flex type="number" ng-model="calcParams.accelerationBreaking" ng-change="recalcRange()"
@@ -231,7 +231,7 @@
                                     </div>
                                 </div>
                                 <md-slider-container>
-                                    <md-slider flex min="0" max="100" ng-model="calcParams.firstCharge"
+                                    <md-slider ng-change="recalcRange()" flex min="0" max="100" ng-model="calcParams.firstCharge"
                                                aria-label="firstCharge" id="firstCharge" class="md-primary"></md-slider>
                                     <md-input-container>
                                         <input flex type="number" ng-model="calcParams.firstCharge" ng-change="recalcRange()"
@@ -252,7 +252,7 @@
                                     </div>
                                 </div>
                                 <md-slider-container>
-                                    <md-slider flex min="0" max="100" ng-model="calcParams.maxBatteryChargePercent"
+                                    <md-slider ng-change="recalcRange()" flex min="0" max="100" ng-model="calcParams.maxBatteryChargePercent"
                                                aria-label="maxBatteryChargePercent" id="maxBatteryChargePercent" class="md-primary"></md-slider>
                                     <md-input-container>
                                         <input flex type="number" ng-model="calcParams.maxBatteryChargePercent" ng-change="recalcRange()"
@@ -273,7 +273,7 @@
                                     </div>
                                 </div>
                                 <md-slider-container>
-                                    <md-slider flex min="0" max="100" ng-model="calcParams.reservePercent"
+                                    <md-slider ng-change="recalcRange()" flex min="0" max="100" ng-model="calcParams.reservePercent"
                                                aria-label="reservePercent" id="reservePercent" class="md-primary"></md-slider>
                                     <md-input-container>
                                         <input flex type="number" ng-model="calcParams.reservePercent" ng-change="recalcRange()"
@@ -320,7 +320,7 @@
                                     </div>
                                 </div>
                                 <md-slider-container>
-                                    <md-slider flex min="0" max="200" ng-model="calcParams.chargingPower"
+                                    <md-slider ng-change="recalcRange()" flex min="0" max="200" ng-model="calcParams.chargingPower"
                                                aria-label="chargingPower" id="chargingPower" class="md-primary"></md-slider>
                                     <md-input-container>
                                         <input flex type="number" ng-model="calcParams.chargingPower" ng-change="recalcRange()"
@@ -350,7 +350,7 @@
                                     </div>
                                 </div>
                                 <md-slider-container>
-                                    <md-slider flex min="-40" max="40" ng-model="calcParams.temperature"
+                                    <md-slider ng-change="recalcRange()" flex min="-40" max="40" ng-model="calcParams.temperature"
                                                aria-label="temperature" id="temperature" class="md-primary"></md-slider>
                                     <md-input-container>
                                         <input flex type="number" ng-model="calcParams.temperature" ng-change="recalcRange()"
@@ -373,7 +373,7 @@
                                     </div>
                                 </div>
                                 <md-slider-container>
-                                    <md-slider flex min="0" max="80" ng-model="calcParams.rain"
+                                    <md-slider ng-change="recalcRange()" flex min="0" max="80" ng-model="calcParams.rain"
                                                aria-label="rain" id="rain" class="md-primary"></md-slider>
                                     <md-input-container>
                                         <input flex type="number" ng-model="calcParams.rain" ng-change="recalcRange()"
@@ -398,7 +398,7 @@
                                     </div>
                                 </div>
                                 <md-slider-container>
-                                    <md-slider flex min="0" max="30" ng-model="calcParams.chargingLossPercent"
+                                    <md-slider ng-change="recalcRange()" flex min="0" max="30" ng-model="calcParams.chargingLossPercent"
                                                aria-label="chargingLossPercent" id="chargingLossPercent" class="md-primary"></md-slider>
                                     <md-input-container>
                                         <input flex type="number" ng-model="calcParams.chargingLossPercent" ng-change="recalcRange()"
@@ -420,7 +420,7 @@
                                     </div>
                                 </div>
                                 <md-slider-container>
-                                    <md-slider flex min="0" max="10" step="0.1" ng-model="calcParams.maxC"
+                                    <md-slider ng-change="recalcRange()" flex min="0" max="10" step="0.1" ng-model="calcParams.maxC"
                                                aria-label="maxC" id="maxC" class="md-primary"></md-slider>
                                     <md-input-container>
                                         <input flex type="number" ng-model="calcParams.maxC" ng-change="recalcRange()"
@@ -442,7 +442,7 @@
                                     </div>
                                 </div>
                                 <md-slider-container>
-                                    <md-slider flex min="0" max="10" step="0.1" ng-model="calcParams.brickProtectionPercent"
+                                    <md-slider ng-change="recalcRange()" flex min="0" max="10" step="0.1" ng-model="calcParams.brickProtectionPercent"
                                                aria-label="brickProtectionPercent" id="brickProtectionPercent" class="md-primary"></md-slider>
                                     <md-input-container>
                                         <input flex type="number" ng-model="calcParams.brickProtectionPercent" ng-change="recalcRange()"
