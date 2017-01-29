@@ -1,9 +1,5 @@
-/*global _:false*/
-'use strict';
-
-angular.module('main')
-    .controller('MainCtrl', function ($scope, $window, $location, Cars, DomainInfo) {
-
+export class MainCtrl {
+    constructor($scope, $location, Cars, DomainInfo) {
         $scope.titlePrefix = DomainInfo.titlePrefix();
         $scope.titlePostfix = DomainInfo.titlePostfix();
 
@@ -21,5 +17,6 @@ angular.module('main')
         $scope.isPath = function(path) {
             return $location.path().indexOf(path) !== -1;
         };
-    });
+    }
+}
 

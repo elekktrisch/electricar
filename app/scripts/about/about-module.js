@@ -1,3 +1,5 @@
-'use strict';
+import angular from 'angular';
+import {AboutCtrl} from "./about-controller";
 
-angular.module('about', []);
+export default angular.module('about', [])
+    .controller("AboutCtrl", AboutCtrl)

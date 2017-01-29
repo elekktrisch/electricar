@@ -1,10 +1,8 @@
-'use strict';
-
-angular.module('car')
-    .factory('Settings', function () {
+export class Settings {
+    static factory() {
         var newSettings = {
             presetTrip: 'weekend',
-            resetCommonSettings: function() {
+            resetCommonSettings: function () {
                 this.maxBatteryChargePercent = 90;
                 this.maxC = 2.5;
                 this.chargingLossPercent = 10;
@@ -44,4 +42,5 @@ angular.module('car')
         };
         newSettings.loadWeekendTrip();
         return newSettings;
-    });
+    }
+}

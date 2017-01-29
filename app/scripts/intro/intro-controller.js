@@ -1,6 +1,5 @@
-'use strict';
-
-angular.module('intro')
-    .controller('IntroCtrl', function () {
-    });
+export class IntroCtrl {
+    constructor() {
+    }
+}
 

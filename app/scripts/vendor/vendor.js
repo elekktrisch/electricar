@@ -1,0 +1,9 @@
+require("expose?$!jquery");
+require("expose?_!lodash");
+require("expose?jQuery!jquery");
+//require("angular-google-maps");
+require("bootstrap");
+require("font-awesome-webpack");
+require("moment");
+require("selectize");
+require("highcharts");

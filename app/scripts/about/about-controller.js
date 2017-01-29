@@ -1,6 +1,5 @@
-'use strict';
-
-angular.module('about')
-    .controller('AboutCtrl', function () {
-    });
+export class AboutCtrl {
+    constructor() {
+    }
+}
 

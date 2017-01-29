@@ -1,3 +1,5 @@
-'use strict';
+import angular from 'angular';
+import {KnowhowCtrl} from "./knowhow-controller";
 
-angular.module('knowhow', ['youtube-embed']);
+export default angular.module('knowhow', [])
+    .controller("KnowhowCtrl", KnowhowCtrl);

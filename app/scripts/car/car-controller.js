@@ -1,8 +1,5 @@
-/*global _:false*/
-'use strict';
-
-angular.module('car')
-    .controller('CarCtrl', function ($scope, $q, $log, $location, $routeParams, uiGmapGoogleMapApi, Circles, Cars, Plugs, Calculator, RangeCalculator, Settings) {
+export class CarCtrl {
+    constructor($scope, $q, $location, $routeParams, uiGmapGoogleMapApi, Circles, Cars, Plugs, Calculator, RangeCalculator, Settings) {
         $scope.carId = $routeParams.id;
         function queryCars() {
             return Cars.query(function (cars) {
@@ -161,7 +158,7 @@ angular.module('car')
             $scope.recalcRange();
         };
 
-        $scope.recalcChargingAndRange = function() {
+        $scope.recalcChargingAndRange = function () {
             queryPlugs()
                 .then($scope.recalcRange);
         };
@@ -176,4 +173,5 @@ angular.module('car')
             });
 
         $scope.calcParams = Settings;
-    });
+    }
+}
