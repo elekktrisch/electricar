@@ -128,7 +128,7 @@
                 </div>
 
                 <h4 style="margin-top: 2em;">Setting Details</h4>
-                <tabset justified="true">
+                <div justified="true">
                     <tab heading="Trip">
                         <div class="row slider-row">
                             <span class="col-xs-12 slider-label">Total Trip Distance:</span>
@@ -276,7 +276,7 @@
                                     <md-slider flex min="0" max="100" ng-model="calcParams.reservePercent"
                                                aria-label="reservePercent" id="reservePercent" class="md-primary"></md-slider>
                                     <md-input-container>
-                                        <input flex type="number" ng-model="calcParams.reservePercent | number:0" ng-change="recalcRange()"
+                                        <input flex type="number" ng-model="calcParams.reservePercent" ng-change="recalcRange()"
                                                aria-label="reservePercent" aria-controls="reservePercent">
                                     </md-input-container>
                                 </md-slider-container>
@@ -369,7 +369,7 @@
                                 <div class="unit-label">
                                     mm/h
                                     <div class="alternative-value">
-                                        (<span ng-bind="calcParams.rain"></span> per h)
+                                        (<span ng-bind="calcParams.rain"></span> l/m<sup>2</sup> per h)
                                     </div>
                                 </div>
                                 <md-slider-container>
@@ -420,7 +420,7 @@
                                     </div>
                                 </div>
                                 <md-slider-container>
-                                    <md-slider flex min="0" max="10" ng-model="calcParams.maxC"
+                                    <md-slider flex min="0" max="10" step="0.1" ng-model="calcParams.maxC"
                                                aria-label="maxC" id="maxC" class="md-primary"></md-slider>
                                     <md-input-container>
                                         <input flex type="number" ng-model="calcParams.maxC" ng-change="recalcRange()"
@@ -442,7 +442,7 @@
                                     </div>
                                 </div>
                                 <md-slider-container>
-                                    <md-slider flex min="0" max="10" ng-model="calcParams.brickProtectionPercent"
+                                    <md-slider flex min="0" max="10" step="0.1" ng-model="calcParams.brickProtectionPercent"
                                                aria-label="brickProtectionPercent" id="brickProtectionPercent" class="md-primary"></md-slider>
                                     <md-input-container>
                                         <input flex type="number" ng-model="calcParams.brickProtectionPercent" ng-change="recalcRange()"
@@ -453,7 +453,7 @@
 
                         </div>
                     </tab>
-                </tabset>
+                </div>
             </div>
         </div>
 

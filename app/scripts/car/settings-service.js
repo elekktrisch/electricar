@@ -8,7 +8,7 @@ export class Settings {
                 this.chargingLossPercent = 10;
                 this.brickProtectionPercent = 3;
                 this.temperature = 16;
-                this.rain = 0;
+                this.rain = 1;
                 this.preHeatCabin = true;
                 this.altitudeDifferenceM = 0;
             },

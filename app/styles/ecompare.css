@@ -291,11 +291,13 @@ p.plug-choice-info {
 }
 
 .slider-row {
-    padding: 10px;
+    padding: 0 10px;
 }
 
 .slider-bar {
     padding-top: 2px;
+    margin-top: -15px;
+    margin-bottom: -5px;
 }
 
 .results-icon {
