@@ -7,7 +7,7 @@ var TARGET = minimist(process.argv.slice(2)).TARGET || 'PROD';
 
 var config = {
 
-    context: __dirname + '/app',
+    context: __dirname + '\\app',
     entry: [
         './scripts/app.js'
     ],

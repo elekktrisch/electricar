@@ -2,7 +2,7 @@
     <div class="quartett-board" id="quartett-board">
         <p class="page-intro">Choose one of the following cars to see details and find out how far it can really take you in one day.</p>
         <p class="hint">The list is sorted by battery capacity, starting with the most capable car</p>
-        <div ng-repeat="car in cars" ng-click="select(car)" class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+        <div ng-repeat="car in cars" ng-click="select(car)" class="col-xl-2 col-lg-3 col-md-4 col-sm-6" class="quartett-card-wrapper">
             <div class="quartett-card">
                 <div ng-if="car.discontinued" style="position: absolute;left:50px;top:30px;height: 130px;">
                     <img src="images/discontinued-stamp.png" style="margin: 4px;"/>

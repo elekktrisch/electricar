@@ -12,7 +12,6 @@ import knowhowModule from "./knowhow/knowhow-module";
 import mainModule from "./main/main-module";
 import carModule from "./car/car-module";
 
-
 export default angular.module('app', [
     'ngRoute',
     'highcharts-ng',
@@ -25,13 +24,18 @@ export default angular.module('app', [
     mainModule.name,
     carModule.name
 ])
-/* .config(['uiGmapGoogleMapApiProvider', function (uiGmapGoogleMapApiProvider) {
- uiGmapGoogleMapApiProvider.configure({
- key: 'AIzaSyCG3Tz0Eg27w_f1yg8Rem2MSKZpLeNQ7R0',
- v: '3.17',
- libraries: 'weather,geometry,visualization'
- });
- }]) */
+    .directive("scroll", function ($window) {
+        return function (scope, element, attrs) {
+            angular.element($window).bind("scroll", function() {
+                if (this.pageYOffset >= 100) {
+                    scope.boolChangeClass = true;
+                } else {
+                    scope.boolChangeClass = false;
+                }
+                scope.$apply();
+            });
+        };
+    })
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
             .when('/intro',

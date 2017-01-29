@@ -2,12 +2,12 @@
   "name": "electricar",
   "version": "1.0.0",
   "description": "electric car range comparison tool",
-  "main": "index.js",
+  "main": "app/scripts/app.js",
   "scripts": {
     "prestart": "yarn install",
-    "start": "webpack-dev-server --TARGET=DEV --SERVER_URL=http://localhost:25567/",
-    "start-test": "webpack-dev-server --TARGET=DEV --SERVER_URL=https://testapi.glider-fls.ch/",
-    "start-prod": "webpack-dev-server --TARGET=DEV --SERVER_URL=https://api.glider-fls.ch/",
+    "start": "webpack-dev-server --TARGET=DEV",
+    "start-test": "webpack-dev-server --TARGET=DEV",
+    "start-prod": "webpack-dev-server --TARGET=DEV",
     "bundle": "yarn install & webpack ./dist/bundle.js",
     "test": "node node_modules/karma/bin/karma start --single-run",
     "test-dev": "node node_modules/karma/bin/karma start --TARGET=DEV"
