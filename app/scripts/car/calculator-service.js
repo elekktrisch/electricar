@@ -1,6 +1,14 @@
+
+export const RANGE_CONSTANTS = {
+    inCarTemperature: 21,
+    appliancesPowerKW: 0.5,
+    airDensity: 1.25, // ρ = 1.25 kg/m^3: Luftdichte
+    g: 9.81 // 9.81 m/s^2: Erdbeschleunigung
+};
+
 export class RangeCalculator {
     static factory(RANGE_CONSTANTS) {
-        return {
+        let srv = {
             calcConsumption: function (car, speedKmh, temperature, rain, accelerationBreakingPercent, preHeat, minuteFromStart, altitudeDifferenceM, totalDistance) {
                 var p = car.rangeParams;
                 if (p) {
@@ -30,9 +38,9 @@ export class RangeCalculator {
                             }
                         }
                     }
-                    //console.log('POWER: ' + Math.round(drivingPowerKW) + 'kW');
+                    // console.log('POWER: ' + Math.round(drivingPowerKW) + 'kW');
 
-                    var altDiffInOneMin = this.calcAltitudeDifferenceForMinute(speedKmh, altitudeDifferenceM, totalDistance);
+                    var altDiffInOneMin = srv.calcAltitudeDifferenceForMinute(speedKmh, altitudeDifferenceM, totalDistance);
                     var potentialEnergyJoule = (p.totalWeightKg + 200) * RANGE_CONSTANTS.g * altDiffInOneMin;
                     var potentialEnergyKWh = potentialEnergyJoule / 3600000;
                     var correctionFactor = 1.2;
@@ -55,7 +63,7 @@ export class RangeCalculator {
             calcRange: function (car, useableChargeKWh, speedKmh, consumptionkW) {
                 var sustainableForNumHours = useableChargeKWh / consumptionkW;
                 var rangeKm = sustainableForNumHours * speedKmh;
-                //console.log('RANGE: ' + Math.round(rangeKm) + 'km');
+                // console.log('RANGE: ' + Math.round(rangeKm) + 'km');
                 return rangeKm;
             },
 
@@ -65,12 +73,13 @@ export class RangeCalculator {
                 return altitudeDifferenceTotalM * distanceInOneMinuteM / totalDistanceM;
             }
         };
+        return srv;
     }
 }
 
 export class Calculator {
     static factory(RangeCalculator, RANGE_CONSTANTS) {
-        return {
+        let srv = {
             trip: {
                 fullCharges: {
                     count: 0,
@@ -111,7 +120,7 @@ export class Calculator {
                 var chargePower = 0;
                 for (var i = 0; i < plug.power.length; i++) {
                     var p = plug.power[i];
-                    var acPhases = this.getNumSupportedAcPhases(car);
+                    var acPhases = srv.getNumSupportedAcPhases(car);
                     if (plug.power[i].name === 'DC' || i < acPhases) {
                         chargePower += (p.voltage * p.ampere);
                     }
@@ -122,7 +131,7 @@ export class Calculator {
                 if (!plug.continuous) {
                     chargePower = chargePower * 0.8;
                 }
-                var onBoardChargerKW = this.getOnboardChargerPower(car);
+                var onBoardChargerKW = srv.getOnboardChargerPower(car);
                 if (onBoardChargerKW &&
                     plug.mode < 4 &&
                     chargePower > (1000 * onBoardChargerKW)) {
@@ -195,7 +204,7 @@ export class Calculator {
 
                 var speedKmh = $scope.calcParams.drivingSpeed;
                 var chargeKW = $scope.calcParams.chargingPower;
-                var capacityKWh = this.getBatteryCapacity(car);
+                var capacityKWh = srv.getBatteryCapacity(car);
                 var maxSOC = $scope.calcParams.maxBatteryChargePercent / 100;
                 var maxStoredEnergykWh = maxSOC * capacityKWh;
                 var distanceKmPerMinute = speedKmh / 60;
@@ -509,5 +518,6 @@ export class Calculator {
                 //return deferred.promise;
             }
         };
+        return srv;
     }
 }
