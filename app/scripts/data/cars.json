@@ -3,7 +3,7 @@
     "id": "teslaP100D_EGT",
     "soon": true,
     "name": "Tesla Model S-P100D EGT",
-    "range": 650,
+    "range": 613,
     "rangeParams": {
       "totalWeightKg": 1750,
       "cw": 0.24,
@@ -147,6 +147,60 @@
       "KbO6-C2Yajg",
       "mURbzh9t0_0",
       "kL2Q_s4JCDs"
+    ]
+  },
+  {
+    "id": "teslaS100",
+    "name": "Tesla Model S-100D",
+    "range": 632,
+    "rangeParams": {
+      "totalWeightKg": 2250,
+      "cw": 0.24,
+      "frontAreaM2": 2.34,
+      "cr": 0.01,
+      "averageHvacPower": 800,
+      "totalEfficiency": 0.76
+    },
+    "motorPowerKw": 315,
+    "onBoardChargerKW": 11,
+    "maxExternalDirectChargerKW": 130,
+    "battery": 100,
+    "acPhases": 3,
+    "acceleration": 4.4,
+    "maxSpeed": 250,
+    "plugs": [
+      "t13",
+      "schuko",
+      "caravan",
+      "cee16",
+      "cee32",
+      "type2",
+      "supercharger"
+    ],
+    "options": {
+      "chargers": [
+        {
+          "name": "High Power Charger (16.5kW)",
+          "onBoardChargerKW": 16.5,
+          "selected": true
+        },
+        {
+          "name": "Chademo Adapter (50kW)",
+          "plug": "chademo",
+          "selected": false
+        }
+      ]
+    },
+    "image": "tesla_model_s.jpg",
+    "logo": "tesla.png",
+    "link": "http://www.tesla.com/de_CH/models/design",
+    "reviewVideo": "SEKEE4fNMM4",
+    "adVideos": [
+      "QweNsLesMrM",
+      "2-DqlK-0IXQ",
+      "RqVWGLEwyyo",
+      "BCcfiwQZIQg",
+      "h1zsRCDJ4Ds"
     ]
   },
   {
@@ -366,6 +420,7 @@
   },
   {
     "id": "teslaS60",
+    "discontinued": true,
     "name": "Tesla Model S-60",
     "range": 408,
     "rangeParams": {
@@ -420,7 +475,7 @@
   },
   {
     "id": "chevyBolt",
-    "soon": true,
+    "limited": true,
     "name": "Chevrolet Bolt",
     "range": 385,
     "rangeParams": {
@@ -455,6 +510,7 @@
   },
   {
     "id": "opelAmperaE",
+    "limited": true,
     "name": "Opel Ampera-E",
     "range": 385,
     "rangeParams": {
@@ -491,6 +547,7 @@
   },
   {
     "id": "rimac_concept_one",
+    "limited": true,
     "name": "Rimac Concept_One",
     "range": 300,
     "rangeParams": {
@@ -602,6 +659,7 @@
   },
   {
     "id": "kreiselCaddy",
+    "limited": true,
     "name": "Kreisel VW Caddy",
     "range": 350,
     "rangeParams": {
@@ -935,6 +993,7 @@
   },
   {
     "id": "bClassE",
+    "limited": true,
     "name": "Mercedes B-Class Electric",
     "year": 2015,
     "range": 200,
@@ -966,7 +1025,9 @@
     "logo": "mercedes.png",
     "link": "http://www.mercedes-benz.de/content/germany/mpc/mpc_germany_website/de/home_mpc/passengercars/home/new_cars/models/b-class/w242.html",
     "reviewVideo": "jB13rdLqPIQ",
-    "adVideos": ["b4ntJ27p7o8"]
+    "adVideos": [
+      "b4ntJ27p7o8"
+    ]
   },
   {
     "id": "leaf",
@@ -1076,7 +1137,9 @@
     "logo": "vw.png",
     "link": "http://app.volkswagen.de/ihdcc/de/configurator.html#30300",
     "reviewVideo": "itWx7UUiu2c",
-    "adVideos": ["Wc6keIjI06I"]
+    "adVideos": [
+      "Wc6keIjI06I"
+    ]
   },
   {
     "id": "eGolf2",
@@ -1110,10 +1173,14 @@
     "logo": "vw.png",
     "link": "https://www.volkswagen.at/e-golf",
     "reviewVideo": "2yx8klUC3gs",
-    "adVideos": ["7Yxz16y7rBY","49aRI8-xcsU"]
+    "adVideos": [
+      "7Yxz16y7rBY",
+      "49aRI8-xcsU"
+    ]
   },
   {
     "id": "env200",
+    "limited": true,
     "name": "Nissan e-NV200",
     "range": 170,
     "rangeParams": {
@@ -1144,7 +1211,9 @@
     "logo": "nissan.png",
     "link": "http://de.nissan.ch/CH/de/vehicle/electric-vehicles/e-nv200.html",
     "reviewVideo": "s7SI-9vza14",
-    "adVideos": ["_fVVsL6sF5o"]
+    "adVideos": [
+      "_fVVsL6sF5o"
+    ]
   },
   {
     "id": "berlingo",
@@ -1178,10 +1247,13 @@
     "logo": "citroen.png",
     "link": "http://www.citroen.de/modelle/nutzfahrzeuge/citroen-berlingo-electric.html",
     "reviewVideo": "k6F0U_OVDJw",
-    "adVideos": ["jPg4yzr8VHc"]
+    "adVideos": [
+      "jPg4yzr8VHc"
+    ]
   },
   {
     "id": "focusEL",
+    "limited": true,
     "name": "Ford Focus Electric",
     "range": 162,
     "rangeParams": {
@@ -1211,7 +1283,9 @@
     "logo": "ford.png",
     "link": "http://www.ford.de/Pkw-Modelle/FordFocus-Electric",
     "reviewVideo": "ozoJQJRXbJ4",
-    "adVideos": ["TfMCUj00ytQ"]
+    "adVideos": [
+      "TfMCUj00ytQ"
+    ]
   },
   {
     "id": "eUp",
@@ -1245,7 +1319,9 @@
     "logo": "vw.png",
     "link": "http://app.volkswagen.ch/ihdcc/de/configurator.html#30100",
     "reviewVideo": "ym0uo2bhgqA",
-    "adVideos": ["ElWw2G4MhY4"]
+    "adVideos": [
+      "ElWw2G4MhY4"
+    ]
   },
   {
     "id": "ion",
@@ -1279,7 +1355,9 @@
     "logo": "peugeot.png",
     "link": "http://www.peugeot.ch/entdecken/ion/5-turig/",
     "reviewVideo": "aGZbCWWh2PM",
-    "adVideos": ["VlLPnbIcs7Q"]
+    "adVideos": [
+      "VlLPnbIcs7Q"
+    ]
   },
   {
     "id": "czero",
@@ -1349,10 +1427,13 @@
     "logo": "mitsubishi.png",
     "link": "http://www.mitsubishi-motors.ch/modelle/i-miev",
     "reviewVideo": "BepG4Z9CtfU",
-    "adVideos": ["Xc1MltZiz8k"]
+    "adVideos": [
+      "Xc1MltZiz8k"
+    ]
   },
   {
     "id": "tazzarizero",
+    "limited": true,
     "name": "Tazzari Zero",
     "range": 150,
     "rangeParams": {
@@ -1405,6 +1486,7 @@
   },
   {
     "id": "smartEd",
+    "limited": true,
     "name": "smart fortwo ed",
     "range": 145,
     "rangeParams": {
@@ -1434,7 +1516,9 @@
     "logo": "smart.png",
     "link": "http://www.smart.ch/ch/de/index/smart-fortwo-electric-drive.html",
     "reviewVideo": "0ssC1R48qQ4",
-    "adVideos": ["b1iJJZfB7i0"]
+    "adVideos": [
+      "b1iJJZfB7i0"
+    ]
   },
   {
     "id": "kangooZE",
@@ -1467,7 +1551,9 @@
     "logo": "renault.png",
     "link": "http://www.renault.ch/de/renault-modellpalette/elektroauto-modellpalette/kangoo-ze/kangoo-ze/konfigurator",
     "reviewVideo": "vPmBenHMPsk",
-    "adVideos": ["mQFq7QkKAvE"]
+    "adVideos": [
+      "mQFq7QkKAvE"
+    ]
   },
   {
     "id": "cetos",
@@ -1500,7 +1586,9 @@
     "logo": "german_ecars.png",
     "link": "http://www.german-e-cars.de/Anfrage-stellen.63.0.html?&L=0ckmctnjs%22",
     "reviewVideo": "1nCnctVGDYs",
-    "adVideos": ["1nCnctVGDYs"]
+    "adVideos": [
+      "1nCnctVGDYs"
+    ]
   },
   {
     "id": "stromos",
@@ -1533,6 +1621,8 @@
     "logo": "german_ecars.png",
     "link": "http://www.german-e-cars.de/Anfrage-stellen.63.0.html?&L=0ckmctnjs%22",
     "reviewVideo": "JW-lQp3kZlw",
-    "adVideos": ["DyNjEDHZhFc"]
+    "adVideos": [
+      "DyNjEDHZhFc"
+    ]
   }
 ]
