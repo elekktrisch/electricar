@@ -79,23 +79,25 @@ export class CarCtrl {
             let deferred = $q.defer();
             let zurich = {latitude: 47.3712396, longitude: 8.5366015};
             if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(_.once(function (position) {
+                function success(position) {
                     let center = {
                         latitude: position.coords.latitude,
                         longitude: position.coords.longitude
                     };
                     deferred.resolve([center.latitude, center.longitude]);
-                }), function (reason) {
-                    console.log(JSON.stringify(reason));
+                }
+                function error(reason) {
+                    console.log('failed to read current position!', reason);
                     deferred.resolve([zurich.latitude, zurich.longitude]);
-                });
+                }
+                navigator.geolocation.getCurrentPosition(success, error);
             } else {
                 console.log('no geolocation found!');
                 deferred.resolve([zurich.latitude, zurich.longitude]);
             }
             return deferred.promise;
         }
-
+        
         function drawMap(center) {
             $scope.rangeCircle = Circles.createCircle(1, 'One-Way Range', center, '#00aaaa');
             $scope.returnCircle = Circles.createCircle(2, 'Return Range', center, '#000000');

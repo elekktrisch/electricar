@@ -258,6 +258,10 @@ p.plug-choice-info {
     font-weight: 700;
 }
 
+.slider-label {
+    z-index: 9999;
+}
+
 .slider-value
 .slider-value input {
     font-size: 90%;
