@@ -1279,7 +1279,7 @@
   },
   {
     "id": "focusEL",
-    "limited": true,
+    "discontinued": true,
     "name": "Ford Focus Electric",
     "range": 162,
     "rangeParams": {
@@ -1297,6 +1297,42 @@
     "acPhases": 1,
     "acceleration": 10.4,
     "maxSpeed": 137,
+    "plugs": [
+      "t13",
+      "schuko",
+      "caravan",
+      "cee16",
+      "cee32",
+      "type1"
+    ],
+    "image": "ford_focus.jpg",
+    "logo": "ford.png",
+    "link": "http://www.ford.de/Pkw-Modelle/FordFocus-Electric",
+    "reviewVideo": "ozoJQJRXbJ4",
+    "adVideos": [
+      "TfMCUj00ytQ"
+    ]
+  },
+  {
+    "id": "focusEL2",
+    "limited": true,
+    "name": "Ford Focus Electric (33kWh)",
+    "range": 225,
+    "rangeParams": {
+      "totalWeightKg": 1680,
+      "cw": 0.28,
+      "frontAreaM2": 2.1,
+      "cr": 0.01,
+      "averageHvacPower": 800,
+      "totalEfficiency": 0.8
+    },
+    "motorPowerKw": 108,
+    "onBoardChargerKW": 7.3,
+    "maxExternalDirectChargerKW": 50,
+    "battery": 33,
+    "acPhases": 1,
+    "acceleration": 11.3,
+    "maxSpeed": 135,
     "plugs": [
       "t13",
       "schuko",
