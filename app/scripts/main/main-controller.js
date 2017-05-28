@@ -1,4 +1,3 @@
-import "angular-ui-bootstrap";
 
 export class MainCtrl {
     constructor($scope, $location, DomainInfo) {

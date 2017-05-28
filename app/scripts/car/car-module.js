@@ -1,7 +1,6 @@
 import angular from 'angular';
 import 'angular-resource';
 import "angular-material";
-import "angular-ui-bootstrap";
 import "angular-youtube-embed";
 import "ngmap";
 import {CarCtrl} from "./car-controller";

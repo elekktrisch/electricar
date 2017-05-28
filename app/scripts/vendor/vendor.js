@@ -1,11 +1,8 @@
 require("core-js");
-require("expose?$!jquery");
-require("expose?_!lodash");
 require("expose?jQuery!jquery");
-//require("angular-google-maps");
+require("expose?_!lodash");
 require("bootstrap");
 require("font-awesome-webpack");
 require("moment");
-require("selectize");
 require("highcharts");
 require("angular-material");

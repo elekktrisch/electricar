@@ -1,7 +1,4 @@
-import "jquery";
-import "jquery-ui";
 import angular from 'angular';
-import "angular-ui-slider";
 import "../styles/styles";
 import "angular-route";
 import "highcharts";
@@ -15,8 +12,6 @@ import carModule from "./car/car-module";
 export default angular.module('app', [
     'ngRoute',
     'highcharts-ng',
-    'ui.slider',
-    'ui.bootstrap',
 
     introModule.name,
     aboutModule.name,
