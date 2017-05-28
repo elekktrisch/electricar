@@ -1,37 +1,36 @@
 export class CarCtrl {
-    constructor($scope, $q, $location, $routeParams, /*uiGmapGoogleMapApi,*/ Circles, Cars, Plugs, Calculator, Settings) {
+    constructor($scope, $q, $location, $routeParams, /*uiGmapGoogleMapApi,*/ Circles, Calculator, Settings) {
         $scope.carId = $routeParams.id;
         $scope.googleMapsUrl = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDQAddfsGAlCCbkoevn5OF1JD2HbeVN9fQ";
         function queryCars() {
-            return Cars.query(function (cars) {
-                $scope.cars = _.sortBy(cars, ['battery']);
-                for (var x = 0; x < cars.length; x++) {
-                    if ($routeParams.id === cars[x].id) {
-                        $scope.selectedCar = cars[x];
-                        if(!$scope.selectedCar.rangeParams) {
-                            $location.path("/main");
-                        }
-                        $scope.selectedCarImage = require(`../../images/${$scope.selectedCar.image}`);
+            let cars = require("../data/cars.json");
+            $scope.cars = _.sortBy(cars, ['battery']);
+            for (let x = 0; x < cars.length; x++) {
+                if ($routeParams.id === cars[x].id) {
+                    $scope.selectedCar = cars[x];
+                    if (!$scope.selectedCar.rangeParams) {
+                        $location.path("/main");
                     }
+                    $scope.selectedCarImage = require(`../../images/${$scope.selectedCar.image}`);
                 }
-                Settings.reservePercent = 50 / $scope.selectedCar.range * 100;
-                Settings.carTopSpeed = $scope.selectedCar.maxSpeed;
-                return $scope.cars;
-            }).$promise;
+            }
+            Settings.reservePercent = 50 / $scope.selectedCar.range * 100;
+            Settings.carTopSpeed = $scope.selectedCar.maxSpeed;
+            return Promise.resolve($scope.cars);
         }
 
         function chooseBestCharger(plugQueryResult) {
-            var bestPlug = $scope.plugs[0];
-            var lastPlug = bestPlug;
-            var car = $scope.selectedCar;
-            for (var i = 0; i < plugQueryResult.length; i++) {
-                var p = plugQueryResult[i];
-                var chargePower = Calculator.calcChargingPowerForCar($scope, p, car);
+            let bestPlug = $scope.plugs[0];
+            let lastPlug = bestPlug;
+            let car = $scope.selectedCar;
+            for (let i = 0; i < plugQueryResult.length; i++) {
+                let p = plugQueryResult[i];
+                let chargePower = Calculator.calcChargingPowerForCar($scope, p, car);
                 p.chargingPower = Math.floor(chargePower / 100) / 10;
 
                 if (!p.rare && Calculator.supportsPlug(p, car)) {
-                    var lastPower = Calculator.calcChargingPowerForCar($scope, bestPlug, car);
-                    var newPower = Calculator.calcChargingPowerForCar($scope, p, car);
+                    let lastPower = Calculator.calcChargingPowerForCar($scope, bestPlug, car);
+                    let newPower = Calculator.calcChargingPowerForCar($scope, p, car);
                     if (newPower > lastPower) {
                         bestPlug = p;
                     } else if (newPower === lastPower && p.mode > lastPlug.mode) {
@@ -44,10 +43,9 @@ export class CarCtrl {
         }
 
         function queryPlugs() {
-            return Plugs.query(function (result) {
-                $scope.plugs = result;
-                $scope.setPower(chooseBestCharger(result), $scope.selectedCar);
-            }).$promise;
+            $scope.plugs = require("../data/plugs.json");
+            $scope.setPower(chooseBestCharger($scope.plugs), $scope.selectedCar);
+            return Promise.resolve($scope.plugs);
         }
 
         $scope.overview = function () {
@@ -71,11 +69,11 @@ export class CarCtrl {
 
         $scope.positionResolved = false;
         function resolvePosition() {
-            var deferred = $q.defer();
-            var zurich = {latitude: 47.3712396, longitude: 8.5366015};
+            let deferred = $q.defer();
+            let zurich = {latitude: 47.3712396, longitude: 8.5366015};
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(_.once(function (position) {
-                    var center = {
+                    let center = {
                         latitude: position.coords.latitude,
                         longitude: position.coords.longitude
                     };
@@ -110,7 +108,7 @@ export class CarCtrl {
         $scope.stopDuration = 0;
 
 
-        $scope.setPower = function (plug) {
+        $scope.setPower = (plug) => {
             $scope.selectedPlug = plug;
             Settings.chargingPower = plug.chargingPower;
             $scope.recalcRange();
@@ -127,7 +125,7 @@ export class CarCtrl {
         $scope.updateRangeCircles = function () {
             $scope.calculatedRange = $scope.selectedCar.range;
             $scope.calculatedReturnRange = $scope.selectedCar.range / 2;
-            var detourMapFactor = 1000 * (1 - Settings.detourPercent / 100);
+            let detourMapFactor = 1000 * (1 - Settings.detourPercent / 100);
             if ($scope.rangeCircle && $scope.returnCircle && $scope.positionResolved) {
                 $scope.rangeCircle.radius = $scope.calculatedRange * detourMapFactor;
                 $scope.returnCircle.radius = $scope.calculatedReturnRange * detourMapFactor;
