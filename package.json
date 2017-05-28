@@ -8,7 +8,7 @@
     "start": "webpack-dev-server --TARGET=DEV",
     "start-test": "webpack-dev-server --TARGET=DEV",
     "start-prod": "webpack-dev-server --TARGET=DEV",
-    "bundle": "yarn install & webpack ./dist/bundle.js",
+    "bundle": "yarn install & webpack ./dist/bundle.js --TARGET=PROD",
     "test": "node node_modules/karma/bin/karma start --single-run",
     "test-dev": "node node_modules/karma/bin/karma start --TARGET=DEV"
   },

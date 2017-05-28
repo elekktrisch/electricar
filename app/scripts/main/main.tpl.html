@@ -5,20 +5,20 @@
         <div ng-repeat="car in cars" ng-click="select(car)" class="col-xl-2 col-lg-3 col-md-4 col-sm-6 quartett-card-wrapper">
             <div class="quartett-card" ng-class="{'quartett-card-with-details':car.rangeParams}">
                 <div ng-if="car.discontinued" style="position: absolute;left:50px;top:120px;height: 130px;">
-                    <img src="images/discontinued-stamp.png" style="margin: 4px;"/>
+                    <img ng-src="{{discontinuedStamp}}" style="margin: 4px;"/>
                 </div>
                 <div ng-if="car.soon" style="position: absolute;left:50px;top:120px;height: 130px;">
-                    <img src="images/coming_soon_stamp.png" style="margin: 4px;"/>
+                    <img ng-src="{{comingSoonStamp}}" style="margin: 4px;"/>
                 </div>
                 <div ng-if="car.limited" style="position: absolute;left:165px;top:25px;height: 130px;">
-                    <img src="images/limited-stock.png" style="margin: 4px;"/>
+                    <img ng-src="{{limitedStockStamp}}" style="margin: 4px;"/>
                 </div>
                 <div class="row">
-                    <img ng-src="images/logos/{{car.logo}}" height="40" style="margin: 4px;"/>
+                    <img ng-src="{{car.logoPath}}" height="40" style="margin: 4px;"/>
                 </div>
 
                 <div class="img-div" style="height: 130px;background-color: white">
-                    <img class="quartett-card-img" ng-src="images/{{car.image}}"/>
+                    <img class="quartett-card-img" ng-src="{{car.imagePath}}"/>
                 </div>
 
                 <div class="row">

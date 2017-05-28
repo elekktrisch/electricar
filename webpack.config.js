@@ -50,7 +50,7 @@ var config = {
         port: 3000
     },
 
-    devtool: "eval-source-map"
+    devtool: TARGET === "PROD" ? undefined : "eval-source-map"
 
 };
 

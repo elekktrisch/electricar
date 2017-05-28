@@ -45,8 +45,15 @@ export class CarCtrl {
         function queryPlugs() {
             $scope.plugs = require("../data/plugs.json");
             $scope.setPower(chooseBestCharger($scope.plugs), $scope.selectedCar);
+            for(let i = 0; i < $scope.plugs.length; i++) {
+                let plug = $scope.plugs[i];
+                plug.imagePath = require("../../images/" + plug.image);
+            }
+
             return Promise.resolve($scope.plugs);
         }
+
+        $scope.connectorBoxImage = require("../../images/connector_box.jpg");
 
         $scope.overview = function () {
             $location.path('/main');

@@ -1,5 +1,6 @@
 export class AboutCtrl {
-    constructor() {
+    constructor($scope) {
+        $scope.avatarImage = require("../../images/elekktrisch_avatar.jpg");
     }
 }
 

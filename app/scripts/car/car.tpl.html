@@ -298,10 +298,10 @@
                                ng-class="{'active':selectedPlug === plug && calcParams.chargingPower === plug.chargingPower}"
                                style="font-size:130%;width:98%;height:80px;text-align: left;margin:3px;color:#5f5781;">
 
-                                <img height="66" ng-src="images/{{plug.image}}"
+                                <img height="66" ng-src="{{plug.imagePath}}"
                                      style="border: 1px solid #b8bcc4;border-radius: 3px;">
                                     <span ng-show="plug.chargingPower && plug.mode == 2">+ <img
-                                            src="images/connector_box.jpg" height="66"
+                                            ng-src="{{connectorBoxImage}}" height="66"
                                             style="border: 1px solid #b8bcc4;border-radius: 3px;"></span>
                             <span class="plug-choice-info" style="margin-left: 10px;">
                                 <span ng-bind="plug.name"></span> <span ng-show="plug.chargingPower">
