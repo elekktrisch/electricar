@@ -597,6 +597,18 @@
     "logo": "nio.png"
   },
   {
+    "id": "teslaModel3",
+    "soon": true,
+    "name": "Tesla Model 3",
+    "range": "345",
+    "motorPowerKw": "?",
+    "battery": 60,
+    "acceleration": "< 6",
+    "maxSpeed": "?",
+    "image": "tesla_model_3.jpg",
+    "logo": "tesla.png"
+  },
+  {
     "id": "zoe40",
     "name": "Renault Z.E. 40",
     "range": 402,
