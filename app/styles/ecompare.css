@@ -18,10 +18,14 @@ body {
     width: 230px;
     margin: 15px;
     text-align: center;
+    cursor: default;
+}
+
+.quartett-card-with-details {
     cursor: pointer;
 }
 
-.quartett-card:hover {
+.quartett-card-with-details:hover {
     border: 3px solid #5f5b8b;
     background-color: rgba(255, 255, 255, 0.8);
 }

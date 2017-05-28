@@ -8,6 +8,9 @@ export class CarCtrl {
                 for (var x = 0; x < cars.length; x++) {
                     if ($routeParams.id === cars[x].id) {
                         $scope.selectedCar = cars[x];
+                        if(!$scope.selectedCar.rangeParams) {
+                            $location.path("/main");
+                        }
                         $scope.selectedCarImage = require(`../../images/${$scope.selectedCar.image}`);
                     }
                 }

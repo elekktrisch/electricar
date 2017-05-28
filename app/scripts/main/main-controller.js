@@ -14,7 +14,9 @@ export class MainCtrl {
         });
 
         $scope.select = function (car) {
-            $location.path('/car/' + car.id);
+            if(car.rangeParams) {
+                $location.path('/car/' + car.id);
+            }
         };
 
         $scope.isPath = function (path) {

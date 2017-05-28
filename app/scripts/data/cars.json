@@ -15,7 +15,7 @@
     "motorPowerKw": 568,
     "onBoardChargerKW": 16.5,
     "maxExternalDirectChargerKW": 130,
-    "battery": 100.1,
+    "battery": 100.15,
     "acPhases": 3,
     "acceleration": 2.1,
     "maxSpeed": 250,
@@ -58,7 +58,7 @@
     "motorPowerKw": 568,
     "onBoardChargerKW": 11,
     "maxExternalDirectChargerKW": 130,
-    "battery": 100,
+    "battery": 100.1,
     "acPhases": 3,
     "acceleration": 2.7,
     "maxSpeed": 250,
@@ -164,7 +164,7 @@
     "motorPowerKw": 315,
     "onBoardChargerKW": 11,
     "maxExternalDirectChargerKW": 130,
-    "battery": 100,
+    "battery": 100.2,
     "acPhases": 3,
     "acceleration": 4.4,
     "maxSpeed": 250,
@@ -583,6 +583,18 @@
       "RQQwOI5qoJw",
       "iCd32Eiuxak"
     ]
+  },
+  {
+    "id": "nio_ep9",
+    "limited": true,
+    "name": "Nio EP9",
+    "range": "> 250",
+    "motorPowerKw": 1000,
+    "battery": 80,
+    "acceleration": "< 4",
+    "maxSpeed": 313,
+    "image": "nio_ep9.jpg",
+    "logo": "nio.png"
   },
   {
     "id": "zoe40",
