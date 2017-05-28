@@ -47,7 +47,9 @@
                         </tr>
                         <tr>
                             <td>Range</td>
-                            <td class="tech-value"><span ng-bind="car.range"></span> km</td>
+                            <td class="tech-value"><span ng-bind="car.range"></span> km
+                                <span ng-if="car.rangeMeasuringCycle">(<span ng-bind="car.rangeMeasuringCycle"></span>)</span>
+                                <span ng-if="!car.rangeMeasuringCycle">(NEFZ)</span></td>
                         </tr>
                         <tr>
                             <td>Battery</td>
