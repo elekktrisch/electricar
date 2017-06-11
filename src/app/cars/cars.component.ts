@@ -38,7 +38,7 @@ export class CarsComponent implements OnInit {
     this.brand = "";
   }
 
-  delete(car: any) {
+  deleteCar(car: any) {
     this.cars.remove(car);
   }
 

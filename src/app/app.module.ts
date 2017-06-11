@@ -16,6 +16,7 @@ import {
 import {AngularFireAuthModule} from "angularfire2/auth";
 import {AngularFireDatabaseModule} from "angularfire2/database";
 import { CardComponent } from './card/card.component';
+import { CardContainerComponent } from './card-container/card-container.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { CardComponent } from './card/card.component';
     LoginComponent,
     CarsComponent,
     MenuComponent,
-    CardComponent
+    CardComponent,
+    CardContainerComponent
   ],
   imports: [
     BrowserModule,

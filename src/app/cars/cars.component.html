@@ -4,17 +4,7 @@
 
 <button md-button (click)="addCar(carBrand.value)">Add</button>
 
-<div class="grid-container">
-  <app-card [car]="car"
-            [index]="i"
-            (deleteClicked)="delete(car)"
-            *ngFor="let car of cars | async; let i = index;"></app-card>
-
-  <md-progress-spinner
-    *ngIf="loading"
-    class="busy-spinner"
-    [color]="'primary'"
-    [mode]="'indeterminate'"
-    value="50">
-  </md-progress-spinner>
-</div>
+<app-card-container
+  (deleteClicked)="deleteCar($event)"
+  [cars]="cars | async"
+  [loading]="loading"></app-card-container>

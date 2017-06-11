@@ -1,0 +1,13 @@
+<div class="grid-container">
+  <app-card [car]="car"
+            [index]="i"
+            (deleteClicked)="deleteClicked.emit(car)"
+            *ngFor="let car of cars; let i = index;"></app-card>
+
+  <md-progress-spinner
+    *ngIf="loading"
+    class="busy-spinner"
+    [color]="'primary'"
+    [mode]="'indeterminate'">
+  </md-progress-spinner>
+</div>
