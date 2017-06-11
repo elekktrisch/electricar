@@ -116,6 +116,12 @@
   dependencies:
     tslib "^1.7.1"
 
+"@angular/material@^2.0.0-beta.6":
+  version "2.0.0-beta.6"
+  resolved "https://registry.yarnpkg.com/@angular/material/-/material-2.0.0-beta.6.tgz#83bfdf00f540a8c7db900a1e7b8ed2cff49df821"
+  dependencies:
+    tslib "^1.7.1"
+
 "@angular/platform-browser-dynamic@^4.0.0":
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/@angular/platform-browser-dynamic/-/platform-browser-dynamic-4.2.1.tgz#0832d21ba3481d91f4056c6a95429f9fcf76524c"
@@ -3743,10 +3749,6 @@ pretty-error@^2.0.2:
   dependencies:
     renderkid "^2.0.1"
     utila "~0.4"
-
-primeng@^4.0.3:
-  version "4.0.3"
-  resolved "https://registry.yarnpkg.com/primeng/-/primeng-4.0.3.tgz#dbcb15b63c5549268b2d225ceb66d5653b397749"
 
 process-nextick-args@~1.0.6:
   version "1.0.7"

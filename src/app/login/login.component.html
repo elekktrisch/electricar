@@ -1,3 +1,4 @@
-<p>
-  <button pButton *ngIf="!(user | async)" (click)="login()" label="Login" icon="fa fa-facebook"></button>
-</p>
+<button md-button *ngIf="!(user | async)" (click)="login()">
+  <span class="fa fa-facebook"></span>
+  Login
+</button>

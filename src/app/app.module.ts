@@ -5,10 +5,14 @@ import {AppComponent} from "./app.component";
 import {LoginComponent} from "./login/login.component";
 import {CarsComponent} from "./cars/cars.component";
 import {AngularFireModule} from "angularfire2";
-import {InputTextModule, ButtonModule, MenubarModule, DataGridModule} from "primeng/primeng";
 import {MenuComponent} from "./menu/menu.component";
-import {appRoutes} from "./app.routes";
+import {appRoutes, AuthGuard} from "./app.routes";
 import {FormsModule} from "@angular/forms";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {MdButtonModule, MdCardModule, MdGridListModule, MdProgressSpinnerModule} from "@angular/material";
+import {AngularFireAuthModule} from "angularfire2/auth";
+import {AngularFireDatabaseModule} from "angularfire2/database";
+
 
 @NgModule({
   declarations: [
@@ -19,7 +23,14 @@ import {FormsModule} from "@angular/forms";
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    MdButtonModule,
+    MdCardModule,
+    MdGridListModule,
+    MdProgressSpinnerModule,
     FormsModule,
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
     RouterModule.forRoot(appRoutes),
     AngularFireModule.initializeApp({
       apiKey: "AIzaSyAUjHNW2L80OTCrhsUUSmRuT1Qbs68AazI",
@@ -28,13 +39,9 @@ import {FormsModule} from "@angular/forms";
       projectId: "electricar-e92a5",
       storageBucket: "electricar-e92a5.appspot.com",
       messagingSenderId: "806992676079"
-    }),
-    DataGridModule,
-    InputTextModule,
-    ButtonModule,
-    MenubarModule
+    })
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {

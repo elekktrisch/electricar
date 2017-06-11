@@ -6,7 +6,6 @@ import * as firebase from 'firebase/app';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  providers: [AngularFireAuth],
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {

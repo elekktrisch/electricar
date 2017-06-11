@@ -1,21 +1,19 @@
 import {Component, OnInit} from "@angular/core";
-import {MenuItem} from "primeng/primeng";
 import {Observable} from "rxjs/Observable";
 import {AngularFireAuth} from "angularfire2/auth";
-import * as firebase from 'firebase/app';
+import * as firebase from "firebase/app";
 import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
-  providers: [AngularFireAuth],
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
 
   user: Observable<firebase.User>;
 
-  items: MenuItem[];
+  items: any[];
 
   constructor(public angularFireAuth: AngularFireAuth, private router: Router) {
     this.user = angularFireAuth.authState;
@@ -31,10 +29,7 @@ export class MenuComponent implements OnInit {
           },
           {
             label: user.displayName,
-            items: [{
-              label: 'Logout',
-              command: this.logout.bind(this)
-            }]
+            command: this.logout.bind(this)
           }
         ];
       } else {
@@ -57,6 +52,7 @@ export class MenuComponent implements OnInit {
 
   logout() {
     this.angularFireAuth.auth.signOut();
+    this.router.navigateByUrl("/login");
   }
 
 }

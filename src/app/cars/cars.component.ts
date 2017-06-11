@@ -1,24 +1,34 @@
-import { Component, OnInit } from '@angular/core';
-import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
-import {AFUnwrappedDataSnapshot} from "angularfire2/interfaces";
+import {Component, OnInit} from "@angular/core";
+import {AngularFireDatabase, FirebaseListObservable} from "angularfire2/database";
+import {AngularFireAuth} from "angularfire2/auth";
+import "rxjs/add/operator/take";
+import "rxjs/add/operator/do";
 
 @Component({
   selector: 'app-cars',
   templateUrl: './cars.component.html',
-  providers: [AngularFireDatabase],
   styleUrls: ['./cars.component.css']
 })
 export class CarsComponent implements OnInit {
 
   brand: string = "";
   cars: FirebaseListObservable<Car[]>;
+  loading: boolean;
 
-  constructor(db: AngularFireDatabase) {
-    this.cars = db.list('/cars');
+  constructor(private angularFireAuth: AngularFireAuth, private angularFireDatabase: AngularFireDatabase) {
   }
 
   ngOnInit() {
-    this.cars.subscribe(cars => console.log("cars", cars));
+    this.loading = true;
+    this.angularFireAuth.authState.subscribe(user => {
+      if (user) {
+        this.cars = this.angularFireDatabase.list('/cars');
+        this.cars.subscribe(() => {
+            console.log("done");
+            this.loading = false;
+          });
+      }
+    });
   }
 
   addCar(brand: string) {
@@ -34,6 +44,6 @@ export class CarsComponent implements OnInit {
 
 }
 
-class Car{
+class Car {
   brand: string;
 }

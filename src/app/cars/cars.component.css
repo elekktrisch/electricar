@@ -1,0 +1,10 @@
+.grid-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.grid-item {
+  width: 400px;
+  margin: 10px;
+}

@@ -1,1 +1,3 @@
-<p-menubar [model]="items"></p-menubar>
+<div class="button-row">
+  <button md-raised-button *ngFor="let item of items" (click)="item.command()">{{item.label}}</button>
+</div>

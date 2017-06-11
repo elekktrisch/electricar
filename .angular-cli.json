@@ -19,8 +19,7 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "../node_modules/primeng/resources/primeng.min.css",
-        "../node_modules/primeng/resources/themes/ludvig/theme.css",
+        "../node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
         "../node_modules/font-awesome/css/font-awesome.min.css",
         "styles.css"
       ],
