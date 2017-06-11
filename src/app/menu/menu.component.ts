@@ -26,18 +26,10 @@ export class MenuComponent implements OnInit {
           {
             label: "Cars",
             command: this.goToCars.bind(this)
-          },
-          {
-            label: user.displayName,
-            command: this.logout.bind(this)
           }
         ];
       } else {
-        this.items = [{
-          label: "Login",
-          icon: 'fa fa-lock',
-          command: this.login.bind(this)
-        }]
+        this.items = []
       }
     });
   }

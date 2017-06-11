@@ -17,6 +17,10 @@ export class LoginComponent {
   }
 
   login() {
+    this.angularFireAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider());
+  }
+
+  googleLogin() {
     this.angularFireAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
   }
 

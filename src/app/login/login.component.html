@@ -1,4 +1,8 @@
 <button md-button *ngIf="!(user | async)" (click)="login()">
   <span class="fa fa-facebook"></span>
-  Login
+  Facebook
+</button>
+<button md-button *ngIf="!(user | async)" (click)="googleLogin()">
+  <span class="fa fa-google"></span>
+  Google
 </button>
