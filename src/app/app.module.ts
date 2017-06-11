@@ -9,7 +9,10 @@ import {MenuComponent} from "./menu/menu.component";
 import {appRoutes, AuthGuard} from "./app.routes";
 import {FormsModule} from "@angular/forms";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {MdButtonModule, MdCardModule, MdGridListModule, MdProgressSpinnerModule} from "@angular/material";
+import {
+  MdButtonModule, MdCardModule, MdGridListModule, MdProgressSpinnerModule,
+  MdInputModule
+} from "@angular/material";
 import {AngularFireAuthModule} from "angularfire2/auth";
 import {AngularFireDatabaseModule} from "angularfire2/database";
 
@@ -28,6 +31,7 @@ import {AngularFireDatabaseModule} from "angularfire2/database";
     MdCardModule,
     MdGridListModule,
     MdProgressSpinnerModule,
+    MdInputModule,
     FormsModule,
     AngularFireDatabaseModule,
     AngularFireAuthModule,

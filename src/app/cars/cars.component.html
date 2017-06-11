@@ -1,4 +1,7 @@
-<input type="text" pInputText (keyup.enter)="addCar($event.target.value)" [(ngModel)]="brand">
+<md-input-container>
+  <input mdInput placeholder="Brand name" #carBrand (keyup.enter)="addCar($event.target.value)" [(ngModel)]="brand">
+</md-input-container>
+<button md-button (click)="addCar(carBrand.value)">Add</button>
 <div class="grid-container">
   <div class="grid-item" *ngFor="let car of cars | async; let i = index">
 
