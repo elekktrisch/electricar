@@ -8,3 +8,7 @@
   width: 300px;
   margin: 5px;
 }
+
+.busy-spinner {
+  margin: 20vh auto auto;
+}
