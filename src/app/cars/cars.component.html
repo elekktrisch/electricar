@@ -1,23 +1,21 @@
 <input type="text" pInputText (keyup.enter)="addCar($event.target.value)" [(ngModel)]="brand">
 <div class="grid-container">
-  <div class="grid-item" *ngFor="let car of cars | async">
+  <div class="grid-item" *ngFor="let car of cars | async; let i = index">
 
     <md-card class="example-card">
       <md-card-header>
-        <img src="http://lorempixel.com/80/80/transport" md-card-avatar class="example-header-image">
+        <img src="http://lorempixel.com/80/80/transport/{{i}}" md-card-avatar class="example-header-image">
         <md-card-title>{{car.brand}}</md-card-title>
         <md-card-subtitle>...something</md-card-subtitle>
       </md-card-header>
-      <img md-card-image src="http://lorempixel.com/400/400/transport">
+      <img md-card-image src="http://lorempixel.com/400/400/transport/{{i}}">
       <md-card-content>
         <p>
-          The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-          A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-          bred for hunting.
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit.
         </p>
       </md-card-content>
       <md-card-actions>
-        <button md-button (click)="delete(car)"><span class="fa fa-times"></span></button>
+        <button md-raised-button (click)="delete(car)">DELETE</button>
       </md-card-actions>
     </md-card>
 
