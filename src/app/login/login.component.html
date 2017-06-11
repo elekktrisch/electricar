@@ -1,5 +1,3 @@
-<h1>Hi {{(user | async)?.displayName}}</h1>
 <p>
-  <button pButton *ngIf="!(user | async)" (click)="login()" label="Login" icon="fa fa-check"></button>
-  <button pButton *ngIf="user | async" (click)="logout()" label="Logout" icon="fa fa-times"></button>
+  <button pButton *ngIf="!(user | async)" (click)="login()" label="Login" icon="fa fa-facebook"></button>
 </p>

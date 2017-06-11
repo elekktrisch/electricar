@@ -21,8 +21,4 @@ export class LoginComponent {
     this.angularFireAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
   }
 
-  logout() {
-    this.angularFireAuth.auth.signOut();
-  }
-
 }
