@@ -24,9 +24,8 @@ export class CarsComponent implements OnInit {
       if (user) {
         this.cars = this.angularFireDatabase.list('/cars');
         this.cars.subscribe(() => {
-            console.log("done");
-            this.loading = false;
-          });
+          this.loading = false;
+        });
       }
     });
   }
