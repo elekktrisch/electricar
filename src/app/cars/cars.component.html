@@ -1,3 +1,8 @@
-<p>
-  cars works!
-</p>
+<input type="text" pInputText (keyup.enter)="addCar($event.target.value)" [(ngModel)]="brand">
+<p-dataGrid [value]="cars | async">
+  <ng-template let-car pTemplate="item">
+    <div class="ui-g-12 ui-md-3">
+      {{car.brand}}
+    </div>
+  </ng-template>
+</p-dataGrid>

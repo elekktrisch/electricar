@@ -3,6 +3,7 @@ import {MenuItem} from "primeng/primeng";
 import {Observable} from "rxjs/Observable";
 import {AngularFireAuth} from "angularfire2/auth";
 import * as firebase from 'firebase/app';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-menu',
@@ -16,7 +17,7 @@ export class MenuComponent implements OnInit {
 
   items: MenuItem[];
 
-  constructor(public angularFireAuth: AngularFireAuth) {
+  constructor(public angularFireAuth: AngularFireAuth, private router: Router) {
     this.user = angularFireAuth.authState;
   }
 
@@ -24,6 +25,10 @@ export class MenuComponent implements OnInit {
     this.user.subscribe(user => {
       if (user) {
         this.items = [
+          {
+            label: "Cars",
+            command: this.goToCars.bind(this)
+          },
           {
             label: user.displayName,
             items: [{
@@ -40,6 +45,10 @@ export class MenuComponent implements OnInit {
         }]
       }
     });
+  }
+
+  goToCars() {
+    this.router.navigateByUrl("/cars");
   }
 
   login() {
