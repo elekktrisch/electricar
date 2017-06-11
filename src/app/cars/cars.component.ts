@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
+import {AFUnwrappedDataSnapshot} from "angularfire2/interfaces";
 
 @Component({
   selector: 'app-cars',
@@ -17,6 +18,7 @@ export class CarsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.cars.subscribe(cars => console.log("cars", cars));
   }
 
   addCar(brand: string) {
@@ -25,8 +27,13 @@ export class CarsComponent implements OnInit {
     });
     this.brand = "";
   }
+
+  delete(car: any) {
+    this.cars.remove(car);
+  }
+
 }
 
-class Car {
+class Car{
   brand: string;
 }

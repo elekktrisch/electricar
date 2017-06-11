@@ -2,7 +2,8 @@
 <p-dataGrid [value]="cars | async">
   <ng-template let-car pTemplate="item">
     <div class="ui-g-12 ui-md-3">
-      {{car.brand}}
+      {{car | json}}
+      <button pButton (click)="delete(car)" icon="fa fa-times"></button>
     </div>
   </ng-template>
 </p-dataGrid>
