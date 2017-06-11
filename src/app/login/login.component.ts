@@ -16,7 +16,7 @@ export class LoginComponent {
     this.user = angularFireAuth.authState;
   }
 
-  login() {
+  facebookLogin() {
     this.angularFireAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider());
   }
 

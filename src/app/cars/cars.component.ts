@@ -35,7 +35,7 @@ export class CarsComponent implements OnInit {
     this.cars.push({
       brand: brand
     });
-    this.brand = "";
+    this.brand = "abc";
   }
 
   deleteCar(car: any) {

@@ -1,9 +1,23 @@
-<div class="button-row">
-  <md-menu #logoutMenu="mdMenu">
+<div class="menu">
+  <div class="logo">
+    <div class="logo-text">Demo App
+    </div>
+  </div>
+
+  <button md-button
+          *ngFor="let item of items"
+          (click)="item.command()"
+          class="menu-button">
+    {{item.label}}
+  </button>
+
+  <button *ngIf="(user | async)"
+          md-button [mdMenuTriggerFor]="logoutMenu"
+          class="menu-button">
+    {{(user | async)?.displayName}} <span class="fa fa-chevron-down"></span>
+  </button>
+
+  <md-menu #logoutMenu="mdMenu" class="dropdown-menu">
     <button md-menu-item (click)="logout()"> Logout</button>
   </md-menu>
-
-  <button *ngIf="(user | async)" md-button [mdMenuTriggerFor]="logoutMenu" class="menu-button">{{(user | async)?.displayName}} <span class="fa fa-chevron-down"></span></button>
-
-  <button md-button *ngFor="let item of items" (click)="item.command()" class="menu-button">{{item.label}}</button>
 </div>
