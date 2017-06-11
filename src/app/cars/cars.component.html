@@ -1,28 +1,14 @@
 <md-input-container>
   <input mdInput placeholder="Brand name" #carBrand (keyup.enter)="addCar($event.target.value)" [(ngModel)]="brand">
 </md-input-container>
+
 <button md-button (click)="addCar(carBrand.value)">Add</button>
+
 <div class="grid-container">
-  <div class="grid-item" *ngFor="let car of cars | async; let i = index">
-
-    <md-card class="example-card">
-      <md-card-header>
-        <img src="http://lorempixel.com/400/250/transport/{{i % 10}}" md-card-avatar class="example-header-image">
-        <md-card-title>{{car.brand}}</md-card-title>
-        <md-card-subtitle>...something</md-card-subtitle>
-      </md-card-header>
-      <img md-card-image src="http://lorempixel.com/400/250/transport/{{i % 10}}">
-      <md-card-content>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-        </p>
-      </md-card-content>
-      <md-card-actions>
-        <button md-raised-button (click)="delete(car)">DELETE</button>
-      </md-card-actions>
-    </md-card>
-
-  </div>
+  <app-card [car]="car"
+            [index]="i"
+            (deleteClicked)="delete(car)"
+            *ngFor="let car of cars | async; let i = index;"></app-card>
 
   <md-progress-spinner
     *ngIf="loading"
@@ -31,5 +17,4 @@
     [mode]="'indeterminate'"
     value="50">
   </md-progress-spinner>
-
 </div>

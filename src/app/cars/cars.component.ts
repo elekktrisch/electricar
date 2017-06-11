@@ -3,6 +3,7 @@ import {AngularFireDatabase, FirebaseListObservable} from "angularfire2/database
 import {AngularFireAuth} from "angularfire2/auth";
 import "rxjs/add/operator/take";
 import "rxjs/add/operator/do";
+import {Car} from "./car.model";
 
 @Component({
   selector: 'app-cars',
@@ -41,8 +42,4 @@ export class CarsComponent implements OnInit {
     this.cars.remove(car);
   }
 
-}
-
-class Car {
-  brand: string;
 }

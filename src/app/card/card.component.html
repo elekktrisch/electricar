@@ -1,0 +1,20 @@
+<div class="grid-item" *ngIf="car">
+
+  <md-card class="example-card">
+    <md-card-header>
+      <img src="http://lorempixel.com/400/250/transport/{{index % 10}}" md-card-avatar class="example-header-image">
+      <md-card-title>{{car.brand}}</md-card-title>
+      <md-card-subtitle>...something</md-card-subtitle>
+    </md-card-header>
+    <img md-card-image src="http://lorempixel.com/400/250/transport/{{index % 10}}">
+    <md-card-content>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+      </p>
+    </md-card-content>
+    <md-card-actions>
+      <button md-raised-button (click)="deleteClicked.next(car)">DELETE</button>
+    </md-card-actions>
+  </md-card>
+
+</div>

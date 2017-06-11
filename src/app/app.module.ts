@@ -15,6 +15,7 @@ import {
 } from "@angular/material";
 import {AngularFireAuthModule} from "angularfire2/auth";
 import {AngularFireDatabaseModule} from "angularfire2/database";
+import { CardComponent } from './card/card.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import {AngularFireDatabaseModule} from "angularfire2/database";
     AppComponent,
     LoginComponent,
     CarsComponent,
-    MenuComponent
+    MenuComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,
