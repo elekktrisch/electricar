@@ -1686,5 +1686,77 @@
     "adVideos": [
       "DyNjEDHZhFc"
     ]
+  },
+  {
+    "id": "eGoLife14",
+    "name": "e.Go Life (14.4kWh)",
+    "range": 130,
+    "rangeParams": {
+      "totalWeightKg": 810,
+      "cw": 0.3,
+      "frontAreaM2": 2,
+      "cr": 0.01,
+      "averageHvacPower": 600,
+      "totalEfficiency": 0.76
+    },
+    "motorPowerKw": 22,
+    "onBoardChargerKW": 3,
+    "maxExternalDirectChargerKW": 50,
+    "battery": 14.4,
+    "acPhases": 1,
+    "acceleration": "> 15",
+    "maxSpeed": 120,
+    "soon": true,
+    "plugs": [
+      "t13",
+      "schuko",
+      "cee16",
+      "cee32",
+      "type2"
+    ],
+    "image": "eGo.jpg",
+    "logo": "eGo.png",
+    "link": "http://e-go-mobile.com/de/modelle/e.go-life/",
+    "reviewVideo": "4rdDhjD61kM",
+    "adVideos": [
+      "SURIppdZbeI",
+      "bhIYX8Glyf8"
+    ]
+  },
+  {
+    "id": "eGoLife19",
+    "name": "e.Go Life (19.2kWh)",
+    "range": 170,
+    "rangeParams": {
+      "totalWeightKg": 840,
+      "cw": 0.3,
+      "frontAreaM2": 2,
+      "cr": 0.01,
+      "averageHvacPower": 600,
+      "totalEfficiency": 0.76
+    },
+    "motorPowerKw": 22,
+    "onBoardChargerKW": 3,
+    "maxExternalDirectChargerKW": 50,
+    "battery": 19.2,
+    "acPhases": 1,
+    "acceleration": "> 15",
+    "maxSpeed": 120,
+    "soon": true,
+    "plugs": [
+      "t13",
+      "schuko",
+      "cee16",
+      "cee32",
+      "type2"
+    ],
+    "image": "eGo.jpg",
+    "logo": "eGo.png",
+    "link": "http://e-go-mobile.com/de/modelle/e.go-life/",
+    "reviewVideo": "4rdDhjD61kM",
+    "adVideos": [
+      "SURIppdZbeI",
+      "bhIYX8Glyf8"
+    ]
   }
 ]
