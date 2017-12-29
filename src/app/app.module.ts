@@ -24,6 +24,9 @@ import {environment} from "../environments/environment";
 import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 import {EffectsModule} from "@ngrx/effects";
 import {StoreRouterConnectingModule} from "@ngrx/router-store";
+import {CarsEffects} from "./effects/cars.effects";
+import {DBModule} from "@ngrx/db";
+import {schema} from "./db";
 
 @NgModule({
   declarations: [
@@ -46,7 +49,7 @@ import {StoreRouterConnectingModule} from "@ngrx/router-store";
     FormsModule,
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    RouterModule.forRoot(appRoutes),
+    RouterModule.forRoot(appRoutes, { useHash: true }),
     AngularFireModule.initializeApp({
       apiKey: "AIzaSyAUjHNW2L80OTCrhsUUSmRuT1Qbs68AazI",
       authDomain: "electricar-e92a5.firebaseapp.com",
@@ -58,9 +61,10 @@ import {StoreRouterConnectingModule} from "@ngrx/router-store";
     !environment.production
       ? StoreDevtoolsModule.instrument({maxAge: 25})
       : [],
-    EffectsModule.forRoot([]),
+    DBModule.provideDB(schema),
+    EffectsModule.forRoot([CarsEffects]),
     StoreRouterConnectingModule,
-    StoreModule.forRoot({message: simpleReducer, metaReducers})
+    StoreModule.forRoot({message: simpleReducer, metaReducers: metaReducers})
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

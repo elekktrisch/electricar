@@ -4,6 +4,10 @@
 
 <button mat-button (click)="addCar(carBrand.value)">Add</button>
 
+<div>{{message$ | async}}</div>
+<button (click)="frenchMessage()">french</button>
+<button (click)="spanishMessage()">spanish</button>
+
 <app-card-list
   (deleteClicked)="deleteCar($event)"
   [cars]="cars$ | async"

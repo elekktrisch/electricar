@@ -6,9 +6,11 @@ import "rxjs/add/operator/do";
 import {Car} from "../../models/car.model";
 import {Store} from '@ngrx/store';
 import {Observable} from 'rxjs/Observable';
+import {CarActionTypes, Load} from "../../actions/cars.actions";
 
 interface AppState {
   message: string;
+  cars: Car[];
 }
 
 @Component({
@@ -30,6 +32,9 @@ export class CarsComponent implements OnInit {
 
   ngOnInit() {
     this.loading = true;
+    // this.store.dispatch(new Load());
+    // this.cars$ = this.store.select("cars");
+
     this.angularFireAuth.authState.subscribe(user => {
       if (user) {
         this.cars = this.angularFireDatabase.list('/cars');
@@ -50,7 +55,6 @@ export class CarsComponent implements OnInit {
   }
 
   addCar(brand: string) {
-    // noinspection JSIgnoredPromiseFromCall
     this.cars.push({
       brand: brand
     });
@@ -58,7 +62,6 @@ export class CarsComponent implements OnInit {
   }
 
   deleteCar(car: any) {
-    // noinspection JSIgnoredPromiseFromCall
     this.cars.remove(car.key);
   }
 
