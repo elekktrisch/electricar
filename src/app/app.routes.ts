@@ -1,5 +1,5 @@
-import {CarsComponent} from "./cars/cars.component";
-import {LoginComponent} from "./login/login.component";
+import {CarsComponent} from "./containers/cars/cars.component";
+import {LoginComponent} from "./containers/login/login.component";
 import {Routes, CanActivate, RouterStateSnapshot, ActivatedRouteSnapshot, Router} from "@angular/router";
 import {AngularFireAuth} from "angularfire2/auth";
 import {Observable} from "rxjs/Rx";

@@ -3,8 +3,13 @@ import {AngularFireDatabase, AngularFireList} from "angularfire2/database";
 import {AngularFireAuth} from "angularfire2/auth";
 import "rxjs/add/operator/take";
 import "rxjs/add/operator/do";
-import {Car} from "./car.model";
-import {Observable} from "rxjs/Observable";
+import {Car} from "../../models/car.model";
+import {Store} from '@ngrx/store';
+import {Observable} from 'rxjs/Observable';
+
+interface AppState {
+  message: string;
+}
 
 @Component({
   selector: 'app-cars',
@@ -15,10 +20,12 @@ export class CarsComponent implements OnInit {
 
   brand: string = "";
   cars: AngularFireList<Car>;
-  cars2: Observable<any>;
+  cars$: Observable<any>;
   loading: boolean;
+  message$: Observable<string>;
 
-  constructor(private angularFireAuth: AngularFireAuth, private angularFireDatabase: AngularFireDatabase) {
+  constructor(private angularFireAuth: AngularFireAuth, private angularFireDatabase: AngularFireDatabase, private store: Store<AppState>) {
+    this.message$ = this.store.select('message')
   }
 
   ngOnInit() {
@@ -26,12 +33,20 @@ export class CarsComponent implements OnInit {
     this.angularFireAuth.authState.subscribe(user => {
       if (user) {
         this.cars = this.angularFireDatabase.list('/cars');
-        this.cars2 = this.cars.snapshotChanges();
-        this.cars2.subscribe(() => {
+        this.cars$ = this.cars.snapshotChanges();
+        this.cars$.subscribe(() => {
           this.loading = false;
         });
       }
     });
+  }
+
+  spanishMessage() {
+    this.store.dispatch({type: 'SPANISH'})
+  }
+
+  frenchMessage() {
+    this.store.dispatch({type: 'FRENCH'})
   }
 
   addCar(brand: string) {

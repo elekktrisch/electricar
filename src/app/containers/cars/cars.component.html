@@ -6,5 +6,5 @@
 
 <app-card-container
   (deleteClicked)="deleteCar($event)"
-  [cars]="cars2 | async"
+  [cars]="cars$ | async"
   [loading]="loading"></app-card-container>

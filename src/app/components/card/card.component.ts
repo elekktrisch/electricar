@@ -1,5 +1,5 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
-import {Car} from "../cars/car.model";
+import {Car} from "../../models/car.model";
 
 @Component({
   selector: 'app-card',
@@ -10,10 +10,10 @@ export class CardComponent implements OnInit {
 
   @Input()
   car: Car;
-  
+
   @Input()
   index: number;
-  
+
   @Output()
   deleteClicked: EventEmitter<Car> = new EventEmitter<Car>();
 

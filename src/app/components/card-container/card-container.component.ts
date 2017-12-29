@@ -1,6 +1,6 @@
 import {Component, OnInit, Input, Output, EventEmitter} from "@angular/core";
 import {Observable} from "rxjs/Rx";
-import {Car} from "../cars/car.model";
+import {Car} from "../../models/car.model";
 
 @Component({
   selector: 'app-card-container',
