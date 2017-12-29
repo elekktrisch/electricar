@@ -1,23 +1,23 @@
 <div class="grid-item" *ngIf="car">
 
-  <md-card>
-    <md-card-header>
-      <img src="http://lorempixel.com/400/250/transport/{{index % 10}}" md-card-avatar>
-      <md-card-title>{{car.brand}}</md-card-title>
-      <md-card-subtitle>...something</md-card-subtitle>
-    </md-card-header>
+  <mat-card>
+    <mat-card-header>
+      <img src="http://lorempixel.com/400/250/transport/{{index % 10}}" mat-card-avatar>
+      <mat-card-title>{{car.brand}}</mat-card-title>
+      <mat-card-subtitle>...something</mat-card-subtitle>
+    </mat-card-header>
 
-    <img md-card-image src="http://lorempixel.com/400/250/transport/{{index % 10}}">
+    <img mat-card-image src="http://lorempixel.com/400/250/transport/{{index % 10}}">
 
-    <md-card-content>
+    <mat-card-content>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit.
       </p>
-    </md-card-content>
+    </mat-card-content>
 
-    <md-card-actions>
-      <button md-raised-button (click)="deleteClicked.next(car)">DELETE</button>
-    </md-card-actions>
-  </md-card>
+    <mat-card-actions>
+      <button mat-raised-button (click)="deleteClicked.next(car)">DELETE</button>
+    </mat-card-actions>
+  </mat-card>
 
 </div>

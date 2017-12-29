@@ -10,8 +10,8 @@ import {appRoutes, AuthGuard} from "./app.routes";
 import {FormsModule} from "@angular/forms";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {
-  MdButtonModule, MdCardModule, MdGridListModule, MdProgressSpinnerModule,
-  MdInputModule, MdMenuModule
+  MatButtonModule, MatCardModule, MatGridListModule, MatProgressSpinnerModule,
+  MatInputModule, MatMenuModule
 } from "@angular/material";
 import {AngularFireAuthModule} from "angularfire2/auth";
 import {AngularFireDatabaseModule} from "angularfire2/database";
@@ -31,12 +31,12 @@ import { CardContainerComponent } from './card-container/card-container.componen
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MdButtonModule,
-    MdCardModule,
-    MdGridListModule,
-    MdProgressSpinnerModule,
-    MdInputModule,
-    MdMenuModule,
+    MatButtonModule,
+    MatCardModule,
+    MatGridListModule,
+    MatProgressSpinnerModule,
+    MatInputModule,
+    MatMenuModule,
     FormsModule,
     AngularFireDatabaseModule,
     AngularFireAuthModule,

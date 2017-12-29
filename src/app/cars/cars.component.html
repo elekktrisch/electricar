@@ -1,10 +1,10 @@
-<md-input-container>
-  <input mdInput placeholder="Brand name" #carBrand (keyup.enter)="addCar($event.target.value)" [(ngModel)]="brand">
-</md-input-container>
+<mat-input-container>
+  <input matInput placeholder="Brand name" #carBrand (keyup.enter)="addCar($event.target.value)" [(ngModel)]="brand">
+</mat-input-container>
 
-<button md-button (click)="addCar(carBrand.value)">Add</button>
+<button mat-button (click)="addCar(carBrand.value)">Add</button>
 
 <app-card-container
   (deleteClicked)="deleteCar($event)"
-  [cars]="cars | async"
+  [cars]="cars2 | async"
   [loading]="loading"></app-card-container>

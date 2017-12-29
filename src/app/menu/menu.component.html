@@ -4,7 +4,7 @@
     </div>
   </div>
 
-  <button md-button
+  <button mat-button
           *ngFor="let item of items"
           (click)="item.command()"
           class="menu-button">
@@ -12,12 +12,12 @@
   </button>
 
   <button *ngIf="(user | async)"
-          md-button [mdMenuTriggerFor]="logoutMenu"
+          mat-button [matMenuTriggerFor]="logoutMenu"
           class="menu-button">
     {{(user | async)?.displayName}} <span class="fa fa-chevron-down"></span>
   </button>
 
-  <md-menu #logoutMenu="mdMenu" class="dropdown-menu">
-    <button md-menu-item (click)="logout()"> Logout</button>
-  </md-menu>
+  <mat-menu #logoutMenu="matMenu" class="dropdown-menu">
+    <button mat-menu-item (click)="logout()"> Logout</button>
+  </mat-menu>
 </div>

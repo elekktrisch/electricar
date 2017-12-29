@@ -1,9 +1,10 @@
 import {Component, OnInit} from "@angular/core";
-import {AngularFireDatabase, FirebaseListObservable} from "angularfire2/database";
+import {AngularFireDatabase, AngularFireList} from "angularfire2/database";
 import {AngularFireAuth} from "angularfire2/auth";
 import "rxjs/add/operator/take";
 import "rxjs/add/operator/do";
 import {Car} from "./car.model";
+import {Observable} from "rxjs/Observable";
 
 @Component({
   selector: 'app-cars',
@@ -13,7 +14,8 @@ import {Car} from "./car.model";
 export class CarsComponent implements OnInit {
 
   brand: string = "";
-  cars: FirebaseListObservable<Car[]>;
+  cars: AngularFireList<Car>;
+  cars2: Observable<any>;
   loading: boolean;
 
   constructor(private angularFireAuth: AngularFireAuth, private angularFireDatabase: AngularFireDatabase) {
@@ -24,7 +26,8 @@ export class CarsComponent implements OnInit {
     this.angularFireAuth.authState.subscribe(user => {
       if (user) {
         this.cars = this.angularFireDatabase.list('/cars');
-        this.cars.subscribe(() => {
+        this.cars2 = this.cars.snapshotChanges();
+        this.cars2.subscribe(() => {
           this.loading = false;
         });
       }
@@ -32,6 +35,7 @@ export class CarsComponent implements OnInit {
   }
 
   addCar(brand: string) {
+    // noinspection JSIgnoredPromiseFromCall
     this.cars.push({
       brand: brand
     });
@@ -39,7 +43,8 @@ export class CarsComponent implements OnInit {
   }
 
   deleteCar(car: any) {
-    this.cars.remove(car);
+    // noinspection JSIgnoredPromiseFromCall
+    this.cars.remove(car.key);
   }
 
 }

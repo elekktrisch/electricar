@@ -4,10 +4,10 @@
             (deleteClicked)="deleteClicked.emit(car)"
             *ngFor="let car of cars; let i = index;"></app-card>
 
-  <md-progress-spinner
+  <mat-progress-spinner
     *ngIf="loading"
     class="busy-spinner"
     [color]="'primary'"
     [mode]="'indeterminate'">
-  </md-progress-spinner>
+  </mat-progress-spinner>
 </div>
