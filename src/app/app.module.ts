@@ -16,7 +16,7 @@ import {
 import {AngularFireAuthModule} from "angularfire2/auth";
 import {AngularFireDatabaseModule} from "angularfire2/database";
 import {CardComponent} from './components/card/card.component';
-import {CardContainerComponent} from './components/card-container/card-container.component';
+import {CardListComponent} from './components/card-list/card-list.component';
 
 import {StoreModule} from '@ngrx/store';
 import {metaReducers, simpleReducer} from './reducers/simple.reducer';
@@ -32,7 +32,7 @@ import {StoreRouterConnectingModule} from "@ngrx/router-store";
     CarsComponent,
     MenuComponent,
     CardComponent,
-    CardContainerComponent
+    CardListComponent
   ],
   imports: [
     BrowserModule,

@@ -4,7 +4,7 @@
 
 <button mat-button (click)="addCar(carBrand.value)">Add</button>
 
-<app-card-container
+<app-card-list
   (deleteClicked)="deleteCar($event)"
   [cars]="cars$ | async"
-  [loading]="loading"></app-card-container>
+  [loading]="loading"></app-card-list>

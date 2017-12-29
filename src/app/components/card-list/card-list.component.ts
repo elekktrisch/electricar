@@ -3,11 +3,11 @@ import {Observable} from "rxjs/Rx";
 import {Car} from "../../models/car.model";
 
 @Component({
-  selector: 'app-card-container',
-  templateUrl: './card-container.component.html',
-  styleUrls: ['./card-container.component.css']
+  selector: 'app-card-list',
+  templateUrl: './card-list.component.html',
+  styleUrls: ['./card-list.component.css']
 })
-export class CardContainerComponent implements OnInit {
+export class CardListComponent implements OnInit {
 
   @Input()
   cars: Observable<Car[]>;
