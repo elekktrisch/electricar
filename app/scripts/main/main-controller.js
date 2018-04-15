@@ -8,7 +8,11 @@ export class MainCtrl {
         $scope.titlePrefix = DomainInfo.titlePrefix();
         $scope.titlePostfix = DomainInfo.titlePostfix();
 
+        $scope.filterActive = false;
+
         $scope.cars = _.sortBy(require("../data/cars.json"), ['battery']).reverse();
+        $scope.allCars = [];
+        angular.copy($scope.cars, $scope.allCars);
         for(let i = 0; i < $scope.cars.length; i++) {
             let car = $scope.cars[i];
             car.logoPath = require("../../images/logos/" + car.logo);
@@ -26,6 +30,18 @@ export class MainCtrl {
         $scope.isPath = function (path) {
             return $location.path().indexOf(path) !== -1;
         };
+
+        $scope.toggleWidelyAvailable = function() {
+            if(!$scope.filterActive) {
+                $scope.cars = _.filter($scope.allCars, function (car) {
+                    return !car.soon && !car.discontinued && !car.limited;
+                });
+                $scope.filterActive = true;
+            } else {
+                angular.copy($scope.allCars, $scope.cars);
+                $scope.filterActive = false;
+            }
+        }
     }
 }
 

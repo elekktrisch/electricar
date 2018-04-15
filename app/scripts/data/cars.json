@@ -549,7 +549,7 @@
   },
   {
     "id": "rimac_concept_one",
-    "limited": true,
+    "discontinued": true,
     "name": "Rimac Concept_One",
     "range": 300,
     "rangeParams": {
@@ -585,6 +585,31 @@
     ]
   },
   {
+    "id": "rimac_c-two",
+    "limited": true,
+    "name": "Rimac C_Two",
+    "range": 650,
+    "motorPowerKw": 1408,
+    "battery": 120,
+    "acceleration": "2.0",
+    "maxSpeed": 412,
+    "image": "rimac_c-two.jpg",
+    "logo": "rimac.png"
+  },
+  {
+    "id": "tesla_roadster2",
+    "soon": true,
+    "name": "Tesla Roadster (2020)",
+    "range": 1000,
+    "rangeMeasuringCycle": "EPA",
+    "motorPowerKw": 1400,
+    "battery": 200,
+    "acceleration": "2.0",
+    "maxSpeed": 400,
+    "image": "tesla_roadster2.jpg",
+    "logo": "tesla.png"
+  },
+  {
     "id": "nio_ep9",
     "limited": true,
     "name": "Nio EP9",
@@ -600,13 +625,64 @@
     "id": "teslaModel3",
     "soon": true,
     "name": "Tesla Model 3",
-    "range": "345",
+    "range": "350",
     "motorPowerKw": "?",
-    "battery": 60,
-    "acceleration": "< 6",
-    "maxSpeed": "?",
+    "battery": 50,
+    "acceleration": "5.6",
+    "maxSpeed": "210",
     "image": "tesla_model_3.jpg",
     "logo": "tesla.png"
+  },
+  {
+    "id": "teslaModel3-lr",
+    "soon": true,
+    "name": "Tesla Model 3 long range",
+    "range": "500",
+    "motorPowerKw": "?",
+    "battery": 75,
+    "acceleration": "5.1",
+    "maxSpeed": "225",
+    "image": "tesla_model_3.jpg",
+    "logo": "tesla.png"
+  },
+  {
+    "id": "hyundai-kona",
+    "soon": true,
+    "name": "Hyundai Kona EV",
+    "range": "300",
+    "rangeMeasuringCycle": "WLTP",
+    "motorPowerKw": "99",
+    "battery": 39,
+    "acceleration": "9.3",
+    "maxSpeed": "167",
+    "image": "hyundai_kona-ev.jpg",
+    "logo": "hyundai.png"
+  },
+  {
+    "id": "hyundai-kona",
+    "soon": true,
+    "name": "Hyundai Kona EV long range",
+    "range": "470",
+    "rangeMeasuringCycle": "WLTP",
+    "motorPowerKw": "150",
+    "battery": 64,
+    "acceleration": "7.6",
+    "maxSpeed": "167",
+    "image": "hyundai_kona-ev.jpg",
+    "logo": "hyundai.png"
+  },
+  {
+    "id": "jaguar-ipace",
+    "soon": true,
+    "name": "Jaguar I-Pace",
+    "range": "480",
+    "rangeMeasuringCycle": "WLTP",
+    "motorPowerKw": "290",
+    "battery": 90,
+    "acceleration": "4.8",
+    "maxSpeed": "167",
+    "image": "jaguar_ipace.jpg",
+    "logo": "jaguar.png"
   },
   {
     "id": "zoe40",
@@ -868,40 +944,39 @@
   {
     "id": "leaf2",
     "name": "Nissan Leaf 2.0",
-    "range": 245,
-    "rangeParams": {
-      "totalWeightKg": 1481,
-      "cw": 0.28,
-      "frontAreaM2": 2.3,
-      "cr": 0.01,
-      "averageHvacPower": 700,
-      "totalEfficiency": 0.76
-    },
-    "motorPowerKw": 80,
-    "onBoardChargerKW": 7.3,
-    "maxExternalDirectChargerKW": 50,
-    "battery": 30,
-    "acPhases": 1,
-    "acceleration": 11.4,
+    "range": 285,
+    "motorPowerKw": 110,
+    "battery": 40,
+    "acceleration": 7.9,
     "maxSpeed": 145,
-    "plugs": [
-      "t13",
-      "schuko",
-      "caravan",
-      "cee16",
-      "cee32",
-      "type1",
-      "chademo"
-    ],
-    "image": "nissan_leaf.jpg",
-    "logo": "nissan.png",
-    "link": "http://de.nissan.ch/CH/de/vehicle/electric-vehicles/leaf.html",
-    "reviewVideo": "_NraY4VnRVM",
-    "adVideos": [
-      "Nn__9hLJKAk",
-      "k-rGQxTzxWo",
-      "VT_3xtI2kvM"
-    ]
+    "image": "nissan_leaf2.jpg",
+    "logo": "nissan.png"
+  },
+  {
+    "id": "audi-quattro-etron",
+    "name": "Audi Quattro e-tron",
+    "soon": true,
+    "range": 500,
+    "rangeMeasuringCycle": "NEFZ",
+    "motorPowerKw": 370,
+    "battery": 95,
+    "acceleration": 4.6,
+    "maxSpeed": 210,
+    "image": "audi-e-tron-quattro.jpg",
+    "logo": "audi.png"
+  },
+  {
+    "id": "porsche-mission-e",
+    "name": "Porsche Mission E",
+    "soon": true,
+    "range": 500,
+    "rangeMeasuringCycle": "NEFZ",
+    "motorPowerKw": 440,
+    "battery": 95,
+    "acceleration": 3.5,
+    "maxSpeed": 250,
+    "image": "porsche_mission-e.jpg",
+    "logo": "porsche.png"
   },
   {
     "id": "zoe2",

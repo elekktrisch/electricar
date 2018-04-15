@@ -1,7 +1,13 @@
 <div ng-controller="MainCtrl">
     <div class="quartett-board" id="quartett-board">
         <p class="page-intro">Choose one of the following cars to see details and find out how far it can really take you in one day.</p>
-        <p class="hint">The list is sorted by battery capacity, starting with the most capable car</p>
+        <p class="hint">
+            The list is sorted by battery capacity, starting with the most capable car
+            <button class="btn btn-default" ng-click="toggleWidelyAvailable()">
+                <span ng-if="!filterActive">Filter for readily available cars</span>
+                <span ng-if="filterActive">Show all cars</span>
+            </button>
+        </p>
         <div ng-repeat="car in cars" ng-click="select(car)" class="col-xl-2 col-lg-3 col-md-4 col-sm-6 quartett-card-wrapper">
             <div class="quartett-card" ng-class="{'quartett-card-with-details':car.rangeParams}">
                 <div ng-if="car.discontinued" style="position: absolute;left:50px;top:120px;height: 130px;">
